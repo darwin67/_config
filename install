@@ -161,7 +161,19 @@ InstallPowerline() {
 # Tmux
 #
 
-InstallTmux() {
+InstallTmuxMac() {
+  brew install tmux
+}
+
+InstallTmuxLinux() {
+  sudo apt-get install tmux
+}
+
+InstallTmuxConfig() {
+  cd ~
+  git clone git@github.com:darwin67/dotfiles.git
+  mv dotfiles .dotfiles
+  cp .dotfiles/.tmux.conf ~
   mkdir ~/.tmux
   cd ~/.tmux
   git clone git@github.com:erikw/tmux-powerline.git
