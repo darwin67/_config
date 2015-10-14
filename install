@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Load helper functions
-source ./help_func.sh
+source help_func.sh
 
 # Check if it's Mac or Linux
 MacOrLinux() {
