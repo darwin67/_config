@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Load helper functions
+source ./help_func
+
+# Check if it's Mac or Linux
+MacOrLinux() {
+  if [ "$2" = "--mac" ]; then
+    $3
+  elif [ "$2" = "--linux" ]; then
+    $4
+  fi
+}
+
+# Installation
+if [ "$1" = "brew" ]; then # install brew
+  InstallBrew
+
+elif [ "$1" = "vim" ]; then # install vim
+  MacOrLinux $1 $2 InstallMacVim InstallLinuxVim
+
+elif [ "$1" = "zsh" ]; then # install oh-my-zsh
+  MacOrLinux $1 $2 MacZsh LinuxZsh
+  InstallZsh
+
+elif [ "$1" = "powerline" ]; then # install Powerline
+  MacOrLinux $1 $2 MacPy LinuxPy
+  InstallPowerline
+
+elif [ "$1" = "tmux" ]; then # install tmux
+  MacOrLinux $1 $2
+  InstallTmux
+
+fi
