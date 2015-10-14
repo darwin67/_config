@@ -209,7 +209,7 @@ elif [ "$1" = "powerline" ]; then # install Powerline
   InstallPowerline
 
 elif [ "$1" = "tmux" ]; then # install tmux
-  MacOrLinux $1 $2
-  InstallTmux
+  MacOrLinux $1 $2 InstallTmuxMac InstallTmuxLinux
+  InstallTmuxConfig
 
 fi
