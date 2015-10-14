@@ -13,7 +13,10 @@ MacOrLinux() {
 }
 
 # Installation
-if [ "$1" = "brew" ]; then # install brew
+if [ "$1" = "" ]; then # print usage
+  Usage
+
+elif [ "$1" = "brew" ]; then # install brew
   InstallBrew
 
 elif [ "$1" = "vim" ]; then # install vim

@@ -3,6 +3,28 @@
 #
 #
 #
+# Usage
+##
+
+Usage() {
+  echo "usage: ./install [config] [target]"
+  echo
+  echo "config:"
+  echo "    brew"
+  echo "    vim"
+  echo "    zsh"
+  echo "    powerline"
+  echo "    tmux"
+  echo
+  echo "target:"
+  echo "    --mac"
+  echo "    --linux"
+  echo
+}
+
+#
+#
+#
 # Brew
 ##
 
