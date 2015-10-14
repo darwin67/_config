@@ -78,6 +78,13 @@ InstallLinuxVim() {
   sudo cp -fr runtime/* /usr/share/vim/vim74/
 }
 
+InstallVimConfig() {
+  git clone git@github.com:darwin67/_vim.git
+  mv _vim ~
+  mv ~/_vim ~/.vim
+  cp ~/.vim/.vimrc ~
+}
+
 #
 #
 #
@@ -174,7 +181,8 @@ elif [ "$1" = "brew" ]; then # install brew
   InstallBrew
 
 elif [ "$1" = "vim" ]; then # install vim
-  MacOrLinux $1 $2 InstallMacVim InstallLinuxVim
+  # MacOrLinux $1 $2 InstallMacVim InstallLinuxVim
+  InstallVimConfig
 
 elif [ "$1" = "zsh" ]; then # install oh-my-zsh
   MacOrLinux $1 $2 MacZsh LinuxZsh
