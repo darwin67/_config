@@ -86,7 +86,7 @@ InstallLinuxVim() {
 
 SetZsh() {
   zsh --version
-  sudo chsh -s $(which zsh)
+  chsh -s $(which zsh)
 }
 
 MacZsh() {
