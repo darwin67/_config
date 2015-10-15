@@ -46,8 +46,7 @@ InstallMacVim() {
 
 InstallLinuxVim() {
   sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
-  sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
-
+  sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
   sudo mkdir /usr/include/lua5.1/include
   sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
    
@@ -126,12 +125,12 @@ CheckPyVersion() {
   pip --version
 }
 
-MacPy() {
+InstallPythonMac() {
   brew install python
   CheckPyVersion
 }
 
-LinuxPy() {
+InstallPythonLinux() {
   sudo apt-get -y install python
   sudo apt-get -y install python-pip
   CheckPyVersion
@@ -150,10 +149,17 @@ InstallPowerline() {
   echo "*************************************************************"
 
   echo "Adding path to .zshrc"
+}
+
+AppendPLPathMac() {
   echo "export PATH=\"\$HOME/Library/Python/2.7/bin:\$PATH\"" >> ~/.zshrc
   echo "powerline-daemon -q" >> ~/.zshrc
 }
 
+AppendPLPathLinux() {
+  echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> ~/.zshrc
+  echo "powerline-daemon -q" >> ~/.zshrc
+}
 
 #
 #
@@ -176,7 +182,7 @@ InstallTmuxConfig() {
   cp .dotfiles/.tmux.conf ~
   mkdir ~/.tmux
   cd ~/.tmux
-  git clone git@github.com:erikw/tmux-powerline.git
+  git clone git@github.com:darwin67/tmux-powerline.git
   echo "See https://github.com/darwin67/dotfiles for details to add things to your .zshrc file"
 }
 
@@ -205,8 +211,9 @@ elif [ "$1" = "zsh" ]; then # install oh-my-zsh
   InstallZsh
 
 elif [ "$1" = "powerline" ]; then # install Powerline
-  MacOrLinux $1 $2 MacPy LinuxPy
+  MacOrLinux $1 $2 InstallPythonMac InstallPythonLinux
   InstallPowerline
+  MacOrLinux $1 $2 AppendPLPathMac AppendPLPathLinux
 
 elif [ "$1" = "tmux" ]; then # install tmux
   MacOrLinux $1 $2 InstallTmuxMac InstallTmuxLinux
