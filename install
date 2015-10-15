@@ -177,7 +177,7 @@ InstallTmuxLinux() {
 
 InstallTmuxConfig() {
   cd ~
-  git clone git@github.com:darwin67/dotfiles.git
+  git clone git@github.com:darwin67/_dotfiles.git
   mv dotfiles .dotfiles
   cp .dotfiles/.tmux.conf ~
   mkdir ~/.tmux
