@@ -9,16 +9,16 @@
 ##
 
 Usage() {
-  echo "usage: ./install [config] [target]"
+  echo "usage: ./install [config] [OS]"
   echo
   echo "config:"
-  echo "    brew"
+  echo "    brew (OS X only)"
   echo "    vim"
   echo "    zsh"
   echo "    powerline"
   echo "    tmux"
   echo
-  echo "target:"
+  echo "OS:"
   echo "    --mac"
   echo "    --linux"
   echo
@@ -186,7 +186,11 @@ InstallTmuxConfig() {
   echo "See https://github.com/darwin67/dotfiles for details to add things to your .zshrc file"
 }
 
-# Check if it's Mac or Linux
+#
+#
+#
+# Helper functions
+#
 MacOrLinux() {
   if [ "$2" = "--mac" ]; then
     $3
@@ -195,28 +199,54 @@ MacOrLinux() {
   fi
 }
 
-# Installation
-if [ "$1" = "" ]; then # print usage
-  Usage
 
-elif [ "$1" = "brew" ]; then # install brew
-  InstallBrew
+#
+#
+#
+# Installation
+#
+if [ "$1" = "brew" ]; then # install brew
+  if [ ! -z "$2" ]; then
+    MacOrLinux $1 $2 InstallBrew Usage
+  else
+    Usage
+  fi
 
 elif [ "$1" = "vim" ]; then # install vim
-  # MacOrLinux $1 $2 InstallMacVim InstallLinuxVim
-  InstallVimConfig
+  if [ ! -z "$2" ]; then
+    MacOrLinux $1 $2 InstallMacVim InstallLinuxVim
+    InstallVimConfig
+  else
+    Usage
+  fi
 
 elif [ "$1" = "zsh" ]; then # install oh-my-zsh
-  MacOrLinux $1 $2 MacZsh LinuxZsh
-  InstallZsh
+  if [ ! -z "$2" ]; then
+    MacOrLinux $1 $2 MacZsh LinuxZsh
+    InstallZsh
+  else
+    Usage
+  fi
 
 elif [ "$1" = "powerline" ]; then # install Powerline
-  MacOrLinux $1 $2 InstallPythonMac InstallPythonLinux
-  InstallPowerline
-  MacOrLinux $1 $2 AppendPLPathMac AppendPLPathLinux
+  if [ ! -z "$2" ]; then
+    MacOrLinux $1 $2 InstallPythonMac InstallPythonLinux
+    InstallPowerline
+    MacOrLinux $1 $2 AppendPLPathMac AppendPLPathLinux
+  else
+    Usage
+  fi
 
 elif [ "$1" = "tmux" ]; then # install tmux
-  MacOrLinux $1 $2 InstallTmuxMac InstallTmuxLinux
-  InstallTmuxConfig
+  if [ ! -z "$2" ]; then
+    MacOrLinux $1 $2 InstallTmuxMac InstallTmuxLinux
+    InstallTmuxConfig
+  else
+    Usage
+  fi
+
+else
+  Usage
 
 fi
+
