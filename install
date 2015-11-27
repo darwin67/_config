@@ -78,13 +78,11 @@ InstallLinuxVim() {
 }
 
 InstallVimConfig() {
-  curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
-  chmod 755 install.sh
-  ./install.sh
-  rm install.sh
   git clone git@github.com:darwin67/_vim.git
-  mv _vim ~
-  mv ~/_vim ~/.vim
+  mv ./_vim ~/.vim
+  cd ~/.vim
+  git submodule init
+  git submodule update
   cp ~/.vim/.vimrc ~
 }
 
