@@ -79,7 +79,8 @@ InstallLinuxVim() {
 
 InstallVimConfig() {
   git clone git@github.com:darwin67/_vim.git
-  mv ./_vim ~/.vim
+  mv _vim .vim
+  mv .vim ~/
   cd ~/.vim
   git submodule init
   git submodule update
