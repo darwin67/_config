@@ -1,15 +1,11 @@
 #!/bin/sh
 
-# Helper functions
-
-#
-#
-#
+##################################################################
 # Usage
-##
+##################################################################
 
 Usage() {
-  echo "usage: ./install [config] [OS]"
+  echo "usage: ./install [config]"
   echo
   echo "config:"
   echo "    brew (OS X only)"
@@ -17,28 +13,21 @@ Usage() {
   echo "    zsh"
   echo "    powerline"
   echo "    tmux"
-  echo
-  echo "OS:"
-  echo "    --mac"
-  echo "    --linux"
+  echo "    link"
   echo
 }
 
-#
-#
-#
+##################################################################
 # Brew
-##
+##################################################################
 
 InstallBrew() {
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
-#
-#
-#
+##################################################################
 # Vim
-##
+##################################################################
 
 InstallMacVim() {
   brew install vim --with-lua
@@ -50,9 +39,9 @@ InstallLinuxVim() {
   sudo mkdir /usr/include/lua5.1/include
   sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
 
-  cd ~
+  mkdir -p ~/tmp && cd ~/tmp || exit
   git clone https://github.com/vim/vim.git
-  cd vim/src
+  cd vim/src || exit
   make distclean
   ./configure --with-features=huge \
               --enable-rubyinterp \
@@ -71,31 +60,20 @@ InstallLinuxVim() {
 
   sudo make install
 
-  cd ..
+  cd .. || exit
   sudo mkdir /usr/share/vim
   sudo mkdir /usr/share/vim/vim74
   sudo cp -fr runtime/* /usr/share/vim/vim74/
 }
 
-InstallVimConfig() {
-  git clone git@github.com:darwin67/_vim.git
-  mv _vim .vim
-  mv .vim ~/
-  cd ~/.vim
-  git submodule init
-  git submodule update
-  cp ~/.vim/.vimrc ~
-}
 
-#
-#
-#
+##################################################################
 # Zsh
-##
+##################################################################
 
 SetZsh() {
   zsh --version
-  chsh -s $(which zsh)
+  chsh -s "$(which zsh)"
 }
 
 MacZsh() {
@@ -113,11 +91,9 @@ InstallZsh() {
 }
 
 
-#
-#
-#
+##################################################################
 # Powerline
-##
+##################################################################
 
 CheckPyVersion() {
   python --version
@@ -137,11 +113,9 @@ InstallPythonLinux() {
 
 InstallPowerline() {
   pip install --user powerline-status
-  ls ~/Library/Python/2.7/lib/python/site-packages/powerline
-  cd ~/Desktop
+  mkdir -p ~/tmp && cd ~/tmp || exit
   git clone git@github.com:powerline/fonts.git
-  cd fonts
-  ./install.sh
+  fonts/install.sh
 
   echo "*************************************************************"
   echo "Please set font to 'Meslo LG S for Powerline'"
@@ -150,21 +124,10 @@ InstallPowerline() {
   echo "Adding path to .zshrc"
 }
 
-AppendPLPathMac() {
-  echo "export PATH=\"\$HOME/Library/Python/2.7/bin:\$PATH\"" >> ~/.zshrc
-  echo "powerline-daemon -q" >> ~/.zshrc
-}
 
-AppendPLPathLinux() {
-  echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> ~/.zshrc
-  echo "powerline-daemon -q" >> ~/.zshrc
-}
-
-#
-#
-#
+##################################################################
 # Tmux
-#
+##################################################################
 
 InstallTmuxMac() {
   brew install tmux
@@ -174,22 +137,11 @@ InstallTmuxLinux() {
   sudo apt-get install tmux
 }
 
-InstallTmuxConfig() {
-  cd ~
-  git clone git@github.com:darwin67/_dotfiles.git
-  mv dotfiles .dotfiles
-  cp .dotfiles/.tmux.conf ~
-  mkdir ~/.tmux
-  cd ~/.tmux
-  git clone git@github.com:darwin67/tmux-powerline.git
-  echo "See https://github.com/darwin67/dotfiles for details to add things to your .zshrc file"
-}
 
-#
-#
-#
+##################################################################
 # Helper functions
-#
+##################################################################
+
 MacOrLinux() {
   if [ "$2" = "--mac" ]; then
     $3
@@ -200,58 +152,70 @@ MacOrLinux() {
 
 LinkFiles() {
     # Link files
-    ln -s "$CONFIG/.zshrc" "$HOME/.zshrc"
-    ln -s "$CONFIG/.sqliterc" "$HOME/.sqliterc"
-    ln -s "$CONFIG/.tmux.conf" "$HOME/.tmux.conf"
-    ln -s "$CONFIG/.ctags" "$HOME/.ctags"
-    ln -s "$CONFIG/.railsrc" "$HOME/.railsrc"
-    ln -s "$CONFIG/.rspec" "$HOME/.rspec"
+    ln -sf "$CONFIG/.zshrc" "$HOME/.zshrc"
+    ln -sf "$CONFIG/.sqliterc" "$HOME/.sqliterc"
+    ln -sf "$CONFIG/.tmux.conf" "$HOME/.tmux.conf"
+    ln -sf "$CONFIG/.ctags" "$HOME/.ctags"
+    ln -sf "$CONFIG/.railsrc" "$HOME/.railsrc"
+    ln -sf "$CONFIG/.rspec" "$HOME/.rspec"
+    ln -sf "$CONFIG/.vimrc" "$HOME/.vimrc"
 }
 
-#
-#
-#
+
+##################################################################
 # Installation
-#
+##################################################################
+
 if [ "$1" = "brew" ]; then # install brew
-  if [ ! -z "$2" ]; then
-    MacOrLinux $1 $2 InstallBrew Usage
-  else
-    Usage
-  fi
+    if [ "$OS" = "Mac" ]; then
+        InstallBrew
+    else
+        echo "Brew is only available in OS X"
+        Usage
+    fi
 
 elif [ "$1" = "vim" ]; then # install vim
-  if [ ! -z "$2" ]; then
-    MacOrLinux $1 $2 InstallMacVim InstallLinuxVim
-    InstallVimConfig
-  else
-    Usage
-  fi
+    if [ "$OS" = "Mac" ]; then
+        InstallMacVim
+    elif [ "$OS" = "Linux" ]; then
+        InstallLinuxVim
+    else
+        Usage
+    fi
 
 elif [ "$1" = "zsh" ]; then # install oh-my-zsh
-  if [ ! -z "$2" ]; then
-    MacOrLinux $1 $2 MacZsh LinuxZsh
-    InstallZsh
-  else
-    Usage
-  fi
+    if [ "$OS" = "Mac" ]; then
+        thenMacZsh
+        InstallZsh
+    elif [ "$OS" = "Linux" ]; then
+        LinuxZsh
+        InstallZsh
+    else
+        Usage
+    fi
 
 elif [ "$1" = "powerline" ]; then # install Powerline
-  if [ ! -z "$2" ]; then
-    MacOrLinux $1 $2 InstallPythonMac InstallPythonLinux
-    InstallPowerline
-    MacOrLinux $1 $2 AppendPLPathMac AppendPLPathLinux
-  else
-    Usage
-  fi
+    if [ "$OS" = "Mac" ]; then
+        InstallPythonMac
+        InstallPowerline
+    elif [ "$OS" = "Linux" ]; then
+        InstallPythonLinux
+        InstallPowerline
+    else
+        Usage
+    fi
 
 elif [ "$1" = "tmux" ]; then # install tmux
-  if [ ! -z "$2" ]; then
-    MacOrLinux $1 $2 InstallTmuxMac InstallTmuxLinux
-    InstallTmuxConfig
-  else
-    Usage
-  fi
+    if [ "$OS" = "Mac" ]; then
+        InstallTmuxMac
+    elif [ "$OS" = "Linux" ]; then
+        InstallTmuxLinux
+    else
+        Usage
+    fi
+
+elif [ "$1" = "link" ]; then # Link all dotfiles
+    LinkFiles
 
 else
   Usage
