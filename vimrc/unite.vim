@@ -28,6 +28,7 @@ let b:files_to_ignore = [
     \ 'bundle/',
     \ '\.bundle/',
     \ 'tmp/',
+    \ 'modules/',
     \ 'log/',
     \ 'node_modules/',
     \ '\.sass-cache/',

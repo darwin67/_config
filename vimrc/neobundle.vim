@@ -9,7 +9,7 @@ if has('vim_starting')
 endif
 
 let g:neobundle#log_filename = $CONFIG . '/tmp/neobundle.log'
-let g:junkfile#directory=expand($CONFIG . "/tmp/junk")
+let g:junkfile#directory = expand($CONFIG . "/tmp/junk")
 
 " Required:
 call neobundle#begin(expand('$CONFIG/bundle'))
@@ -32,6 +32,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
@@ -74,10 +75,8 @@ NeoBundleLazy 'fatih/vim-go', { 'filetypes': 'go' }
 NeoBundleLazy 'rust-lang/rust.vim', { 'filetypes': 'rust' }
 
 " Colorscheme
-" NeoBundle 'tomasr/molokai'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'cdmedia/itg_flat_vim'
-" NeoBundle 'sheerun/vim-wombat-scheme'
 
 " Required:
 call neobundle#end()

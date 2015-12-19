@@ -38,15 +38,15 @@ export PATH="$PATH:$HOME/.rbenv/shims"
 export PATH="$PATH:$HOME/.rbenv/bin0"
 
 if [ $OS = "Mac" ]; then
-  export PATH="$PATH:/usr/local/bin/ctags"
-  export PATH="$PATH:/opt/local/sbin/usr/bin"
-  export PATH="$PATH:/opt/local/bin"
-  export PATH="$PATH:/opt/chefdk/bin"
-  export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
+    export PATH="$PATH:/usr/local/bin/ctags"
+    export PATH="$PATH:/opt/local/sbin/usr/bin"
+    export PATH="$PATH:/opt/local/bin"
+    export PATH="$PATH:/opt/chefdk/bin"
+    export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 
 elif [ $OS = "Linux" ]; then
-  export PATH="$PATH:/usr/games"
-  export PATH="$PATH:/usr/local/games"
+    export PATH="$PATH:/usr/games"
+    export PATH="$PATH:/usr/local/games"
 
 fi
 
@@ -94,11 +94,11 @@ export PATH="$GOPATH/bin:$PATH"
 
 # Powerline config
 if [ $OS = "Mac" ]; then
-  export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+    export PATH="$PATH:$HOME/Library/Python/2.7/bin"
 
 elif [ $OS = "Linux" ]; then
-  export PATH="$PATH:$HOME/.local/bin"
-  export TERM="xterm-256color"
+    export PATH="$PATH:$HOME/.local/bin"
+    export TERM="xterm-256color"
 
 fi
 

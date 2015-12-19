@@ -38,8 +38,6 @@ set background=dark
 " Colorscheme
 try
   colorscheme monokai
-  " colorscheme molokai
-  " colorscheme wombat
 catch
   colorscheme itg_flat
 endtry
