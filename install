@@ -146,6 +146,7 @@ LinkFiles() {
     ln -sf "$CONFIG/.railsrc" "$HOME/.railsrc"
     ln -sf "$CONFIG/.rspec" "$HOME/.rspec"
     ln -sf "$CONFIG/.vimrc" "$HOME/.vimrc"
+    ln -sf "$CONFIG/.irbrc" "$HOME/.irbrc"
 }
 
 
@@ -175,15 +176,14 @@ elif [ "$1" = "link" ]; then # Link all dotfiles
 
 elif [ "$1" = "all" ]; then
     LinkFiles
-    . ~/.zshrc
 
     InstallBrew
-    InstallVim
     InstallZsh
     InstallOhMyZsh
     InstallPython
     InstallPowerline
     InstallTmux
+    InstallVim
 
 else
   Usage
