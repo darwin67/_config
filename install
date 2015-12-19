@@ -8,12 +8,12 @@ Usage() {
   echo "usage: ./install [config]"
   echo
   echo "config:"
-  echo "    brew (OS X only)"
-  echo "    vim"
-  echo "    zsh"
-  echo "    powerline"
-  echo "    tmux"
-  echo "    link"
+  echo "    brew         - install brew (only OS X)"
+  echo "    vim          - install vim with lua and extra settings"
+  echo "    zsh          - install zsh and change default to zsh"
+  echo "    powerline    - install python and powerline"
+  echo "    tmux         - install tmux"
+  echo "    link         - link all dotfiles to $HOME"
   echo
 }
 
@@ -22,48 +22,55 @@ Usage() {
 ##################################################################
 
 InstallBrew() {
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if [ "$OS" = "Mac" ]; then
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    else
+        echo "Brew is only available for OS X"
+        Usage
+    fi
 }
 
 ##################################################################
 # Vim
 ##################################################################
 
-InstallMacVim() {
-  brew install vim --with-lua
-}
+InstallVim() {
+    if [ "$OS" = "Mac" ]; then
+        brew install vim --with-lua
+    elif [ "$OS" = "Linux" ]; then
+        sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
+        sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
+        sudo mkdir /usr/include/lua5.1/include
+        sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
 
-InstallLinuxVim() {
-  sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
-  sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
-  sudo mkdir /usr/include/lua5.1/include
-  sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
+        mkdir -p ~/tmp && cd ~/tmp || exit
+        git clone https://github.com/vim/vim.git
+        cd vim/src || exit
+        make distclean
+        ./configure --with-features=huge \
+                  --enable-rubyinterp \
+                  --enable-largefile \
+                  --disable-netbeans \
+                  --enable-pythoninterp \
+                  --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
+                  --enable-perlinterp \
+                  --enable-luainterp \
+                  --with-luajit \
+                  --enable-gui=auto \
+                  --enable-fail-if-missing \
+                  --with-lua-prefix=/usr/include/lua5.1 \
+                  --enable-cscope
+        make
 
-  mkdir -p ~/tmp && cd ~/tmp || exit
-  git clone https://github.com/vim/vim.git
-  cd vim/src || exit
-  make distclean
-  ./configure --with-features=huge \
-              --enable-rubyinterp \
-              --enable-largefile \
-              --disable-netbeans \
-              --enable-pythoninterp \
-              --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
-              --enable-perlinterp \
-              --enable-luainterp \
-              --with-luajit \
-              --enable-gui=auto \
-              --enable-fail-if-missing \
-              --with-lua-prefix=/usr/include/lua5.1 \
-              --enable-cscope
-  make
+        sudo make install
 
-  sudo make install
-
-  cd .. || exit
-  sudo mkdir /usr/share/vim
-  sudo mkdir /usr/share/vim/vim74
-  sudo cp -fr runtime/* /usr/share/vim/vim74/
+        cd .. || exit
+        sudo mkdir /usr/share/vim
+        sudo mkdir /usr/share/vim/vim74
+        sudo cp -fr runtime/* /usr/share/vim/vim74/
+    else
+        Usage
+    fi
 }
 
 
@@ -71,22 +78,16 @@ InstallLinuxVim() {
 # Zsh
 ##################################################################
 
-SetZsh() {
-  zsh --version
-  chsh -s "$(which zsh)"
-}
-
-MacZsh() {
-  brew install zsh
-  SetZsh
-}
-
-LinuxZsh() {
-  sudo apt-get install zsh
-  SetZsh
-}
-
 InstallZsh() {
+    if [ "$OS" = "Linux" ]; then
+        brew install zsh
+    elif [ "$OS" = "Linux" ]; then
+        sudo apt-get install zsh
+    fi
+    chsh -s "$(which zsh)"
+}
+
+InstallOhMyZsh() {
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
@@ -95,20 +96,14 @@ InstallZsh() {
 # Powerline
 ##################################################################
 
-CheckPyVersion() {
-  python --version
-  pip --version
-}
-
-InstallPythonMac() {
-  brew install python
-  CheckPyVersion
-}
-
-InstallPythonLinux() {
-  sudo apt-get -y install python
-  sudo apt-get -y install python-pip
-  CheckPyVersion
+InstallPython() {
+    if [ "$OS" = "Mac" ]; then
+        brew install python
+        CheckPyVersion
+    elif [ "$OS" = "Linux" ]; then
+        sudo apt-get -y install python
+        sudo apt-get -y install python-pip
+    fi
 }
 
 InstallPowerline() {
@@ -129,26 +124,18 @@ InstallPowerline() {
 # Tmux
 ##################################################################
 
-InstallTmuxMac() {
-  brew install tmux
-}
-
-InstallTmuxLinux() {
-  sudo apt-get install tmux
+InstallTmux() {
+    if [ "$OS" = "Mac" ]; then
+        brew install tmux
+    elif [ "$OS" = "Linux" ]; then
+        sudo apt-get install tmux
+    fi
 }
 
 
 ##################################################################
-# Helper functions
+# Link files to $HOME
 ##################################################################
-
-MacOrLinux() {
-  if [ "$2" = "--mac" ]; then
-    $3
-  elif [ "$2" = "--linux" ]; then
-    $4
-  fi
-}
 
 LinkFiles() {
     # Link files
@@ -167,55 +154,36 @@ LinkFiles() {
 ##################################################################
 
 if [ "$1" = "brew" ]; then # install brew
-    if [ "$OS" = "Mac" ]; then
-        InstallBrew
-    else
-        echo "Brew is only available in OS X"
-        Usage
-    fi
+    InstallBrew
 
 elif [ "$1" = "vim" ]; then # install vim
-    if [ "$OS" = "Mac" ]; then
-        InstallMacVim
-    elif [ "$OS" = "Linux" ]; then
-        InstallLinuxVim
-    else
-        Usage
-    fi
+    InstallVim
 
 elif [ "$1" = "zsh" ]; then # install oh-my-zsh
-    if [ "$OS" = "Mac" ]; then
-        thenMacZsh
-        InstallZsh
-    elif [ "$OS" = "Linux" ]; then
-        LinuxZsh
-        InstallZsh
-    else
-        Usage
-    fi
+    InstallZsh
+    InstallOhMyZsh
 
 elif [ "$1" = "powerline" ]; then # install Powerline
-    if [ "$OS" = "Mac" ]; then
-        InstallPythonMac
-        InstallPowerline
-    elif [ "$OS" = "Linux" ]; then
-        InstallPythonLinux
-        InstallPowerline
-    else
-        Usage
-    fi
+    InstallPython
+    InstallPowerline
 
 elif [ "$1" = "tmux" ]; then # install tmux
-    if [ "$OS" = "Mac" ]; then
-        InstallTmuxMac
-    elif [ "$OS" = "Linux" ]; then
-        InstallTmuxLinux
-    else
-        Usage
-    fi
+    InstallTmux
 
 elif [ "$1" = "link" ]; then # Link all dotfiles
     LinkFiles
+
+elif [ "$1" = "all" ]; then
+    LinkFiles
+    . ~/.zshrc
+
+    InstallBrew
+    InstallVim
+    InstallZsh
+    InstallOhMyZsh
+    InstallPython
+    InstallPowerline
+    InstallTmux
 
 else
   Usage
