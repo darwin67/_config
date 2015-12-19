@@ -19,7 +19,7 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#max_list = 30
 let g:neocomplete#min_keyword_length = 1
-let g:neocomplete#data_directory = $HOME . '/_config/tmp/neocomplete'
+let g:neocomplete#data_directory = $CONFIG . '/tmp/neocomplete'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -86,7 +86,7 @@ set completeopt-=preview
 "
 "
 
-let g:neosnippet#data_directory = $HOME . '/_config/tmp/neosnippet'
+let g:neosnippet#data_directory = $CONFIG . '/tmp/neosnippet'
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)

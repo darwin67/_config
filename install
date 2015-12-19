@@ -200,12 +200,12 @@ MacOrLinux() {
 
 LinkFiles() {
     # Link files
-    ln -s "$HOME/_config/.zshrc" "$HOME/.zshrc"
-    ln -s "$HOME/_config/.sqliterc" "$HOME/.sqliterc"
-    ln -s "$HOME/_config/.tmux.conf" "$HOME/.tmux.conf"
-    ln -s "$HOME/_config/.ctags" "$HOME/.ctags"
-    ln -s "$HOME/_config/.railsrc" "$HOME/.railsrc"
-    ln -s "$HOME/_config/.rspec" "$HOME/.rspec"
+    ln -s "$CONFIG/.zshrc" "$HOME/.zshrc"
+    ln -s "$CONFIG/.sqliterc" "$HOME/.sqliterc"
+    ln -s "$CONFIG/.tmux.conf" "$HOME/.tmux.conf"
+    ln -s "$CONFIG/.ctags" "$HOME/.ctags"
+    ln -s "$CONFIG/.railsrc" "$HOME/.railsrc"
+    ln -s "$CONFIG/.rspec" "$HOME/.rspec"
 }
 
 #

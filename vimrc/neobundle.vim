@@ -5,14 +5,14 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=$HOME/_config/bundle/neobundle.vim/
+  set runtimepath+=$CONFIG/bundle/neobundle.vim/
 endif
 
-let g:neobundle#log_filename = $HOME.'/_config/tmp/neobundle.log'
-let g:junkfile#directory=expand($HOME . "/_config/tmp/junk")
+let g:neobundle#log_filename = $CONFIG . '/tmp/neobundle.log'
+let g:junkfile#directory=expand($CONFIG . "/tmp/junk")
 
 " Required:
-call neobundle#begin(expand('$HOME/_config/bundle'))
+call neobundle#begin(expand('$CONFIG/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:

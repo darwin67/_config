@@ -4,11 +4,11 @@
 
 let maplocalleader = '-'
 
-let g:unite_data_directory = $HOME . '/_config/tmp/unite'
+let g:unite_data_directory = $CONFIG . '/tmp/unite'
 
 " neomru
-let g:neomru#file_mru_path = $HOME . '/_config/tmp/neomru/files'
-let g:neomru#directory_mru_path = $HOME . '/_config/tmp/neomru/directories'
+let g:neomru#file_mru_path = $CONFIG . '/tmp/neomru/files'
+let g:neomru#directory_mru_path = $CONFIG . '/tmp/neomru/directories'
 
 " Menus
 let g:unite_source_menu_menus = {}
