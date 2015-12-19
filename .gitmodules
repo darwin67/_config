@@ -1,0 +1,3 @@
+[submodule "modules/tmux-powerline"]
+	path = modules/tmux-powerline
+	url = git@github.com:darwin67/tmux-powerline.git
