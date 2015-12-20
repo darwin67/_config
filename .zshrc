@@ -20,7 +20,7 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
+plugins=(git github rails nvm tmux gnu-utils history)
 
 # The current OS
 export OS="Mac"
@@ -43,11 +43,9 @@ if [ $OS = "Mac" ]; then
     export PATH="$PATH:/opt/local/bin"
     export PATH="$PATH:/opt/chefdk/bin"
     export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
-
 elif [ $OS = "Linux" ]; then
     export PATH="$PATH:/usr/games"
     export PATH="$PATH:/usr/local/games"
-
 fi
 
 export MANPATH="/usr/local/man:$MANPATH"
@@ -72,18 +70,12 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Alias
-alias zshconfig="$EDITOR ~/.zshrc"
-alias gitconfig="$EDITOR ~/.gitconfig"
-alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+alias zshconfig="$EDITOR $CONFIG/.zshrc"
+alias gitconfig="$EDITOR $CONFIG/.gitconfig"
 alias C="clear"
 alias be="bundle exec"
-alias git="hub"
-alias glog="git log --graph --simplify-by-decoration --all"
+alias gloga="git log --graph --simplify-by-decoration --all"
 
 # Golang setups
 export PATH="/usr/local/go/bin:$PATH"
@@ -93,13 +85,11 @@ export GOPATH="$HOME/go_projects"
 export PATH="$GOPATH/bin:$PATH"
 
 # Powerline config
-if [ $OS = "Mac" ]; then
+if [ "$OS" = "Mac" ]; then
     export PATH="$PATH:$HOME/Library/Python/2.7/bin"
-
-elif [ $OS = "Linux" ]; then
+elif [ "$OS" = "Linux" ]; then
     export PATH="$PATH:$HOME/.local/bin"
     export TERM="xterm-256color"
-
 fi
 
 powerline-daemon -q

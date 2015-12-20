@@ -12,7 +12,7 @@ let g:neobundle#log_filename = $CONFIG . '/tmp/neobundle.log'
 let g:junkfile#directory = expand($CONFIG . "/tmp/junk")
 
 " Required:
-call neobundle#begin(expand('$CONFIG/bundle'))
+call neobundle#begin(expand($CONFIG . '/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -32,7 +32,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
-" NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
