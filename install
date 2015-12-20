@@ -5,16 +5,16 @@
 ##################################################################
 
 Usage() {
-  echo "usage: ./install [config]"
-  echo
-  echo "config:"
-  echo "    brew         - install brew (only OS X)"
-  echo "    vim          - install vim with lua and extra settings"
-  echo "    zsh          - install zsh and change default to zsh"
-  echo "    powerline    - install python and powerline"
-  echo "    tmux         - install tmux"
-  echo "    link         - link all dotfiles to $HOME"
-  echo
+    echo "usage: ./install [config]"
+    echo
+    echo "config:"
+    echo "    brew         - install brew (only OS X)"
+    echo "    vim          - install vim with lua and extra settings"
+    echo "    zsh          - install zsh and change default to zsh"
+    echo "    powerline    - install python and powerline"
+    echo "    tmux         - install tmux"
+    echo "    link         - link all dotfiles to $HOME"
+    echo
 }
 
 ##################################################################
@@ -88,10 +88,6 @@ InstallZsh() {
     chsh -s /usr/local/bin/zsh
 }
 
-InstallOhMyZsh() {
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-}
-
 
 ##################################################################
 # Powerline
@@ -108,16 +104,16 @@ InstallPython() {
 }
 
 InstallPowerline() {
-  pip install --user powerline-status
-  mkdir -p ~/tmp && cd ~/tmp || exit
-  git clone git@github.com:powerline/fonts.git
-  fonts/install.sh
+    pip install --user powerline-status
+    mkdir -p ~/tmp && cd ~/tmp || exit
+    git clone git@github.com:powerline/fonts.git
+    fonts/install.sh
 
-  echo "*************************************************************"
-  echo "Please set font to 'Meslo LG S for Powerline'"
-  echo "*************************************************************"
+    echo "*************************************************************"
+    echo "Please set font to 'Meslo LG S for Powerline'"
+    echo "*************************************************************"
 
-  echo "Adding path to .zshrc"
+    echo "Adding path to .zshrc"
 }
 
 
@@ -148,6 +144,7 @@ LinkFiles() {
     ln -sf "$CONFIG/.rspec" "$HOME/.rspec"
     ln -sf "$CONFIG/.vimrc" "$HOME/.vimrc"
     ln -sf "$CONFIG/.irbrc" "$HOME/.irbrc"
+    ln -sf "$CONFIG/.gitconfig" "$HOME/.gitconfig"
 }
 
 
@@ -180,7 +177,6 @@ elif [ "$1" = "all" ]; then
 
     InstallBrew
     InstallZsh
-    InstallOhMyZsh
     InstallPython
     InstallPowerline
     InstallTmux

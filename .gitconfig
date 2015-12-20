@@ -1,0 +1,14 @@
+[user]
+	name = Darwin D Wu
+	email = wuddarwin@gmail.com
+[core]
+	editor = vim
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[push]
+	default = simple
+[color]
+	ui = true
+[alias]
+    co = checkout
