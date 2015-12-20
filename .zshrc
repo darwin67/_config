@@ -1,8 +1,8 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Path to current directory
+# Path to configuration directory
 export CONFIG="$HOME/_config"
+
+# Path to your oh-my-zsh installation.
+export ZSH=$CONFIG/modules/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/

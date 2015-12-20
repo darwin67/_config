@@ -7,3 +7,6 @@
 [submodule "modules/powerline"]
 	path = modules/powerline
 	url = git@github.com:powerline/powerline.git
+[submodule "modules/oh-my-zsh"]
+	path = modules/oh-my-zsh
+	url = git@github.com:robbyrussell/oh-my-zsh.git
