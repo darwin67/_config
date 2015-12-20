@@ -1,6 +1,6 @@
 # Script Install
 ```sh
-./install [config] [target]
+./install [config]
 ```
 config:
 - brew
@@ -8,10 +8,7 @@ config:
 - zsh
 - powerline
 - tmux
-
-target:
-- --mac
-- --linux
+- all
 
 # Manual Install
 ## Install Zsh
@@ -37,8 +34,8 @@ brew install vim --with-lua
 sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
 
-sudo mkdir /usr/include/lua5.1/include
-sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
+sudo mkdir -p /usr/include/lua5.1/include
+sudo ln -sf /usr/include/luajit-2.0 /usr/include/lua5.1/include
 
 cd ~
 hg clone https://code.google.com/p/vim/
@@ -62,23 +59,18 @@ make
 sudo make install
 
 cd ..
-sudo mkdir /usr/share/vim
-sudo mkdir /usr/share/vim/vim74
+sudo mkdir -p /usr/share/vim
+sudo mkdir -p /usr/share/vim/vim74
 sudo cp -fr runtime/* /usr/share/vim/vim74/
 ```
 
 ## Setup Powerline Mac version (for both vim and tmux)
 ```
 brew install python
-python --version
-pip --version
 pip install --user powerline-status
-ls ~/Library/Python/2.7/lib/python/site-packages/powerline
-
-cd ~/Desktop
+mkdir -p ~/tmp && cd ~/tmp || exit
 git clone git@github.com:powerline/fonts.git
-cd fonts
-./install.sh
+fonts/install.sh
 ```
 
 Set font on iTerm or Terminal
@@ -86,16 +78,13 @@ Set font on iTerm or Terminal
 Meslo LG S for Powerline
 ```
 
-Add the following to zsh
+Add the following to zsh (or bash)
 ```
 echo "PATH=\"$PATH:$HOME/Library/Python/2.7/bin\"" >> ~/.zshrc # Mac
 echo "PATH=\"$PATH:$HOME/.local/bin\" >> ~/.zshrc              # Ubuntu
 
 echo "powerline-daemon -q" >> ~/.zshrc
 ```
-
-### Package Control
-[NeoBundle](https://github.com/Shougo/neobundle.vim)
 
 ### Searchers
 - [highway](https://github.com/tkengo/highway)
@@ -105,18 +94,19 @@ echo "powerline-daemon -q" >> ~/.zshrc
 
 ### Syntastic checkers dependencies
 Syntastic's syntax, style checkings are based on external tools so the following checkers needs to be installed for my settings to work correctly.
-- [GCC](https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc)
-- [CppCheck](http://cppcheck.sourceforge.net/)
-- [Rubocop](https://github.com/bbatsov/rubocop)
-- [Standard](https://github.com/feross/standard)
-- [JSONLint](https://www.npmjs.com/package/jsonlint)
-- [Recess](http://twitter.github.io/recess/)
-- [scss-lint](https://github.com/brigade/scss-lint)
-- [slim-lint](https://github.com/sds/slim-lint)
-- [dockerfile-lint](https://github.com/projectatomic/dockerfile_lint)
-- [sqlint](https://github.com/purcell/sqlint)
-- [golint](https://github.com/golang/lint) - installed with vim-go
-- [govet](https://golang.org/cmd/vet/) - installed with vim-go
-- [errcheck](https://github.com/kisielk/errcheck) - installed with vim-go
-- [markdownlint](https://github.com/mivok/markdownlint)
-- [shellcheck](https://github.com/koalaman/shellcheck)
+- [GCC](https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc) - C, C++, Assembly
+- [CppCheck](http://cppcheck.sourceforge.net/) - C++
+- [Rubocop](https://github.com/bbatsov/rubocop) - Ruby
+- [JSHint](https://github.com/eslint/eslint) - Javascript
+- [ESLint](https://github.com/eslint/eslint) - Javascript
+- [JSONLint](https://www.npmjs.com/package/jsonlint) - JSON
+- [Recess](http://twitter.github.io/recess/) - CSS, LESS
+- [scss-lint](https://github.com/brigade/scss-lint) - SCSS, SASS
+- [slim-lint](https://github.com/sds/slim-lint) - Slim
+- [dockerfile-lint](https://github.com/projectatomic/dockerfile_lint) - Docker
+- [sqlint](https://github.com/purcell/sqlint) - SQL
+- [golint](https://github.com/golang/lint) - Golng (installed with vim-go)
+- [govet](https://golang.org/cmd/vet/) - Golng (installed with vim-go)
+- [errcheck](https://github.com/kisielk/errcheck) - Golang (installed with vim-go)
+- [markdownlint](https://github.com/mivok/markdownlint) - Markdown
+- [shellcheck](https://github.com/koalaman/shellcheck) - Shell script
