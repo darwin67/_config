@@ -136,7 +136,7 @@ InstallTmux() {
 
 LinkFiles() {
     # Link files
-    export CONFIG="$HOME/_config"
+    export CONFIG="$(pwd)"
     ln -sf "$CONFIG/.zshrc" "$HOME/.zshrc"
     ln -sf "$CONFIG/.sqliterc" "$HOME/.sqliterc"
     ln -sf "$CONFIG/.ctags" "$HOME/.ctags"
