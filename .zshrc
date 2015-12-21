@@ -23,8 +23,11 @@ export UPDATE_ZSH_DAYS=7
 plugins=(git github rails nvm tmux gnu-utils history)
 
 # The current OS
-export OS="Mac"
-# export OS="Linux"
+if [ "$DESKTOP_SESSION" = "ubuntu" ]; then
+    export OS="Linux"
+else
+    export OS="Mac"
+fi
 
 # User configuration
 # Paths
@@ -35,7 +38,7 @@ export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/bin"
 export PATH="$PATH:$HOME/.rbenv/shims"
-export PATH="$PATH:$HOME/.rbenv/bin0"
+export PATH="$PATH:$HOME/.rbenv/bin"
 
 if [ $OS = "Mac" ]; then
     export PATH="$PATH:/usr/local/bin/ctags"
