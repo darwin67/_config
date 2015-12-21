@@ -79,7 +79,6 @@ alias gitconfig="$EDITOR $CONFIG/.gitconfig"
 alias C="clear"
 alias be="bundle exec"
 alias git=hub
-alias gloga="git log --graph --simplify-by-decoration --all"
 
 # Golang setups
 export PATH="/usr/local/go/bin:$PATH"
