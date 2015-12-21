@@ -2,9 +2,13 @@
 require 'irb/completion'
 
 # Awesomeprint replaces irb's default pretty printing with fancier formatting
-require 'awesome_print'
-AwesomePrint.irb!
-
+begin
+  require 'awesome_print'
+rescue LoadError
+  puts 'Please install awesome_print'
+else
+  AwesomePrint.irb!
+end
 # Loads simple IRB (without RVM notice)
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
