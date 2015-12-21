@@ -136,7 +136,8 @@ InstallTmux() {
 
 LinkFiles() {
     # Link files
-    export CONFIG="$(pwd)"
+    CONFIG="$(pwd)"
+    export CONFIG
     ln -sf "$CONFIG/.zshrc" "$HOME/.zshrc"
     ln -sf "$CONFIG/.sqliterc" "$HOME/.sqliterc"
     ln -sf "$CONFIG/.ctags" "$HOME/.ctags"
@@ -146,7 +147,7 @@ LinkFiles() {
     ln -sf "$CONFIG/.irbrc" "$HOME/.irbrc"
     ln -sf "$CONFIG/.gitconfig" "$HOME/.gitconfig"
     if [ "$OS" = "Mac" ]; then
-        ln -sf "$CONFIG/.tmux-oxs.conf" "$HOME/.tmux.conf"
+        ln -sf "$CONFIG/.tmux-osx.conf" "$HOME/.tmux.conf"
     elif [ "$OS" = "Linux" ]; then
         ln -sf "$CONFIG/.tmux-linux.conf" "$HOME/.tmux.conf"
     fi

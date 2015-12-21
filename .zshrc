@@ -31,24 +31,24 @@ fi
 
 # User configuration
 # Paths
-export PATH="/usr/local/git/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/sbin:$PATH"
-export PATH="/usr/bin:$PATH"
-export PATH="/sbin:$PATH"
-export PATH="/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:/usr/local/git/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/sbin"
+export PATH="$PATH:/bin"
+export PATH="$PATH:$HOME/.rbenv/shims"
+export PATH="$PATH:$HOME/.rbenv/bin"
 
 if [ $OS = "Mac" ]; then
-    export PATH="/usr/local/bin/ctags:$PATH"
-    export PATH="/opt/local/sbin/usr/bin:$PATH"
-    export PATH="/opt/local/bin:$PATH"
-    export PATH="/opt/chefdk/bin:$PATH"
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="$PATH:/usr/local/bin/ctags"
+    export PATH="$PATH:/opt/local/sbin/usr/bin"
+    export PATH="$PATH:/opt/local/bin"
+    export PATH="$PATH:/opt/chefdk/bin"
+    export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 elif [ $OS = "Linux" ]; then
-    export PATH="/usr/games:$PATH"
-    export PATH="/usr/local/games:$PATH"
+    export PATH="$PATH:/usr/games"
+    export PATH="$PATH:/usr/local/games"
 fi
 
 export MANPATH="/usr/local/man:$MANPATH"
