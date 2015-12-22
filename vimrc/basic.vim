@@ -84,6 +84,27 @@ set scrolloff=8
 " Note: not compatible with neocomplete
 " set paste
 
+" Remap copy and paste to clipboard instead of buffer
+" Copy
+nnoremap y "*y
+nnoremap yy "*yy
+vnoremap y "*y
+vnoremap Y "*Y
+
+" Cut
+nnoremap dd "+dd
+nnoremap D "+D
+vnoremap D "+D
+vnoremap X "+X
+vnoremap d "+d
+vnoremap x "+x
+
+" Paste
+nnoremap p "*p
+nnoremap P "*P
+nnoremap gp "*gp
+nnoremap gP "*gP
+
 " Line number
 nnoremap <silent>ln :call ToggleLineNumber()<CR>
 
