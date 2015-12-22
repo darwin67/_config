@@ -147,6 +147,7 @@ LinkFiles() {
     ln -sf "$CONFIG/.irbrc" "$HOME/.irbrc"
     ln -sf "$CONFIG/.pryrc" "$HOME/.pryrc"
     ln -sf "$CONFIG/.gitconfig" "$HOME/.gitconfig"
+    ln -sf "$CONFIG/.gitignore_global" "$HOME/.gitignore_global"
     if [ "$OS" = "Mac" ]; then
         ln -sf "$CONFIG/.tmux-osx.conf" "$HOME/.tmux.conf"
     elif [ "$OS" = "Linux" ]; then

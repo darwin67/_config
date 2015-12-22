@@ -3,6 +3,7 @@
 	email = wuddarwin@gmail.com
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
