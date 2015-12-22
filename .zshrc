@@ -95,6 +95,8 @@ elif [ "$OS" = "Linux" ]; then
     export TERM="xterm-256color"
 fi
 
-powerline-daemon -q
-export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+if [ "$(which powerline-daemon)" =~ "/bin/powerline-daemon" ]; then
+    powerline-daemon -q
+    export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+fi
 
