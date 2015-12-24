@@ -180,16 +180,6 @@ elif [ "$1" = "tmux" ]; then # install tmux
 elif [ "$1" = "link" ]; then # Link all dotfiles
     LinkFiles
 
-elif [ "$1" = "all" ]; then
-    LinkFiles
-
-    InstallBrew
-    InstallZsh
-    InstallPython
-    InstallPowerline
-    InstallTmux
-    InstallVim
-
 else
   Usage
 

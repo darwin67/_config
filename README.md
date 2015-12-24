@@ -3,19 +3,19 @@
 ./install [config]
 ```
 config:
-- brew
-- vim
-- zsh
-- powerline
-- tmux
-- all
+- brew       - install brew (only for Mac OS)
+- vim        - install vim with lua
+- zsh        - install Zsh
+- powerline  - install Powerline
+- tmux       - install Tmux
+- link       - link dotfiles to $HOME
 
 # Manual Install
 ## Install Zsh
 ```
 brew install zsh
 echo '/usr/local/bin/zsh' >> /etc/shells # Add to /etc/shells directly if not successful
-chsh -s /usr/local/bin/zsh
+sudo chsh -s /usr/local/bin/zsh
 ```
 
 ### Mac
@@ -94,7 +94,7 @@ echo "powerline-daemon -q" >> ~/.zshrc
 
 ### Syntastic checkers dependencies
 Syntastic's syntax, style checkings are based on external tools so the following checkers needs to be installed for my settings to work correctly.
-- [GCC](https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc) - C, C++, Assembly
+- [GCC](https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc) - C, C++
 - [CppCheck](http://cppcheck.sourceforge.net/) - C++
 - [Rubocop](https://github.com/bbatsov/rubocop) - Ruby
 - [JSHint](https://github.com/eslint/eslint) - Javascript
