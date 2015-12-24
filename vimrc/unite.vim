@@ -16,7 +16,7 @@ let g:unite_source_menu_menus = {}
 
 " Default settings for Unite
 let b:default_context = {
-    \ 'prompt': '>>> ',
+    \ 'prompt': '>> ',
     \ 'source_grep_max_candidates': 200,
     \ 'marked_icon': '✓',
     \ 'ignorecase': 1,

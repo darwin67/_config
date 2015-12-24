@@ -79,6 +79,8 @@ alias gitconfig="$EDITOR $CONFIG/.gitconfig"
 alias C="clear"
 alias be="bundle exec"
 alias git=hub
+alias sbcl='rlwrap sbcl'
+alias ccl='rlwrap ccl64'
 
 # Golang setups
 export PATH="/usr/local/go/bin:$PATH"
