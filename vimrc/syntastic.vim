@@ -29,11 +29,6 @@ let b:active_filetypes = [
     \ "json",
     \ "sh",
     \ "go",
-    \  "haml",
-    \ "css",
-    \ "less",
-    \ "slim",
-    \ "rust",
     \ "dockerfile"
 \ ]
 
@@ -46,7 +41,6 @@ let g:syntastic_mode_map = {
 " Specify checkers for filetype
 let g:syntastic_c_checkers = [ 'gcc', 'cppcheck' ]
 let g:syntastic_cpp_checkers = [ 'gcc', 'cppcheck' ]
-" let g:syntastic_asm_checkers = [ 'gcc' ]
 let g:syntastic_ruby_checkers = [ 'rubocop' ]
 let g:syntastic_javascript_checkers = [ 'jshint', 'eslint' ]
 let g:syntastic_json_checkers = [ 'jsonlint' ]
