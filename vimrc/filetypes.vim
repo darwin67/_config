@@ -32,26 +32,29 @@ augroup filetypes_settings
     autocmd!
 
     " C, C++
-    autocmd BufRead,BufNewFile *.c set filetype=c
-    autocmd BufRead,BufNewFile *.cpp set filetype=cpp
+    autocmd BufRead,BufNewFile *.c setl filetype=c
+    autocmd BufRead,BufNewFile *.cpp setl filetype=cpp
 
     " Ruby
-    autocmd BufRead,BufNewFile *.rb set filetype=ruby
+    autocmd BufRead,BufNewFile *.rb setl filetype=ruby
     autocmd FileType ruby call RubyConfig()
 
     " Javascript
-    autocmd BufRead,BufNewFile *.js set filetype=javascript
+    autocmd BufRead,BufNewFile *.js setl filetype=javascript
     autocmd FileType javascript call JSConfig()
 
     " Markdown
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    autocmd BufNewFile,BufReadPost *.md setl filetype=markdown
 
     " Haml
-    autocmd BufRead,BufNewFile *.haml set filetype=haml
+    autocmd BufRead,BufNewFile *.haml setl filetype=haml
     autocmd FileType haml call SetTabToTwoSpace()
 
     " Yaml
-    autocmd BufRead,BufNewFile *.yml set filetype=yaml
+    autocmd BufRead,BufNewFile *.yml setl filetype=yaml
+
+    " SQL
+    autocmd BufRead,BufNewFile *.sql setl filetype=sql
 
     " Files I don't want white space to be deleted
     autocmd FileType vim let b:no_strip_whitespace=1
