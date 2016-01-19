@@ -89,6 +89,17 @@ export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go_projects"
 export PATH="$GOPATH/bin:$PATH"
 
+# Functions
+function generate_jsctags() {
+    if type jsctags > /dev/null; then
+        find . -type f -iregex .*\.js$ -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
+        ctags -R .
+    else
+        echo "jsctags is not installed."
+        echo "please go to https://github.com/ramitos/jsctags and install from there."
+    fi
+}
+
 # Powerline config
 if [ "$OS" = "Mac" ]; then
     export PATH="$PATH:$HOME/Library/Python/2.7/bin"
