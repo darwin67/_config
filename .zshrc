@@ -93,7 +93,7 @@ export PATH="$GOPATH/bin:$PATH"
 function generate_jsctags() {
     if type jsctags > /dev/null; then
         find . -type f -iregex .*\.js$ -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
-        ctags -R .
+        # ctags .
     else
         echo "jsctags is not installed."
         echo "please go to https://github.com/ramitos/jsctags and install from there."
