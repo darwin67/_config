@@ -7,6 +7,12 @@ else
   AwesomePrint.pry!
 end
 
+if (defined? Pry) || (defined? PryByeBug) || (defined? PryDebugger)
+  Pry.commands.alias_command('c', 'continue')
+  Pry.commands.alias_command('n', 'next')
+  Pry.commands.alias_command('s', 'step')
+end
+
 if ENV['RAILS_ENV'] || defined?(Rails)
   # Print ActiveRecord SQL to the screen
   ActiveRecord::Base.logger = Logger.new(STDOUT)
