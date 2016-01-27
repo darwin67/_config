@@ -144,6 +144,7 @@ LinkFiles() {
     ln -sf "$CONFIG/.railsrc" "$HOME/.railsrc"
     ln -sf "$CONFIG/.rspec" "$HOME/.rspec"
     ln -sf "$CONFIG/.vimrc" "$HOME/.vimrc"
+    ln -sf "$CONFIG/.emacs" "$HOME/.emacs"
     ln -sf "$CONFIG/.irbrc" "$HOME/.irbrc"
     ln -sf "$CONFIG/.pryrc" "$HOME/.pryrc"
     ln -sf "$CONFIG/.gitconfig" "$HOME/.gitconfig"
