@@ -2,10 +2,6 @@
 ;;   Package management
 ;; ===================================================
 
-;; package.el
-(require 'package)
-(package-initialize)
-
 ;; el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (unless (require 'el-get nil 'noerror)
@@ -19,15 +15,17 @@
 ;; Packages
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
 
 
 ;; ===================================================
 ;;   Basic setup
 ;; ===================================================
 
+(prefer-coding-system 'utf-8)
+
 ;; Relaod emacs
 (defun reload-emacs ()
+  "Reload .emacs at the home directory."
   (interactive)
   (load-file "~/.emacs")
 )
@@ -48,7 +46,17 @@
 ;; Parenthesis
 (show-paren-mode t)
 (setq show-paren-style 'parenthesis)
-;;; (transient-mark-mode t)
+(transient-mark-mode t)
+
+;; No backup
+(setq make-backup-file nil)
+
+;; Delete auto save files
+(setq delete-auto-save-files t)
+
+;; Split windows
+(global-set-key (kbd "C-x -") 'split-window-below) ; horizontal
+(global-set-key (kbd "C-x |") 'split-window-right) ; vertical
 
 
 ;; ===================================================
@@ -72,6 +80,15 @@
 (global-set-key (kbd "C-c h") 'buf-move-left)
 (global-set-key (kbd "C-c l") 'buf-move-right)
 
+;; Tab management
+(defun previous-frame ()
+  "A function to go to the previous frame."
+  (interactive)
+  (other-frame -1)
+)
+(global-set-key (kbd "C-x t n") 'make-frame-command)
+(global-set-key (kbd "C-x n t") 'other-frame)
+;; (global-set-key (kbd "C-x p t") 'previous-frame)
 
 ;; ===================================================
 ;;   Plugins
@@ -83,6 +100,11 @@
 ;; Monokai theme
 (el-get-bundle monokai-theme
   (load-theme 'monokai t)
+)
+
+;; Powerline
+(el-get-bundle powerline
+  (powerline-default-theme)
 )
 
 ;; Smart parenthesis
@@ -123,10 +145,22 @@
 (global-set-key (kbd "C-c C-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
-
 ;; Undo tree visualizer
 (el-get-bundle undo-tree
   (global-undo-tree-mode)
+)
+
+;; Magit, a git porcelain for emacs
+(el-get-bundle magit)
+
+;; Git-gutter
+(el-get-bundle git-gutter
+  (global-git-gutter-mode t)
+  (with-eval-after-load-feature git-gutter
+    (custom-set-variables
+     '(git-gutter:update-interval 2)
+    )
+  )
 )
 
 ;; Ruby config
