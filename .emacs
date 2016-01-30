@@ -21,6 +21,9 @@
 ;;   Basic setup
 ;; ===================================================
 
+;; 
+(prefer-coding-system 'utf-8)
+
 ;; ido
 (ido-mode t)
 (ido-everywhere t)
@@ -99,20 +102,27 @@
 ;;   Plugins
 ;; ===================================================
 
+;; Dash
+(el-get-bundle dash)
+
 ;; Monokai theme
 (el-get-bundle monokai-theme)
 (load-theme 'monokai t)
 
 ;; Powerline
 (el-get-bundle powerline)
-(powerline-default-theme)
+(setq powerline-default-separator 'utf-8)
+;; (powerline-default-theme)
 
 ;; Spaceline
-;; (el-get-bundle spaceline)
-;; (add-to-list 'load-path "~/.emacs/el-get/dash")
-;; (add-to-list 'load-path "~/.emacs/el-get/spaceline")
-;; (require 'spaceline-config)
-;; (spaceline-emacs-theme)
+(el-get-bundle s)
+(el-get-bundle eyebrowse)
+(el-get-bundle persp-mode)
+(el-get-bundle window-numbering)
+(el-get-bundle evil)
+(el-get-bundle spaceline)
+(require 'spaceline-config)
+(spaceline-emacs-theme)
 
 ;; Smart parenthesis
 (el-get-bundle smartparens)
