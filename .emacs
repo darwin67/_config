@@ -1,3 +1,7 @@
+;; ===================================================
+;;   Package management
+;; ===================================================
+
 ;; package.el
 (require 'package)
 (package-initialize)
@@ -17,6 +21,18 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
+
+;; ===================================================
+;;   Basic setup
+;; ===================================================
+
+;; Relaod emacs
+(defun reload-emacs ()
+  (interactive)
+  (load-file "~/.emacs")
+)
+(global-set-key (kbd "C-c C-r") 'reload-emacs)
+
 ;; History
 (setq history-length 10000)
 
@@ -34,6 +50,11 @@
 (setq show-paren-style 'parenthesis)
 ;;; (transient-mark-mode t)
 
+
+;; ===================================================
+;;   Navigation
+;; ===================================================
+
 ;; Wind move (http://www.emacswiki.org/emacs/WindMove)
 ;;   Using Ctr-c <Arrow> to move between buffers instead of typing Ctr-x o
 (when (fboundp 'windmove-default-keybindings)
@@ -46,10 +67,15 @@
 
 ;; Buffer move for lazy people like me
 (el-get-bundle buffer-move)
-(global-set-key (kbd "C-c k")     'buf-move-up)
-(global-set-key (kbd "C-c j")   'buf-move-down)
-(global-set-key (kbd "C-c h")   'buf-move-left)
-(global-set-key (kbd "C-c l")  'buf-move-right)
+(global-set-key (kbd "C-c k") 'buf-move-up)
+(global-set-key (kbd "C-c j") 'buf-move-down)
+(global-set-key (kbd "C-c h") 'buf-move-left)
+(global-set-key (kbd "C-c l") 'buf-move-right)
+
+
+;; ===================================================
+;;   Plugins
+;; ===================================================
 
 ;; Allow additional setup when initializing el-get packages
 (el-get-bundle with-eval-after-load-feature)
@@ -77,6 +103,7 @@
     (add-to-list 'ac-modes 'fundamental-mode)
     (add-to-list 'ac-modes 'org-mode)
     (add-to-list 'ac-modes 'enh-ruby-mode)
+    (add-to-list 'ac-modes 'json-mode)
     (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
     (ac-set-trigger-key "TAB")
     (ac-set-trigger-key "<tab>")
@@ -86,9 +113,21 @@
 
 ;; Project browser, like NERDTree in vim
 (el-get-bundle neotree
-  (global-set-key (kbd "C-c C-n") 'neotree-toggle)
+  (global-set-key (kbd "C-c n t") 'neotree-toggle)
 )
 
+;; Multiple cursors
+(el-get-bundle! multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-c C-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c C-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
+
+
+;; Undo tree visualizer
+(el-get-bundle undo-tree
+  (global-undo-tree-mode)
+)
 
 ;; Ruby config
 (el-get-bundle enh-ruby-mode)
@@ -110,3 +149,8 @@
     'irony-completion-at-point-async))
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; JavaScript
+(el-get-bundle js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(el-get-bundle json-mode)
