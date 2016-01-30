@@ -13,9 +13,9 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
 ;; Packages
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+			 ("marmalade" . "https://marmalade-repo.org/packages/")
+			 ("melpa" . "https://melpa.org/packages/")))
 
 ;; ===================================================
 ;;   Basic setup
@@ -107,6 +107,13 @@
 (el-get-bundle powerline)
 (powerline-default-theme)
 
+;; Spaceline
+;; (el-get-bundle spaceline)
+;; (add-to-list 'load-path "~/.emacs/el-get/dash")
+;; (add-to-list 'load-path "~/.emacs/el-get/spaceline")
+;; (require 'spaceline-config)
+;; (spaceline-emacs-theme)
+
 ;; Smart parenthesis
 (el-get-bundle smartparens)
 (smartparens-global-mode t)
@@ -169,9 +176,18 @@
 (setq projectile-enable-caching t)
 (setq projectile-switch-project-action 'projectile-dired)
 
+;; Projectile-Rails
+(el-get-bundle projectile-rails)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
+
 ;; Ruby config
+(el-get-bundle rbenv
+  (global-rbenv-mode)
+)
 (el-get-bundle enh-ruby-mode)
-(el-get-bundle inf-ruby)
+(el-get-bundle inf-ruby
+  (add-hook 'after-init-hook 'inf-ruby-switch-setup)
+)
 (el-get-bundle yari)
 (el-get-bundle bundler)
 
