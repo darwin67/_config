@@ -21,6 +21,10 @@
 ;;   Basic setup
 ;; ===================================================
 
+;; ido
+(ido-mode t)
+(ido-everywhere t)
+
 (prefer-coding-system 'utf-8)
 
 ;; Relaod emacs
@@ -90,53 +94,43 @@
 (global-set-key (kbd "C-x n t") 'other-frame)
 ;; (global-set-key (kbd "C-x p t") 'previous-frame)
 
+
 ;; ===================================================
 ;;   Plugins
 ;; ===================================================
 
-;; Allow additional setup when initializing el-get packages
-(el-get-bundle with-eval-after-load-feature)
-
 ;; Monokai theme
-(el-get-bundle monokai-theme
-  (load-theme 'monokai t)
-)
+(el-get-bundle monokai-theme)
+(load-theme 'monokai t)
 
 ;; Powerline
-(el-get-bundle powerline
-  (powerline-default-theme)
-)
+(el-get-bundle powerline)
+(powerline-default-theme)
 
 ;; Smart parenthesis
-(el-get-bundle smartparens
-  (smartparens-global-mode 1)
-)
+(el-get-bundle smartparens)
+(smartparens-global-mode t)
 
 ;; Snippets
-(el-get-bundle yasnippet
-  (yas-global-mode 1)
-)
+(el-get-bundle yasnippet)
+(yas-global-mode t)
 
 ;; Auto-complete
-(el-get-bundle auto-complete
-  (ac-config-default)
-  (with-eval-after-load-feature auto-complete
-    (add-to-list 'ac-modes 'text-mode)
-    (add-to-list 'ac-modes 'fundamental-mode)
-    (add-to-list 'ac-modes 'org-mode)
-    (add-to-list 'ac-modes 'enh-ruby-mode)
-    (add-to-list 'ac-modes 'json-mode)
-    (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-    (ac-set-trigger-key "TAB")
-    (ac-set-trigger-key "<tab>")
-    (setq ac-use-fuzzy t)
-  )
-)
+(el-get-bundle auto-complete)
+(ac-config-default)
+(add-to-list 'ac-modes 'text-mode)
+(add-to-list 'ac-modes 'fundamental-mode)
+(add-to-list 'ac-modes 'org-mode)
+(add-to-list 'ac-modes 'enh-ruby-mode)
+(add-to-list 'ac-modes 'json-mode)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+(setq ac-use-fuzzy t)
 
 ;; Project browser, like NERDTree in vim
-(el-get-bundle neotree
-  (global-set-key (kbd "C-c n t") 'neotree-toggle)
-)
+(el-get-bundle neotree)
+(global-set-key (kbd "C-c n t") 'neotree-toggle)
 
 ;; Multiple cursors
 (el-get-bundle! multiple-cursors)
@@ -146,22 +140,34 @@
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
 ;; Undo tree visualizer
-(el-get-bundle undo-tree
-  (global-undo-tree-mode)
-)
+(el-get-bundle undo-tree)
+(global-undo-tree-mode)
 
 ;; Magit, a git porcelain for emacs
 (el-get-bundle magit)
 
 ;; Git-gutter
-(el-get-bundle git-gutter
-  (global-git-gutter-mode t)
-  (with-eval-after-load-feature git-gutter
-    (custom-set-variables
-     '(git-gutter:update-interval 2)
-    )
-  )
-)
+(el-get-bundle git-gutter)
+(global-git-gutter-mode t)
+(custom-set-variables
+ '(git-gutter:update-interval 2))
+
+;; Fuzzy finder
+(el-get-bundle flx)
+(flx-ido-mode t)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+(setq gc-cons-threshold 20000000)
+
+(el-get-bundle fiplr)
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "bundle" "modules" "tmp"))
+			    (files ("*.jpg" "*.png" "*.zip" "*~"))))
+
+;; Projectile, project management tool
+(el-get-bundle projectile)
+(projectile-global-mode)
+(setq projectile-enable-caching t)
+(setq projectile-switch-project-action 'projectile-dired)
 
 ;; Ruby config
 (el-get-bundle enh-ruby-mode)
