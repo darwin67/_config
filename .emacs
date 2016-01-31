@@ -1,3 +1,4 @@
+
 ;; ===================================================
 ;;   Package management
 ;; ===================================================
@@ -21,7 +22,7 @@
 ;;   Basic setup
 ;; ===================================================
 
-;; 
+;; Encoding
 (prefer-coding-system 'utf-8)
 
 ;; ido
@@ -44,6 +45,12 @@
 ;; Save mini-buffer
 (savehist-mode 1)
 
+;; Remember the location of the previous cursor
+(when (require 'saveplace nil t)
+  (setq-default save-place t)
+  (setq save-place-file "~/.emacs.d/saved-places")
+)
+
 ;; Hightlight line, color grey
 (global-hl-line-mode t)
 (custom-set-faces
@@ -64,6 +71,11 @@
 ;; Split windows
 (global-set-key (kbd "C-x -") 'split-window-below) ; horizontal
 (global-set-key (kbd "C-x |") 'split-window-right) ; vertical
+
+;; Zone
+;;   gets triggered after Emacs is idle for 5 minutes
+(require 'zone)
+(zone-when-idle (* 60 5))
 
 
 ;; ===================================================
@@ -106,35 +118,42 @@
 (el-get-bundle dash)
 
 ;; Monokai theme
-(el-get-bundle monokai-theme)
-(load-theme 'monokai t)
+(el-get-bundle monokai-theme
+  (load-theme 'monokai t)
+)
 
 ;; Powerline
-(el-get-bundle powerline)
-(setq powerline-default-separator 'utf-8)
-;; (powerline-default-theme)
+(el-get-bundle powerline
+  (powerline-default-theme)
+)
 
 ;; Spaceline
-(el-get-bundle s)
-(el-get-bundle eyebrowse)
-(el-get-bundle persp-mode)
-(el-get-bundle window-numbering)
-(el-get-bundle evil)
-(el-get-bundle spaceline)
-(require 'spaceline-config)
-(spaceline-emacs-theme)
+;;  This doesn't work on iTerm2 or Mac OS
+;; (el-get-bundle s)
+;; (el-get-bundle eyebrowse)
+;; (el-get-bundle persp-mode)
+;; (el-get-bundle window-numbering)
+;; (el-get-bundle evil)
+;; (el-get-bundle spaceline)
+;; (require 'spaceline-config)
+;; (setq powerline-default-separator 'wave)
+;; (spaceline-emacs-theme)
 
 ;; Smart parenthesis
-(el-get-bundle smartparens)
-(smartparens-global-mode t)
+(el-get-bundle smartparens
+  (smartparens-global-mode t)
+)
 
 ;; Snippets
-(el-get-bundle yasnippet)
-(yas-global-mode t)
+(el-get-bundle yasnippet
+  (yas-global-mode t)
+)
 
 ;; Auto-complete
-(el-get-bundle auto-complete)
-(ac-config-default)
+
+(el-get-bundle auto-complete
+  (ac-config-default)
+)
 (add-to-list 'ac-modes 'text-mode)
 (add-to-list 'ac-modes 'fundamental-mode)
 (add-to-list 'ac-modes 'org-mode)
@@ -157,32 +176,58 @@
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
 ;; Undo tree visualizer
-(el-get-bundle undo-tree)
-(global-undo-tree-mode)
+(el-get-bundle undo-tree
+  (global-undo-tree-mode)
+)
 
 ;; Magit, a git porcelain for emacs
 (el-get-bundle magit)
+(global-set-key (kbd "C-c g s") 'magit-status)
+(global-set-key (kbd "C-c g c") 'magit-commit)
+(global-set-key (kbd "C-c g d") 'magit-diff)
+(global-set-key (kbd "C-c g l") 'magit-log-all)
+(global-set-key (kbd "C-c g p") 'magit-push)
+(global-set-key (kbd "C-c g b") 'magit-blame)
 
 ;; Git-gutter
-(el-get-bundle git-gutter)
-(global-git-gutter-mode t)
+(el-get-bundle git-gutter
+  (global-git-gutter-mode t)
+)
 (custom-set-variables
- '(git-gutter:update-interval 2))
+ '(git-gutter:update-interval 2)
+)
+
+;; Browse at remote (github, bitbucket)
+(el-get-bundle browse-at-remote)
+(global-set-key (kbd "C-c g g") 'browse-at-remote/browse)
 
 ;; Fuzzy finder
-(el-get-bundle flx)
-(flx-ido-mode t)
+(el-get-bundle flx
+  (flx-ido-mode t)
+)
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 (setq gc-cons-threshold 20000000)
 
 (el-get-bundle fiplr)
 (setq fiplr-ignored-globs '((directories (".git" ".svn" "bundle" "modules" "tmp"))
-			    (files ("*.jpg" "*.png" "*.zip" "*~"))))
+			    (files ("*.jpg" "*.png" "*.zip" "*~")))
+)
+
+;; Fly-check
+;;  need to install texinfo in OS X
+(el-get-bundle flycheck
+  (global-flycheck-mode)
+)
+;; (el-get-bundle flycheck-color-mode-line)
+;; (eval-after-load "flycheck"
+;;   '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+;; )
 
 ;; Projectile, project management tool
-(el-get-bundle projectile)
-(projectile-global-mode)
+(el-get-bundle projectile
+  (projectile-global-mode)
+)
 (setq projectile-enable-caching t)
 (setq projectile-switch-project-action 'projectile-dired)
 
@@ -190,33 +235,50 @@
 (el-get-bundle projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
+;; Web mode
+(el-get-bundle web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[s]css\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
 ;; Ruby config
 (el-get-bundle rbenv
   (global-rbenv-mode)
 )
 (el-get-bundle enh-ruby-mode)
-(el-get-bundle inf-ruby
-  (add-hook 'after-init-hook 'inf-ruby-switch-setup)
-)
+(el-get-bundle inf-ruby)
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (el-get-bundle yari)
 (el-get-bundle bundler)
 
-;; C, C++ config
-(el-get-bundle irony-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-;; replace the `completion-at-point' and `complete-symbol' bindings in
-;; irony-mode's buffers by irony-mode's function
-(defun my-irony-mode-hook ()
-  (define-key irony-mode-map [remap completion-at-point]
-    'irony-completion-at-point-async)
-  (define-key irony-mode-map [remap complete-symbol]
-    'irony-completion-at-point-async))
-(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+;; C config
+(el-get-bundle google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+
+;; C++ config
+(el-get-bundle flycheck-google-cpplint)
+(defun cpp-check ()
+  (require 'flycheck-google-cpplint)
+  ;; Add Google C++ Style checker.
+  ;; In default, syntax checked by Clang and Cppcheck.
+  (flycheck-add-next-checker 'c/c++-cppcheck
+			     '(warnings-only . c/c++-googlelint))
+)
+(add-hook 'c++-mode-hook 'cpp-check)
 
 ;; JavaScript
 (el-get-bundle js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (el-get-bundle json-mode)
+
+;; Common LISP
+(el-get-bundle slime)
+(el-get-bundle common-lisp-snippets)
