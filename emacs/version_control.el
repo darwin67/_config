@@ -20,6 +20,9 @@
  '(git-gutter:update-interval 2)
 )
 
+;; Git modes
+(el-get-bundle git-modes)
+
 ;; Browse at remote (github, bitbucket)
 (el-get-bundle browse-at-remote)
 (global-set-key (kbd "C-c g g") 'browse-at-remote/browse)
