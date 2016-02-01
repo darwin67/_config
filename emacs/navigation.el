@@ -8,10 +8,17 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings)
 )
-(global-set-key (kbd "C-c h") 'windmove-left)
-(global-set-key (kbd "C-c l") 'windmove-right)
-(global-set-key (kbd "C-c k") 'windmove-up)
-(global-set-key (kbd "C-c j") 'windmove-down)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
+;; Move, switch buffer around
+(el-get-bundle buffer-move)
+(global-set-key (kbd "C-c k") 'buf-move-up)
+(global-set-key (kbd "C-c j") 'buf-move-down)
+(global-set-key (kbd "C-c h") 'buf-move-left)
+(global-set-key (kbd "C-c l") 'buf-move-right)
 
 ;; Tab management
 (defun previous-frame ()
@@ -68,9 +75,6 @@
     (move-text-internal (- arg))
 )
 
-(global-set-key (kbd "C-c <up>") 'move-text-up)
-(global-set-key (kbd "C-c <down>") 'move-text-down)
-
-;; Project browser, like NERDTree in vim
-(el-get-bundle neotree)
-(global-set-key (kbd "C-c n t") 'neotree-toggle)
+;; use C-x z (N) to repeat command
+(global-set-key (kbd "C-x <up>") 'move-text-up)
+(global-set-key (kbd "C-x <down>") 'move-text-down)

@@ -3,25 +3,27 @@
 ;;   Project management tools
 ;; ===================================================
 
-;; Fuzzy finder
-(el-get-bundle flx
-  (flx-ido-mode t)
-)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-(setq gc-cons-threshold 20000000)
-
-(el-get-bundle fiplr)
-(setq fiplr-ignored-globs '((directories (".git" ".svn" "bundle" "modules" "tmp"))
-			    (files ("*.jpg" "*.png" "*.zip" "*~")))
-)
+;; Project browser, like NERDTree in vim
+(el-get-bundle neotree)
+(global-set-key (kbd "C-c n t") 'neotree-toggle)
 
 ;; Projectile, project management tool
 (el-get-bundle projectile
   (projectile-global-mode)
 )
 (setq projectile-enable-caching t)
-(setq projectile-switch-project-action 'projectile-dired)
+
+;; Ignore these directories
+(setq ignore-directories '(".git" "bundle" ".bundle" "tmp" ".sass_cache"
+			   "modules" "log" "node_modules" ".node_modules"
+			   "coverage" "vendor" "auto" "elpa" "$RECYCLE.BIN"
+			   "calendars" "system" "sandbox" "backup" ".cask"
+			   "eshell" "elpa"))
+(setq projectile-globally-ignored-directories ignore-directories)
+
+;; Ignore these files
+(setq ignore-files '(".DS_Store" ".rspec" "tags" ".keep"))
+(setq projectile-globally-ignored-files ignore-files)
 
 ;; Projectile-Rails
 (el-get-bundle projectile-rails)
