@@ -43,6 +43,9 @@
 (el-get-bundle slime)
 (el-get-bundle common-lisp-snippets)
 
+;; vimrc
+(el-get-bundle vimrc-mode)
+
 ;; Markdown
 (el-get-bundle markdown-mode)
 (autoload 'markdown-mode "markdown-mode"
