@@ -11,10 +11,13 @@
 ;; Dash documentation in Helm
 (el-get-bundle helm-dash)
 (setq helm-dash-browser-func 'eww)
-;; (add-hook 'enh-ruby-mode
-;; 	  (lambda ()
-;; 	    (setq-local helm-dash-docsets '("Ruby_2" "Ruby_on_Rails_3" "Ruby_on_Rails_4")))
-;; )
+(setq ruby-docs '("Ruby_2" "Ruby_on_Rails_3" "Ruby_on_Rails_4")
+      js-docs   '("JavaScript" "jQuery")
+)
+(add-hook 'enh-ruby-mode-hook (lambda () (setq-local helm-dash-docsets ruby-docs)))
+
+(global-set-key (kbd "C-c C-d") 'helm-dash)
+
 
 ;; Override original M-x
 (global-set-key (kbd "M-x") 'helm-M-x)
