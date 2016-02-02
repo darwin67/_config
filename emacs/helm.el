@@ -43,31 +43,18 @@
 
 (helm-mode 1)
 
-
-;; Search
-(when (executable-find "ack")
-  (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
-	helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f"))
-
-(when (executable-find "ack-grep")
-  (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
-	helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f"))
-
-
-
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions using C-z
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)   ; make TAB works in terminal
+(define-key helm-map (kbd "C-z") 'helm-select-action)               ; list actions using C-z
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files) ; find files with helm
 (global-set-key (kbd "M-y") 'helm-show-kill-ring) ; choose from kill ring to yank
-(global-set-key (kbd "C-x b") 'helm-mini) ; search from current buffer, recently opened files and create new buffer
-(global-set-key (kbd "C-c h o") 'helm-occur) ; find the same patterns in current buffer
+(global-set-key (kbd "C-x b") 'helm-mini)         ; search from current buffer, recently opened files and create new buffer
+(global-set-key (kbd "C-c o") 'helm-occur)        ; find the same patterns in current buffer
+(global-set-key (kbd "C-c d") 'helm-descbinds)    ; descibe key bindings
 
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
-
-
 
 
 ;; ===================================================
@@ -80,6 +67,13 @@
 ;; helm-descbinds
 (el-get-bundle helm-descbinds)
 (helm-descbinds-mode)
+
+;; Search (helm-ag, pt)
+(el-get-bundle helm-ag)
+(el-get-bundle pt)
+(global-set-key (kbd "C-c p s p") 'projectile-pt) ; set key-binding for pt
+;; (custom-set-variables ; set to use pt instead of ag
+;;   '(helm-ag-base-command "pt -e --nocolor --nogroup"))
 
 ;; Helm-Projectile
 (el-get-bundle helm-projectile)
