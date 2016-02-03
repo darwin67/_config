@@ -7,9 +7,10 @@
 (prefer-coding-system 'utf-8)
 
 ;; Remove tool bar, menu bar and scroll bar
-(tool-bar-mode -1)
+(unless (boundp tool-bar-mode)
+  (tool-bar-mode -1))
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+;; (unless (boundp scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; ido
 (ido-mode t)
