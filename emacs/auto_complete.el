@@ -5,8 +5,10 @@
 
 ;; Snippets
 (el-get-bundle yasnippet
-  (yas-global-mode t)
-)
+  (yas-global-mode 1)
+  )
+(el-get-bundle yasnippet-config)
+(el-get-bundle yasnippet-snippets)
 
 ;; Auto-complete
 (el-get-bundle auto-complete

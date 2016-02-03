@@ -6,6 +6,11 @@
 ;; Encoding
 (prefer-coding-system 'utf-8)
 
+;; Remove tool bar, menu bar and scroll bar
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
 ;; ido
 (ido-mode t)
 (ido-everywhere t)
@@ -31,7 +36,9 @@
 )
 
 ;; Hightlight line, color grey
-(global-hl-line-mode t)
+(global-hl-line-mode 1)
+;; (set-face-background 'hl-line "#3e4446")
+;; (set-face-foreground 'hl-line nil)
 (custom-set-faces
  '(hl-line ((t (:background "color-236"))))
 )

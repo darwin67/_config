@@ -10,7 +10,7 @@
 
 ;; Dash documentation in Helm
 (el-get-bundle helm-dash)
-(setq helm-dash-browser-func 'eww)
+;; (setq helm-dash-browser-func 'eww)
 (setq ruby-docs '("Ruby_2" "Ruby_on_Rails_3" "Ruby_on_Rails_4")
       js-docs   '("JavaScript" "jQuery")
 )

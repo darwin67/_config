@@ -5,8 +5,7 @@
 
 ;; Monokai theme
 (el-get-bundle monokai-theme
-  (load-theme 'monokai t)
-)
+  (load-theme 'monokai t))
 
 ;; Powerline
 (el-get-bundle powerline

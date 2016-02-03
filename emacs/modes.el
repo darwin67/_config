@@ -41,7 +41,7 @@
 
 ;; Common LISP
 (el-get-bundle slime)
-(el-get-bundle common-lisp-snippets)
+;; (el-get-bundle common-lisp-snippets)
 
 ;; vimrc
 (el-get-bundle vimrc-mode)
@@ -50,8 +50,6 @@
 (el-get-bundle markdown-mode)
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
@@ -62,7 +60,7 @@
 (setq twittering-icon-mode t) ; enable icon
 (setq twittering-timer-interval (* 60 5)) ; update every 5 minutes
 (setq twittering-url-show-status nil)
-;; (setq twittering-use-icon-storage t) ; use icons from local storage
+(setq twittering-use-icon-storage t) ; use icons from local storage
 (setq twittering-icon-storage-limit t) ; store icons in local storage
 (setq twittering-display-remaining t) ; display remaining API calls
 (add-hook 'twittering-edit-mode-hook ; spell check for tweets
