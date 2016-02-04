@@ -78,3 +78,7 @@
 ;; use C-x z (N) to repeat command
 (global-set-key (kbd "C-x <up>") 'move-text-up)
 (global-set-key (kbd "C-x <down>") 'move-text-down)
+
+;; TAG navigation
+(global-set-key (kbd "M-]") 'find-tag)
+(global-set-key (kbd "M-[") 'pop-tag-mark)
