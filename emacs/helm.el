@@ -47,11 +47,12 @@
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)   ; make TAB works in terminal
 (define-key helm-map (kbd "C-z") 'helm-select-action)               ; list actions using C-z
 
-(global-set-key (kbd "C-x C-f") 'helm-find-files) ; find files with helm
-(global-set-key (kbd "M-y") 'helm-show-kill-ring) ; choose from kill ring to yank
-(global-set-key (kbd "C-x b") 'helm-mini)         ; search from current buffer, recently opened files and create new buffer
-(global-set-key (kbd "C-c o") 'helm-occur)        ; find the same patterns in current buffer
-(global-set-key (kbd "C-c d") 'helm-descbinds)    ; descibe key bindings
+(global-set-key (kbd "C-x C-f") 'helm-find-files)   ; find files with helm
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)   ; choose from kill ring to yank
+(global-set-key (kbd "C-x b") 'helm-mini)           ; search from current buffer, recently opened files and create new buffer
+(global-set-key (kbd "C-c o") 'helm-occur)          ; find the same patterns in current buffer
+(global-set-key (kbd "C-c d") 'helm-descbinds)      ; descibe key bindings
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list) ; list buffers through helm
 
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
