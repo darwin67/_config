@@ -8,7 +8,7 @@
 ;;  - brew install texinfo
 ;;  - brew link texinfo -f
 (el-get-bundle flycheck
-  ;; (global-flycheck-mode)
+  (global-flycheck-mode)
 )
 ;; (el-get-bundle flycheck-color-mode-line)
 ;; (eval-after-load "flycheck"
