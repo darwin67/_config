@@ -22,7 +22,6 @@
 
 ;; Git modes
 (el-get-bundle git-modes)
-(el-get-bundle git-commit-mode)
 
 ;; Browse at remote (github, bitbucket)
 (el-get-bundle browse-at-remote)
