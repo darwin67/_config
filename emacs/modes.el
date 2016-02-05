@@ -78,3 +78,6 @@
 	    (define-key twittering-mode-map (kbd ">") (lambda () (interactive) (goto-char (point-max))))
 	  )
 )
+
+;; Yaml mode
+(el-get-bundle yaml-mode)
