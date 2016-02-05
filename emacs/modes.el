@@ -23,7 +23,6 @@
 (el-get-bundle rbenv
   (global-rbenv-mode)
 )
-(el-get-bundle enh-ruby-mode)
 (el-get-bundle inf-ruby)
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (el-get-bundle yari)

@@ -14,7 +14,7 @@
 (setq ruby-docs '("Ruby_2" "Ruby_on_Rails_3" "Ruby_on_Rails_4")
       js-docs   '("JavaScript" "jQuery")
 )
-(add-hook 'enh-ruby-mode-hook (lambda () (setq-local helm-dash-docsets ruby-docs)))
+(add-hook 'ruby-mode-hook (lambda () (setq-local helm-dash-docsets ruby-docs)))
 
 (global-set-key (kbd "C-c C-d") 'helm-dash)
 
