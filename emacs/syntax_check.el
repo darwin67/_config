@@ -19,6 +19,7 @@
 ;; C++
 (el-get-bundle flycheck-google-cpplint)
 (defun cpp-check ()
+  (interactive)
   (require 'flycheck-google-cpplint)
   ;; Add Google C++ Style checker.
   ;; In default, syntax checked by Clang and Cppcheck.
