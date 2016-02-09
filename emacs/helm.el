@@ -11,10 +11,14 @@
 ;; Dash documentation in Helm
 (el-get-bundle helm-dash)
 ;; (setq helm-dash-browser-func 'eww)
-(setq ruby-docs '("Ruby_2" "Ruby_on_Rails_3" "Ruby_on_Rails_4")
-      js-docs   '("JavaScript" "jQuery")
-)
-(add-hook 'ruby-mode-hook (lambda () (setq-local helm-dash-docsets ruby-docs)))
+(setq common-docsets
+      '("C" "C++" "OpenCV_C++" "Ruby_2" "Ruby_on_Rails_4" "JavaScript" "jQuery"
+	"Ansible" "Chef" "MySQL" "PostgreSQL" "Redis" "Docker" "Nginx" "NodeJS" "Apache_HTTP_Server"
+	"Processing" "React" "CMake"))
+(setq helm-dash-common-docsets common-docsets)
+;; (setq ruby-docs '("Ruby_2" "Ruby_on_Rails_3" "Ruby_on_Rails_4")
+;;       js-docs   '("JavaScript" "jQuery"))
+;; (add-hook 'ruby-mode-hook (lambda () (setq-local helm-dash-docsets ruby-docs)))
 
 (global-set-key (kbd "C-c C-d") 'helm-dash)
 
