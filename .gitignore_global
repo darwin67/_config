@@ -15,3 +15,6 @@ cscope.po.out
 
 # Project related
 .projectile
+
+# Syntax checking
+.rubocop.yml
