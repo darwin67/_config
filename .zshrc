@@ -81,6 +81,7 @@ alias be="bundle exec"
 alias git=hub
 alias sbcl='rlwrap sbcl'
 alias ccl='rlwrap ccl64'
+alias emacs='emacs -nw'
 
 # Golang setups
 export PATH="/usr/local/go/bin:$PATH"
