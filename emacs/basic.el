@@ -67,6 +67,9 @@
 ;; Delete auto save files
 (setq delete-auto-save-files t)
 
+;; Remove trailing white space
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Split windows
 (global-set-key (kbd "C-x -") 'split-window-below) ; horizontal
 (global-set-key (kbd "C-x |") 'split-window-right) ; vertical
