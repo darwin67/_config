@@ -9,8 +9,7 @@
 
 ;; Projectile, project management tool
 (el-get-bundle projectile
-  (projectile-global-mode)
-)
+  (projectile-global-mode))
 (setq projectile-enable-caching t)
 
 ;; Ignore these directories
@@ -20,6 +19,9 @@
 			   "calendars" "system" "sandbox" "backup" ".cask"
 			   "eshell" "elpa"))
 (setq projectile-globally-ignored-directories ignore-directories)
+
+;; change root automatically when project has changed
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; Ignore these files
 (setq ignore-files '(".DS_Store" ".rspec" "tags" ".keep"))

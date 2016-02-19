@@ -9,8 +9,7 @@
 
 ;; Powerline
 (el-get-bundle powerline
-  (powerline-default-theme)
-)
+  (powerline-default-theme))
 
 ;; Spaceline
 ;;  This doesn't work on iTerm2 or Mac OS
