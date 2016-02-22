@@ -76,5 +76,5 @@
 
 ;; Zone
 ;;   gets triggered after Emacs is idle for 5 minutes
-(require 'zone)
-(zone-when-idle (* 60 5))
+;; (require 'zone)
+;; (zone-when-idle (* 60 5))
