@@ -1,3 +1,7 @@
+# ================================================================================
+#   Basic Configutations
+# ================================================================================
+
 # Path to configuration directory
 export CONFIG="$HOME/_config"
 
@@ -29,6 +33,10 @@ else
     export OS="Mac"
 fi
 
+# ================================================================================
+#   Paths
+# ================================================================================
+
 # User configuration
 # Paths
 export PATH="$PATH:/usr/local/git/bin"
@@ -58,6 +66,10 @@ source $ZSH/oh-my-zsh.sh
 # Init rbenv
 eval "$(rbenv init -)"
 
+# ================================================================================
+#   Environment Variables
+# ================================================================================
+
 # You may need to manually set your language environment
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -73,7 +85,10 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
 
-# Alias
+# ================================================================================
+#   Alias
+# ================================================================================
+
 alias zshconfig="$EDITOR $CONFIG/.zshrc"
 alias gitconfig="$EDITOR $CONFIG/.gitconfig"
 alias C="clear"
@@ -83,6 +98,10 @@ alias sbcl='rlwrap sbcl'
 alias ccl='rlwrap ccl64'
 alias emacs='emacs -nw'
 
+# ================================================================================
+#   Specific Settings
+# ================================================================================
+
 # Golang setups
 export PATH="/usr/local/go/bin:$PATH"
 mkdir -p $HOME/go_projects
@@ -90,7 +109,11 @@ export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go_projects"
 export PATH="$GOPATH/bin:$PATH"
 
-# Functions
+# ================================================================================
+#   Functions
+# ================================================================================
+
+# generate tags for javascript files
 function generate_jsctags() {
     if type jsctags > /dev/null; then
         find . -type f -iregex .*\.js$ -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
@@ -101,7 +124,19 @@ function generate_jsctags() {
     fi
 }
 
-# Powerline config
+# Get the weather
+function weather() {
+    local LOCATION="SanFrancisco"
+    if [ $1 ]; then
+	LOCATION="$1"
+    fi
+    eval 'curl -sS wttr.in/'$LOCATION
+}
+
+# ================================================================================
+#   Powerline Configuration
+# ================================================================================
+
 if [ "$OS" = "Mac" ]; then
     export PATH="$PATH:$HOME/Library/Python/2.7/bin"
 elif [ "$OS" = "Linux" ]; then
@@ -113,4 +148,3 @@ if [ "$(which powerline-daemon)" =~ "/bin/powerline-daemon" ]; then
     powerline-daemon -q
     export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 fi
-
