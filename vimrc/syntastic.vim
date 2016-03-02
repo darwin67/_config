@@ -35,7 +35,6 @@ let b:active_filetypes = [
 " Set filetypes to be check
 let g:syntastic_mode_map = {
     \ "mode": "passive",
-    \ "active_filetypes": b:active_filetypes,
 \ }
 
 " Specify checkers for filetype
