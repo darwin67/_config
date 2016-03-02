@@ -1,3 +1,5 @@
+.DS_Store
+
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
 TAGS
 !TAGS/
