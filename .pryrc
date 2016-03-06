@@ -1,3 +1,5 @@
+puts 'Loading ~/.pryrc'
+
 # Awesomeprint replaces pry's default pretty print
 begin
   require 'awesome_print'
@@ -8,9 +10,9 @@ else
 end
 
 if (defined? Pry) || (defined? PryByeBug) || (defined? PryDebugger)
-  Pry.commands.alias_command('c', 'continue')
-  Pry.commands.alias_command('n', 'next')
-  Pry.commands.alias_command('s', 'step')
+  Pry.commands.alias_command('c', 'continue') if Pry.commands['continue']
+  Pry.commands.alias_command('n', 'next') if Pry.commands['next']
+  Pry.commands.alias_command('s', 'step') if Pry.commands['step']
 end
 
 if ENV['RAILS_ENV'] || defined?(Rails)
