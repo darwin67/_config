@@ -81,3 +81,6 @@
 
 ;; Yaml mode
 (el-get-bundle yaml-mode)
+
+;; Groovy mode
+(el-get-bundle groovy-emacs-mode)
