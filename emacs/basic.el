@@ -48,6 +48,8 @@
 ;; Parenthesis
 (show-paren-mode t)
 (setq show-paren-style 'parenthesis)
+
+;; Enable transient mark mode
 (transient-mark-mode t)
 
 ;; Backup

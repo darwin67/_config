@@ -84,3 +84,7 @@
 
 ;; Groovy mode
 (el-get-bundle groovy-emacs-mode)
+
+;; Org mode
+(el-get-bundle org)
+;; (el-get-bundle org-plus-contrib)

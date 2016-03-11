@@ -16,7 +16,8 @@
 ;; Packages
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")))
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("org", "http://orgmode.org/elpa/")))
 
 ;; Load setup files
 (mapc 'load-file
