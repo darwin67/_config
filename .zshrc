@@ -59,12 +59,16 @@ elif [ $OS = "Linux" ]; then
     export PATH="$PATH:/usr/local/games"
 fi
 
+mkdir -p $HOME/.pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+
 export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # Init rbenv
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 # ================================================================================
 #   Environment Variables
