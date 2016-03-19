@@ -92,8 +92,7 @@ echo "powerline-daemon -q" >> ~/.zshrc
 - [the platinum searcher (pt)](https://github.com/monochromegane/the_platinum_searcher)
 - [ack](http://beyondgrep.com/)
 
-### Syntastic checkers dependencies
-Syntastic's syntax, style checkings are based on external tools so the following checkers needs to be installed for my settings to work correctly.
+### External syntax checkers
 - [GCC](https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc) - C, C++
 - [CppCheck](http://cppcheck.sourceforge.net/) - C++
 - [Rubocop](https://github.com/bbatsov/rubocop) - Ruby
