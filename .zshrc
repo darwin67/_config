@@ -58,7 +58,7 @@ elif [ $OS = "Linux" ]; then
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:$PYENV_ROOT/bin"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 export MANPATH="$MANPATH:/usr/local/opt/coreutils/libexec/gnuman"
 export MANPATH="$MANPATH:/usr/local/man"
