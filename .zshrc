@@ -49,11 +49,9 @@ export PATH="$PATH:$HOME/.rbenv/shims"
 export PATH="$PATH:$HOME/.rbenv/bin"
 
 if [ $OS = "Mac" ]; then
-    export PATH="$PATH:/usr/local/bin/ctags"
-    export PATH="$PATH:/opt/local/sbin/usr/bin"
+    export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
     export PATH="$PATH:/opt/local/bin"
     export PATH="$PATH:/opt/chefdk/bin"
-    export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 elif [ $OS = "Linux" ]; then
     export PATH="$PATH:/usr/games"
     export PATH="$PATH:/usr/local/games"
@@ -62,7 +60,8 @@ fi
 mkdir -p $HOME/.pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="$MANPATH:/usr/local/opt/coreutils/libexec/gnuman"
+export MANPATH="$MANPATH:/usr/local/man"
 
 source $ZSH/oh-my-zsh.sh
 
