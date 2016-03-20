@@ -57,8 +57,8 @@ elif [ $OS = "Linux" ]; then
     export PATH="$PATH:/usr/local/games"
 fi
 
-mkdir -p $HOME/.pyenv
 export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PATH:$PYENV_ROOT/bin"
 
 export MANPATH="$MANPATH:/usr/local/opt/coreutils/libexec/gnuman"
 export MANPATH="$MANPATH:/usr/local/man"
