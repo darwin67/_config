@@ -39,35 +39,45 @@ fi
 
 # User configuration
 # Paths
-export PATH="$PATH:/usr/local/git/bin"
-export PATH="$PATH:/usr/local/bin"
-export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/usr/bin"
-export PATH="$PATH:/sbin"
-export PATH="$PATH:/bin"
-export PATH="$PATH:$HOME/.rbenv/shims"
-export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="/bin:$PATH"
+export PATH="/sbin:$PATH"
+export PATH="/usr/bin:$PATH"
+export PATH="/usr/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/git/bin:$PATH"
 
 if [ $OS = "Mac" ]; then
-    export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
-    export PATH="$PATH:/opt/local/bin"
-    export PATH="$PATH:/opt/chefdk/bin"
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    export PATH="/opt/local/bin:$PATH"
+    export PATH="/opt/chefdk/bin:$PATH"
 elif [ $OS = "Linux" ]; then
-    export PATH="$PATH:/usr/games"
-    export PATH="$PATH:/usr/local/games"
+    export PATH="/usr/games:$PATH"
+    export PATH="/usr/local/games:$PATH"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 
-export MANPATH="$MANPATH:/usr/local/opt/coreutils/libexec/gnuman"
-export MANPATH="$MANPATH:/usr/local/man"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # Init rbenv
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/shims:$PATH"
+export PATH="$RBENV_ROOT/bin:$PATH"
+if [ -d "$RBENV_ROOT" ]; then
+    eval "$(rbenv init -)"
+else
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if [ -d "$PYENV_ROOT" ]; then
+    eval "$(pyenv init -)"
+else
+    git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+fi
 
 # ================================================================================
 #   Environment Variables
@@ -140,10 +150,8 @@ function weather() {
 #   Powerline Configuration
 # ================================================================================
 
-if [ "$OS" = "Mac" ]; then
-    export PATH="$PATH:$HOME/Library/Python/2.7/bin"
-elif [ "$OS" = "Linux" ]; then
-    export PATH="$PATH:$HOME/.local/bin"
+if [ "$OS" = "Linux" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
     export TERM="xterm-256color"
 fi
 
