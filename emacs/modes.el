@@ -27,6 +27,18 @@
 (el-get-bundle yari)
 (el-get-bundle bundler)
 
+;; Python
+(defface python-version-color
+  '((t (:weight bold :foreground "Blue")))
+  "The face used to highlight the current python on the modeline.")
+(defun pyenv--modeline-color (current-python)
+  (append '(" [")
+	  (list (propertize current-python 'face 'python-version-color))
+	            '("]")))
+(setq pyenv-modeline-function 'pyenv--modeline-color)
+(el-get-bundle pyenv
+  (global-pyenv-mode))
+
 ;; C
 (el-get-bundle google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)

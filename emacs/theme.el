@@ -8,8 +8,8 @@
   (load-theme 'monokai t))
 
 ;; Powerline
-(el-get-bundle powerline
-  (powerline-default-theme))
+;; (el-get-bundle powerline
+;;   (powerline-default-theme))
 
 ;; Spaceline
 ;;  This doesn't work on iTerm2 or Mac OS
