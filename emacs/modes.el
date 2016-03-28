@@ -65,7 +65,6 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-
 ;; Twitter
 (el-get-bundle twittering-mode)
 (setq twittering-use-master-password t) ; use master password
@@ -100,3 +99,10 @@
 ;; Org mode
 (el-get-bundle org)
 ;; (el-get-bundle org-plus-contrib)
+
+;; Haml mode
+(el-get-bundle haml-mode)
+(add-hook 'haml-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)
+	    (define-key haml-mode-map "\C-m" 'newline-and-indent)))
