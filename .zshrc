@@ -44,6 +44,7 @@ export PATH="/sbin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/git/bin:$PATH"
 
 if [ $OS = "Mac" ]; then
