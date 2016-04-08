@@ -24,7 +24,7 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git github rails nvm tmux gnu-utils history)
+plugins=(git github gem rails pip nvm tmux gnu-utils history aws docker thefuck)
 
 # The current OS
 if [ "$DESKTOP_SESSION" = "ubuntu" ]; then
@@ -72,6 +72,7 @@ else
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if [ -d "$PYENV_ROOT" ]; then
     eval "$(pyenv init -)"
