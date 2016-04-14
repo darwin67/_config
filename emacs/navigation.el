@@ -6,8 +6,7 @@
 ;; Wind move (http://www.emacswiki.org/emacs/WindMove)
 ;;   Using Ctr-c <Arrow> to move between buffers instead of typing Ctr-x o
 (when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings)
-)
+  (windmove-default-keybindings))
 (global-set-key (kbd "C-c <left>")  'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <up>")    'windmove-up)
@@ -24,8 +23,7 @@
 (defun previous-frame ()
   "A function to go to the previous frame."
   (interactive)
-  (other-frame -1)
-)
+  (other-frame -1))
 (global-set-key (kbd "C-x t n") 'make-frame-command)
 (global-set-key (kbd "C-x n t") 'other-frame)
 ;; (global-set-key (kbd "C-x p t") 'previous-frame)
@@ -57,23 +55,19 @@
 		     (< arg 0))
 	    (forward-line -1)))
 	(forward-line -1))
-      (move-to-column column t)))
-  )
-)
+      (move-to-column column t)))))
 
 (defun move-text-down (arg)
     "Move region (transient-mark-mode active) or current line
   arg lines down."
     (interactive "*p")
-    (move-text-internal arg)
-)
+    (move-text-internal arg))
 
 (defun move-text-up (arg)
     "Move region (transient-mark-mode active) or current line
   arg lines up."
     (interactive "*p")
-    (move-text-internal (- arg))
-)
+    (move-text-internal (- arg)))
 
 ;; use C-x z (N) to repeat command
 (global-set-key (kbd "C-x <up>") 'move-text-up)

@@ -14,11 +14,9 @@
 
 ;; Git-gutter
 (el-get-bundle git-gutter
-  (global-git-gutter-mode t)
-)
+  (global-git-gutter-mode t))
 (custom-set-variables
- '(git-gutter:update-interval 2)
-)
+ '(git-gutter:update-interval 2))
 
 ;; Git modes
 (el-get-bundle git-modes)
@@ -29,5 +27,4 @@
 
 ;; Undo tree visualizer
 (el-get-bundle undo-tree
-  (global-undo-tree-mode)
-)
+  (global-undo-tree-mode))

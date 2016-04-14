@@ -21,8 +21,7 @@
 (defun reload-emacs ()
   "Reload .emacs at the home directory."
   (interactive)
-  (load-file "~/.emacs")
-)
+  (load-file "~/.emacs"))
 (global-set-key (kbd "C-c C-r") 'reload-emacs)
 
 ;; History
@@ -39,11 +38,8 @@
 
 ;; Hightlight line, color grey
 (global-hl-line-mode 1)
-;; (set-face-background 'hl-line "#3e4446")
-;; (set-face-foreground 'hl-line nil)
 (custom-set-faces
- '(hl-line ((t (:background "color-236"))))
-)
+ '(hl-line ((t (:background "color-236")))))
 
 ;; Parenthesis
 (show-paren-mode t)
@@ -75,8 +71,3 @@
 ;; Split windows
 (global-set-key (kbd "C-x -") 'split-window-below) ; horizontal
 (global-set-key (kbd "C-x |") 'split-window-right) ; vertical
-
-;; Zone
-;;   gets triggered after Emacs is idle for 5 minutes
-;; (require 'zone)
-;; (zone-when-idle (* 60 5))
