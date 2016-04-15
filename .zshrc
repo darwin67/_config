@@ -27,9 +27,9 @@ export UPDATE_ZSH_DAYS=7
 plugins=(git github gem rails pip nvm tmux gnu-utils history aws docker)
 
 # The current OS
-if [ "$DESKTOP_SESSION" = "ubuntu" ]; then
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export OS="Linux"
-else
+elif [[ "$OSTYPE" == "darwin"* ]]; then
     export OS="Mac"
 fi
 
@@ -46,11 +46,11 @@ export PATH="/usr/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-if [ $OS = "Mac" ]; then
+if [[ $OS == "Mac" ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export PATH="/opt/local/bin:$PATH"
     export PATH="/opt/chefdk/bin:$PATH"
-elif [ $OS = "Linux" ]; then
+elif [[ $OS == "Linux" ]]; then
     export PATH="/usr/games:$PATH"
     export PATH="/usr/local/games:$PATH"
 fi
@@ -152,12 +152,9 @@ function weather() {
 #   Powerline Configuration
 # ================================================================================
 
-if [ "$OS" = "Linux" ]; then
+if [[ "$OS" == "Linux" ]]; then
     export PATH="$HOME/.local/bin:$PATH"
     export TERM="xterm-256color"
 fi
 
-if [ "$(which powerline-daemon)" =~ "/bin/powerline-daemon" ]; then
-    powerline-daemon -q
-    export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-fi
+export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
