@@ -3,10 +3,6 @@
 ;;   Project management tools
 ;; ===================================================
 
-;; Project browser, like NERDTree in vim
-(el-get-bundle neotree)
-(global-set-key (kbd "C-c n t") 'neotree-toggle)
-
 ;; Projectile, project management tool
 (el-get-bundle projectile
   (projectile-global-mode))
