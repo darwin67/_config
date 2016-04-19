@@ -149,6 +149,7 @@ LinkFiles() {
     ln -sf "$CONFIG/.pryrc" "$HOME/.pryrc"
     ln -sf "$CONFIG/.gitconfig" "$HOME/.gitconfig"
     ln -sf "$CONFIG/.gitignore_global" "$HOME/.gitignore_global"
+    ln -sf "$CONFIG/.rubocop.yml" "$HOME/.rubocop.yml"
     if [ "$OS" = "Mac" ]; then
         ln -sf "$CONFIG/.tmux-osx.conf" "$HOME/.tmux.conf"
     elif [ "$OS" = "Linux" ]; then

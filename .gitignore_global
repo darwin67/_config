@@ -60,6 +60,3 @@ flycheck_*.el
 # Project related
 .projectile
 
-# Syntax checking
-.rubocop.yml
-
