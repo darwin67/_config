@@ -28,3 +28,7 @@
 ;; Undo tree visualizer
 (el-get-bundle undo-tree
   (global-undo-tree-mode))
+
+;; Magit plugin for dealing with pull requests
+(el-get-bundle magit-gh-pulls)
+(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
