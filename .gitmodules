@@ -1,9 +1,12 @@
-[submodule "modules/tmux-powerline"]
+[submodule "tmux-powerline"]
 	path = modules/tmux-powerline
 	url = git@github.com:darwin67/tmux-powerline.git
-[submodule "bundle/neobundle.vim"]
+[submodule "neobundle.vim"]
 	path = bundle/neobundle.vim
 	url = git@github.com:Shougo/neobundle.vim.git
-[submodule "modules/oh-my-zsh"]
+[submodule "oh-my-zsh"]
 	path = modules/oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
+[submodule "dein.vim"]
+	path = repos/github.com/Shougo/dein.vim
+	url = git@github.com:Shougo/dein.vim.git

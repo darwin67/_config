@@ -45,6 +45,7 @@ export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 if [[ $OS == "Mac" ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -68,8 +69,8 @@ export PATH="$RBENV_ROOT/bin:$PATH"
 if [ -d "$RBENV_ROOT" ]; then
     eval "$(rbenv init -)"
 else
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+    git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT
+    git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -78,7 +79,16 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if [ -d "$PYENV_ROOT" ]; then
     eval "$(pyenv init -)"
 else
-    git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+    git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
+fi
+
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/shims:$PATH"
+export PATH="$GOENV_ROOT/bin:$PATH"
+if [ -d "$GOENV_ROOT" ]; then
+    eval "$(goenv init -)"
+else
+    git clone git@github.com:wfarr/goenv.git $GOENV_ROOT
 fi
 
 # ================================================================================
@@ -104,6 +114,11 @@ export SSH_KEY_PATH="~/.ssh/"
 #   Alias
 # ================================================================================
 
+if ! type hub > /dev/null ; then
+    mkdir -p ~/tmp/hub && git clone git@github.com:github/hub.git ~/tmp/hub/hub
+    cd ~/tmp/hub/hub && ./script/build -o ~/bin/hub
+fi
+
 alias zshconfig="$EDITOR $CONFIG/.zshrc"
 alias gitconfig="$EDITOR $CONFIG/.gitconfig"
 alias C="clear"
@@ -113,16 +128,9 @@ alias sbcl='rlwrap sbcl'
 alias ccl='rlwrap ccl64'
 alias emacs='emacs -nw'
 
-# ================================================================================
-#   Specific Settings
-# ================================================================================
-
-# Golang setups
-export PATH="/usr/local/go/bin:$PATH"
-mkdir -p $HOME/go_projects
-export GOROOT="/usr/local/go"
-export GOPATH="$HOME/go_projects"
-export PATH="$GOPATH/bin:$PATH"
+if type nvim > /dev/null ; then
+    alias vim='nvim'
+fi
 
 # ================================================================================
 #   Functions

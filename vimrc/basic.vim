@@ -229,8 +229,6 @@ set laststatus=2
 noremap 0 ^
 
 " Move a line of text using ALT+[jk]
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
 nnoremap <M-j> mz:m+<cr>`z
 nnoremap <M-k> mz:m-2<cr>`z
 vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z

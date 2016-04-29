@@ -60,3 +60,5 @@ flycheck_*.el
 # Project related
 .projectile
 
+# Tmux related stuff
+tmux-*
