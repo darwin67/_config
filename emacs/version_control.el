@@ -4,7 +4,8 @@
 ;; ===================================================
 
 ;; Magit, a git porcelain for emacs
-(el-get-bundle magit)
+(el-get-bundle magit
+  (require 'magit))
 (global-set-key (kbd "C-c g s") 'magit-status)
 (global-set-key (kbd "C-c g c") 'magit-commit)
 (global-set-key (kbd "C-c g d") 'magit-diff)

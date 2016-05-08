@@ -1,0 +1,51 @@
+wuddarwin@gmail.com {
+  %inbox:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Inbox"
+  %[Gmail]/Starred:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Starred"
+  %[Gmail]/Important:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Important"
+  %[Gmail]/Sent Mail:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Sent"
+  %[Gmail]/Drafts:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Drafts"
+  Development {
+    %Development/Emacs:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Emacs"
+    %Development/Github:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Github"
+    %Development/Travis:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Travis"
+    %Development/Vim:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Vim"
+  }
+  Entertainment {
+    %Entertainment/Fandango:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Fandango"
+    %Entertainment/Kickstarter:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Kickstarter"
+    %Entertainment/Live Coding:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Live Coding"
+    %Entertainment/Live Stream:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Live Stream"
+    %Entertainment/Pandora:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Pandora"
+    %Entertainment/Quora:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Quora"
+    %Entertainment/Thrillist:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Thrillist"
+    %Entertainment/TOHO cinemas:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "TOHO cinemas"
+    %Entertainment/Youtube:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Youtube"
+  }
+  Finance {
+    %Finance/AMEX:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "AMEX"
+    %Finance/Chase:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Chase"
+    %Finance/Discover:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Discover"
+    %Finance/Money Forward:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Money Forward"
+    %Finance/三井住友:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "三井住友"
+    %Finance/三菱東京UFJ:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "三菱東京UFJ"
+  }
+  Personal {
+    %Personal/Amazon:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Amazon"
+    %Personal/Game:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Game"
+    %Personal/Houses:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Houses"
+    %Personal/Job:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Job"
+    %Personal/Meetup:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Meetup"
+    %Personal/News:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "News"
+    %Personal/Shopping:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Shopping"
+    %Personal/Travel:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Travel"
+  }
+  %[Gmail]/Trash:"wuddarwin@gmail.com"/clear@imap.gmail.com:993! "Trash"
+}
+
+darwinwu67@gmail.com {
+  %inbox:"darwinwu67@gmail.com"/clear@imap.gmail.com:993! "Inbox"
+  %[Gmail]/Starred:"darwinwu67@gmail.com"/clear@imap.gmail.com:993! "Starred"
+  %[Gmail]/Important:"darwinwu67@gmail.com"/clear@imap.gmail.com:993! "Important"
+  %[Gmail]/Sent Mail:"darwinwu67@gmail.com"/clear@imap.gmail.com:993! "Sent Mail"
+  %[Gmail]/Drafts:"darwinwu67@gmail.com"/clear@imap.gmail.com:993! "Drafts"
+}
