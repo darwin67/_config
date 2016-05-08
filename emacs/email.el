@@ -4,6 +4,10 @@
 ;; ===================================================
 
 (el-get-bundle wanderlust)
+(el-get-bundle emacs-w3m)
+(require 'w3m-load)
+(require 'mime-w3m)
+
 ;; Without this Emacs thinks my E-Mail is something like <myname>@ubuntu-asus
 (setq user-mail-address "wuddarwin@gmail.com")
 
