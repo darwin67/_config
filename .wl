@@ -3,7 +3,8 @@
 ;;   Wanderlust
 ;; ===================================================
 
-(setq wl-insert-message-id nil) ; let the SMTP servers handle the message-id and stop warning from wanderlust
+;; Let the SMTP servers handle the message-id and stop warning from wanderlust
+(setq wl-insert-message-id nil)
 
 ;; for non ascii-characters in folder-names
 (setq elmo-imap4-use-modified-utf7 t)
