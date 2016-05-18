@@ -127,6 +127,7 @@ alias git=hub
 alias sbcl='rlwrap sbcl'
 alias ccl='rlwrap ccl64'
 alias emacs='emacs -nw'
+alias clean_git_branches='git branch --merged | grep -v \* | xargs git branch -D'
 
 if type nvim > /dev/null ; then
     alias vim='nvim'
