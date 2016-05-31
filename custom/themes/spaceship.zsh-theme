@@ -154,7 +154,7 @@ spaceship_git_status() {
 	indicators+="$(spaceship_git_stashed)"
 	indicators+="$(spaceship_git_unpushed_unpulled)"
 
-	[ -n "${indicators}" ] && indicators=" (${indicators})";
+	[ -n "${indicators}" ] && indicators=" {${indicators}}";
 
 	echo -n " %Bon%b "
 	echo -n "%{$fg_bold[magenta]%}"
@@ -236,7 +236,7 @@ spaceship_build_prompt() {
     spaceship_host
     spaceship_current_dir
     spaceship_git_status
-    echo " < $(spaceship_nvm_status) $(spaceship_ruby_version) $(spaceship_python_status) >"
+    echo " ( $(spaceship_nvm_status) $(spaceship_ruby_version) $(spaceship_python_status) )"
 }
 
 # Compose PROMPT
