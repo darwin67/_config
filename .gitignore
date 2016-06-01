@@ -5,6 +5,7 @@ repos/*
 .DS_Store
 .netrwhist
 tmp/
+temp/
 .dein
 merged
 rollbacks
