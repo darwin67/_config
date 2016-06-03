@@ -14,6 +14,6 @@ nnoremap <leader>gu :Git stash pop<CR>
 nnoremap <leader>gp :Git push 
 
 " Github browser
-nnoremap <leader>pf :OpenGithubFile<CR>
-nnoremap <leader>pa :OpenGithubPullReq<CR>
-nnoremap <leader>pr :OpenGithubPullReq 
+" nnoremap <leader>pf :OpenGithubFile<CR>
+" nnoremap <leader>pa :OpenGithubPullReq<CR>
+" nnoremap <leader>pr :OpenGithubPullReq 

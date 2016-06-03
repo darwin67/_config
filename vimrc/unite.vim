@@ -48,6 +48,11 @@ let b:files_to_ignore = [
     \ '\.rspec',
     \ 'tags',
     \ '.keep',
+    \ 'temp/',
+    \ 'repos/',
+    \ 'rollbacks/',
+    \ '\.dein',
+    \ 'merged'
 \ ]
 
 " Use ack if the OS is Mac, otherwise use ack-grep
@@ -189,27 +194,27 @@ nnoremap <silent>[menu]s :Unite -silent menu:search<CR>
 
 
 " Neobundle operations
-let g:unite_source_menu_menus.neobundle = {
-    \ 'description': 'plugins administration with NeoBundle                  ⌘  -p',
-\ }
-
-" TODO: Add the following menus
-"       - list
-"       - docs
-"       - check
-let g:unite_source_menu_menus.neobundle.command_candidates = {
-    \ '▷ neobundle'             : 'Unite neobundle',
-    \ '▷ neobundle log'         : 'Unite neobundle/log',
-    \ '▷ neobundle lazy'        : 'Unite neobundle/lazy',
-    \ '▷ neobundle update'      : 'Unite neobundle/update',
-    \ '▷ neobundle search'      : 'Unite neobundle/search',
-    \ '▷ neobundle install'     : 'Unite neobundle/install',
-    \ '▷ neobundle clean'       : 'NeoBundleClean',
-    \ '▷ neobundle clear cache' : 'NeoBundleClearCache',
-\ }
-
-nnoremap <silent>[menu]p :Unite -silent menu:neobundle<CR>
-
+" let g:unite_source_menu_menus.neobundle = {
+"     \ 'description': 'plugins administration with NeoBundle                  ⌘  -p',
+" \ }
+"
+" " TODO: Add the following menus
+" "       - list
+" "       - docs
+" "       - check
+" let g:unite_source_menu_menus.neobundle.command_candidates = {
+"     \ '▷ neobundle'             : 'Unite neobundle',
+"     \ '▷ neobundle log'         : 'Unite neobundle/log',
+"     \ '▷ neobundle lazy'        : 'Unite neobundle/lazy',
+"     \ '▷ neobundle update'      : 'Unite neobundle/update',
+"     \ '▷ neobundle search'      : 'Unite neobundle/search',
+"     \ '▷ neobundle install'     : 'Unite neobundle/install',
+"     \ '▷ neobundle clean'       : 'NeoBundleClean',
+"     \ '▷ neobundle clear cache' : 'NeoBundleClearCache',
+" \ }
+"
+" nnoremap <silent>[menu]p :Unite -silent menu:neobundle<CR>
+"
 
 " Navigation operations
 let g:unite_source_menu_menus.navigation = {
