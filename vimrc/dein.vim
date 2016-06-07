@@ -4,13 +4,13 @@ if &compatible
   endif
 
 " Required:
-set runtimepath^=$CONFIG/repos/github.com/Shougo/dein.vim
+set runtimepath+=$CONFIG/repos/github.com/Shougo/dein.vim
 
 " set junk directory
-let g:junkfile#directory = expand($CONFIG . "/tmp/junk")
+let g:junkfile#directory = expand("$CONFIG/tmp/junk")
 
 " Required:
-call dein#begin(expand('/home/darwin/_config'))
+call dein#begin(expand($CONFIG))
 
 " Let dein manage dein
 " Required:
@@ -18,13 +18,7 @@ call dein#add('Shougo/dein.vim')
 
 " Add or remove your plugins here:
 call dein#add('Shougo/vimproc.vim', {
-    \ 'build': {
-    \     'windows' : 'tools\\update-dll-mingw',
-    \     'cygwin'  : 'make -f make_cygwin.mak',
-    \     'mac'     : 'make -f make_mac.mak',
-    \     'linux'   : 'make',
-    \     'unix': 'gmake',
-    \    },
+    \ 'build': 'make'
     \ })
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
@@ -104,7 +98,7 @@ call dein#add('rust-lang/rust.vim', {
             \ 'on_ft' : [ 'rust' ]
             \ })
 
-" Thems
+" Themes
 call dein#add('sickill/vim-monokai')
 call dein#add('cdmedia/itg_flat_vim')
 
