@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Get the weather
+function weather() {
+    local LOCATION="SanFrancisco"
+    if [ $1 ]; then
+	LOCATION="$1"
+    fi
+    eval 'curl -sS wttr.in/'$LOCATION
+}

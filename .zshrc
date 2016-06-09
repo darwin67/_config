@@ -148,14 +148,8 @@ function generate_jsctags() {
     fi
 }
 
-# Get the weather
-function weather() {
-    local LOCATION="SanFrancisco"
-    if [ $1 ]; then
-	LOCATION="$1"
-    fi
-    eval 'curl -sS wttr.in/'$LOCATION
-}
+source $CONFIG/scripts/clean
+source $CONFIG/scripts/weather
 
 # ================================================================================
 #   Powerline Configuration
