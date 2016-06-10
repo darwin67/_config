@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Get the weather
 function weather() {

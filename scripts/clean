@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/zsh
 
-clean_git_branches() {
+function clean_git_branches() {
     git gc --prune=now
     git remote prune origin
 }
