@@ -13,4 +13,3 @@ let g:airline_theme = "bubblegum"
 set showtabline=2
 set noshowmode
 
-" let g:Powerline_cache_dir = simplify(expand($CONFIG . '/tmp/powerline'))
