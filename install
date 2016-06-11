@@ -1,17 +1,26 @@
-#!/bin/sh
+#!/bin/bash
+
+# Set OS env if it doesn't exist
+if [ -z "$OS" ]; then
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	export OS="Linux"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+	export OS="Mac"
+    fi
+fi
 
 ##################################################################
 # Usage
 ##################################################################
 
-Usage() {
+function usage() {
     echo "usage: ./install [config]"
     echo
     echo "config:"
     echo "    brew         - install brew (only OS X)"
-    echo "    vim          - install vim with lua and extra settings"
+    echo "    vim          - install neovim"
     echo "    zsh          - install zsh and change default to zsh"
-    echo "    powerline    - install python and powerline"
+    echo "    powerline    - install powerline fonts"
     echo "    tmux         - install tmux"
     echo "    link         - link all dotfiles to $HOME"
     echo
@@ -21,53 +30,30 @@ Usage() {
 # Brew
 ##################################################################
 
-InstallBrew() {
-    if [ "$OS" = "Mac" ]; then
+function install_brew() {
+     if [[ "$OS" == "Mac" ]]; then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     else
         echo "Brew is only available for OS X"
-        Usage
+        usage
     fi
 }
+
 
 ##################################################################
 # Vim
 ##################################################################
 
-InstallVim() {
+function install_vim() {
     if [ "$OS" = "Mac" ]; then
-        brew install vim --with-lua
+        brew install neovim/neovim/neovim
+	echo 'Install python 3 and neovim in pip to in order for autocompletions to work'
     elif [ "$OS" = "Linux" ]; then
-        sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
-        sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
-        sudo mkdir -p /usr/include/lua5.1/include
-        sudo ln -sf /usr/include/luajit-2.0 /usr/include/lua5.1/include
-
-        mkdir -p ~/tmp && cd ~/tmp || exit
-        git clone https://github.com/vim/vim.git
-        cd vim/src || exit
-        make distclean
-        ./configure --with-features=huge \
-                  --enable-rubyinterp \
-                  --enable-largefile \
-                  --disable-netbeans \
-                  --enable-pythoninterp \
-                  --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
-                  --enable-perlinterp \
-                  --enable-luainterp \
-                  --with-luajit \
-                  --enable-gui=auto \
-                  --enable-fail-if-missing \
-                  --with-lua-prefix=/usr/include/lua5.1 \
-                  --enable-cscope
-        make
-
-        sudo make install
-
-        cd .. || exit
-        sudo mkdir -p /usr/share/vim
-        sudo mkdir -p /usr/share/vim/vim74
-        sudo cp -fr runtime/* /usr/share/vim/vim74/
+	sudo apt-get install software-properties-common
+	sudo add-apt-repository ppa:neovim-ppa/unstable
+	sudo apt-get update
+	sudo apt-get install neovim
+	echo 'Install python 3 and neovim in pip to in order for autocompletions to work'
     else
         Usage
     fi
@@ -78,14 +64,22 @@ InstallVim() {
 # Zsh
 ##################################################################
 
-InstallZsh() {
+function install_zsh() {
+    local zsh_shell=''
+
     if [ "$OS" = "Mac" ]; then
         brew install zsh
+	zsh_shell='/usr/local/bin/zsh'
     elif [ "$OS" = "Linux" ]; then
         sudo apt-get install zsh
+	zsh_shell='/usr/bin/zsh'
     fi
-    echo '/usr/local/bin/zsh' >> /etc/shells
-    chsh -s /usr/local/bin/zsh
+
+    if grep zsh_shell /etc/shells > /dev/null; then
+	echo zsh_shell >> /etc/shells
+    fi
+
+    chsh -s zsh_shell
 }
 
 
@@ -93,18 +87,7 @@ InstallZsh() {
 # Powerline
 ##################################################################
 
-InstallPython() {
-    if [ "$OS" = "Mac" ]; then
-        brew install python
-        CheckPyVersion
-    elif [ "$OS" = "Linux" ]; then
-        sudo apt-get -y install python
-        sudo apt-get -y install python-pip
-    fi
-}
-
-InstallPowerline() {
-    pip install --user powerline-status
+function install_powerline_fonts() {
     mkdir -p ~/tmp && cd ~/tmp || exit
     git clone git@github.com:powerline/fonts.git
     fonts/install.sh
@@ -121,7 +104,7 @@ InstallPowerline() {
 # Tmux
 ##################################################################
 
-InstallTmux() {
+function install_tmux() {
     if [ "$OS" = "Mac" ]; then
         brew install tmux
     elif [ "$OS" = "Linux" ]; then
@@ -134,7 +117,7 @@ InstallTmux() {
 # Link files to $HOME
 ##################################################################
 
-LinkFiles() {
+function link_files() {
     # Link files
     CONFIG="$(pwd)"
     export CONFIG
@@ -163,24 +146,22 @@ LinkFiles() {
 ##################################################################
 
 if [ "$1" = "brew" ]; then # install brew
-    InstallBrew
+    install_brew
 
 elif [ "$1" = "vim" ]; then # install vim
-    InstallVim
+    install_vim
 
 elif [ "$1" = "zsh" ]; then # install oh-my-zsh
-    InstallZsh
-    InstallOhMyZsh
+    install_zsh
 
 elif [ "$1" = "powerline" ]; then # install Powerline
-    InstallPython
-    InstallPowerline
+    install_powerline_fonts
 
 elif [ "$1" = "tmux" ]; then # install tmux
-    InstallTmux
+    install_tmux
 
 elif [ "$1" = "link" ]; then # Link all dotfiles
-    LinkFiles
+    link_files
 
 else
   Usage
