@@ -62,7 +62,11 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# Init rbenv
+# ================================================================================
+#   version controls
+# ================================================================================
+
+# Ruby
 export RBENV_ROOT="$HOME/.rbenv"
 export PATH="$RBENV_ROOT/shims:$PATH"
 export PATH="$RBENV_ROOT/bin:$PATH"
@@ -73,6 +77,7 @@ else
     git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build
 fi
 
+# Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -82,6 +87,7 @@ else
     git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
 fi
 
+# Go
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/shims:$PATH"
 export PATH="$GOENV_ROOT/bin:$PATH"
@@ -148,8 +154,18 @@ function generate_jsctags() {
     fi
 }
 
-source $CONFIG/scripts/clean
-source $CONFIG/scripts/weather
+function clean_git_branches() {
+    git gc --prune=now
+    git remote prune origin
+}
+
+function weather() {
+    local LOCATION="SanFrancisco"
+    if [ $1 ]; then
+	LOCATION="$1"
+    fi
+    eval 'curl -sS wttr.in/'$LOCATION
+}
 
 # ================================================================================
 #   Powerline Configuration
