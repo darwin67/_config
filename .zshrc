@@ -155,6 +155,7 @@ function generate_jsctags() {
 }
 
 function clean_git_branches() {
+    git branch | grep -Ev "master|stable|testing" | xargs git branch -D
     git gc --prune=now
     git remote prune origin
 }

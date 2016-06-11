@@ -101,6 +101,11 @@
 (global-set-key (kbd "C-x p f") 'helm-projectile-find-file) ; find files in project
 (global-set-key (kbd "C-x p r") 'helm-projectile-recentf)   ; find recently opened files
 
+;; Robe completion
+(el-get-bundle helm-robe)
+(custom-set-variables
+  '(robe-completing-read-func 'helm-robe-completing-read))
+
 ;; ===================================================
 ;;   Dash document
 ;; ===================================================

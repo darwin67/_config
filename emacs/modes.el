@@ -13,6 +13,9 @@
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (el-get-bundle yari)
 (el-get-bundle bundler)
+(el-get-bundle robe-mode)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'ac-robe-setup)
 
 ;; Python
 (defface python-version-color
