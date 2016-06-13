@@ -7,10 +7,7 @@
 (el-get-bundle magit
   (require 'magit))
 (global-set-key (kbd "C-c g s") 'magit-status)
-(global-set-key (kbd "C-c g c") 'magit-commit)
-(global-set-key (kbd "C-c g d") 'magit-diff)
 (global-set-key (kbd "C-c g l") 'magit-log-all)
-(global-set-key (kbd "C-c g p") 'magit-push)
 (global-set-key (kbd "C-c g b") 'magit-blame)
 
 ;; Git-gutter
