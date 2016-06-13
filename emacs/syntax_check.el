@@ -19,5 +19,5 @@
   ;; Add Google C++ Style checker.
   ;; In default, syntax checked by Clang and Cppcheck.
   (flycheck-add-next-checker 'c/c++-cppcheck
-			     '(warnings-only . c/c++-googlelint)))
+			     '(warning . c/c++-googlelint)))
 (add-hook 'c++-mode-hook 'cpp-check)
