@@ -30,6 +30,9 @@
 ;; Save mini-buffer
 (savehist-mode 1)
 
+;; expand tabs to spaces
+(setq-default indent-tabs-mode nil)
+
 ;; Remember the location of the previous cursor
 (when (require 'saveplace nil t)
   (setq-default save-place t)
