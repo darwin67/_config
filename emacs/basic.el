@@ -36,8 +36,7 @@
 ;; Remember the location of the previous cursor
 (when (require 'saveplace nil t)
   (setq-default save-place t)
-  (setq save-place-file "~/.emacs.d/saved-places")
-)
+  (setq save-place-file "~/.emacs.d/saved-places"))
 
 ;; Hightlight line, color grey
 (global-hl-line-mode 1)

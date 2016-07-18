@@ -23,5 +23,4 @@
 (mapc 'load-file
       (file-expand-wildcards
        (let ((config_dir (getenv "CONFIG")))
-	 (concat config_dir "/emacs/*.el")))
-)
+	 (concat config_dir "/emacs/*.el"))))
