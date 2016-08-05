@@ -11,10 +11,10 @@
 (global-set-key (kbd "C-c g b") 'magit-blame)
 
 ;; Git-gutter
-(el-get-bundle git-gutter
-  (global-git-gutter-mode t))
 (custom-set-variables
  '(git-gutter:update-interval 2))
+(el-get-bundle git-gutter
+  (global-git-gutter-mode t))
 
 ;; Git modes
 (el-get-bundle git-modes)

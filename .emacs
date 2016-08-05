@@ -24,3 +24,5 @@
       (file-expand-wildcards
        (let ((config_dir (getenv "CONFIG")))
 	 (concat config_dir "/emacs/*.el"))))
+
+(el-get 'sync)

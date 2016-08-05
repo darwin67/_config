@@ -138,6 +138,10 @@ function link_files() {
     elif [ "$OS" = "Linux" ]; then
         ln -sf "$CONFIG/.tmux-linux.conf" "$HOME/.tmux.conf"
     fi
+
+    if [[ -d "~/.config/nvim" ]]; then
+        ln -sf ${CONFIG}/.vimrc ${HOME}/.config/nvim/init.vim
+    fi
 }
 
 

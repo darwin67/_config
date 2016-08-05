@@ -24,7 +24,7 @@ ZSH_CUSTOM="$CONFIG/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git github gem rails pip nvm tmux gnu-utils aws)
+plugins=(git github gem rails pip nvm tmux gnu-utils) # aws
 
 # The current OS
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
