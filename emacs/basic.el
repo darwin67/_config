@@ -30,6 +30,9 @@
 ;; Save mini-buffer
 (savehist-mode 1)
 
+;; Save session
+(desktop-save-mode 1)
+
 ;; expand tabs to spaces
 (setq-default indent-tabs-mode nil)
 
