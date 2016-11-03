@@ -66,15 +66,28 @@ source $ZSH/oh-my-zsh.sh
 #   version controls
 # ================================================================================
 
+function init_rbenv() {
+    eval "$(rbenv init -)"
+}
+
+function init_pyenv() {
+    eval "$(pyenv init -)"
+}
+
+function init_goenv() {
+    eval "$(goenv init -)"
+}
+
 # Ruby
 export RBENV_ROOT="$HOME/.rbenv"
 export PATH="$RBENV_ROOT/shims:$PATH"
 export PATH="$RBENV_ROOT/bin:$PATH"
 if [ -d "$RBENV_ROOT" ]; then
-    eval "$(rbenv init -)"
+    init_rbenv
 else
     git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT
     git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build
+    init_rbenv
 fi
 
 # Python
@@ -82,9 +95,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if [ -d "$PYENV_ROOT" ]; then
-    eval "$(pyenv init -)"
+    init_pyenv
 else
     git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
+    init_pyenv
 fi
 
 # Go
@@ -92,10 +106,19 @@ export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/shims:$PATH"
 export PATH="$GOENV_ROOT/bin:$PATH"
 if [ -d "$GOENV_ROOT" ]; then
-    eval "$(goenv init -)"
+    init_goenv
 else
     git clone git@github.com:wfarr/goenv.git $GOENV_ROOT
+    init_goenv
 fi
+
+export GOPATH="$HOME/workspace/go-projects"
+export GOROOT="/usr/local/go"
+export PATH="$GOPATH/bin:$PATH"
+if [[ -z $GOPATH ]]; then
+    mkdir -p $GOPATH
+fi
+
 
 # ================================================================================
 #   Environment Variables
