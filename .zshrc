@@ -115,7 +115,7 @@ fi
 export GOPATH="$HOME/workspace/go-projects"
 export GOROOT="/usr/local/go"
 export PATH="$GOPATH/bin:$PATH"
-if [[ -z $GOPATH ]]; then
+if [[ ! -d $GOPATH ]]; then
     mkdir -p $GOPATH
 fi
 
