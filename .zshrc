@@ -24,7 +24,7 @@ ZSH_CUSTOM="$CONFIG/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(emacs git github gem rails pip nvm tmux tmux-cssh zsh_reload) # aws
+plugins=(emacs git github gem rails pip tmux tmux-cssh zsh_reload) # aws
 
 # The current OS
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -66,17 +66,10 @@ source $ZSH/oh-my-zsh.sh
 #   version controls
 # ================================================================================
 
-function init_rbenv() {
-    eval "$(rbenv init -)"
-}
-
-function init_pyenv() {
-    eval "$(pyenv init -)"
-}
-
-function init_goenv() {
-    eval "$(goenv init -)"
-}
+function init_rbenv()  { eval "$(rbenv init -)" }
+function init_pyenv()  { eval "$(pyenv init -)" }
+function init_goenv()  { eval "$(goenv init -)" }
+function init_nodenv() { eval "$(nodenv init -)" }
 
 # Ruby
 export RBENV_ROOT="$HOME/.rbenv"
@@ -85,31 +78,34 @@ export PATH="$RBENV_ROOT/bin:$PATH"
 if [ -d "$RBENV_ROOT" ]; then
     init_rbenv
 else
-    git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT
-    git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build
-    init_rbenv
+    git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT && \
+        git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build && \
+        git clone https://github.com/rkh/rbenv-update.git $RBENV_ROOT/plugins/rbenv-update && \
+        init_rbenv
 fi
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if [ -d "$PYENV_ROOT" ]; then
+if [[ -d $PYENV_ROOT ]]; then
     init_pyenv
 else
-    git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT
-    init_pyenv
+    git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT && \
+        git clone git://github.com/yyuu/pyenv-update.git $PYENV_ROOT/plugins/pyenv-update && \
+        init_pyenv
 fi
 
 # Go
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/shims:$PATH"
 export PATH="$GOENV_ROOT/bin:$PATH"
-if [ -d "$GOENV_ROOT" ]; then
+if [[ -d $GOENV_ROOT ]]; then
     init_goenv
 else
-    git clone git@github.com:wfarr/goenv.git $GOENV_ROOT
-    init_goenv
+    git clone git@github.com:wfarr/goenv.git $GOENV_ROOT && \
+        git clone git://github.com/juxtaposedwords/goenv-update.git $GOENV_ROOT/plugins/goenv-update && \
+        init_goenv
 fi
 
 export GOPATH="$HOME/workspace/go-projects"
@@ -117,6 +113,19 @@ export GOROOT="/usr/local/go"
 export PATH="$GOPATH/bin:$PATH"
 if [[ ! -d $GOPATH ]]; then
     mkdir -p $GOPATH
+fi
+
+# Node
+export NODENV_ROOT="$HOME/.nodenv"
+export PATH="$NODENV_ROOT/shims:$PATH"
+export PATH="$NODENV_ROOT/bin:$PATH"
+if [[ -d $NODENV_ROOT ]]; then
+    init_nodenv
+else
+    git clone https://github.com/nodenv/nodenv.git $NODENV_ROOT && \
+        git clone https://github.com/nodenv/node-build.git $NODENV_ROOT/plugins/node-build && \
+        git clone https://github.com/nodenv/nodenv-update.git $NODENV_ROOT/plugins/nodenv-update && \
+        cd ~/.nodenv && src/configure && make -C src && cd
 fi
 
 

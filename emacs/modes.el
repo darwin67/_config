@@ -7,8 +7,8 @@
 (el-get-bundle dash)
 
 ;; Ruby
-(el-get-bundle rbenv
-  (global-rbenv-mode))
+;; (el-get-bundle rbenv
+;;   (global-rbenv-mode))
 (el-get-bundle inf-ruby)
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (el-get-bundle yari)
@@ -18,16 +18,16 @@
 ;; (add-hook 'robe-mode-hook 'ac-robe-setup)
 
 ;; Python
-(defface python-version-color
-  '((t (:weight bold :foreground "Blue")))
-  "The face used to highlight the current python on the modeline.")
-(defun pyenv--modeline-color (current-python)
-  (append '(" [")
-	  (list (propertize current-python 'face 'python-version-color))
-	            '("]")))
-(setq pyenv-modeline-function 'pyenv--modeline-color)
-(el-get-bundle pyenv
-  (global-pyenv-mode))
+;; (defface python-version-color
+;;   '((t (:weight bold :foreground "Blue")))
+;;   "The face used to highlight the current python on the modeline.")
+;; (defun pyenv--modeline-color (current-python)
+;;   (append '(" [")
+;; 	  (list (propertize current-python 'face 'python-version-color))
+;; 	            '("]")))
+;; (setq pyenv-modeline-function 'pyenv--modeline-color)
+;; (el-get-bundle pyenv
+;;   (global-pyenv-mode))
 
 ;; C
 (el-get-bundle google-c-style)

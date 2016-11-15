@@ -24,9 +24,9 @@ SPACESHIP_GIT_STASHED="${SPACESHIP_GIT_STASHED:-$}"
 SPACESHIP_GIT_UNPULLED="${SPACESHIP_GIT_UNPULLED:-⇣}"
 SPACESHIP_GIT_UNPUSHED="${SPACESHIP_GIT_UNPUSHED:-⇡}"
 
-# NVM
-SPACESHIP_NVM_SHOW="${SPACESHIP_NVM_SHOW:-true}"
-SPACESHIP_NVM_SYMBOL="${SPACESHIP_NVM_SYMBOL:-⬢}"
+# NODE
+SPACESHIP_NODE_SHOW="${SPACESHIP_NODE_SHOW:-true}"
+SPACESHIP_NODE_SYMBOL="${SPACESHIP_NODE_SYMBOL:-⬢}"
 
 # RUBY
 SPACESHIP_RUBY_SHOW="${SPACESHIP_RUBY_SHOW:-true}"
@@ -169,13 +169,9 @@ spaceship_git_status() {
 spaceship_python_status() {
     [[ $SPACESHIP_PYTHON_SHOW == false ]] && return
 
-    if command -v pyenv > /dev/null 2>&1; then
-	python_version=$(pyenv version | sed -e 's/ (set.*$//')
-    elif [ -n "$VIRTUAL_ENV" ]; then
-	python_version=$(basename $VIRTUAL_ENV)
-    else
-	return
-    fi
+    $(command -v pyenv > /dev/null 2>&1) || return
+
+    python_version=$(pyenv version | sed -e 's/ (set.*$//')
 
     # Check if the current directory running via Virtualenv
     [ -n "${python_version}" ] || return
@@ -184,19 +180,17 @@ spaceship_python_status() {
     echo -n "%{$reset_color%}"
 }
 
-# NVM
+# NODE
 # Show current version of node, exception system.
-spaceship_nvm_status() {
-    [[ $SPACESHIP_NVM_SHOW == false ]] && return
+spaceship_node_status() {
+    [[ $SPACESHIP_NODE_SHOW == false ]] && return
 
-    $(type nvm >/dev/null 2>&1) || return
+    $(type nodenv >/dev/null 2>&1) || return
 
-    local nvm_status=$(nvm current 2>/dev/null)
-    [[ "${nvm_status}" == "system" ]] && return
-    nvm_status=${nvm_status}
+    node_version=$(nodenv version | sed -e 's/ (set.*$//')
 
     echo -n "%{$fg_bold[green]%}"
-    echo -n "${nvm_status}"
+    echo -n "${node_version}"
     echo -n "%{$reset_color%}"
 }
 
@@ -205,17 +199,9 @@ spaceship_nvm_status() {
 spaceship_ruby_version() {
     [[ $SPACESHIP_RUBY_SHOW == false ]] && return
 
-    if command -v rvm-prompt > /dev/null 2>&1; then
-	if rvm gemset list | grep "=> (default)"; then
-	    ruby_version=$(rvm-prompt i v g)
-	fi
-    elif command -v chruby > /dev/null 2>&1; then
-	ruby_version=$(chruby | sed -n -e 's/ \* //p')
-    elif command -v rbenv > /dev/null 2>&1; then
-	ruby_version=$(rbenv version | sed -e 's/ (set.*$//')
-    else
-	return
-    fi
+    $(type rbenv > /dev/null 2>&1) || return
+
+    ruby_version=$(rbenv version | sed -e 's/ (set.*$//')
 
     echo -n "%{$fg_bold[red]%}"
     echo -n "${ruby_version}"
@@ -236,7 +222,7 @@ spaceship_build_prompt() {
     spaceship_host
     spaceship_current_dir
     spaceship_git_status
-    echo " ( $(spaceship_nvm_status) $(spaceship_ruby_version) $(spaceship_python_status) )"
+    echo " ( $(spaceship_node_status) $(spaceship_ruby_version) $(spaceship_python_status) )"
 }
 
 # Compose PROMPT
