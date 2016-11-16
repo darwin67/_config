@@ -1,119 +1,89 @@
 #!/bin/zsh
 #
-# Spaceship ZSH Theme
-#
-# Author: Denys Dovhan, denysdovhan.com
-# License: MIT
+# Custom ZSH Theme based on
 # https://github.com/denysdovhan/spaceship-zsh-theme
+#
 
 NEWLINE='
 '
 
 # PROMPT
-SPACESHIP_PROMPT_SYMBOL="${SPACESHIP_PROMPT_SYMBOL:->>}"
-SPACESHIP_PROMPT_ADD_NEWLINE="${SPACESHIP_PROMPT_ADD_NEWLINE:-true}"
-SPACESHIP_PROMPT_SEPARATE_LINE="${SPACESHIP_PROMPT_SEPARATE_LINE:-true}"
-SPACESHIP_PROMPT_TRUNC="${SPACESHIP_PROMPT_TRUNC:-3}"
+PROMPT_SYMBOL="${PROMPT_SYMBOL:->>}"
+PROMPT_ADD_NEWLINE="${PROMPT_ADD_NEWLINE:-true}"
+PROMPT_SEPARATE_LINE="${PROMPT_SEPARATE_LINE:-true}"
+PROMPT_TRUNC="${PROMPT_TRUNC:-3}"
 
 # GIT
-SPACESHIP_GIT_SHOW="${SPACESHIP_GIT_SHOW:-true}"
-SPACESHIP_GIT_UNCOMMITTED="${SPACESHIP_GIT_UNCOMMITTED:-+}"
-SPACESHIP_GIT_UNSTAGED="${SPACESHIP_GIT_UNSTAGED:-✹}"
-SPACESHIP_GIT_UNTRACKED="${SPACESHIP_GIT_UNTRACKED:-?}"
-SPACESHIP_GIT_STASHED="${SPACESHIP_GIT_STASHED:-$}"
-SPACESHIP_GIT_UNPULLED="${SPACESHIP_GIT_UNPULLED:-⇣}"
-SPACESHIP_GIT_UNPUSHED="${SPACESHIP_GIT_UNPUSHED:-⇡}"
+GIT_SHOW="${GIT_SHOW:-true}"
+GIT_UNCOMMITTED="${GIT_UNCOMMITTED:-+}"
+GIT_UNSTAGED="${GIT_UNSTAGED:-✹}"
+GIT_UNTRACKED="${GIT_UNTRACKED:-?}"
+GIT_STASHED="${GIT_STASHED:-$}"
+GIT_UNPULLED="${GIT_UNPULLED:-⇣}"
+GIT_UNPUSHED="${GIT_UNPUSHED:-⇡}"
 
 # NODE
-SPACESHIP_NODE_SHOW="${SPACESHIP_NODE_SHOW:-true}"
-SPACESHIP_NODE_SYMBOL="${SPACESHIP_NODE_SYMBOL:-⬢}"
+NODE_SHOW="${NODE_SHOW:-true}"
+NODE_SYMBOL="${NODE_SYMBOL:-⬢}"
 
 # RUBY
-SPACESHIP_RUBY_SHOW="${SPACESHIP_RUBY_SHOW:-true}"
-SPACESHIP_RUBY_SYMBOL="${SPACESHIP_RUBY_SYMBOL:-💎}"
+RUBY_SHOW="${RUBY_SHOW:-true}"
+RUBY_SYMBOL="${RUBY_SYMBOL:-💎}"
 
 # PYTHON
-SPACESHIP_PYTHON_SHOW="${SPACESHIP_PYTHON_SHOW:-true}"
-
-# Username.
-# If user is root, then pain it in red. Otherwise, just print in yellow.
-spaceship_user() {
-    if [[ $USER == 'root' ]]; then
-	echo -n "%{$fg_bold[red]%}"
-    else
-	echo -n "%{$fg_bold[yellow]%}"
-    fi
-    echo -n "%n"
-    echo -n "%{$reset_color%}"
-}
-
-# Username and SSH host
-# If there is an ssh connections, then show user and current machine.
-# If user is not $USER, then show username.
-spaceship_host() {
-    if [[ -n $SSH_CONNECTION ]]; then
-	echo -n "$(spaceship_user)"
-	echo -n " %Bat%b "
-	echo -n "%{$fg_bold[green]%}%m%{$reset_color%}"
-	echo -n " %Bin%b "
-    elif [[ $LOGNAME != $USER ]] || [[ $USER == 'root' ]]; then
-	echo -n "$(spaceship_user)"
-	echo -n " %Bin%b "
-	echo -n "%{$reset_color%}"
-    fi
-}
+PYTHON_SHOW="${PYTHON_SHOW:-true}"
 
 # Current directory.
 # Return only three last items of path
-spaceship_current_dir() {
+current_dir() {
     echo -n "%{$fg_bold[cyan]%}"
-    echo -n "%${SPACESHIP_PROMPT_TRUNC}~";
+    echo -n "%${PROMPT_TRUNC}~";
     echo -n "%{$reset_color%}"
 }
 
 # Uncommitted changes.
 # Check for uncommitted changes in the index.
-spaceship_git_uncomitted() {
+git_uncomitted() {
     if ! $(git diff --quiet --ignore-submodules --cached); then
 	echo -n "%{$fg_bold[green]%}"
-	echo -n "${SPACESHIP_GIT_UNCOMMITTED}"
+	echo -n "${GIT_UNCOMMITTED}"
 	echo -n "%{$reset_color%}"
     fi
 }
 
 # Unstaged changes.
 # Check for unstaged changes.
-spaceship_git_unstaged() {
+git_unstaged() {
     if ! $(git diff-files --quiet --ignore-submodules --); then
 	echo -n "%{$fg_bold[red]%}"
-	echo -n "${SPACESHIP_GIT_UNSTAGED}"
+	echo -n "${GIT_UNSTAGED}"
 	echo -n "%{$reset_color%}"
     fi
 }
 
 # Untracked files.
 # Check for untracked files.
-spaceship_git_untracked() {
+git_untracked() {
     if [ -n "$(git ls-files --others --exclude-standard)" ]; then
 	echo -n "%{$fg_bold[magenta]%}"
-	echo -n "${SPACESHIP_GIT_UNTRACKED}"
+	echo -n "${GIT_UNTRACKED}"
 	echo -n "%{$reset_color%}"
     fi
 }
 
 # Stashed changes.
 # Check for stashed changes.
-spaceship_git_stashed() {
+git_stashed() {
     if $(git rev-parse --verify refs/stash &>/dev/null); then
 	echo -n "%{$fg_bold[yellow]%}"
-	echo -n "${SPACESHIP_GIT_STASHED}"
+	echo -n "${GIT_STASHED}"
 	echo -n "%{$reset_color%}"
     fi
 }
 
 # Unpushed and unpulled commits.
 # Get unpushed and unpulled commits from remote and draw arrows.
-spaceship_git_unpushed_unpulled() {
+git_unpushed_unpulled() {
     # check if there is an upstream configured for this branch
     command git rev-parse --abbrev-ref @'{u}' &>/dev/null || return
 
@@ -126,16 +96,16 @@ spaceship_git_unpushed_unpulled() {
     count=(${(ps:\t:)count})
     local arrows left=${count[1]} right=${count[2]}
 
-    (( ${right:-0} > 0 )) && arrows+="${SPACESHIP_GIT_UNPULLED}"
-    (( ${left:-0} > 0 )) && arrows+="${SPACESHIP_GIT_UNPUSHED}"
+    (( ${right:-0} > 0 )) && arrows+="${GIT_UNPULLED}"
+    (( ${left:-0} > 0 )) && arrows+="${GIT_UNPUSHED}"
 
     [ -n $arrows ] && echo -n "${arrows}"
 }
 
 # Git status.
 # Collect indicators, git branch and pring string.
-spaceship_git_status() {
-    [[ $SPACESHIP_GIT_SHOW == false ]] && return
+git_status() {
+    [[ $GIT_SHOW == false ]] && return
 
     # Check if the current directory is in a Git repository.
     command git rev-parse --is-inside-work-tree &>/dev/null || return
@@ -148,11 +118,11 @@ spaceship_git_status() {
 	# String of indicators
 	local indicators=''
 
-	indicators+="$(spaceship_git_uncomitted)"
-	indicators+="$(spaceship_git_unstaged)"
-	indicators+="$(spaceship_git_untracked)"
-	indicators+="$(spaceship_git_stashed)"
-	indicators+="$(spaceship_git_unpushed_unpulled)"
+	indicators+="$(git_uncomitted)"
+	indicators+="$(git_unstaged)"
+	indicators+="$(git_untracked)"
+	indicators+="$(git_stashed)"
+	indicators+="$(git_unpushed_unpulled)"
 
 	[ -n "${indicators}" ] && indicators=" {${indicators}}";
 
@@ -166,8 +136,8 @@ spaceship_git_status() {
 
 # Virtual environment.
 # Show current virtual environment (Python).
-spaceship_python_status() {
-    [[ $SPACESHIP_PYTHON_SHOW == false ]] && return
+python_version() {
+    [[ $PYTHON_SHOW == false ]] && return
 
     $(command -v pyenv > /dev/null 2>&1) || return
 
@@ -182,8 +152,8 @@ spaceship_python_status() {
 
 # NODE
 # Show current version of node, exception system.
-spaceship_node_status() {
-    [[ $SPACESHIP_NODE_SHOW == false ]] && return
+node_version() {
+    [[ $NODE_SHOW == false ]] && return
 
     $(type nodenv >/dev/null 2>&1) || return
 
@@ -196,8 +166,8 @@ spaceship_node_status() {
 
 # Ruby
 # Show current version of Ruby
-spaceship_ruby_version() {
-    [[ $SPACESHIP_RUBY_SHOW == false ]] && return
+ruby_version() {
+    [[ $RUBY_SHOW == false ]] && return
 
     $(type rbenv > /dev/null 2>&1) || return
 
@@ -211,30 +181,29 @@ spaceship_ruby_version() {
 # Command prompt.
 # Pain $PROMPT_SYMBOL in red if previous command was fail and
 # pain in green if all OK.
-spaceship_return_status() {
+return_status() {
     echo -n "%(?.%{$fg[green]%}.%{$fg[red]%})"
-    echo -n "%B${SPACESHIP_PROMPT_SYMBOL}%b"
+    echo -n "%B${PROMPT_SYMBOL}%b"
     echo    "%{$reset_color%}"
 }
 
 # Build prompt line
-spaceship_build_prompt() {
-    spaceship_host
-    spaceship_current_dir
-    spaceship_git_status
-    echo " ( $(spaceship_node_status) $(spaceship_ruby_version) $(spaceship_python_status) )"
+build_prompt() {
+    current_dir
+    git_status
+    echo " ( $(node_version) $(ruby_version) $(python_version) )"
 }
 
 # Compose PROMPT
 PROMPT=''
-[[ $SPACESHIP_PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
-PROMPT="$PROMPT"'$(spaceship_build_prompt) '
-[[ $SPACESHIP_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
-PROMPT="$PROMPT"'$(spaceship_return_status) '
+[[ $PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+PROMPT="$PROMPT"'$(build_prompt) '
+[[ $PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+PROMPT="$PROMPT"'$(return_status) '
 
 # Set PS2 - continuation interactive prompt
 PS2="%{$fg_bold[yellow]%}"
-PS2+="%{$SPACESHIP_PROMPT_SYMBOL%} "
+PS2+="%{$PROMPT_SYMBOL%} "
 PS2+="%{$reset_color%}"
 
 # LSCOLORS
