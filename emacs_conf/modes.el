@@ -16,6 +16,7 @@
 ;; (el-get-bundle robe-mode)
 ;; (add-hook 'ruby-mode-hook 'robe-mode)
 ;; (add-hook 'robe-mode-hook 'ac-robe-setup)
+(add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
 
 ;; Python
 ;; (defface python-version-color
