@@ -119,27 +119,29 @@ function install_tmux() {
 
 function link_files() {
     # Link files
-    CONFIG="$(pwd)"
-    export CONFIG
-    ln -sf "$CONFIG/.zshrc" "$HOME/.zshrc"
-    ln -sf "$CONFIG/.sqliterc" "$HOME/.sqliterc"
-    ln -sf "$CONFIG/.ctags" "$HOME/.ctags"
-    ln -sf "$CONFIG/.railsrc" "$HOME/.railsrc"
-    ln -sf "$CONFIG/.rspec" "$HOME/.rspec"
-    ln -sf "$CONFIG/.vimrc" "$HOME/.vimrc"
-    ln -sf "$CONFIG/.emacs" "$HOME/.emacs"
-    ln -sf "$CONFIG/.irbrc" "$HOME/.irbrc"
-    ln -sf "$CONFIG/.pryrc" "$HOME/.pryrc"
-    ln -sf "$CONFIG/.gitconfig" "$HOME/.gitconfig"
-    ln -sf "$CONFIG/.gitignore_global" "$HOME/.gitignore_global"
+    local CONFIG="$(pwd)"
+
+    ln -sf $CONFIG/.zlogin $HOME/.zlogin
+    ln -sf $CONFIG/.zpreztorc $HOME/.zpreztorc
+    ln -sf $CONFIG/.zshrc $HOME/.zshrc
+    ln -sf $CONFIG/.sqliterc $HOME/.sqliterc
+    ln -sf $CONFIG/.ctags $HOME/.ctags
+    ln -sf $CONFIG/.railsrc $HOME/.railsrc
+    ln -sf $CONFIG/.rspec $HOME/.rspec
+    ln -sf $CONFIG/.vimrc $HOME/.vimrc
+    ln -sf $CONFIG/.emacs $HOME/.emacs
+    ln -sf $CONFIG/.irbrc $HOME/.irbrc
+    ln -sf $CONFIG/.pryrc $HOME/.pryrc
+    ln -sf $CONFIG/.gitconfig $HOME/.gitconfig
+    ln -sf $CONFIG/.gitignore_global $HOME/.gitignore_global
     if [ "$OS" = "Mac" ]; then
-        ln -sf "$CONFIG/.tmux-osx.conf" "$HOME/.tmux.conf"
+        ln -sf $CONFIG/.tmux-osx.conf $HOME/.tmux.conf
     elif [ "$OS" = "Linux" ]; then
-        ln -sf "$CONFIG/.tmux-linux.conf" "$HOME/.tmux.conf"
+        ln -sf $CONFIG/.tmux-linux.conf $HOME/.tmux.conf
     fi
 
-    if [[ -d "~/.config/nvim" ]]; then
-        ln -sf ${CONFIG}/.vimrc ${HOME}/.config/nvim/init.vim
+    if [[ -d ~/.config/nvim ]]; then
+        ln -sf $CONFIG/.vimrc $HOME/.config/nvim/init.vim
     fi
 }
 

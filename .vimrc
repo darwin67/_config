@@ -1,3 +1,3 @@
 " Load file
 set runtimepath+=$CONFIG
-runtime! vimrc/*.vim
+runtime! vim_conf/*.vim

@@ -1,3 +1,4 @@
+#!/usr/local/bin/zsh
 # ================================================================================
 #   Basic Configutations
 # ================================================================================
@@ -6,25 +7,31 @@
 export CONFIG="$HOME/_config"
 
 # Path to your oh-my-zsh installation.
-export ZSH=$CONFIG/modules/oh-my-zsh
+# export ZSH=$CONFIG/modules/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="custom"
+# ZSH_THEME="custom"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=7
+# export UPDATE_ZSH_DAYS=7
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$CONFIG/custom"
+# ZSH_CUSTOM="$CONFIG/custom"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(emacs git github gem rails pip tmux tmux-cssh zsh_reload) # aws
+# plugins=(emacs git github gem rails pip tmux tmux-cssh zsh_reload) # aws
+
+source $ZSH/oh-my-zsh.sh
+
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
 # The current OS
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -59,8 +66,6 @@ fi
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # ================================================================================
 #   version controls
@@ -159,13 +164,21 @@ fi
 
 alias zshconfig="$EDITOR $CONFIG/.zshrc"
 alias gitconfig="$EDITOR $CONFIG/.gitconfig"
-alias C="clear"
-alias be="bundle exec"
-alias git=hub
+alias C='clear'
+alias be='bundle exec'
+alias git='hub'
 alias sbcl='rlwrap sbcl'
 alias ccl='rlwrap ccl64'
 alias emacs='emacs -nw'
-alias clean_git_branches='git branch --merged | grep -v \* | xargs git branch -D'
+alias clean_git_branches='git gc --prune=now && git remote prune origin'
+alias gst='git status'
+alias py='python'
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
 
 if type nvim > /dev/null ; then
     alias vim='nvim'
@@ -174,22 +187,6 @@ fi
 # ================================================================================
 #   Functions
 # ================================================================================
-
-# generate tags for javascript files
-function generate_jsctags() {
-    if type jsctags > /dev/null; then
-        find . -type f -iregex .*\.js$ -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
-        # ctags .
-    else
-        echo "jsctags is not installed."
-        echo "please go to https://github.com/ramitos/jsctags and install from there."
-    fi
-}
-
-function clean_git_branches() {
-    # git branch | grep -Ev "master|stable|testing" | xargs git branch -D
-    git gc --prune=now && git remote prune origin
-}
 
 function weather() {
     local LOCATION="SanFrancisco"
