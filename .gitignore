@@ -1,5 +1,3 @@
-bundle/*
-!bundle/neobundle.vim
 repos/*
 !repos/github.com/Shougo/dein.vim
 .DS_Store

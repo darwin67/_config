@@ -121,10 +121,10 @@ function link_files() {
     # Link files
     local CONFIG="$(pwd)"
 
+    ln -sf $CONFIG/modules/prezto $HOME/.zprezto
     ln -sf $CONFIG/.zlogin $HOME/.zlogin
     ln -sf $CONFIG/.zpreztorc $HOME/.zpreztorc
     ln -sf $CONFIG/.zshrc $HOME/.zshrc
-    ln -sf $CONFIG/modules/prezto $HOME/.zprezto
     ln -sf $CONFIG/.sqliterc $HOME/.sqliterc
     ln -sf $CONFIG/.ctags $HOME/.ctags
     ln -sf $CONFIG/.railsrc $HOME/.railsrc
@@ -141,12 +141,12 @@ function link_files() {
         ln -sf $CONFIG/.tmux-linux.conf $HOME/.tmux.conf
     fi
 
-    if [[ -d ~/.config/nvim ]]; then
+    if [[ -d $HOME/.config/nvim ]]; then
         ln -sf $CONFIG/.vimrc $HOME/.config/nvim/init.vim
     fi
 
-    if [[ -d ~/.zprezto/modules/prompt/functions ]]; then
-        ln -sf $CONFIG/custom/themes/prompt_custom_setup.zsh ~/.zprezto/modules/prompt/functions/prompt_custom_setup
+    if [[ -d $HOME/.zprezto/modules/prompt/functions ]]; then
+        ln -sf $CONFIG/custom/themes/prompt_custom_setup $CONFIG/modules/prezto/modules/prompt/functions/prompt_custom_setup
     fi
 }
 
