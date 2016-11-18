@@ -14,22 +14,12 @@ PROMPT_SEPARATE_LINE="${PROMPT_SEPARATE_LINE:-true}"
 PROMPT_TRUNC="${PROMPT_TRUNC:-3}"
 
 # GIT
-GIT_SHOW="${GIT_SHOW:-true}"
 GIT_UNCOMMITTED="${GIT_UNCOMMITTED:-+}"
 GIT_UNSTAGED="${GIT_UNSTAGED:-✹}"
 GIT_UNTRACKED="${GIT_UNTRACKED:-?}"
 GIT_STASHED="${GIT_STASHED:-$}"
 GIT_UNPULLED="${GIT_UNPULLED:-⇣}"
 GIT_UNPUSHED="${GIT_UNPUSHED:-⇡}"
-
-# NODE
-NODE_SHOW="${NODE_SHOW:-true}"
-
-# RUBY
-RUBY_SHOW="${RUBY_SHOW:-true}"
-
-# PYTHON
-PYTHON_SHOW="${PYTHON_SHOW:-true}"
 
 # Current directory.
 # Return only three last items of path
@@ -135,9 +125,7 @@ git_status() {
 # Virtual environment.
 # Show current virtual environment (Python).
 python_version() {
-    [[ $PYTHON_SHOW == false ]] && return
-
-    $(command -v pyenv > /dev/null 2>&1) || return
+    $(type -v pyenv > /dev/null 2>&1) || return
 
     python_version=$(pyenv version | sed -e 's/ (set.*$//')
 
@@ -151,8 +139,6 @@ python_version() {
 # NODE
 # Show current version of node, exception system.
 node_version() {
-    [[ $NODE_SHOW == false ]] && return
-
     $(type nodenv >/dev/null 2>&1) || return
 
     node_version=$(nodenv version | sed -e 's/ (set.*$//')
@@ -165,8 +151,6 @@ node_version() {
 # Ruby
 # Show current version of Ruby
 ruby_version() {
-    [[ $RUBY_SHOW == false ]] && return
-
     $(type rbenv > /dev/null 2>&1) || return
 
     ruby_version=$(rbenv version | sed -e 's/ (set.*$//')
@@ -193,10 +177,9 @@ build_prompt() {
 }
 
 # Compose PROMPT
-PROMPT=''
-[[ $PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+PROMPT="$NEWLINE"
 PROMPT="$PROMPT"'$(build_prompt) '
-[[ $PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+PROMPT="$PROMPT$NEWLINE"
 PROMPT="$PROMPT"'$(return_status) '
 
 # Set PS2 - continuation interactive prompt
