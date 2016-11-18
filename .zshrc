@@ -27,7 +27,7 @@ export CONFIG="$HOME/_config"
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(emacs git github gem rails pip tmux tmux-cssh zsh_reload) # aws
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
