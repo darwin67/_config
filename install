@@ -124,6 +124,7 @@ function link_files() {
     ln -sf $CONFIG/.zlogin $HOME/.zlogin
     ln -sf $CONFIG/.zpreztorc $HOME/.zpreztorc
     ln -sf $CONFIG/.zshrc $HOME/.zshrc
+    ln -sf $CONFIG/modules/prezto $HOME/.zprezto
     ln -sf $CONFIG/.sqliterc $HOME/.sqliterc
     ln -sf $CONFIG/.ctags $HOME/.ctags
     ln -sf $CONFIG/.railsrc $HOME/.railsrc
