@@ -13,8 +13,9 @@
 ;; Git-gutter
 (custom-set-variables
  '(git-gutter:update-interval 2))
-(el-get-bundle git-gutter
-  (global-git-gutter-mode t))
+(el-get-bundle git-gutter)
+(require 'git-gutter)
+(global-git-gutter-mode t)
 
 ;; Git modes
 (el-get-bundle git-modes)
@@ -24,8 +25,9 @@
 (global-set-key (kbd "C-c g g") 'browse-at-remote/browse)
 
 ;; Undo tree visualizer
-(el-get-bundle undo-tree
-  (global-undo-tree-mode))
+(el-get-bundle undo-tree)
+(require 'undo-tree)
+(global-undo-tree-mode)
 
 ;; Magit plugin for dealing with pull requests
 (el-get-bundle magit-gh-pulls)
