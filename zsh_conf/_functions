@@ -1,0 +1,13 @@
+#!/usr/local/bin/zsh
+#
+# ================================================================================
+#   Functions
+# ================================================================================
+
+function weather() {
+    local LOCATION="SanFrancisco"
+    if [ $1 ]; then
+	LOCATION="$1"
+    fi
+    eval 'curl -sS wttr.in/'$LOCATION
+}

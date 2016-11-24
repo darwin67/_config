@@ -1,0 +1,32 @@
+#!/usr/local/bin/zsh
+#
+# ================================================================================
+#   Alias
+# ================================================================================
+
+if ! type hub > /dev/null ; then
+    mkdir -p ~/tmp/hub && git clone git@github.com:github/hub.git ~/tmp/hub/hub
+    cd ~/tmp/hub/hub && ./script/build -o ~/bin/hub
+fi
+
+alias zshconfig="$EDITOR $CONFIG/.zshrc"
+alias gitconfig="$EDITOR $CONFIG/.gitconfig"
+alias C='clear'
+alias be='bundle exec'
+alias git='hub'
+alias sbcl='rlwrap sbcl'
+alias ccl='rlwrap ccl64'
+alias emacs='emacs -nw'
+alias clean_git_branches='git gc --prune=now && git remote prune origin'
+alias gst='git status'
+alias py='python'
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
+
+if type nvim > /dev/null ; then
+    alias vim='nvim'
+fi

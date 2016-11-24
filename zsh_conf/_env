@@ -1,0 +1,20 @@
+#!/usr/local/bin/zsh
+#
+# ================================================================================
+#   Environment Variables
+# ================================================================================
+
+# You may need to manually set your language environment
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+export EDITOR='emacs'
+export MYVIMRC='~/.vimrc'
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/"

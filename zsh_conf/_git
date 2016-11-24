@@ -1,0 +1,27 @@
+#!/bin/zsh
+#
+# zsh git configs
+#
+
+# function _download_git_completion {
+#     local _github_prefix='https://raw.githubusercontent.com/git/git/master/contrib/completion'
+
+#     mkdir -p $CONFIG/custom/completions/git
+
+#     curl -o $CONFIG/custom/completions/git/_git $_github_prefix/git-completion.zsh
+# }
+
+# function setup_git_completion {
+#     if [ ! -f $CONFIG/custom/completions/git/_git ]; then
+#         _download_git_completion
+#     fi
+
+#     zstyle ':completion:*:*:git:*' script $CONFIG/custom/completions/git/_git
+# }
+
+# fpath=($CONFIG/custom/completions/git $fpath)
+
+# autoload -U compinit
+# compinit -u
+
+# setup_git_completion
