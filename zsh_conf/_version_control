@@ -42,7 +42,7 @@ export PATH="$GOENV_ROOT/bin:$PATH"
 if [[ -d $GOENV_ROOT ]]; then
     init_goenv
 else
-    git clone git@github.com:wfarr/goenv.git $GOENV_ROOT && \
+    git clone git@github.com:kaneshin/goenv.git $GOENV_ROOT && \
         git clone git://github.com/juxtaposedwords/goenv-update.git $GOENV_ROOT/plugins/goenv-update && \
         init_goenv
 fi
