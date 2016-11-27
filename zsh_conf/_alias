@@ -4,35 +4,38 @@
 #   Alias
 # ================================================================================
 
-if ! type hub > /dev/null ; then
-    mkdir -p ~/tmp/hub && git clone git@github.com:github/hub.git ~/tmp/hub/hub
-    cd ~/tmp/hub/hub && ./script/build -o ~/bin/hub
+if type hub > /dev/null 2>&1 ; then
+    alias git='hub'
+fi
+
+if type nvim > /dev/null 2>&1 ; then
+    alias vim='nvim'
 fi
 
 alias zshconfig="$EDITOR $CONFIG/.zshrc"
 alias gitconfig="$EDITOR $CONFIG/.gitconfig"
+
 alias C='clear'
-alias be='bundle exec'
-alias git='hub'
-alias sbcl='rlwrap sbcl'
-alias ccl='rlwrap ccl64'
+
 alias emacs='emacs -nw'
+
 alias clean_git_branches='git gc --prune=now && git remote prune origin'
-alias gst='git status'
+
+alias rb='ruby'
+alias be='bundle exec'
+
 alias py='python'
+
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
 alias tksv='tmux kill-server'
 alias tkss='tmux kill-session -t'
+
+alias gst='git status'
 alias glo='git log --oneline --decorate'
 alias glol="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
-
-
-if type nvim > /dev/null ; then
-    alias vim='nvim'
-fi
