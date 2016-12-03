@@ -155,25 +155,26 @@ function link_files() {
 # Installation
 ##################################################################
 
-if [ "$1" = "brew" ]; then # install brew
-    install_brew
-
-elif [ "$1" = "vim" ]; then # install vim
-    install_vim
-
-elif [ "$1" = "zsh" ]; then # install oh-my-zsh
-    install_zsh
-
-elif [ "$1" = "powerline" ]; then # install Powerline
-    install_powerline_fonts
-
-elif [ "$1" = "tmux" ]; then # install tmux
-    install_tmux
-
-elif [ "$1" = "link" ]; then # Link all dotfiles
-    link_files
-
-else
-  Usage
-
-fi
+case "$1" in
+    brew)
+        install_brew
+        ;;
+    vim)
+        install_vim
+        ;;
+    zsh)
+        install_zsh
+        ;;
+    powerline)
+        install_powerline_fonts
+        ;;
+    tmux)
+        install_tmux
+        ;;
+    link)
+        link_files
+        ;;
+    *)
+        usage
+        ;;
+esac
