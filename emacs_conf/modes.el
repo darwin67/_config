@@ -14,6 +14,7 @@
 
 ;; Python
 (el-get-bundle python-mode)
+(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
 
 ;; C
 (el-get-bundle google-c-style)
