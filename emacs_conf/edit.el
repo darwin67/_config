@@ -16,3 +16,8 @@
   (global-origami-mode))
 (global-set-key (kbd "C-c f") 'origami-toggle-node)
 (global-set-key (kbd "C-c C-f") 'origami-toggle-all-nodes)
+
+
+;; Dictionary
+(el-get-bundle dictionary)
+(global-set-key (kbd "C-c C-s") 'dictionary-search)
