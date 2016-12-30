@@ -6,7 +6,7 @@
 #
 
 function init_rbenv()  { eval "$(rbenv init -)" }
-function init_pyenv()  { eval "$(pyenv init -)" }
+function init_pyenv()  { eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" }
 function init_goenv()  { eval "$(goenv init -)" }
 function init_nodenv() { eval "$(nodenv init -)" }
 
@@ -32,6 +32,7 @@ if [[ -d $PYENV_ROOT ]]; then
 else
     git clone https://github.com/yyuu/pyenv.git $PYENV_ROOT && \
         git clone git://github.com/yyuu/pyenv-update.git $PYENV_ROOT/plugins/pyenv-update && \
+        git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv \
         init_pyenv
 fi
 
