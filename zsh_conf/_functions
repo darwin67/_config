@@ -11,3 +11,83 @@ function weather() {
     fi
     eval 'curl -sS wttr.in/'$LOCATION
 }
+
+
+function install_vim() {
+    if [ "$OS" = "Mac" ]; then
+        brew install neovim/neovim/neovim
+    elif [ "$OS" = "Linux" ]; then
+	sudo apt install software-properties-common && \
+	    sudo add-apt-repository ppa:neovim-ppa/unstable && \
+	    sudo apt update && \
+	    sudo apt install neovim
+    fi
+
+    echo 'Install python 3 and neovim in pip to in order for autocompletions to work'
+}
+
+
+function link_config_files() {
+    ln -sf $CONFIG/.zlogin $HOME/.zlogin
+    ln -sf $CONFIG/.zpreztorc $HOME/.zpreztorc
+    ln -sf $CONFIG/.zshrc $HOME/.zshrc
+    ln -sf $CONFIG/.sqliterc $HOME/.sqliterc
+    ln -sf $CONFIG/.ctags $HOME/.ctags
+    ln -sf $CONFIG/.railsrc $HOME/.railsrc
+    ln -sf $CONFIG/.rspec $HOME/.rspec
+    ln -sf $CONFIG/.vimrc $HOME/.vimrc
+    ln -sf $CONFIG/.emacs $HOME/.emacs
+    ln -sf $CONFIG/.irbrc $HOME/.irbrc
+    ln -sf $CONFIG/.pryrc $HOME/.pryrc
+    ln -sf $CONFIG/.gitconfig $HOME/.gitconfig
+    ln -sf $CONFIG/.gitignore_global $HOME/.gitignore_global
+
+    case "$OS" in
+        Mac)
+            ln -sf $CONFIG/.tmux-osx.conf $HOME/.tmux.conf
+            ;;
+        Linux)
+            ln -sf $CONFIG/.tmux-linux.conf $HOME/.tmux.conf
+            ;;
+    esac
+
+    if [[ -d $HOME/.config/nvim ]]; then
+        ln -sf $CONFIG/.vimrc $HOME/.config/nvim/init.vim
+    fi
+
+    if [[ -d $HOME/.zprezto/modules/prompt/functions ]]; then
+        ln -sf $CONFIG/custom/themes/prompt_custom_setup $CONFIG/modules/prezto/modules/prompt/functions/prompt_custom_setup
+    fi
+}
+
+
+function install_powerline_fonts() {
+    mkdir -p $HOME/workspace/tmp && cd $HOME/workspace/tmp &&\
+        git clone git@github.com:powerline/fonts.git && \
+        fonts/install.sh
+
+    echo "*************************************************************"
+    echo "Please set font to 'Meslo LG S for Powerline'"
+    echo "*************************************************************"
+
+    echo "Adding path to .zshrc"
+}
+
+
+function install_zsh() {
+    local zsh_shell=''
+
+    if [ "$OS" = "Mac" ]; then
+        brew install zsh
+	zsh_shell='/usr/local/bin/zsh'
+    elif [ "$OS" = "Linux" ]; then
+        sudo apt-get install zsh
+	zsh_shell='/usr/bin/zsh'
+    fi
+
+    if grep zsh_shell /etc/shells > /dev/null; then
+	echo zsh_shell >> /etc/shells
+    fi
+
+    chsh -s zsh_shell
+}

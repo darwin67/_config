@@ -4,7 +4,3 @@
 [submodule "dein.vim"]
 	path = repos/github.com/Shougo/dein.vim
 	url = git@github.com:Shougo/dein.vim.git
-[submodule "prezto"]
-	path = modules/prezto
-	url = git@github.com:sorin-ionescu/prezto.git
-	ignore = dirty

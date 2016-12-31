@@ -7,10 +7,7 @@
 # Path to configuration directory
 export CONFIG="$HOME/_config"
 
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
+source $CONFIG/zsh_conf/_shell
 source $CONFIG/zsh_conf/_path
 
 # The current OS

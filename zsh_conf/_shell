@@ -1,0 +1,15 @@
+#!/usr/local/bin/zsh
+#
+# ================================================================================
+#   Shell
+# ================================================================================
+
+ZPREZTO_SRC="${ZDOTDIR:-$HOME}/.zprezto"
+
+if [ -d $ZPREZTO_SRC ]; then
+    source "${ZPREZTO_SRC}/init.zsh"
+else
+    git clone --recursive git@github.com:sorin-ionescu/prezto.git $ZPREZTO_SRC && \
+        ln -sf $CONFIG/custom/themes/prompt_custom_setup $ZPREZTO_SRC/modules/prompt/functions/prompt_custom_setup && \
+        source "${ZPREZTO_SRC}/init.zsh"
+fi
