@@ -4,10 +4,10 @@
 ;; ===================================================
 
 ;; Snippets
-;; (el-get-bundle yasnippet
-;;   (yas-global-mode 1))
-;; (el-get-bundle yasnippet-config)
-;; (el-get-bundle yasnippet-snippets)
+(el-get-bundle yasnippet
+  (yas-global-mode 1))
+(el-get-bundle yasnippet-config)
+(el-get-bundle yasnippet-snippets)
 
 
 ;; Company (complete anything) mode
