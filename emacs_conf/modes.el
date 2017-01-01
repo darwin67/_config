@@ -6,12 +6,14 @@
 ;; Dash
 (el-get-bundle dash)
 
+
 ;; ===================================================
 ;; Ruby
 (el-get-bundle inf-ruby)
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (el-get-bundle yari)
 (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
+
 
 ;; ===================================================
 ;; Python
@@ -31,7 +33,13 @@
 
 
 ;; ===================================================
-;; C
+;; C / C++
+(el-get-bundle function-args
+  (fa-config-default))
+(set-default 'semantic-case-fold t)
+;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+
 (el-get-bundle google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
@@ -45,6 +53,7 @@
 (add-to-list 'auto-mode-alist '("\\.coffee\\'" . js2-mode))
 (el-get-bundle json-mode)
 
+
 ;; ===================================================
 ;; Markdown
 (el-get-bundle markdown-mode)
@@ -53,14 +62,17 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+
 ;; ===================================================
 ;; Yaml mode
 (el-get-bundle yaml-mode)
+
 
 ;; ===================================================
 ;; Org mode
 (el-get-bundle org)
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
+
 
 ;; ===================================================
 ;; Haml mode
@@ -70,15 +82,18 @@
 ;; 	    (setq indent-tabs-mode nil)
 ;; 	    (define-key haml-mode-map "\C-m" 'newline-and-indent)))
 
+
 ;; ===================================================
 ;; Dockerfile mode
 (el-get-bundle dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
+
 ;; ===================================================
 ;; Nginx mode
 (el-get-bundle nginx-mode)
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
+
 
 ;; ===================================================
 ;; Systemd mode
