@@ -5,9 +5,9 @@
 
 ;; Magit, a git porcelain for emacs
 (el-get-bundle magit)
-(global-set-key (kbd "C-c g s") 'magit-status)
-(global-set-key (kbd "C-c g l") 'magit-log-all)
-(global-set-key (kbd "C-c g b") 'magit-blame)
+(global-set-key (kbd "C-c m s") 'magit-status)
+(global-set-key (kbd "C-c m l") 'magit-log-all)
+(global-set-key (kbd "C-c m b") 'magit-blame)
 
 ;; Git-gutter
 (custom-set-variables
@@ -20,7 +20,7 @@
 
 ;; Browse at remote (github, bitbucket)
 (el-get-bundle browse-at-remote)
-(global-set-key (kbd "C-c g g") 'browse-at-remote/browse)
+(global-set-key (kbd "C-c m g") 'browse-at-remote/browse)
 
 ;; Undo tree visualizer
 (el-get-bundle undo-tree
