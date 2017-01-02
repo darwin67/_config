@@ -29,7 +29,13 @@
   (add-to-list 'company-backends 'company-robe)
   (add-to-list 'company-backends 'company-anaconda)
   (add-to-list 'company-backends 'company-edbi)
-  (add-to-list 'company-backends 'company-tern))
+  (add-to-list 'company-backends 'company-tern)
+
+  (progn
+    (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+    (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+    (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+    (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
 
 
 ;; Smart parenthesis
