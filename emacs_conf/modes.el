@@ -98,3 +98,9 @@
 ;; ===================================================
 ;; Systemd mode
 (el-get-bundle systemd-mode)
+
+
+;; ===================================================
+;; nasm mode
+(el-get-bundle nasm-mode)
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
