@@ -40,6 +40,7 @@ function link_config_files() {
     ln -sf $CONFIG/.irbrc $HOME/.irbrc
     ln -sf $CONFIG/.pryrc $HOME/.pryrc
     ln -sf $CONFIG/.gemrc $HOME/.gemrc
+    ln -sf $CONFIG/.rubocop.yml $HOME/.rubocop.yml
     ln -sf $CONFIG/.gitconfig $HOME/.gitconfig
     ln -sf $CONFIG/.gitignore_global $HOME/.gitignore_global
 
