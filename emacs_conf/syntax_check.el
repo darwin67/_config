@@ -9,15 +9,3 @@
 ;;  - brew link texinfo -f
 (el-get-bundle flycheck
   (global-flycheck-mode))
-
-
-;; C++
-(el-get-bundle flycheck-google-cpplint)
-(defun cpp-check ()
-  (interactive)
-  (require 'flycheck-google-cpplint)
-  ;; Add Google C++ Style checker.
-  ;; In default, syntax checked by Clang and Cppcheck.
-  (flycheck-add-next-checker 'c/c++-cppcheck
-			     '(warning . c/c++-googlelint)))
-(add-hook 'c++-mode-hook 'cpp-check)
