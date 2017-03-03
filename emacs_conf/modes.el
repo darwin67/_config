@@ -33,6 +33,12 @@
 
 
 ;; ===================================================
+;; Go
+(el-get-bundle go-mode)
+(el-get-bundle go-eldoc)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+
+;; ===================================================
 ;; C / C++
 (el-get-bundle function-args
   (fa-config-default))
