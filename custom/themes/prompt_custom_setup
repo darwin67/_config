@@ -15,12 +15,12 @@ PROMPT_TRUNC="${PROMPT_TRUNC:-3}"
 
 # Go
 # Show current version of Go, exception system.
-function _set_go_version {
-    $(type goenv >/dev/null 2>&1) || return
-    local version=$(goenv version | sed -e 's/ (set.*$//')
-
-    _go_version="%F{yellow}%B${version}%b%f"
-}
+# function _set_go_version {
+#     $(type goenv >/dev/null 2>&1) || return
+#     local version=$(goenv version | sed -e 's/ (set.*$//')
+#
+#     _go_version="%F{yellow}%B${version}%b%f"
+# }
 
 # Ruby
 # Show current version of Ruby
@@ -51,7 +51,7 @@ function prompt_custom_precmd {
     _current_dir="%F{cyan}%B%${PROMPT_TRUNC}~%b%f" # set current directory
     # Paint $PROMPT_SYMBOL in red if previous command failed and green if all OK
     _status="%(?.%F{green}.%F{red})%B${PROMPT_SYMBOL}%b%f"
-    _set_go_version
+    # _set_go_version
     _set_ruby_version
     _set_python_version
 }
@@ -88,7 +88,7 @@ function prompt_custom_setup {
            'prompt' '$(coalesce "%b" "%p" "%c")%s%A%B%S%a%d%m%r%U%u' \
            'rprompt' ''
 
-    PROMPT='$NEWLINE${_current_dir} < ${_go_version} ${_ruby_version} ${_python_version} > ${git_info:+${(e)git_info[prompt]}} $NEWLINE${_status} '
+    PROMPT='$NEWLINE${_current_dir} < ${_ruby_version} ${_python_version} > ${git_info:+${(e)git_info[prompt]}} $NEWLINE${_status} '
     # RPROMPT=''
 
     # PS2='%F{yellow}${PROMPT_SYMBOL}%f'
