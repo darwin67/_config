@@ -54,6 +54,7 @@
     'company-select-next-if-tooltip-visible-or-complete-selection))
 
 (company-ac-setup)
+(global-auto-complete-mode nil)
 
 
 ;; Smart parenthesis
