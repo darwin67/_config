@@ -15,9 +15,6 @@
 (el-get-bundle go-company)              ; Go
 (add-to-list 'company-backends 'company-go)
 
-(el-get-bundle robe-mode)               ; Ruby
-(add-to-list 'company-backends 'company-robe)
-
 (el-get-bundle company-anaconda)        ; Python
 (add-to-list 'company-backends 'company-anaconda)
 
@@ -67,3 +64,5 @@
   (yas-global-mode 1))
 (el-get-bundle yasnippet-config)
 (el-get-bundle yasnippet-snippets)
+
+;; Jump to definition

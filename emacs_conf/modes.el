@@ -9,8 +9,6 @@
 
 ;; ===================================================
 ;; Ruby
-(el-get-bundle inf-ruby)
-(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (el-get-bundle yari)
 (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
 
