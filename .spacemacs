@@ -19,9 +19,9 @@ values."
                       auto-completion-enable-sort-by-usage t)
      better-defaults
      (org :variables org-enable-github-support t)
-     (ibuffer :variables (ibuffer-group-buffers-by 'projects))
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      ;; spell-checking
-     sementic
+     semantic
      syntax-checking
      docker
      nginx
@@ -38,7 +38,10 @@ values."
 
      ;; Languages
      asm
-     c-c++
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
+     csv
      emacs-lisp
      go
      html
