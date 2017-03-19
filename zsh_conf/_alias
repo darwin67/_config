@@ -17,7 +17,7 @@ alias gitconfig="$EDITOR $CONFIG/.gitconfig"
 
 alias C='clear'
 
-alias emacs='emacs -nw'
+# alias emacs='emacs -nw'
 
 alias clean_git_branches='git gc --prune=now && git remote prune origin'
 
