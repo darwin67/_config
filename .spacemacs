@@ -47,12 +47,20 @@ values."
      html
      javascript
      markdown
-     python
-     ruby
-     rust
+     (python :variables
+             python-test-runner 'pytest
+             python-enable-yapf-format-on-save t
+             python-sort-imports-on-save t)
+     (ruby :variables
+           ruby-version-manager 'rbenv
+           ruby-test-runner 'rspec)
+     ;; rust
      shell-scripts
      sql
-     typescript
+     (typescript :variables
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'typescript-formatter)
+     vimscript
      yaml
      )
    dotspacemacs-additional-packages '()
@@ -85,10 +93,9 @@ values."
    dotspacemacs-startup-buffer-responsive t ;; True if the home buffer should respond to resize events.
    dotspacemacs-scratch-mode 'text-mode
    ;; Press <SPC> T n to cycle to the next theme in the list
-   dotspacemacs-themes '(spacemacs-dark
-                         zenburn
-                         sanityinc-solarized-dark
-                         monokai)
+   dotspacemacs-themes '(monokai
+                         spacemacs-dark
+                         zenburn)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
                                :size 13
@@ -178,6 +185,12 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (global-set-key (kbd "C-x -") 'split-window-below)
+  (global-set-key (kbd "C-x |") 'split-window-right)
+
+  (global-set-key (kbd "C-c ]") 'dumb-jump-go)
+  (global-set-key (kbd "C-c [") 'dumb-jump-back)
+  (global-set-key (kbd "C-c \\") 'dumb-jump-quick-look)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
