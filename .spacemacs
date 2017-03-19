@@ -30,7 +30,8 @@ values."
      ;; version control
      git
      github
-     (version-control :variables 'git-gutter)
+     (version-control :variables
+                      version-control-diff-tool 'git-gutter)
 
      ;; Framework
      ruby-on-rails
