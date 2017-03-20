@@ -2,7 +2,7 @@
 This is the repo for my computer settings shared across the board.
 
 
-Documents: [wiki][1]
+Documents: [wiki][wiki]
 
 
-[1]: https://github.com/darwin67/_config/wiki
+[wiki]: https://github.com/darwin67/_config/wiki
