@@ -63,7 +63,7 @@ values."
      vimscript
      yaml
      )
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(dictionary buffer-move)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only)) ;; allowed values ('used-only 'used-but-keep-unused 'all)
@@ -185,12 +185,54 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Use emacs to edit commits
+  (global-git-commit-mode t)
+
   (global-set-key (kbd "C-x -") 'split-window-below)
   (global-set-key (kbd "C-x |") 'split-window-right)
 
   (global-set-key (kbd "C-c ]") 'dumb-jump-go)
   (global-set-key (kbd "C-c [") 'dumb-jump-back)
   (global-set-key (kbd "C-c \\") 'dumb-jump-quick-look)
+
+  ;; Multiple cursors
+  (global-set-key (kbd "C-c n") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
+
+  ;; Text folding
+  (global-set-key (kbd "C-c f") 'origami-toggle-node)
+  (global-set-key (kbd "C-c C-f") 'origami-toggle-all-nodes)
+
+  ;; Swap buffers
+  (global-set-key (kbd "C-c k") 'buf-move-up)
+  (global-set-key (kbd "C-c j") 'buf-move-down)
+  (global-set-key (kbd "C-c h") 'buf-move-left)
+  (global-set-key (kbd "C-c l") 'buf-move-right)
+
+  ;; move text up and down
+  (global-set-key (kbd "<M-up>") 'move-text-up)
+  (global-set-key (kbd "<M-down>") 'move-text-down)
+
+  ;; Vim like 'o' and 'O' behaviours
+  (defvar newline-and-indent t
+    "Modify the behaviour of the open-*-line functions to cause them to autoindent.")
+  (defun open-next-line (arg)
+    "Move to the end of line and then opens a new line"
+    (interactive "p")
+    (end-of-line)
+    (open-line arg)
+    (next-line 1)
+    (when newline-and-indent (indent-according-to-mode)))
+  (defun open-previous-line (arg)
+    "Open a new line before the current one."
+    (interactive "p")
+    (beginning-of-line)
+    (open-line arg)
+    (when newline-and-indent (indent-according-to-mode)))
+
+  (global-set-key (kbd "C-o") 'open-next-line)
+  (global-set-key (kbd "M-o") 'open-previous-line)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
