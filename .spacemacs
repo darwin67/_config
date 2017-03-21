@@ -233,6 +233,8 @@ you should place your code here."
 
   (global-set-key (kbd "C-o") 'open-next-line)
   (global-set-key (kbd "M-o") 'open-previous-line)
+
+  (setq dumb-jump-selector 'helm)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
