@@ -166,7 +166,7 @@ values."
    dotspacemacs-highlight-delimiters 'all ;; allowed values ('any 'current 'all nil)
    dotspacemacs-persistent-server nil
    dotspacemacs-default-package-repository nil
-   dotspacemacs-whitespace-cleanup all ;; allowed values ('all 'trailing 'changed nil)
+   dotspacemacs-whitespace-cleanup 'all ;; allowed values ('all 'trailing 'changed nil)
    ))
 
 (defun dotspacemacs/user-init ()
