@@ -54,7 +54,7 @@ values."
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
-     ;; rust
+     rust
      shell-scripts
      sql
      (typescript :variables
@@ -186,6 +186,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Javascript indentaion
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+
   ;; Use emacs to edit commits
   (global-git-commit-mode t)
 
@@ -235,6 +239,9 @@ you should place your code here."
   (global-set-key (kbd "M-o") 'open-previous-line)
 
   (setq dumb-jump-selector 'helm)
+
+  ;; language support for C++
+  (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
