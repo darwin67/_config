@@ -93,9 +93,8 @@ values."
    dotspacemacs-startup-buffer-responsive t ;; True if the home buffer should respond to resize events.
    dotspacemacs-scratch-mode 'text-mode
    ;; Press <SPC> T n to cycle to the next theme in the list
-   dotspacemacs-themes '(monokai
-                         spacemacs-dark
-                         zenburn)
+   dotspacemacs-themes '(zenburn
+                         molokai)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
                                :size 12
