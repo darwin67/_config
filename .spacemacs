@@ -63,7 +63,7 @@ values."
      vimscript
      yaml
      )
-   dotspacemacs-additional-packages '(dictionary buffer-move)
+   dotspacemacs-additional-packages '(dictionary buffer-move editorconfig)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only)) ;; allowed values ('used-only 'used-but-keep-unused 'all)
@@ -191,6 +191,9 @@ you should place your code here."
 
   ;; Use emacs to edit commits
   (global-git-commit-mode t)
+
+  ;; Use editorconfig
+  (editorconfig-mode t)
 
   (global-set-key (kbd "C-x -") 'split-window-below)
   (global-set-key (kbd "C-x |") 'split-window-right)
