@@ -244,6 +244,9 @@ you should place your code here."
 
   ;; language support for C++
   (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+  ;; register berksfile as ruby files
+  (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
