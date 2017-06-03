@@ -199,6 +199,7 @@ you should place your code here."
   (global-set-key (kbd "C-x |") 'split-window-right)
 
   (global-set-key (kbd "C-c ]") 'dumb-jump-go)
+  (global-set-key (kbd "C-c C-]") 'projectile-find-tag)
   (global-set-key (kbd "C-c [") 'dumb-jump-back)
   (global-set-key (kbd "C-c \\") 'dumb-jump-quick-look)
 
