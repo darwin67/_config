@@ -248,6 +248,7 @@ you should place your code here."
 
   ;; register berksfile as ruby files
   (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
