@@ -119,7 +119,7 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
 
-export TMUX_PL="$HOME/.zplug/repos/darwin67/tmux-powerline"
+export TMUX_PL="$ZPLUG_REPOS/darwin67/tmux-powerline"
 export TMUX_POWERLINE_THEME_DEFAULT="my"
 
 # ================================================================================
