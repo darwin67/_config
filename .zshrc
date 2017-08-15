@@ -28,7 +28,7 @@ zplug 'mafredri/zsh-async'
 zplug 'supercrabtree/k'
 zplug 'b4b4r07/enhancd', use:init.sh
 
-zplug 'darwin67/tmux-powerline', defer:3
+zplug 'darwin67/tmux-powerline', defer:3, at:my
 
 # The platinum searcher
 zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-r
@@ -79,7 +79,7 @@ zplug load # --verbose
 # Terminal emacs binding
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
-# Initialize nodenv since oh-my-zsh doesn't have the plugin for it
+# Initialize envs
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(nodenv init -)"
@@ -120,6 +120,7 @@ export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/"
 
 export TMUX_PL="$HOME/.zplug/repos/darwin67/tmux-powerline"
+export TMUX_POWERLINE_THEME_DEFAULT="my"
 
 # ================================================================================
 #   Functions
