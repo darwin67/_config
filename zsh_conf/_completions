@@ -1,6 +1,0 @@
-#!/bin/zsh
-#
-# zsh custom completions
-#
-
-fpath=($CONFIG/custom/completions $fpath)

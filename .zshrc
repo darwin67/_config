@@ -7,32 +7,130 @@
 # Path to configuration directory
 export CONFIG="$HOME/_config"
 
-source $CONFIG/zsh_conf/_shell
-source $CONFIG/zsh_conf/_path
+# ================================================================================
+#   zplug
+# ================================================================================
 
-# The current OS
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    export OS="Linux"
-    source $CONFIG/zsh_conf/_linux
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    export OS="Mac"
-    source $CONFIG/zsh_conf/_osx
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug $HOME/.zplug
+    source $HOME/.zplug/init.zsh && zplug update --self
 fi
 
-source $CONFIG/zsh_conf/_version_control
-source $CONFIG/zsh_conf/_env
-source $CONFIG/zsh_conf/_alias
-source $CONFIG/zsh_conf/_functions
-source $CONFIG/zsh_conf/_completions
-source $CONFIG/zsh_conf/_tmux
+source $HOME/.zplug/init.zsh
+
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'mafredri/zsh-async'
+zplug 'supercrabtree/k'
+zplug "b4b4r07/enhancd", use:init.sh
+
+# The platinum searcher
+zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-r
+
+# Ruby
+zplug 'rbenv/rbenv', as:command, use:'bin/*', from:github
+zplug 'rbenv/ruby-build', as:command, use:'bin/*', from:github, on:'rbenv/rbenv'
+
+# Python
+zplug 'pyenv/pyenv', as:command, use:'bin/*', from:github
+zplug 'pyenv/pyenv', as:command, use:'plugins/python-build/bin/*', from:github
+
+# NodeJS
+zplug 'nodenv/nodenv', as:command, use:'bin/*', from:github
+zplug 'nodenv/node-build', as:command, use:'bin/*', from:github
+
+# Github
+zplug 'github/hub', as:command, from:gh-r
+
+# Peco
+zplug 'peco/peco', as:command, from:gh-r
+
+# Convenient stuff from oh-my-zsh
+zplug 'plugins/git', from:oh-my-zsh, ignore:oh-my-zsh.sh
+zplug 'plugins/github', from:oh-my-zsh, ignore:oh-my-zsh.sh
+zplug 'plugins/tmux', from:oh-my-zsh, ignore:oh-my-zsh.sh
+
+# Convenient stuff from prezto
+zplug 'modules/editor', from:prezto
+zplug 'modules/completion', from:prezto
+zplug 'modules/history', from:prezto
+
+# Theme
+zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
 
 
-# The following lines were added by compinstall
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-zstyle ':completion:*' completer _complete _ignored _approximate
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}'
-zstyle :compinstall filename '/home/darwin/.zshrc'
+# Then, source plugins and add commands to $PATH
+zplug load # --verbose
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# Terminal emacs binding
+zstyle ':prezto:module:editor' key-bindings 'emacs'
+
+# Initialize nodenv since oh-my-zsh doesn't have the plugin for it
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+eval "$(nodenv init -)"
+
+# ================================================================================
+#   Alias
+# ================================================================================
+
+alias clean_git_branches='git gc --prune=now && git remote prune origin'
+alias rb='ruby'
+alias be='bundle exec'
+alias py='python'
+alias C=clear
+alias ls=k
+alias ll='ls -a'
+
+if type nvim > /dev/null 2>&1 ; then
+    alias vim='nvim'
+fi
+
+# ================================================================================
+#   Environment Variables
+# ================================================================================
+
+# You may need to manually set your language environment
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export CLICOLOR=1
+
+# Preferred editor for local and remote sessions
+export EDITOR='emacs'
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/"
+
+# ================================================================================
+#   Functions
+# ================================================================================
+function link_config_files() {
+    local files=( .zshrc .zlogin .sqliterc .ctags .railsrc .rspec .spacemacs .irbrc .pryrc .gemrc .rubocop.yml .gitconfig .gitignore_global )
+
+    for file in ${files[@]}; do
+        ln -sf $CONFIG/$file $HOME/$file
+    done
+
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        ln -sf $CONFIG/.tmux-linux.conf $HOME/.tmux.conf
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        ln -sf $CONFIG/.tmux-osx.conf $HOME/.tmux.conf
+    fi
+}

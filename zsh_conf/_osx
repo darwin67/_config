@@ -1,9 +1,0 @@
-#!/usr/local/bin/zsh
-#
-# ================================================================================
-#   OS sX specific configs
-# ================================================================================
-
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-export PATH="/opt/local/bin:$PATH"
-export PATH="/opt/chefdk/bin:$PATH"
