@@ -26,7 +26,9 @@ zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'mafredri/zsh-async'
 zplug 'supercrabtree/k'
-zplug "b4b4r07/enhancd", use:init.sh
+zplug 'b4b4r07/enhancd', use:init.sh
+
+zplug 'darwin67/tmux-powerline', defer:3
 
 # The platinum searcher
 zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-r
@@ -93,6 +95,7 @@ alias py='python'
 alias C=clear
 alias ls=k
 alias ll='ls -a'
+alias h='cd ~'
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
@@ -107,8 +110,6 @@ export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export CLICOLOR=1
-
 # Preferred editor for local and remote sessions
 export EDITOR='emacs'
 
@@ -117,6 +118,8 @@ export ARCHFLAGS="-arch x86_64"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
+
+export TMUX_PL="$HOME/.zplug/repos/darwin67/tmux-powerline"
 
 # ================================================================================
 #   Functions
