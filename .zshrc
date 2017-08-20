@@ -95,7 +95,7 @@ alias py='python'
 alias C=clear
 alias ls=k
 alias ll='ls -a'
-alias h='cd ~'
+alias c='cd ~'
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
