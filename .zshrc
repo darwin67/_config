@@ -55,6 +55,7 @@ zplug 'peco/peco', as:command, from:gh-r
 zplug 'plugins/git', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/github', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/tmux', from:oh-my-zsh, ignore:oh-my-zsh.sh
+zplug 'plugins/cargo', from:oh-my-zsh, ignore:oh-my-zsh.sh, use:'_cargo'
 
 # Convenient stuff from prezto
 zplug 'modules/editor', from:prezto
@@ -83,6 +84,10 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(nodenv init -)"
+
+if [[ -d $HOME/.cargo ]]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # ================================================================================
 #   Alias
