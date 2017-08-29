@@ -56,6 +56,7 @@ zplug 'plugins/git', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/github', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/tmux', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/cargo', from:oh-my-zsh, ignore:oh-my-zsh.sh, use:'_cargo'
+zplug 'plugins/docker-compose', from:oh-my-zsh, ignore:oh-my-zsh.sh
 
 # Convenient stuff from prezto
 zplug 'modules/editor', from:prezto
