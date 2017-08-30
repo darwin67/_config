@@ -242,6 +242,7 @@ you should place your code here."
   (global-set-key (kbd "M-o") 'open-previous-line)
 
   (setq dumb-jump-selector 'helm)
+  (setq-default flycheck-disabled-checkers '(chef-foodcritic))
 
   ;; language support for C++
   (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
