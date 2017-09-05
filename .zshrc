@@ -100,7 +100,7 @@ alias be='bundle exec'
 alias py='python'
 alias C=clear
 alias ls=k
-alias ll='ls -a'
+alias ll='ls -ah'
 alias c='cd ~'
 
 if type nvim > /dev/null 2>&1 ; then
