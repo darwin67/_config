@@ -62,6 +62,8 @@ values."
                  typescript-fmt-tool 'typescript-formatter)
      vimscript
      yaml
+
+     octave
      )
    dotspacemacs-additional-packages '(dictionary buffer-move editorconfig)
    dotspacemacs-frozen-packages '()
