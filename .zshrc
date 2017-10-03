@@ -40,6 +40,7 @@ zplug 'rbenv/ruby-build', as:command, use:'bin/*', from:github, on:'rbenv/rbenv'
 # Python
 zplug 'pyenv/pyenv', as:command, use:'bin/*', from:github
 zplug 'pyenv/pyenv', as:command, use:'plugins/python-build/bin/*', from:github
+zplug 'pyenv/pyenv-virtualenv', as:command, use:'bin/*', from:github, on:'pyenv/pyenv'
 
 # NodeJS
 zplug 'nodenv/nodenv', as:command, use:'bin/*', from:github
@@ -84,6 +85,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Initialize envs
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 eval "$(nodenv init -)"
 
 if [[ -d $HOME/.cargo ]]; then
@@ -102,6 +104,8 @@ alias C=clear
 alias ls=k
 alias ll='ls -ah'
 alias c='cd ~'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
