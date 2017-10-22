@@ -135,16 +135,3 @@ export TMUX_POWERLINE_THEME_DEFAULT="my"
 # ================================================================================
 #   Functions
 # ================================================================================
-function link_config_files() {
-    local files=( .zshrc .zlogin .sqliterc .ctags .railsrc .rspec .spacemacs .irbrc .pryrc .gemrc .rubocop.yml .gitconfig .gitignore_global )
-
-    for file in ${files[@]}; do
-        ln -sf $CONFIG/$file $HOME/$file
-    done
-
-    if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        ln -sf $CONFIG/.tmux-linux.conf $HOME/.tmux.conf
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        ln -sf $CONFIG/.tmux-osx.conf $HOME/.tmux.conf
-    fi
-}

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+files=( .zshrc .zlogin .sqliterc .ctags .railsrc .rspec .spacemacs .irbrc .pryrc .gemrc .rubocop.yml .gitconfig .gitignore_global )
+
+for file in ${files[@]}; do
+    ln -sf $PWD/$file $HOME/$file
+done
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    ln -sf $PWD/.tmux-linux.conf $HOME/.tmux.conf
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sf $PWD/.tmux-osx.conf $HOME/.tmux.conf
+fi
+
