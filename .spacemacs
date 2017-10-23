@@ -98,7 +98,7 @@ values."
    dotspacemacs-themes '(zenburn
                          molokai)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Meslo LG S for Powerline"
                                :size 12
                                :weight normal
                                :width normal
