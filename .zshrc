@@ -92,6 +92,10 @@ if [[ -d $HOME/.cargo ]]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+
 # ================================================================================
 #   Alias
 # ================================================================================
