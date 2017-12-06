@@ -139,3 +139,10 @@ export TMUX_POWERLINE_THEME_DEFAULT="my"
 # ================================================================================
 #   Functions
 # ================================================================================
+
+function replace_in_file () {
+    local current=$1
+    local replacement=$2
+
+    grep -rl "$current" . | xargs sed -i "s/$current/$replacement/g"
+}
