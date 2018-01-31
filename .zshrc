@@ -110,6 +110,7 @@ alias ll='ls -ah'
 alias c='cd ~'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias emacs='emacs -nw'
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
