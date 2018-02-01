@@ -49,7 +49,6 @@ values."
      markdown
      (python :variables
              python-test-runner 'pytest
-             python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
      (ruby :variables
            ruby-version-manager 'rbenv
