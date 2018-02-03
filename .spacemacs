@@ -254,6 +254,10 @@ you should place your code here."
 
   ;; also render js files as jsx
   (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+  (with-eval-after-load 'rjsx-mode
+    (define-key rjsx-mode-map "<" nil)
+    (define-key rjsx-mode-map (kbd "C-d") nil)
+    (define-key rjsx-mode-map ">" nil))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
