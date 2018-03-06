@@ -56,9 +56,7 @@ values."
      rust
      shell-scripts
      sql
-     (typescript :variables
-                 typescript-fmt-on-save t
-                 typescript-fmt-tool 'typescript-formatter)
+     typescript
      vimscript
      yaml
 
@@ -258,6 +256,9 @@ you should place your code here."
     (define-key rjsx-mode-map "<" nil)
     (define-key rjsx-mode-map (kbd "C-d") nil)
     (define-key rjsx-mode-map ">" nil))
+
+  ;; treat .tsx as typescript files
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

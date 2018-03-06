@@ -3,6 +3,8 @@
 files=( .zshrc .zlogin .sqliterc .ctags .railsrc .rspec .spacemacs .irbrc .pryrc .gemrc .rubocop.yml .gitconfig .gitignore_global .tmux.conf )
 
 for file in ${files[@]}; do
-    ln -sf $PWD/$file $HOME/$file
+    ln -sf "${PWD}/${file}" "${HOME}/${file}"
 done
 
+mkdir -p "${HOME}/.config/nvim"
+ln -sf "${PWD}/init.vim" "${HOME}/.config/nvim/init.vim"
