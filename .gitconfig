@@ -2,7 +2,7 @@
 	name = Darwin D Wu
 	email = wuddarwin@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore_global
 [filter "media"]
 	clean = git-media-clean %f
