@@ -4,8 +4,9 @@
 #   Zsh configs
 #
 
-# Path to configuration directory
+# Some useful variables
 export CONFIG="$HOME/_config"
+export TPM_PLUGINS="${HOME}/.tmux/plugins"
 
 # ================================================================================
 #   zplug
@@ -28,7 +29,7 @@ zplug 'mafredri/zsh-async'
 zplug 'supercrabtree/k'
 zplug 'b4b4r07/enhancd', use:init.sh
 
-zplug 'darwin67/tmux-powerline', defer:3, at:my
+zplug 'tmux-plugins/tpm'
 
 # The platinum searcher
 zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-r
@@ -89,11 +90,16 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(nodenv init -)"
 
 if [[ -d $HOME/.cargo ]]; then
-    PATH="$HOME/.cargo/bin:$PATH"
+  PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
+fi
+
+if [[ ! -d ${TPM_PLUGINS} ]]; then
+  mkdir -p ${TPM_PLUGINS}
+  ln -s "${ZPLUG_REPOS}/tmux-plugins/tpm" ${TPM_PLUGINS}
 fi
 
 # ================================================================================
@@ -133,9 +139,6 @@ export ARCHFLAGS="-arch x86_64"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
-
-export TMUX_PL="$ZPLUG_REPOS/darwin67/tmux-powerline"
-export TMUX_POWERLINE_THEME_DEFAULT="my"
 
 # ================================================================================
 #   Functions
