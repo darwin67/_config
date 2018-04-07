@@ -90,7 +90,11 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(nodenv init -)"
 
 if [[ -d $HOME/.cargo ]]; then
-  PATH="$HOME/.cargo/bin:$PATH"
+  PATH="$HOME/.cargo/bin:${PATH}"
+fi
+
+if [[ -d $HOME/bin ]]; then
+  PATH="$HOME/bin:${PATH}"
 fi
 
 if [ $commands[kubectl] ]; then
