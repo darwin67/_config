@@ -53,7 +53,8 @@ values."
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
-     rust
+     (rust :variables
+           rust-format-on-save t)
      shell-scripts
      sql
      typescript
