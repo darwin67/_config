@@ -54,7 +54,8 @@ values."
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
      (elm :variables
-          elm-format-on-save t)
+          elm-format-on-save t
+          elm-sort-imports-on-save t)
      rust
      shell-scripts
      sql
