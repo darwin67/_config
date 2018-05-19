@@ -1,6 +1,8 @@
 let s:cache_home    = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:dein_dir      = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+" let g:python_host_prog = $HOME . '/.pyenv/shims/python2'
+let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
 
 if !isdirectory(s:dein_repo_dir)
    call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
@@ -16,9 +18,10 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   call dein#add(s:dein_repo_dir)
-  call dein#add('plasticboy/vim-markdown')
+  " call dein#add('plasticboy/vim-markdown')
   call dein#add('thinca/vim-quickrun')
 
+  call dein#add('Shougo/deoplete.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
@@ -33,36 +36,23 @@ if dein#load_state(s:dein_dir)
   call dein#add('tpope/vim-fugitive')
   call dein#add('Townk/vim-autoclose')
   " call dein#add('scrooloose/syntastic')
-  call dein#add('terryma/vim-multiple-cursors')
   call dein#add('tomtom/tcomment_vim')
   call dein#add('szw/vim-tags')
-  call dein#add('leafgarland/typescript-vim')
-  call dein#add('mhartington/nvim-typescript', { 'depends': 'typescript-vim' })
-
-  " Load on Insert
-  " -------------------------------------------------------------
-  call dein#add('Shougo/deoplete.nvim', { 'on_i': 1 })
+  " call dein#add('leafgarland/typescript-vim')
 
   " Load on command
   " -------------------------------------------------------------
   call dein#add('majutsushi/tagbar', { 'on_cmd' : [ 'TagbarToggle' ] })
-  call dein#add('mileszs/ack.vim', { 'on_cmd' : [ 'Ack' ] })
+  " call dein#add('mileszs/ack.vim', { 'on_cmd' : [ 'Ack' ] })
 
-  " Load based on fileTypes
+  " Auto complete
   " -------------------------------------------------------------
-  call dein#add('vim-jp/vim-cpp', { 'on_ft' : [ 'c', 'cpp' ] })
-  call dein#add('tpope/vim-rails', { 'on_ft' : [ 'ruby' ] })
-  call dein#add('pangloss/vim-javascript', { 'on_ft' : [ 'javascript' ] })
-  call dein#add('elzr/vim-json', { 'on_ft' : [ 'json' ] })
-  call dein#add('ElmCast/elm-vim', { 'on_ft' : [ 'elm' ]  })
-  " call dein#add('tpope/vim-haml', { 'on_ft' : [ 'haml' ] })
-  " call dein#add('groenewege/vim-less', { 'on_ft' : [ 'less' ] })
-  " call dein#add('slim-template/vim-slim', { 'on_ft' : [ 'slim' ] })
-  " call dein#add('fatih/vim-go', { 'on_ft' : [ 'go' ] })
-  call dein#add('rust-lang/rust.vim', { 'on_ft' : [ 'rust' ] })
+  call dein#add('zchee/deoplete-clang')
+  call dein#add('sebastianmarkow/deoplete-rust')
 
   " Themes
   call dein#add('gosukiwi/vim-atom-dark')
+  call dein#add('sheerun/vim-polyglot')
 
   call dein#end()
   call dein#save_state()
@@ -76,6 +66,25 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors, Fonts and Theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+let g:airline_theme='onedark'
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 " Disable scrollbars
 set guioptions-=r
 set guioptions-=R
@@ -88,72 +97,17 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" set background=dark
-
 syntax enable
 colorscheme atom-dark
 
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-  let g:make = 'make'
-endif
+" let g:make = 'gmake'
+" if system('uname -o') =~ '^GNU/'
+"   let g:make = 'make'
+" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-  let b:deoplete_disable_auto_complete = 1
-endfunction
-
-" Called once only when the multiple selection is canceled (default
-function Multiple_cursors_after()
-  let b:deoplete_disable_auto_complete = 0
-endfunction
-
-" Visual selection for Ack
-func! VisualSelection(direction, extra_filter) range
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-  if a:direction == 'b'
-    execute "normal ?" . l:pattern . "^M"
-  elseif a:direction == 'gv'
-    call CmdLine("Ack \"" . l:pattern . "\" " )
-  elseif a:direction == 'replace'
-    call CmdLine("%s" . '/'. l:pattern . '/')
-  elseif a:direction == 'f'
-    execute "normal /" . l:pattern . "^M"
-  endif
-
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunc
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function <SID>BufcloseCloseIt()
-  let l:currentBufNum = bufnr("%")
-  let l:alternateBufNum = bufnr("#")
-
-  if buflisted(l:alternateBufNum)
-    buffer #
-  else
-    bnext
-  endif
-
-  if bufnr("%") == l:currentBufNum
-    new
-  endif
-
-  if buflisted(l:currentBufNum)
-    execute("bdelete! ".l:currentBufNum)
-  endif
-endfunction
 
 " Delete trailing white space on save
 function StripTrailingWhitespace()
