@@ -1,8 +1,0 @@
-source 'http://rubygems.org'
-
-gem 'rubocop'
-gem 'sqlint'
-gem 'mdl'
-gem 'rails'
-gem 'pry'
-gem 'awesome_print'

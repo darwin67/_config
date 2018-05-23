@@ -1,0 +1,31 @@
+#!/bin/bash
+
+RUBY_PKG='rubocop sqlint mdl rails pry awesome_print neovim'
+PYTHON_PKG='awscli neovim jedi flake8 importmagic pytest autoflake isort yapf'
+NODE_PKG='tern js-beautify eslint typescript tslint typescript-formatter dockerfile_lint'
+
+WHICH=${1:-all}
+
+function install_ruby() {
+  echo "Installing ruby dependencies..."
+  gem install $RUBY_PKG
+}
+
+function install_python() {
+  echo "Installing Python dependencies..."
+  pip install $PYTHON_PKG
+}
+
+function install_node() {
+  echo "Installing Node dependencies..."
+  npm i -g $NODE_PKG
+  nodenv rehash
+}
+
+if [[ ${WHICH} == 'all' ]]; then
+  install_ruby
+  install_python
+  install_node
+else
+  eval install_${WHICH}
+fi
