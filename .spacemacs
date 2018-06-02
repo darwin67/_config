@@ -41,7 +41,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     csv
+     ;; csv
      emacs-lisp
      go
      html
@@ -53,9 +53,9 @@ values."
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
-     (elm :variables
-          elm-format-on-save t
-          elm-sort-imports-on-save t)
+     ;; (elm :variables
+     ;;      elm-format-on-save t
+     ;;      elm-sort-imports-on-save t)
      rust
      shell-scripts
      sql
