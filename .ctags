@@ -7,4 +7,3 @@
 --exclude=node_modules
 --exclude=log
 --exclude=.bundle
---exclude=vendor/bundle
