@@ -109,7 +109,6 @@ fi
 #   Alias
 # ================================================================================
 
-alias clean_git_branches='git gc --prune=now && git remote prune origin'
 alias rb='ruby'
 alias be='bundle exec'
 alias py='python'
