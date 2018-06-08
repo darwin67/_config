@@ -450,3 +450,10 @@ nnoremap <leader>gc :Gcommit -v<CR>
 nnoremap <leader>gh :Git stash<CR>
 nnoremap <leader>gu :Git stash pop<CR>
 nnoremap <leader>gp :Git push 
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>tg :TagbarToggle<CR>
+
