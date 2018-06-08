@@ -201,7 +201,8 @@ you should place your code here."
   (global-set-key (kbd "C-x |") 'split-window-right)
 
   (global-set-key (kbd "C-c ]") 'dumb-jump-go)
-  (global-set-key (kbd "C-c C-]") 'projectile-find-tag)
+  (global-set-key (kbd "C-c C-]") 'spacemacs/jump-to-definition)
+  (global-set-key (kbd "C-c }") 'spacemacs/jump-to-definition-other-window)
   (global-set-key (kbd "C-c [") 'dumb-jump-back)
   (global-set-key (kbd "C-c \\") 'dumb-jump-quick-look)
 
