@@ -43,7 +43,7 @@ values."
             c-c++-enable-clang-support t)
      ;; csv
      emacs-lisp
-     go
+     ;; go
      html
      javascript
      markdown
@@ -63,7 +63,7 @@ values."
      vimscript
      yaml
 
-     octave
+     ;; octave
      )
    dotspacemacs-additional-packages '(dictionary buffer-move editorconfig rjsx-mode)
    dotspacemacs-frozen-packages '()
