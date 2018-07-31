@@ -35,7 +35,7 @@ zplug 'tmux-plugins/tpm'
 zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-r
 
 # ripgrep
-zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r
+zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r, at:0.8.1
 
 # Ruby
 zplug 'rbenv/rbenv', as:command, use:'bin/*', from:github
