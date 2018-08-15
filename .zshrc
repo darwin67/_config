@@ -153,5 +153,5 @@ function replace_in_file () {
     local current=$1
     local replacement=$2
 
-    grep -rl "$current" . | xargs sed -i "s/$current/$replacement/g"
+    rg --files-with-matches "$current" | xargs sed -i "s/$current/$replacement/g"
 }
