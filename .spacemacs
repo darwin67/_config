@@ -187,6 +187,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Stop emacs adding the utf-8 magic comment
+  (setq ruby-insert-encoding-magic-comment nil)
+
   ;; Javascript indentaion
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
