@@ -99,7 +99,7 @@ values."
                          molokai)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Meslo LG S for Powerline"
-                               :size 12
+                               :size 10.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -280,4 +280,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F")))))
+ '(default ((t (:foreground "#DCDCCC" :background "#313131")))))
