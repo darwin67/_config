@@ -38,12 +38,16 @@ if dein#load_state(s:dein_dir)
   " call dein#add('scrooloose/syntastic')
   call dein#add('tomtom/tcomment_vim')
   call dein#add('szw/vim-tags')
-  " call dein#add('leafgarland/typescript-vim')
+  call dein#add('tpope/vim-rails')
 
   " Load on command
   " -------------------------------------------------------------
   call dein#add('majutsushi/tagbar', { 'on_cmd' : [ 'TagbarToggle' ] })
   " call dein#add('mileszs/ack.vim', { 'on_cmd' : [ 'Ack' ] })
+  call dein#add('udalov/kotlin-vim', { 'on_ft' : 'kotlin' })
+  " call dein#add('mhartington/nvim-typescript', { 'on_ft' : 'typescript' })
+  call dein#add('vim-ruby/vim-ruby', { 'on_ft' : 'ruby' })
+  call dein#add('rust-lang/rust.vim', { 'on_ft': 'rust' })
 
   " Auto complete
   " -------------------------------------------------------------
