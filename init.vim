@@ -48,6 +48,7 @@ if dein#load_state(s:dein_dir)
   " call dein#add('mhartington/nvim-typescript', { 'on_ft' : 'typescript' })
   call dein#add('vim-ruby/vim-ruby', { 'on_ft' : 'ruby' })
   call dein#add('rust-lang/rust.vim', { 'on_ft': 'rust' })
+  call dein#add('hashivim/vim-terraform', { 'on_ft' : 'terraform' })
 
   " Auto complete
   " -------------------------------------------------------------
