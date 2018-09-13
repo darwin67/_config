@@ -1,8 +1,8 @@
 #!/bin/bash
 
-RUBY_PKG='rubocop sqlint mdl rails pry awesome_print neovim'
+RUBY_PKG='rubocop sqlint mdl rails pry awesome_print neovim bundler pry-byebug'
 PYTHON_PKG='awscli neovim jedi flake8 importmagic pytest autoflake isort yapf'
-NODE_PKG='tern js-beautify eslint typescript tslint typescript-formatter dockerfile_lint'
+NODE_PKG='tern js-beautify eslint typescript tslint typescript-formatter dockerfile_lint neovim'
 
 WHICH=${1:-all}
 
