@@ -37,6 +37,9 @@ zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-
 # ripgrep
 zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r
 
+# bat
+zplug 'sharkdp/bat', as:command, rename-to:bat, from:gh-r, use:"*x86_64*linux*"
+
 # Ruby
 zplug 'rbenv/rbenv', as:command, use:'bin/*', from:github
 zplug 'rbenv/ruby-build', as:command, use:'bin/*', from:github, on:'rbenv/rbenv'
@@ -113,8 +116,8 @@ alias rb='ruby'
 alias be='bundle exec'
 alias py='python'
 alias C=clear
-alias ls=k
-alias ll='ls -ah'
+alias ls='ls --color'
+alias ll='ls -lah'
 alias c='cd ~'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
