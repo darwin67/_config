@@ -267,6 +267,9 @@ you should place your code here."
 
   ;; treat .tsx as typescript files
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
+  ;; auto format terraform files
+  (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
