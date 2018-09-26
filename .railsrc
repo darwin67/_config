@@ -1,1 +1,1 @@
--d postgresql -T --api
+-d postgresql -T
