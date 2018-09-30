@@ -49,6 +49,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('vim-ruby/vim-ruby', { 'on_ft' : 'ruby' })
   call dein#add('rust-lang/rust.vim', { 'on_ft': 'rust' })
   call dein#add('hashivim/vim-terraform', { 'on_ft' : 'terraform' })
+  call dein#add('elmcast/elm-vim', { 'on_ft' : 'elm' })
 
   " Auto complete
   " -------------------------------------------------------------
@@ -326,6 +327,7 @@ map <C-l> <C-W>l
 " Window spliting
 nnoremap <leader>- :split<CR>
 nnoremap <leader>\| :vsplit<CR>
+autocmd VimResized * wincmd =
 
 " Close the current buffer
 nnoremap <leader>bd :Bclose<cr>
@@ -461,4 +463,12 @@ nnoremap <leader>gp :Git push
 " => Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>tg :TagbarToggle<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Language specific settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Elm
+let g:elm_format_autosave = 1
 
