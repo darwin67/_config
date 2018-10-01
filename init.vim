@@ -59,6 +59,7 @@ if dein#load_state(s:dein_dir)
   " Themes
   call dein#add('gosukiwi/vim-atom-dark')
   call dein#add('sheerun/vim-polyglot')
+  call dein#add('arcticicestudio/nord-vim')
 
   call dein#end()
   call dein#save_state()
@@ -104,7 +105,9 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 syntax enable
-colorscheme atom-dark
+" colorscheme atom-dark
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
 
 " let g:make = 'gmake'
 " if system('uname -o') =~ '^GNU/'
