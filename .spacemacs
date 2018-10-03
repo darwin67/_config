@@ -53,9 +53,9 @@ values."
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
-     ;; (elm :variables
-     ;;      elm-format-on-save t
-     ;;      elm-sort-imports-on-save t)
+     (elm :variables
+          elm-format-on-save t
+          elm-sort-imports-on-save t)
      rust
      shell-scripts
      sql
@@ -66,7 +66,11 @@ values."
 
      ;; octave
      )
-   dotspacemacs-additional-packages '(dictionary buffer-move editorconfig rjsx-mode)
+   dotspacemacs-additional-packages '(dictionary
+                                      buffer-move
+                                      editorconfig
+                                      ;; rjsx-mode
+                                      flycheck-color-mode-line)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only)) ;; allowed values ('used-only 'used-but-keep-unused 'all)
@@ -188,12 +192,24 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; ==================================================
+  ;;   Variables
+
   ;; Stop emacs adding the utf-8 magic comment
   (setq ruby-insert-encoding-magic-comment nil)
 
   ;; Javascript indentaion
-  (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2)
+  (setq js2-basic-offset 2)
+  (setq js-indent-level 2)
+
+  ;; Disable flycheck for certain modes
+  (setq flycheck-disabled-checkers '(chef-foodcritic elm))
+
+  (setq dumb-jump-selector 'helm)
+  (setq flycheck-pos-tip-timeout 10)
+
+  ;; ==================================================
+  ;;   Modes
 
   ;; Use emacs to edit commits
   (global-git-commit-mode t)
@@ -201,6 +217,31 @@ you should place your code here."
   ;; Use editorconfig
   (editorconfig-mode t)
 
+  ;; language support for C++
+  (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+  ;; register berksfile as ruby files
+  (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
+
+  ;; also render js files as jsx
+  ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+  ;; (with-eval-after-load 'rjsx-mode
+  ;;   (define-key rjsx-mode-map "<" nil)
+  ;;   (define-key rjsx-mode-map (kbd "C-d") nil)
+  ;;   (define-key rjsx-mode-map ">" nil))
+
+  ;; treat .tsx as typescript files
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
+  ;; auto format terraform files
+  (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
+
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
+  ;; ==================================================
+  ;;   Key bindings
   (global-set-key (kbd "C-x -") 'split-window-below)
   (global-set-key (kbd "C-x |") 'split-window-right)
 
@@ -247,29 +288,6 @@ you should place your code here."
 
   (global-set-key (kbd "C-o") 'open-next-line)
   (global-set-key (kbd "M-o") 'open-previous-line)
-
-  (setq dumb-jump-selector 'helm)
-  (setq-default flycheck-disabled-checkers '(chef-foodcritic))
-
-  ;; language support for C++
-  (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
-
-  ;; register berksfile as ruby files
-  (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
-
-  ;; also render js files as jsx
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-  (with-eval-after-load 'rjsx-mode
-    (define-key rjsx-mode-map "<" nil)
-    (define-key rjsx-mode-map (kbd "C-d") nil)
-    (define-key rjsx-mode-map ">" nil))
-
-  ;; treat .tsx as typescript files
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-
-  ;; auto format terraform files
-  (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -281,7 +299,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (terraform-mode hcl-mode flycheck-elm elm-mode org-mime rjsx-mode yapfify yaml-mode x86-lookup ws-butler winum which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tide typescript-mode tagedit systemd stickyfunc-enhance srefactor sql-indent spaceline powerline smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections popwin pip-requirements persp-mode pcre2el paradox spinner ox-gfm origami orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-download org-bullets open-junk-file nginx-mode neotree nasm-mode mwim move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint less-css-mode js2-refactor multiple-cursors js2-mode js-doc insert-shebang info+ indent-guide ibuffer-projectile hydra hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flycheck-rust seq flycheck-pos-tip flycheck pkg-info epl flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight emmet-mode elisp-slime-nav editorconfig dumb-jump dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diminish diff-hl dictionary link connection define-word dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-quickhelp pos-tip company-go go-mode company-c-headers company-anaconda company column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format chruby cargo rust-mode bundler inf-ruby buffer-move bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup zenburn-theme))))
+    (flycheck-color-mode-line terraform-mode hcl-mode flycheck-elm elm-mode org-mime rjsx-mode yapfify yaml-mode x86-lookup ws-butler winum which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tide typescript-mode tagedit systemd stickyfunc-enhance srefactor sql-indent spaceline powerline smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections popwin pip-requirements persp-mode pcre2el paradox spinner ox-gfm origami orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-download org-bullets open-junk-file nginx-mode neotree nasm-mode mwim move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint less-css-mode js2-refactor multiple-cursors js2-mode js-doc insert-shebang info+ indent-guide ibuffer-projectile hydra hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flycheck-rust seq flycheck-pos-tip flycheck pkg-info epl flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight emmet-mode elisp-slime-nav editorconfig dumb-jump dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diminish diff-hl dictionary link connection define-word dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-quickhelp pos-tip company-go go-mode company-c-headers company-anaconda company column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format chruby cargo rust-mode bundler inf-ruby buffer-move bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
