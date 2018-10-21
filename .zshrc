@@ -159,7 +159,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 # Golang
 export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
+export PATH="$GOENV_ROOT/bin:$HOME/go/bin:$PATH"
 
 # ================================================================================
 #   Functions
