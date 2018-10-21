@@ -96,16 +96,16 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(nodenv init -)"
 
 if [[ -d $HOME/bin ]]; then
-  PATH="$HOME/bin:${PATH}"
+    PATH="$HOME/bin:${PATH}"
 fi
 
 if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
+    source <(kubectl completion zsh)
 fi
 
 if [[ ! -d ${TPM_PLUGINS} ]]; then
-  mkdir -p ${TPM_PLUGINS}
-  ln -s "${ZPLUG_REPOS}/tmux-plugins/tpm" ${TPM_PLUGINS}
+    mkdir -p ${TPM_PLUGINS}
+    ln -s "${ZPLUG_REPOS}/tmux-plugins/tpm" ${TPM_PLUGINS}
 fi
 
 # ================================================================================
@@ -125,6 +125,10 @@ alias emacs='emacs -nw'
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
+fi
+
+if type rg > /dev/null 2>&1 ; then
+    alias grep='rg'
 fi
 
 # ================================================================================
