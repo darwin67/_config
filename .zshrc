@@ -53,6 +53,10 @@ zplug 'pyenv/pyenv-virtualenv', as:command, use:'bin/*', from:github, on:'pyenv/
 zplug 'nodenv/nodenv', as:command, use:'bin/*', from:github
 zplug 'nodenv/node-build', as:command, use:'bin/*', from:github
 
+# Golang
+zplug 'syndbg/goenv', as:command, use:'bin/*', from:github
+zplug 'syndbg/goenv', as:command, use:'plugins/go-build/bin/*', from:github
+
 # Github
 zplug 'github/hub', as:command, from:gh-r
 
@@ -94,6 +98,7 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(nodenv init -)"
+eval "$(goenv init -)"
 
 if [[ -d $HOME/bin ]]; then
     PATH="$HOME/bin:${PATH}"
@@ -151,6 +156,10 @@ export SSH_KEY_PATH="~/.ssh/"
 
 # Neovim related
 export PYENV_ROOT="$HOME/.pyenv"
+
+# Golang
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 
 # ================================================================================
 #   Functions
