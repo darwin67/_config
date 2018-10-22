@@ -161,6 +161,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$HOME/go/bin:$PATH"
 
+# vagrant settings
+if type libvirtd > /dev/null 2>&1 ; then
+  export VAGRANT_DEFAULT_PROVIDER=libvirt
+fi
+
 # ================================================================================
 #   Functions
 # ================================================================================
