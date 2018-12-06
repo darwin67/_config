@@ -18,8 +18,10 @@
 [rerere]
   enabled = true
 [magithub]
-	online = false
+	online = true
 [magithub "status"]
-	includeStatusHeader = false
-	includePullRequestsSection = false
-	includeIssuesSection = false
+	includeStatusHeader = true
+	includePullRequestsSection = true
+	includeIssuesSection = true
+[github]
+	user = wuddarwin@gmail.com
