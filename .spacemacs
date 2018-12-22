@@ -59,7 +59,9 @@ values."
      rust
      shell-scripts
      sql
-     typescript
+     (typescript :variables
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'typescript-formatter)
      vimscript
      yaml
      terraform
