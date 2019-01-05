@@ -56,7 +56,8 @@ values."
      (elm :variables
           elm-format-on-save t
           elm-sort-imports-on-save t)
-     rust
+     (rust :variables
+           rust-format-on-save t)
      shell-scripts
      sql
      (typescript :variables
