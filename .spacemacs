@@ -73,7 +73,8 @@ values."
                                       buffer-move
                                       editorconfig
                                       ;; rjsx-mode
-                                      flycheck-color-mode-line)
+                                      flycheck-color-mode-line
+                                      protobuf-mode)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only)) ;; allowed values ('used-only 'used-but-keep-unused 'all)
