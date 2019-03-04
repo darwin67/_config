@@ -12,8 +12,7 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(go
-     helm
+   '(helm
      (auto-completion :variables
                       auto-completion-enable-help-tooltip 'manual
                       auto-completion-enable-sort-by-usage t)
@@ -43,7 +42,7 @@ values."
             c-c++-enable-clang-support t)
      ;; csv
      emacs-lisp
-     ;; go
+     (go :variables go-tab-width 4)
      html
      javascript
      markdown
