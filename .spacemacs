@@ -39,34 +39,49 @@ values."
      asm
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support t
+            c-c++-enable-google-style t
+            c-c++-enable-google-newline t
+            c-c++-enable-clang-format-on-save t
+            c-c++-backend 'clangd)
      ;; csv
      emacs-lisp
-     go
+     (go :variables
+         godoc-at-point-function 'godoc-gogetdoc
+         go-backend 'lsp
+         go-use-gometalinter t
+         go-format-before-save t)
+
      html
-     javascript
+     (javascript :variables
+                 javascript-backend 'lsp)
      markdown
      (python :variables
+             python-backend 'lsp
              python-test-runner 'pytest
              python-sort-imports-on-save t)
      (ruby :variables
            ruby-version-manager 'rbenv
-           ruby-test-runner 'rspec)
+           ruby-test-runner 'rspec
+           ruby-highlight-debugger-keywords t)
      (elm :variables
           elm-format-on-save t
           elm-sort-imports-on-save t)
      (rust :variables
-           rust-format-on-save t)
+           rust-format-on-save t
+           rust-backend 'lsp)
      shell-scripts
      sql
      (typescript :variables
                  typescript-fmt-on-save t
-                 typescript-fmt-tool 'typescript-formatter)
+                 typescript-fmt-tool 'typescript-formatter
+                 typescript-backend 'lsp)
      groovy
 
+     lsp
      vimscript
      yaml
-     terraform
+     (terraform :variables terraform-auto-format-on-save t)
 
      ;; octave
      )
@@ -213,6 +228,13 @@ you should place your code here."
   (setq dumb-jump-selector 'helm)
   (setq flycheck-pos-tip-timeout 10)
 
+  ;; LSP
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-sideline-enable t)
+  (setq lsp-ui-sideline-show-symbol t)
+  (setq lsp-ui-sideline-ignore-duplicate t)
+
   ;; ==================================================
   ;;   Modes
 
@@ -223,9 +245,12 @@ you should place your code here."
   (editorconfig-mode t)
 
   ;; language support for C++
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
   (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
   ;; register berksfile as ruby files
+  (add-hook 'ruby-mode-hook 'lsp)
   (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
 
@@ -236,7 +261,11 @@ you should place your code here."
   ;;   (define-key rjsx-mode-map (kbd "C-d") nil)
   ;;   (define-key rjsx-mode-map ">" nil))
 
+  ;; Python
+  (add-hook 'python-mode-hook 'lsp)
+
   ;; treat .tsx as typescript files
+  (add-hook 'typescript-mode-hook 'lsp)
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
   ;; treat .tpl files as yaml (k8s helm)
@@ -247,9 +276,6 @@ you should place your code here."
 
   ;; Jenkinsfile as groovy
   (add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode))
-
-  ;; auto format terraform files
-  (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
 
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
