@@ -93,6 +93,10 @@ zplug load # --verbose
 # Terminal emacs binding
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
+# pre initialize
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/shims:$PATH"
+
 # Initialize envs
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
@@ -158,8 +162,8 @@ export SSH_KEY_PATH="~/.ssh/"
 export PYENV_ROOT="$HOME/.pyenv"
 
 # Golang
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$HOME/go/bin:$PATH"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
 
 # vagrant settings
 if type libvirtd > /dev/null 2>&1 ; then

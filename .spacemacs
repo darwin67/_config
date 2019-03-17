@@ -264,6 +264,9 @@ you should place your code here."
   ;; Python
   (add-hook 'python-mode-hook 'lsp)
 
+  ;; Golang
+  (add-hook 'go-mode-hook 'lsp)
+
   ;; treat .tsx as typescript files
   (add-hook 'typescript-mode-hook 'lsp)
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
