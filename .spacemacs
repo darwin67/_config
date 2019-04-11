@@ -77,6 +77,7 @@ values."
                  typescript-fmt-tool 'typescript-formatter
                  typescript-backend 'lsp)
      groovy
+     jsonnet
 
      lsp
      vimscript
