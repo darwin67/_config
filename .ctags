@@ -1,9 +1,0 @@
---recurse=yes
---exclude=.git
---exclude=tmp
---exclude=.bin
---exclude=bin
---exclude=.node_modules
---exclude=node_modules
---exclude=log
---exclude=.bundle
