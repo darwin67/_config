@@ -80,6 +80,7 @@ values."
      jsonnet
 
      lsp
+     dap
      vimscript
      yaml
      (terraform :variables terraform-auto-format-on-save t)
