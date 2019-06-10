@@ -92,7 +92,6 @@ values."
    dotspacemacs-additional-packages '(dictionary
                                       buffer-move
                                       editorconfig
-                                      ;; rjsx-mode
                                       flycheck-color-mode-line
                                       protobuf-mode)
    dotspacemacs-frozen-packages '()
