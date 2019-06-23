@@ -12,20 +12,56 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(react
-     helm
+   '(helm
      (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.2
+                      auto-completion-idle-delay 0.5
+                      auto-completion-private-snippets-directory nil
+                      auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip 'manual
                       auto-completion-enable-sort-by-usage t)
      better-defaults
-     (org :variables org-enable-github-support t)
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     ;; spell-checking
+     cmake
+     (ibuffer :variables
+              ibuffer-group-buffers-by 'projects)
+     (org :variables
+          org-enable-github-support t
+          org-enable-org-journal-support t
+          org-enable-hugo-support t
+          org-enable-trello-support t
+          org-enable-epub-support t)
+     (treemacs :variables
+               treemacs-use-follow-mode t
+               treemacs-use-filewatch-mode t
+               treemacs-lock-width t)
      semantic
      syntax-checking
      docker
      nginx
      systemd
+     finance
+     epub
+     jsonnet
+     (lsp :variables
+          lsp-navigation 'simple
+          lsp-prefer-flymake nil
+          lsp-ui-doc-enable t
+          lsp-ui-doc-include-signature nil
+          lsp-ui-sideline-enable t
+          lsp-ui-sideline-show-symbol nil
+          lsp-ui-sideline-ignore-duplicate t
+          )
+     dap
+     yaml
+     (terraform :variables terraform-auto-format-on-save t)
+     octave
+     imenu-list
+     node
+     vagrant
+     xclipboard
 
      ;; version control
      git
@@ -36,6 +72,7 @@ values."
      ;; Framework
      react
      ruby-on-rails
+     phoenix
 
      ;; Languages
      asm
@@ -45,19 +82,30 @@ values."
             c-c++-enable-google-style t
             c-c++-enable-google-newline t
             c-c++-enable-clang-format-on-save t
-            c-c++-backend 'clangd)
-     ;; csv
+            c-c++-backend 'clang)
+     csv
+     (dart :variables
+           dart-enable-analysis-server t
+           dart-format-on-save t)
+     elixir
+     erlang
      emacs-lisp
+     (elm :variables
+          elm-format-on-save t
+          elm-sort-imports-on-save t)
      (go :variables
          godoc-at-point-function 'godoc-gogetdoc
          go-backend 'lsp
          go-use-gometalinter t
          go-format-before-save t)
-
+     groovy
      html
      (javascript :variables
-                 javascript-backend 'lsp)
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'prettier)
+     kotlin
      markdown
+     protobuf
      (python :variables
              python-backend 'lsp
              python-test-runner 'pytest
@@ -66,9 +114,6 @@ values."
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec
            ruby-highlight-debugger-keywords t)
-     (elm :variables
-          elm-format-on-save t
-          elm-sort-imports-on-save t)
      (rust :variables
            rust-format-on-save t
            rust-backend 'lsp)
@@ -78,22 +123,12 @@ values."
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'typescript-formatter
                  typescript-backend 'lsp)
-     groovy
-     jsonnet
-
-     lsp
-     dap
      vimscript
-     yaml
-     (terraform :variables terraform-auto-format-on-save t)
-
-     ;; octave
      )
    dotspacemacs-additional-packages '(dictionary
                                       buffer-move
                                       editorconfig
-                                      flycheck-color-mode-line
-                                      protobuf-mode)
+                                      flycheck-color-mode-line)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only)) ;; allowed values ('used-only 'used-but-keep-unused 'all)
@@ -218,34 +253,37 @@ you should place your code here."
   ;; ==================================================
   ;;   Variables
 
-  ;; Stop emacs adding the utf-8 magic comment
-  (setq ruby-insert-encoding-magic-comment nil)
-
-  ;; Javascript indentaion
   (setq
+   ;; Stop emacs adding the utf-8 magic comment
+   ruby-insert-encoding-magic-comment nil
+
+   ;; Javascript indentaion
    js2-basic-offset 2
    js-indent-level 2
    css-indent-offset 2
    web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
+   web-mode-attr-indent-offset 2
 
-  ;; Disable flycheck for certain modes
-  (setq flycheck-disabled-checkers '(chef-foodcritic elm))
+   ;; Disable flycheck for certain modes
+   flycheck-disabled-checkers '(chef-foodcritic elm)
 
-  (setq dumb-jump-selector 'helm)
-  (setq flycheck-pos-tip-timeout 10)
+   dumb-jump-selector 'helm
+   flycheck-pos-tip-timeout 10
 
-  ;; LSP
-  (setq lsp-ui-doc-enable t)
-  (setq lsp-ui-doc-include-signature t)
-  (setq lsp-ui-sideline-enable t)
-  (setq lsp-ui-sideline-show-symbol t)
-  (setq lsp-ui-sideline-ignore-duplicate t)
+   ;; LSP
+   lsp-sideline-delay 0.5
+
+   ;; Other
+   x86-lookup-pdf "~/_config/etc/architecture-instruction-set-extensions-programming-reference.pdf"
+   )
 
   ;; ==================================================
   ;;   Modes
+
+  ;; Enable company mode globally
+  (global-company-mode)
 
   ;; Use emacs to edit commits
   (global-git-commit-mode t)
@@ -357,7 +395,11 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#DCDCCC" :background "#313131")))))
+ '(default ((t (:foreground "#DCDCCC" :background "#313131"))))
+ '(company-tooltip-common
+   ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection
+   ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
