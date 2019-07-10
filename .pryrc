@@ -9,10 +9,6 @@ else
   AwesomePrint.pry!
 end
 
-def clear
-  system('clear')
-end
-
 if ENV['RAILS_ENV'] || defined?(Rails)
   # Print ActiveRecord SQL to the screen
   ActiveRecord::Base.logger = Logger.new(STDOUT)
