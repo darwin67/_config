@@ -9,10 +9,8 @@ else
   AwesomePrint.pry!
 end
 
-if (defined? Pry) || (defined? PryByeBug) || (defined? PryDebugger)
-  Pry.commands.alias_command('c', 'continue') if Pry.commands['continue']
-  Pry.commands.alias_command('n', 'next') if Pry.commands['next']
-  Pry.commands.alias_command('s', 'step') if Pry.commands['step']
+def clear
+  system('clear')
 end
 
 if ENV['RAILS_ENV'] || defined?(Rails)
