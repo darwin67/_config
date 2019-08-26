@@ -311,9 +311,6 @@ you should place your code here."
   ;; treat .nginx as nginx files
   (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
 
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
-
   ;; ==================================================
   ;;   Key bindings
   (global-set-key (kbd "C-x -") 'split-window-below)
