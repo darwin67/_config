@@ -33,18 +33,11 @@ values."
           org-enable-hugo-support t
           org-enable-trello-support t
           org-enable-epub-support t)
-     (treemacs :variables
-               treemacs-use-follow-mode t
-               treemacs-use-filewatch-mode t
-               treemacs-lock-width t)
      semantic
      syntax-checking
      docker
      nginx
      systemd
-     finance
-     epub
-     jsonnet
      (lsp :variables
           lsp-navigation 'simple
           lsp-prefer-flymake nil
@@ -57,7 +50,6 @@ values."
      dap
      yaml
      (terraform :variables terraform-auto-format-on-save t)
-     octave
      imenu-list
      node
      vagrant
@@ -72,7 +64,7 @@ values."
      ;; Framework
      react
      ruby-on-rails
-     phoenix
+     ;; phoenix
 
      ;; Languages
      asm
@@ -84,11 +76,11 @@ values."
             c-c++-enable-clang-format-on-save t
             c-c++-backend 'clang)
      csv
-     (dart :variables
-           dart-enable-analysis-server t
-           dart-format-on-save t)
-     elixir
-     erlang
+     ;; (dart :variables
+     ;;       dart-enable-analysis-server t
+     ;;       dart-format-on-save t)
+     ;; elixir
+     ;; erlang
      emacs-lisp
      (elm :variables
           elm-format-on-save t
@@ -98,7 +90,6 @@ values."
          go-backend 'lsp
          go-use-gometalinter t
          go-format-before-save t)
-     groovy
      html
      (javascript :variables
                  javascript-backend 'lsp
@@ -127,8 +118,7 @@ values."
      )
    dotspacemacs-additional-packages '(dictionary
                                       buffer-move
-                                      editorconfig
-                                      flycheck-color-mode-line)
+                                      editorconfig)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only)) ;; allowed values ('used-only 'used-but-keep-unused 'all)
@@ -318,14 +308,8 @@ you should place your code here."
   (add-hook 'typescript-mode-hook 'lsp)
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
-  ;; treat .tpl files as yaml (k8s helm)
-  (add-to-list 'auto-mode-alist '("\\.tpl\\'" . yaml-mode))
-
   ;; treat .nginx as nginx files
   (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
-
-  ;; Jenkinsfile as groovy
-  (add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode))
 
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
