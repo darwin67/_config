@@ -241,6 +241,11 @@ you should place your code here."
   ;;   Variables
 
   (setq
+   configuration-layer-elpa-archives
+   '(("melpa" . "melpa.org/packages/")
+     ("org" . "orgmode.org/elpa/")
+     ("gnu" . "/Users/bond/Code/spacemacs-elpa-mirror/gnu"))
+
    ;; Stop emacs adding the utf-8 magic comment
    ruby-insert-encoding-magic-comment nil
 
@@ -263,7 +268,7 @@ you should place your code here."
    lsp-sideline-delay 0.5
 
    ;; Other
-   x86-lookup-pdf "~/_config/etc/architecture-instruction-set-extensions-programming-reference.pdf"
+   ;; x86-lookup-pdf "~/_config/etc/architecture-instruction-set-extensions-programming-reference.pdf"
    )
 
   ;; ==================================================
