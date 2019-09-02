@@ -41,18 +41,16 @@ values."
      (lsp :variables
           lsp-navigation 'simple
           lsp-prefer-flymake nil
-          lsp-ui-doc-enable t
+          lsp-ui-doc-enable nil
           lsp-ui-doc-include-signature nil
           lsp-ui-sideline-enable t
           lsp-ui-sideline-show-symbol nil
           lsp-ui-sideline-ignore-duplicate t
           )
-     dap
+     ;; dap
      yaml
      (terraform :variables terraform-auto-format-on-save t)
-     imenu-list
      node
-     vagrant
      xclipboard
 
      ;; version control
@@ -67,7 +65,7 @@ values."
      ;; phoenix
 
      ;; Languages
-     asm
+     ;; asm
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t
@@ -75,7 +73,6 @@ values."
             c-c++-enable-google-newline t
             c-c++-enable-clang-format-on-save t
             c-c++-backend 'clang)
-     csv
      ;; (dart :variables
      ;;       dart-enable-analysis-server t
      ;;       dart-format-on-save t)
@@ -94,7 +91,7 @@ values."
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-fmt-tool 'prettier)
-     kotlin
+     ;; kotlin
      markdown
      protobuf
      (python :variables
