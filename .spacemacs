@@ -41,7 +41,7 @@ values."
      (lsp :variables
           lsp-navigation 'simple
           lsp-prefer-flymake nil
-          lsp-ui-doc-enable nil
+          lsp-ui-doc-enable t
           lsp-ui-doc-include-signature nil
           lsp-ui-sideline-enable t
           lsp-ui-sideline-show-symbol nil
