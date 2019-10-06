@@ -269,6 +269,9 @@ you should place your code here."
 
    ;; Other
    ;; x86-lookup-pdf "~/_config/etc/architecture-instruction-set-extensions-programming-reference.pdf"
+
+   ;; Do not try to grab everything
+   forge-pull-notifications nil
    )
 
   ;; ==================================================
