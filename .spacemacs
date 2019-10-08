@@ -52,6 +52,7 @@ values."
      (terraform :variables terraform-auto-format-on-save t)
      node
      xclipboard
+     salt
 
      ;; version control
      git
