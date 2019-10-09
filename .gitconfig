@@ -1,6 +1,6 @@
 [user]
 	name = Darwin D Wu
-	email = darwin67@users.noreply.github.com
+	email = darwin@cloudflare.com
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global

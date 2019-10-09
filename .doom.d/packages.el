@@ -65,3 +65,6 @@
 
 ;; graphql mode
 (package! graphql-mode)
+
+;; salt mode
+(package! salt-mode)
