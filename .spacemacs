@@ -150,7 +150,7 @@ values."
                          molokai)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Meslo LG S for Powerline"
-                               :size 11.5
+                               :size 11.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
