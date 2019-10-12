@@ -40,22 +40,8 @@ zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r, at:0.10.0
 # bat
 zplug 'sharkdp/bat', as:command, rename-to:bat, from:gh-r, use:"*x86_64*linux*"
 
-# Ruby
-zplug 'rbenv/rbenv', as:command, use:'bin/*', from:github
-zplug 'rbenv/ruby-build', as:command, use:'bin/*', from:github, on:'rbenv/rbenv'
-
-# Python
-zplug 'pyenv/pyenv', as:command, use:'bin/*', from:github
-zplug 'pyenv/pyenv', as:command, use:'plugins/python-build/bin/*', from:github
-zplug 'pyenv/pyenv-virtualenv', as:command, use:'bin/*', from:github, on:'pyenv/pyenv'
-
-# NodeJS
-zplug 'nodenv/nodenv', as:command, use:'bin/*', from:github
-zplug 'nodenv/node-build', as:command, use:'bin/*', from:github
-
-# Golang
-zplug 'syndbg/goenv', as:command, use:'bin/*', from:github
-zplug 'syndbg/goenv', as:command, use:'plugins/go-build/bin/*', from:github
+# Language manager
+zplug 'asdf-vm/asdf', from:github, at:v0.7.4
 
 # Github
 zplug 'github/hub', as:command, from:gh-r
@@ -78,7 +64,6 @@ zplug 'modules/history', from:prezto
 # Theme
 zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
 
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -93,17 +78,6 @@ zplug load # --verbose
 # Terminal emacs binding
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
-# pre initialize
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/shims:$PATH"
-
-# Initialize envs
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(nodenv init -)"
-eval "$(goenv init -)"
-
 if [[ -d $HOME/bin ]]; then
     PATH="$HOME/bin:${PATH}"
 fi
@@ -115,6 +89,11 @@ fi
 if [[ ! -d ${TPM_PLUGINS} ]]; then
     mkdir -p ${TPM_PLUGINS}
     ln -s "${ZPLUG_REPOS}/tmux-plugins/tpm" ${TPM_PLUGINS}
+fi
+
+if [[ -d $ZPLUG_REPOS/asdf-vm/asdf ]]; then
+    . $ZPLUG_REPOS/asdf-vm/asdf/asdf.sh
+    . $ZPLUG_REPOS/asdf-vm/asdf/completions/asdf.bash
 fi
 
 # ================================================================================
@@ -156,9 +135,8 @@ export SSH_KEY_PATH="~/.ssh/"
 # Neovim related
 export PYENV_ROOT="$HOME/.pyenv"
 
-# Golang
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
+# Allow path definition in go get
+export GO111MODULE=on
 
 # vagrant settings
 if type libvirtd > /dev/null 2>&1 ; then

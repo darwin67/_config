@@ -63,10 +63,10 @@ values."
      ;; Framework
      react
      ruby-on-rails
-     ;; phoenix
+     phoenix
 
      ;; Languages
-     ;; asm
+     asm
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t
@@ -77,8 +77,8 @@ values."
      ;; (dart :variables
      ;;       dart-enable-analysis-server t
      ;;       dart-format-on-save t)
-     ;; elixir
-     ;; erlang
+     elixir
+     erlang
      emacs-lisp
      (elm :variables
           elm-format-on-save t
