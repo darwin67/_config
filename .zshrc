@@ -53,8 +53,6 @@ zplug 'peco/peco', as:command, from:gh-r
 zplug 'plugins/git', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/github', from:oh-my-zsh, ignore:oh-my-zsh.sh
 zplug 'plugins/tmux', from:oh-my-zsh, ignore:oh-my-zsh.sh
-zplug 'plugins/cargo', from:oh-my-zsh, ignore:oh-my-zsh.sh, use:'_cargo'
-zplug 'plugins/docker-compose', from:oh-my-zsh, ignore:oh-my-zsh.sh
 
 # Convenient stuff from prezto
 zplug 'modules/editor', from:prezto
@@ -94,6 +92,10 @@ fi
 if [[ -d $ZPLUG_REPOS/asdf-vm/asdf ]]; then
     . $ZPLUG_REPOS/asdf-vm/asdf/asdf.sh
     . $ZPLUG_REPOS/asdf-vm/asdf/completions/asdf.bash
+fi
+
+if [[ -d $HOME/.cargo ]]; then
+    export PATH="${HOME}/.cargo/bin:${PATH}"
 fi
 
 # ================================================================================
