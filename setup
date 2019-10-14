@@ -1,0 +1,51 @@
+#!/bin/bash
+
+RUBY_PKG='rubocop sqlint mdl rails pry awesome_print neovim bundler pry-byebug pry-doc solargraph'
+NODE_PKG='js-beautify eslint typescript tslint typescript-formatter typescript-language-server dockerfile_lint neovim yarn bash-language-server'
+PYTHON_PKG="awscli neovim jedi flake8 importmagic pytest autoflake isort yapf python-language-server importmagic epc"
+
+WHICH=${1:-all}
+
+function install_ruby() {
+    echo "Installing ruby dependencies..."
+    gem install $RUBY_PKG
+}
+
+function install_python() {
+    echo "Installing Python dependencies..."
+    pip install $PYTHON_PKG
+}
+
+function install_node() {
+    echo "Installing Node dependencies..."
+    npm i -g $NODE_PKG
+}
+
+function install_golang() {
+    go get github.com/cjbassi/gotop
+    go get -u -v github.com/mdempsky/gocode
+    go get -u -v github.com/rogpeppe/godef
+    go get -u -v golang.org/x/tools/cmd/guru
+    go get -u -v golang.org/x/tools/cmd/gorename
+    go get -u -v golang.org/x/tools/cmd/goimports
+    go get -u -v golang.org/x/tools/cmd/godoc
+    go get -u -v github.com/zmb3/gogetdoc
+    go get -u -v github.com/cweill/gotests/...
+    go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
+    go get -u -v github.com/davidrjenni/reftools/cmd/fillstruct
+    go get -u github.com/josharian/impl
+    go get -u -v github.com/alecthomas/gometalinter
+    go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+    go get -u -v github.com/godoctor/godoctor
+    go install github.com/godoctor/godoctor
+    go get -u -v github.com/fatih/gomodifytags
+    GO111MODULE=on go get golang.org/x/tools/gopls@latest
+}
+
+if [[ ${WHICH} == 'all' ]]; then
+  install_ruby
+  install_python
+  install_node
+else
+  eval install_${WHICH}
+fi

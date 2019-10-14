@@ -9,4 +9,4 @@ done
 mkdir -p "${HOME}/.config/nvim"
 ln -sf "${PWD}/init.vim" "${HOME}/.config/nvim/init.vim"
 
-ln -sf "${PWD}/install" "${HOME}/bin/setup"
+ln -sf "${PWD}/setup" "${HOME}/bin/setup"
