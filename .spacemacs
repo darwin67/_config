@@ -77,7 +77,9 @@ values."
      ;; (dart :variables
      ;;       dart-enable-analysis-server t
      ;;       dart-format-on-save t)
-     elixir
+     (elixir :variables
+             elixir-backend 'lsp
+             elixir-ls-path "~/.lsp/elixir-ls")
      erlang
      emacs-lisp
      (elm :variables
@@ -244,8 +246,7 @@ you should place your code here."
   (setq
    configuration-layer-elpa-archives
    '(("melpa" . "melpa.org/packages/")
-     ("org" . "orgmode.org/elpa/")
-     ("gnu" . "/Users/bond/Code/spacemacs-elpa-mirror/gnu"))
+     ("org" . "orgmode.org/elpa/"))
 
    ;; Stop emacs adding the utf-8 magic comment
    ruby-insert-encoding-magic-comment nil
@@ -258,6 +259,9 @@ you should place your code here."
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
+
+   ;; Elixir
+   flycheck-elixir-credo-strict t
 
    ;; Disable flycheck for certain modes
    flycheck-disabled-checkers '(chef-foodcritic elm)
@@ -297,13 +301,6 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
 
-  ;; also render js files as jsx
-  ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-  ;; (with-eval-after-load 'rjsx-mode
-  ;;   (define-key rjsx-mode-map "<" nil)
-  ;;   (define-key rjsx-mode-map (kbd "C-d") nil)
-  ;;   (define-key rjsx-mode-map ">" nil))
-
   ;; Python
   (add-hook 'python-mode-hook 'lsp)
 
@@ -316,6 +313,11 @@ you should place your code here."
 
   ;; treat .nginx as nginx files
   (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
+
+  ;; Elixir
+  ;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
+  (add-hook 'elixir-mode-hook
+            (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
 
   ;; ==================================================
   ;;   Key bindings
