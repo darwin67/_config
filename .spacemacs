@@ -33,7 +33,7 @@ values."
           org-enable-hugo-support t
           org-enable-trello-support t
           org-enable-epub-support t)
-     semantic
+     ;; semantic
      syntax-checking
      docker
      nginx
