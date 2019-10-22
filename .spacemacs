@@ -32,7 +32,8 @@ values."
           org-enable-org-journal-support t
           org-enable-hugo-support t
           org-enable-trello-support t
-          org-enable-epub-support t)
+          org-enable-epub-support t
+          org-projectile-file "TODOs.org")
      ;; semantic
      syntax-checking
      docker
@@ -277,6 +278,9 @@ you should place your code here."
 
    ;; Do not try to grab everything
    forge-pull-notifications nil
+
+   ;; org mode
+   org-bullets-bullet-list '("◉" "▶" "◆" "■")
    )
 
   ;; ==================================================
@@ -367,6 +371,14 @@ you should place your code here."
 
   (global-set-key (kbd "C-o") 'open-next-line)
   (global-set-key (kbd "M-o") 'open-previous-line)
+
+  ;; org mode
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (mapcar '(lambda (file)
+               (when (file-exists-p file)
+                 (push file org-agenda-files)))
+            (org-projectile-todo-files)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
