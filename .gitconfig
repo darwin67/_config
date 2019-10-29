@@ -16,7 +16,7 @@
 [include]
 	path = ~/.gitignore/github_cred
 [rerere]
-  enabled = true
+	enabled = true
 [magithub]
 	online = true
 [magithub "status"]

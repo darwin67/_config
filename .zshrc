@@ -94,10 +94,6 @@ if [[ -d $ZPLUG_REPOS/asdf-vm/asdf ]]; then
     . $ZPLUG_REPOS/asdf-vm/asdf/completions/asdf.bash
 fi
 
-if [[ -d $HOME/.cargo ]]; then
-    export PATH="${HOME}/.cargo/bin:${PATH}"
-fi
-
 # ================================================================================
 #   Alias
 # ================================================================================
