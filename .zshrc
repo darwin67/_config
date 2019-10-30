@@ -128,7 +128,7 @@ export EDITOR='emacs'
 export SSH_KEY_PATH="~/.ssh/"
 
 # Allow path definition in go get
-export GO111MODULE=on
+# export GO111MODULE=on
 
 # vagrant settings
 if type libvirtd > /dev/null 2>&1 ; then
