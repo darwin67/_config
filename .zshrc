@@ -124,14 +124,8 @@ fi
 # Preferred editor for local and remote sessions
 export EDITOR='emacs'
 
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
-
-# Neovim related
-export PYENV_ROOT="$HOME/.pyenv"
 
 # Allow path definition in go get
 export GO111MODULE=on
