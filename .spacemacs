@@ -89,7 +89,7 @@ values."
      (go :variables
          godoc-at-point-function 'godoc-gogetdoc
          go-backend 'lsp
-         go-use-gometalinter t
+         go-use-golangci-lint t
          go-format-before-save t)
      html
      (javascript :variables
