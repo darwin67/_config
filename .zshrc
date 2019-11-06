@@ -77,7 +77,7 @@ zplug load # --verbose
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 if [[ -d $HOME/bin ]]; then
-    PATH="$HOME/bin:${PATH}"
+    export PATH="$HOME/bin:${PATH}"
 fi
 
 if [ $commands[kubectl] ]; then
@@ -92,6 +92,10 @@ fi
 if [[ -d $ZPLUG_REPOS/asdf-vm/asdf ]]; then
     . $ZPLUG_REPOS/asdf-vm/asdf/asdf.sh
     . $ZPLUG_REPOS/asdf-vm/asdf/completions/asdf.bash
+fi
+
+if [[ -d $HOME/.cargo ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # ================================================================================
