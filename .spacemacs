@@ -250,6 +250,9 @@ you should place your code here."
   ;;   Variables
 
   (setq
+   ;; set cursor margin like vim
+   scroll-margin 7
+
    configuration-layer-elpa-archives
    '(("melpa" . "melpa.org/packages/")
      ("org" . "orgmode.org/elpa/"))
