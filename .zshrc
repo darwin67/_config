@@ -121,6 +121,10 @@ if type rg > /dev/null 2>&1 ; then
     alias grep='rg'
 fi
 
+if type go > /dev/null 2>&1 ; then
+    export GOPATH=$(go env GOPATH)
+fi
+
 # ================================================================================
 #   Environment Variables
 # ================================================================================
