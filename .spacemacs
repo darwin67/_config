@@ -242,6 +242,11 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; ==================================================
+  ;; Bug workaround
+  (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
+
+
+  ;; ==================================================
   ;;   Variables
 
   (setq
@@ -272,6 +277,8 @@ you should place your code here."
 
    ;; LSP
    lsp-sideline-delay 0.5
+   company-lsp-cache-candidates 'auto
+   company-lsp-async t
 
    ;; Other
    ;; x86-lookup-pdf "~/_config/etc/architecture-instruction-set-extensions-programming-reference.pdf"
