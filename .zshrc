@@ -27,7 +27,6 @@ zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'mafredri/zsh-async'
 zplug 'supercrabtree/k'
-zplug 'b4b4r07/enhancd', use:init.sh
 
 zplug 'tmux-plugins/tpm'
 
@@ -105,10 +104,8 @@ fi
 alias rb='ruby'
 alias be='bundle exec'
 alias py='python'
-alias C=clear
 alias ls='ls --color'
 alias ll='ls -lah'
-alias c='cd ~'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias emacs='emacs -nw'
