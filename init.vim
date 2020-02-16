@@ -2,7 +2,7 @@ let s:cache_home    = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_H
 let s:dein_dir      = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " let g:python_host_prog = $HOME . '/.pyenv/shims/python2'
-let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
+let g:python3_host_prog = $HOME . '/.asdf/shims/python3'
 
 if !isdirectory(s:dein_repo_dir)
    call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
