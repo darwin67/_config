@@ -9,4 +9,7 @@ done
 mkdir -p "${HOME}/.config/nvim"
 ln -sf "${PWD}/init.vim" "${HOME}/.config/nvim/init.vim"
 
+mkdir -p "${HOME}/.config/sway"
+ln -sf "${PWD}/sway" "${HOME}/.config/sway/config"
+
 ln -sf "${PWD}/setup" "${HOME}/bin/setup"
