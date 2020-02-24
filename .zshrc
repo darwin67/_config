@@ -120,6 +120,7 @@ fi
 
 if type go > /dev/null 2>&1 ; then
     export GOPATH=$(go env GOPATH)
+    export PATH="${GOPATH}/bin:${PATH}"
 fi
 
 # ================================================================================
