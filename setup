@@ -46,6 +46,7 @@ if [[ ${WHICH} == 'all' ]]; then
   install_ruby
   install_python
   install_node
+  install_golang
 else
   eval install_${WHICH}
 fi
