@@ -243,7 +243,7 @@ you should place your code here."
 
   ;; ==================================================
   ;; Bug workaround
-  (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
+  ;; (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
 
 
   ;; ==================================================
@@ -279,6 +279,10 @@ you should place your code here."
    flycheck-pos-tip-timeout 10
 
    ;; LSP
+   gc-cons-threshold 100000000
+   read-process-output-max (* 1024 1024) ;; 1mb
+   lsp-prefer-capf t
+   lsp-idle-delay 0.500
    lsp-sideline-delay 0.5
    company-lsp-cache-candidates 'auto
    company-lsp-async t
