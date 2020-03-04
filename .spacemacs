@@ -131,11 +131,18 @@ before layers configuration.
 You should not put any user code in there besides modifying the variable
 values."
   (setq-default
+   dotspacemacs-enable-emacs-pdumper nil
+   dotspacemacs-emacs-pdumper-executable-file "emacs"
+   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
    dotspacemacs-elpa-https t
    dotspacemacs-elpa-timeout 5
+   dotspacemacs-gc-cons '(100000000 0.1)
+   dotspacemacs-use-spacelpa nil
+   dotspacemacs-verify-spacelpa-archives t
    dotspacemacs-check-for-update t
-   dotspacemacs-elpa-subdirectory nil
+   dotspacemacs-elpa-subdirectory 'emacs-version
    dotspacemacs-editing-style 'emacs ;; allowed values ('emacs 'vim 'hybrid)
+   dotspacemacs-startup-buffer-show-version t
    dotspacemacs-verbose-loading nil
    dotspacemacs-startup-banner 'official ;; allowed values ('official 'random nil)
    ;; List of items to show in startup buffer or an association list of
@@ -147,10 +154,19 @@ values."
    dotspacemacs-startup-lists '((recents . 10)
                                 (projects . 7))
    dotspacemacs-startup-buffer-responsive t ;; True if the home buffer should respond to resize events.
+   dotspacemacs-new-empty-buffer-major-mode 'text-mode
    dotspacemacs-scratch-mode 'text-mode
    ;; Press <SPC> T n to cycle to the next theme in the list
    dotspacemacs-themes '(zenburn
                          molokai)
+   ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
+   ;; (default '(spacemacs :separator wave :separator-scale 1.5))
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Meslo LG S for Powerline"
                                :size 11.0
@@ -219,10 +235,22 @@ values."
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-smart-closing-parenthesis nil
    dotspacemacs-highlight-delimiters 'all ;; allowed values ('any 'current 'all nil)
+   dotspacemacs-enable-server nil
+   dotspacemacs-server-socket-dir nil
    dotspacemacs-persistent-server nil
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
    dotspacemacs-whitespace-cleanup 'all ;; allowed values ('all 'trailing 'changed nil)
+   dotspacemacs-pretty-docs nil
    ))
+
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -231,6 +259,13 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  )
+
+(defun dotspacemacs/user-load ()
+  "Library to load while dumping.
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
   )
 
 (defun dotspacemacs/user-config ()
