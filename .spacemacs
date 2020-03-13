@@ -330,6 +330,7 @@ you should place your code here."
 
    ;; org mode
    org-bullets-bullet-list '("◉" "▶" "◆" "■")
+   org-startup-truncated nil
    )
 
   ;; ==================================================
