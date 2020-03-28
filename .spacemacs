@@ -12,6 +12,7 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
+   ;; ============== Tooling ========================
    '(helm
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
@@ -27,13 +28,7 @@ values."
      cmake
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
-     (org :variables
-          org-enable-github-support t
-          org-enable-org-journal-support t
-          org-enable-hugo-support t
-          org-enable-trello-support t
-          org-enable-epub-support t
-          org-projectile-file "TODOs.org")
+     org
      ;; semantic
      syntax-checking
      docker
@@ -48,25 +43,25 @@ values."
           lsp-ui-sideline-show-symbol nil
           lsp-ui-sideline-ignore-duplicate t
           )
-     ;; dap
+     dap
      yaml
      (terraform :variables terraform-auto-format-on-save t)
      node
      xclipboard
      salt
 
-     ;; version control
+     ;; ======= version control ===========
      git
      github
      (version-control :variables
                       version-control-diff-tool 'git-gutter)
 
-     ;; Framework
+     ;; ======== Framework ==============
      react
      ruby-on-rails
      phoenix
 
-     ;; Languages
+     ;; ========= Languages =============
      asm
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
