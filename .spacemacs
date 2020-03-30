@@ -416,14 +416,6 @@ you should place your code here."
 
   (global-set-key (kbd "C-o") 'open-next-line)
   (global-set-key (kbd "M-o") 'open-previous-line)
-
-  ;; org mode
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (mapcar '(lambda (file)
-               (when (file-exists-p file)
-                 (push file org-agenda-files)))
-            (org-projectile-todo-files)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
