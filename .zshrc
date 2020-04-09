@@ -34,7 +34,7 @@ zplug 'tmux-plugins/tpm'
 zplug 'monochromegane/the_platinum_searcher', as:command, rename-to:pt, from:gh-r
 
 # ripgrep
-zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r, at:0.10.0
+zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r
 
 # bat
 zplug 'sharkdp/bat', as:command, rename-to:bat, from:gh-r, use:"*x86_64*linux*"
