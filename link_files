@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files=(.zshrc .zlogin .ctags .railsrc .spacemacs .irbrc .pryrc .gitconfig .gitignore_global .tmux.conf .asdfrc .doom.d)
+files=(.zshrc .zlogin .ctags .railsrc .irbrc .pryrc .gitconfig .gitignore_global .tmux.conf .asdfrc .doom.d)
 
 for file in ${files[@]}; do
     ln -sf "${PWD}/${file}" "${HOME}/${file}"
