@@ -97,6 +97,10 @@ if [[ -d $HOME/.cargo ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [[ -d $HOME/.emacs.d/bin ]]; then
+    export PATH="$HOME/.emacs.d/bin:$PATH"
+fi
+
 # ================================================================================
 #   Alias
 # ================================================================================
@@ -150,4 +154,13 @@ function replace_in_file () {
     local replacement=$2
 
     rg --files-with-matches "$current" | xargs sed -i "s/$current/$replacement/g"
+}
+
+function check_firmware() {
+    fwupdmgr refresh
+    fwupdmgr get-updates
+}
+
+function update_firmware() {
+    fwupdmgr update
 }
