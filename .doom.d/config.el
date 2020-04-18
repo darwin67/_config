@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Darwin D. Wu"
@@ -40,12 +39,6 @@
 ;; Auto rebalance windows after window actions like horiozntal or vertical splits
 (setq window-combination-resize t)
 
-;; Change leader key to M-m in Emacs (non Evil user)
-(setq
- doom-leader-alt-key "M-m"
- doom-localleader-alt-key "C-c m"
- )
-
 ;; Org mode settings
 (setq
    org-bullets-bullet-list '("◉" "▶" "◆" "■")
@@ -54,11 +47,16 @@
 (global-company-mode)
 (global-git-commit-mode t)
 (editorconfig-mode t)
+(drag-stuff-global-mode t)
 
 ;; ===================================================================
 ;; Key Bindings
-(global-set-key (kbd "C-x -") 'split-window-below)
-(global-set-key (kbd "C-x |") 'split-window-right)
+
+;; (global-set-key (kbd "C-x -") 'split-window-below)
+;; (global-set-key (kbd "C-x |") 'split-window-right)
+(map! (:prefix "C-x"
+        "-" 'split-window-below
+        "|" 'split-window-right))
 
 ;; (global-set-key (kbd "C-c ]") 'dumb-jump-go)
 ;; (global-set-key (kbd "C-c C-]") 'spacemacs/jump-to-definition)
@@ -66,23 +64,30 @@
 ;; (global-set-key (kbd "C-c [") 'dumb-jump-back)
 ;; (global-set-key (kbd "C-c \\") 'dumb-jump-quick-look)
 
-;; Multiple cursors
-(global-set-key (kbd "C-c n") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
-
 ;; Text folding
-(global-set-key (kbd "C-c f") 'origami-toggle-node)
-(global-set-key (kbd "C-c C-f") 'origami-toggle-all-nodes)
+;; (global-set-key (kbd "C-c f") 'origami-toggle-node)
+;; (global-set-key (kbd "C-c C-f") 'origami-toggle-all-nodes)
 
 ;; Swap buffers
-(global-set-key (kbd "C-c k") 'buf-move-up)
-(global-set-key (kbd "C-c j") 'buf-move-down)
-(global-set-key (kbd "C-c h") 'buf-move-left)
-(global-set-key (kbd "C-c l") 'buf-move-right)
+(map! :leader
+      :desc "buffer" "b" nil
+      (:prefix "b"
+        :desc "Move buffer up" "k" 'buf-move-up
+        :desc "Move buffer down" "j" 'buf-move-down
+        :desc "Move buffer left" "h" 'buf-move-left
+        :desc "Move buffer right" "l" 'buf-move-right))
 
-;; move text up and down
-(global-set-key (kbd "<M-up>") 'move-text-up)
-(global-set-key (kbd "<M-down>") 'move-text-down)
+;; Set TAB to complete candidate instead of stupidly showing command list
+(with-eval-after-load 'helm
+  (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
+
+;; Change prefix maps for lookup and versioning
+(map! :leader
+      "v" nil
+      :desc "lookup" "l" doom-leader-lookup-map
+      :desc "version conrol" "g" doom-leader-versioning-map)
+
 
 ;; Vim like 'o' and 'O' behaviours
 (defvar newline-and-indent t
@@ -104,6 +109,17 @@
 (global-set-key (kbd "C-o") 'open-next-line)
 (global-set-key (kbd "M-o") 'open-previous-line)
 
+
+;; ===================================================================
+;; Language settings
+
+;; Elixir
+;; Create a buffer-local hook to run elixir-format on save
+;; (add-hook 'elixir-mode-hook
+;;           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
+
+;; ===================================================================
+;; Others
 
 ;; Load Emacs as full screen on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
