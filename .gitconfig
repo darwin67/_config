@@ -13,8 +13,6 @@
 	ui = true
 [alias]
 	co = checkout
-[include]
-	path = ~/.gitignore/github_cred
 [rerere]
 	enabled = true
 [magithub]
@@ -24,4 +22,5 @@
 	includePullRequestsSection = true
 	includeIssuesSection = true
 [github]
+
 	user = darwin67

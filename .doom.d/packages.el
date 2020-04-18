@@ -50,5 +50,8 @@
 (package! buffer-move
   :recipe (:host github :repo "lukhas/buffer-move"))
 
+(package! openline
+  :recipe (:host github :repo "darwin67/openline"))
+
 (package! zenburn-theme
   :recipe (:host github :repo "bbatsov/zenburn-emacs"))

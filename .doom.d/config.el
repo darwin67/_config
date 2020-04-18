@@ -53,11 +53,22 @@
 ;; ===================================================================
 ;; Key Bindings
 
-;; (global-set-key (kbd "C-x -") 'split-window-below)
-;; (global-set-key (kbd "C-x |") 'split-window-right)
+;; Change prefix maps for lookup and versioning
+(map! :leader
+      "v" nil
+      :desc "lookup" "l" doom-leader-lookup-map
+      :desc "version conrol" "g" doom-leader-versioning-map)
+
+;; Set bindings for window splits that are more intuitive
 (map! (:prefix "C-x"
         "-" 'split-window-below
         "|" 'split-window-right))
+
+;; Vim like 'o' and 'O' behaviours
+(map!
+ "C-o" 'open-next-line
+ "M-o" 'open-previous-line)
+
 
 ;; (global-set-key (kbd "C-c ]") 'dumb-jump-go)
 ;; (global-set-key (kbd "C-c C-]") 'spacemacs/jump-to-definition)
@@ -82,34 +93,6 @@
 (with-eval-after-load 'helm
   (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
-
-;; Change prefix maps for lookup and versioning
-(map! :leader
-      "v" nil
-      :desc "lookup" "l" doom-leader-lookup-map
-      :desc "version conrol" "g" doom-leader-versioning-map)
-
-
-;; Vim like 'o' and 'O' behaviours
-(defvar newline-and-indent t
-  "Modify the behaviour of the open-*-line functions to cause them to autoindent.")
-(defun open-next-line (arg)
-  "Move to the end of line and then opens a new line"
-  (interactive "p")
-  (end-of-line)
-  (open-line arg)
-  (forward-line 1)
-  (when newline-and-indent (indent-according-to-mode)))
-(defun open-previous-line (arg)
-  "Open a new line before the current one."
-  (interactive "p")
-  (beginning-of-line)
-  (open-line arg)
-  (when newline-and-indent (indent-according-to-mode)))
-
-(global-set-key (kbd "C-o") 'open-next-line)
-(global-set-key (kbd "M-o") 'open-previous-line)
-
 
 ;; ===================================================================
 ;; Language settings
