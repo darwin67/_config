@@ -49,3 +49,6 @@
 ;; Install buffer-move
 (package! buffer-move
   :recipe (:host github :repo "lukhas/buffer-move"))
+
+(package! zenburn-theme
+  :recipe (:host github :repo "bbatsov/zenburn-emacs"))
