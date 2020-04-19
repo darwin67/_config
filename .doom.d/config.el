@@ -55,35 +55,32 @@
 ;; ===================================================================
 ;; Key Bindings
 
-;; Change prefix maps for lookup and versioning
+;; Global
+(map!
+ ;; Vim like 'o' and 'O' behaviours
+ "C-o" 'open-next-line
+ "M-o" 'open-previous-line
+
+ ;; Set bindings for window splits that are more intuitive
+ (:prefix "C-x"
+   "-" 'split-window-below
+   "|" 'split-window-right))
+
+;; Leader prefix
 (map! :leader
+      ;; Change prefix maps for lookup and versioning
       "v" nil
       :desc "lookup" "l" doom-leader-lookup-map
-      :desc "version conrol" "g" doom-leader-versioning-map)
+      :desc "version control" "g" doom-leader-versioning-map
 
-;; Set bindings for window splits that are more intuitive
-(map! (:prefix "C-x"
-        "-" 'split-window-below
-        "|" 'split-window-right))
+      ;; toggle code folding
+      :desc "fold toggle" "C-f" '+fold/toggle
 
-;; Vim like 'o' and 'O' behaviours
-(map!
- "C-o" 'open-next-line
- "M-o" 'open-previous-line)
+      ;; Jumps
+      :desc "Jump to definition" "]" '+lookup/definition
+      :desc "Jump back" "[" 'better-jumper-jump-backward
 
-
-;; (global-set-key (kbd "C-c ]") 'dumb-jump-go)
-;; (global-set-key (kbd "C-c C-]") 'spacemacs/jump-to-definition)
-;; (global-set-key (kbd "C-c }") 'spacemacs/jump-to-definition-other-window)
-;; (global-set-key (kbd "C-c [") 'dumb-jump-back)
-;; (global-set-key (kbd "C-c \\") 'dumb-jump-quick-look)
-
-;; Text folding
-;; (global-set-key (kbd "C-c f") 'origami-toggle-node)
-;; (global-set-key (kbd "C-c C-f") 'origami-toggle-all-nodes)
-
-;; Swap buffers
-(map! :leader
+      ;; Swap buffers
       :desc "buffer" "b" nil
       (:prefix "b"
         :desc "Move buffer up" "k" 'buf-move-up
@@ -101,7 +98,6 @@
 
 ;; Elixir
 (setq lsp-clients-elixir-server-executable "~/.lsp/elixir-ls/language_server.sh")
-
 ;; Create a buffer-local hook to run elixir-format on save
 (add-hook 'elixir-mode-hook
           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
