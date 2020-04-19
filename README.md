@@ -50,3 +50,13 @@ Run the following script to install the common libraries used.
 ```bash
 $ setup
 ```
+
+#### Elixir
+
+``` bash
+$ git clone git@github.com:elixir-lsp/elixir-ls.git
+$ mix deps.get
+$ mix compile
+$ mix elixir_ls.release -o ~/.lsp
+```
+
