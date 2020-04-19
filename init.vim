@@ -1,3 +1,6 @@
+" install with the following command
+" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 " Plugins will be downloaded under this directory
 call plug#begin('~/.vim/plugged')
 
