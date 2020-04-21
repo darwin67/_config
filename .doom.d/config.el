@@ -88,11 +88,6 @@
         :desc "Move buffer left" "h" 'buf-move-left
         :desc "Move buffer right" "l" 'buf-move-right))
 
-;; Set TAB to complete candidate instead of stupidly showing command list
-(with-eval-after-load 'helm
-  (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
-  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
-
 ;; ===================================================================
 ;; Language settings
 
