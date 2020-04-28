@@ -90,7 +90,7 @@ fi
 
 if [[ -d $ZPLUG_REPOS/asdf-vm/asdf ]]; then
     . $ZPLUG_REPOS/asdf-vm/asdf/asdf.sh
-    . $ZPLUG_REPOS/asdf-vm/asdf/completions/asdf.bash
+    # . $ZPLUG_REPOS/asdf-vm/asdf/completions/asdf.bash
 fi
 
 if [[ -d $HOME/.cargo ]]; then
@@ -99,6 +99,7 @@ fi
 
 if [[ -d $HOME/.emacs.d/bin ]]; then
     export PATH="$HOME/.emacs.d/bin:$PATH"
+    alias doom_compile="doom compile :core modules/{completion,input,ui,checkers,emacs}"
 fi
 
 # ================================================================================
@@ -113,6 +114,8 @@ alias ll='ls -lah'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias emacs='emacs -nw'
+alias check_firmware="fwupdmgr get-updates"
+alias update_firmware="fwupdmgr update"
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
@@ -156,11 +159,3 @@ function replace_in_file () {
     rg --files-with-matches "$current" | xargs sed -i "s/$current/$replacement/g"
 }
 
-function check_firmware() {
-    fwupdmgr refresh
-    fwupdmgr get-updates
-}
-
-function update_firmware() {
-    fwupdmgr update
-}
