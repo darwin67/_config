@@ -55,3 +55,5 @@
 
 (package! zenburn-theme
   :recipe (:host github :repo "bbatsov/zenburn-emacs"))
+
+(package! yaml-mode)
