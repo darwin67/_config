@@ -97,9 +97,6 @@
 (add-hook 'elixir-mode-hook
           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
 
-;; Additional YAML extensions
-(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
-
 ;; ===================================================================
 ;; Others
 
