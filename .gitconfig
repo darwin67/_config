@@ -24,3 +24,5 @@
 [github]
 
 	user = darwin67
+[pull]
+	rebase = false
