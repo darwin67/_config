@@ -64,7 +64,8 @@
  ;; Set bindings for window splits that are more intuitive
  (:prefix "C-x"
    "-" 'split-window-below
-   "|" 'split-window-right))
+   "|" 'split-window-right
+   "g" 'magit-status))
 
 ;; Leader prefix
 (map! :leader
