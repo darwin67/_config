@@ -90,7 +90,7 @@
        ;;pdf               ; pdf enhancements
 
        :lang
-       assembly            ; assembly for fun or debugging
+       ;; assembly            ; removed at https://github.com/hlissner/doom-emacs/commit/2d766cfa0c0b80a25718ae2bb46cf6f375ea67d9
        (cc +lsp)           ; C/C++/Obj-C madness
        data                ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else

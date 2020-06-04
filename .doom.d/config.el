@@ -68,11 +68,6 @@
 
 ;; Leader prefix
 (map! :leader
-      ;; Change prefix maps for lookup and versioning
-      "v" nil
-      :desc "lookup" "l" doom-leader-lookup-map
-      :desc "version control" "g" doom-leader-versioning-map
-
       ;; toggle code folding
       :desc "fold toggle" "C-f" '+fold/toggle
 
