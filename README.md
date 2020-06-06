@@ -20,6 +20,9 @@ $ sudo pacman -S --needed base-devel libffi libyaml openssl zlib
 
 # Python
 $ sudo pacman -S base-devel openssl zlib xz
+
+# Fonts
+$ sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra adobe-source-han-sans-jp-fonts
 ```
 
 ## Powerline fonts for both Vim and Tmux
