@@ -57,6 +57,7 @@ $ setup
 #### Elixir
 
 ``` bash
+$ export MIX_ENV=prod
 $ git clone git@github.com:elixir-lsp/elixir-ls.git
 $ mix deps.get
 $ mix compile
