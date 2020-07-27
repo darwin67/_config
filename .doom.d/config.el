@@ -104,3 +104,6 @@
 
 ;; Rust
 (setq rustic-lsp-server 'rust-analyzer)
+
+;; systemd
+(add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
