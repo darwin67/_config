@@ -63,3 +63,6 @@
 
 ;; systemd
 (package! systemd)
+
+;; protobuf
+(package! protobuf-mode)
