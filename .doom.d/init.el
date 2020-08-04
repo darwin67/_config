@@ -85,6 +85,7 @@
        lsp
        (magit +forge)      ; a git porcelain for Emacs
        docker
+       terraform
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
