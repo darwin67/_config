@@ -96,6 +96,13 @@
 ;; ===================================================================
 ;; Others
 
+;; LSP mode
+(setq
+ gc-cons-threshold 100000000
+ read-process-output-max (* 1024 1024) ;; 1mb
+ lsp-completion-provider :capf
+ lsp-idle-delay 0.500)
+
 ;; Load Emacs as full screen on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
 
