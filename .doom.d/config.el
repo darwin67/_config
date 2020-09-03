@@ -103,7 +103,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Rust
-(setq rustic-lsp-server 'rust-analyzer)
+;; (setq rustic-lsp-server 'rust-analyzer)
+(setq rustic-lsp-server 'rls)
 
 ;; systemd
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
