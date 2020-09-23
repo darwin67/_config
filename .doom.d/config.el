@@ -34,6 +34,9 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 
+;; tab width
+(setq tab-width 4)
+
 ;; set cursor margin to 7 lines
 (setq scroll-margin 7)
 
