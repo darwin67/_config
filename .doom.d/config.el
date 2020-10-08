@@ -35,7 +35,8 @@
 (setq display-line-numbers-type nil)
 
 ;; tab width
-(setq tab-width 4)
+(setq tab-width 2)
+(setq-default indent-tabs-mode nil)
 
 ;; set cursor margin to 7 lines
 (setq scroll-margin 7)
