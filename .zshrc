@@ -148,6 +148,9 @@ if type libvirtd > /dev/null 2>&1 ; then
   export VAGRANT_DEFAULT_PROVIDER=libvirt
 fi
 
+# Build Erlang docs
+export KERL_BUILD_DOCS=yes
+
 # ================================================================================
 #   Functions
 # ================================================================================
