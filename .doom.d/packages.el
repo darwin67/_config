@@ -61,8 +61,5 @@
   :recipe (:host github :repo "beancount/beancount"
            :files ("editors/emacs/beancount.el")))
 
-;; systemd
-(package! systemd)
-
 ;; protobuf
 (package! protobuf-mode)
