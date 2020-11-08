@@ -35,8 +35,8 @@
 (setq display-line-numbers-type nil)
 
 ;; tab width
-(setq tab-width 2)
 (setq-default indent-tabs-mode nil)
+(setq tab-width 2)
 
 ;; set cursor margin to 7 lines
 (setq scroll-margin 7)
@@ -105,7 +105,9 @@
  gc-cons-threshold 100000000
  read-process-output-max (* 1024 1024) ;; 1mb
  lsp-completion-provider :capf
- lsp-idle-delay 0.500)
+ lsp-idle-delay 0.500
+ lsp-auto-configure t
+ lsp-enable-file-watchers t)
 
 ;; Load Emacs as full screen on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
