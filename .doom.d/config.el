@@ -116,7 +116,10 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Rust
-(setq rustic-lsp-server 'rust-analyzer) ;; use 2020-6-15 release for now due to performance issues with Diesel
+(setq
+ rustic-lsp-server 'rust-analyzer
+ lsp-rust-analyzer-exclude-globs ["tmp/**/*"]
+ )
 
 ;; systemd
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
