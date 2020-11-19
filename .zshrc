@@ -158,7 +158,10 @@ export KERL_BUILD_DOCS=yes
 function replace_in_file () {
     local current=$1
     local replacement=$2
-
     rg --files-with-matches "$current" | xargs sed -i "s/$current/$replacement/g"
 }
 
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"`"
+}
