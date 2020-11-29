@@ -22,7 +22,6 @@
 	includePullRequestsSection = true
 	includeIssuesSection = true
 [github]
-
 	user = darwin67
 [pull]
 	rebase = false
