@@ -107,7 +107,7 @@
  lsp-completion-provider :capf
  lsp-idle-delay 0.500
  lsp-auto-configure t
- lsp-enable-file-watchers t)
+ lsp-enable-file-watchers nil)
 
 ;; Load Emacs as full screen on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
