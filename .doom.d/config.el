@@ -118,8 +118,14 @@
 ;; Rust
 (setq
  rustic-lsp-server 'rust-analyzer
+ lsp-rust-all-features t
  lsp-rust-analyzer-exclude-globs ["tmp/**/*"]
+ lsp-enable-file-watchers nil
+ rustic-flycheck-clippy-params "--message-format=json"
  )
+
+;; (push 'rustic-clippy flycheck-checkers)
+;; (remove-hook 'rustic-mode-hook 'flycheck-mode)
 
 ;; systemd
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
@@ -142,6 +148,7 @@
 ;; formats the buffer before saving
 (add-hook 'before-save-hook 'tide-format-before-save)
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode))
 
 ;; Liquid
 (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
