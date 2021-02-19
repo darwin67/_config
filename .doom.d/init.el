@@ -20,7 +20,7 @@
 
        :completion
        company             ; the ultimate code completion backend
-       (ivy +fuzzy +prescient +childframe +icons) ; a search engine for love and life
+       (ivy +fuzzy +prescient +icons) ; a search engine for love and life
 
        :ui
        ;;deft              ; notational velocity for Emacs
