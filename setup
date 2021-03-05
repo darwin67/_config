@@ -2,7 +2,7 @@
 
 RUBY_PKG='rubocop sqlint mdl rails pry awesome_print neovim bundler pry-byebug pry-doc solargraph'
 NODE_PKG='js-beautify eslint typescript tslint typescript-formatter typescript-language-server dockerfile_lint neovim yarn bash-language-server'
-PYTHON_PKG="awscli neovim jedi flake8 importmagic pytest autoflake isort yapf python-language-server importmagic epc ipython"
+PYTHON_PKG="awscli neovim jedi flake8 importmagic pytest autoflake isort yapf python-language-server importmagic epc ipython pipenv"
 
 WHICH=${1:-all}
 
