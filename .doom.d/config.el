@@ -152,3 +152,7 @@
 
 ;; Liquid
 (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
+
+;; beancount (plain text accounting)
+(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
+(add-hook 'beancount-mode-hook #'outline-minor-mode)

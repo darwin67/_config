@@ -58,8 +58,7 @@
 
 ;; beancount support for plain text accounting
 (package! beancount
-  :recipe (:host github :repo "beancount/beancount"
-           :files ("editors/emacs/beancount.el")))
+  :recipe (:host github :repo "beancount/beancount-mode"))
 
 ;; protobuf
 (package! protobuf-mode)
