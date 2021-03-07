@@ -116,6 +116,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias emacs='emacs -nw'
 alias check_firmware="fwupdmgr get-updates"
 alias update_firmware="fwupdmgr update"
+alias gcst="git-crypt status"
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
