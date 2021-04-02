@@ -62,3 +62,6 @@
 
 ;; protobuf
 (package! protobuf-mode)
+
+;; graphql mode
+(package! graphql-mode)
