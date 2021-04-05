@@ -102,10 +102,10 @@
 
 ;; LSP mode
 (setq
- gc-cons-threshold 100000000
- read-process-output-max (* 1024 1024) ;; 1mb
+ gc-cons-threshold #x8000000
+ read-process-output-max (* 10000 1024) ;; 10mb
  lsp-completion-provider :capf
- lsp-idle-delay 0.500
+ lsp-idle-delay 0.2
  lsp-auto-configure t
  lsp-enable-file-watchers nil)
 
