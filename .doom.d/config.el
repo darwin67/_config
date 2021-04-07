@@ -55,7 +55,6 @@
 (drag-stuff-global-mode t)
 (+global-word-wrap-mode t)
 
-
 ;; ===================================================================
 ;; Key Bindings
 
@@ -123,6 +122,9 @@
  lsp-enable-file-watchers nil
  rustic-flycheck-clippy-params "--message-format=json"
  )
+
+(add-to-list '+word-wrap-disabled-modes 'rust-mode)
+(add-to-list '+word-wrap-disabled-modes 'rustic-mode)
 
 ;; (push 'rustic-clippy flycheck-checkers)
 ;; (remove-hook 'rustic-mode-hook 'flycheck-mode)
