@@ -87,7 +87,7 @@
        (ruby +rails +lsp)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        sh                  ; she sells {ba,z,fi}sh shells on the C xor
-       (web +html +css)    ; the tubes
+       (web +css)          ; the tubes
        yaml
 
        :email
