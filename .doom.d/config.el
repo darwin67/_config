@@ -91,7 +91,7 @@
 ;; Language settings
 
 ;; Elixir
-(setq lsp-clients-elixir-server-executable "~/.lsp/elixir-ls/language_server.sh")
+
 ;; Create a buffer-local hook to run elixir-format on save
 (add-hook 'elixir-mode-hook
           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))

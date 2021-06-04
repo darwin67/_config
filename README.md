@@ -64,3 +64,5 @@ $ mix compile
 $ mix elixir_ls.release -o ~/.lsp/elixir-ls
 ```
 
+Add `~/.lsp/elixir-ls` to `$PATH` and run `doom env` to make sure Doom know about that path.
+
