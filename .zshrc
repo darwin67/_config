@@ -118,6 +118,8 @@ alias check_firmware="fwupdmgr get-updates"
 alias update_firmware="fwupdmgr update"
 alias gcst="git-crypt status"
 
+alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
+
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
 fi

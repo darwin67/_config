@@ -1,0 +1,9 @@
+$HOME/Download
+$HOME/Drive
+$HOME/_config
+$HOME/.cache
+$HOME/.config
+$HOME/.local/share/Trash
+
+tmp/
+
