@@ -4,15 +4,6 @@ Settings that are shared across computers.
 
 ## Prerequisites
 
-**Ubuntu**
-```bash
-# Ruby
-$ sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev texinfo
-
-# Python
-$ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-```
-
 **Arch**
 ```bash
 # Ruby
@@ -37,16 +28,6 @@ Set font on iTerm or Terminal
 Meslo LG S for Powerline
 ```
 
-## Additional addons
-
-```
-# copyq
-$ sudo add-apt-repository ppa:hluk/copyq
-
-# Clang
-# source: http://apt.llvm.org/
-```
-
 ## Post language installation
 
 Run the following script to install the common libraries used.
@@ -61,8 +42,8 @@ $ export MIX_ENV=prod
 $ git clone git@github.com:elixir-lsp/elixir-ls.git
 $ mix deps.get
 $ mix compile
-$ mix elixir_ls.release -o ~/.lsp/elixir-ls
+$ mix elixir_ls.release -o ~/.lsp/elixir
 ```
 
-Add `~/.lsp/elixir-ls` to `$PATH` and run `doom env` to make sure Doom know about that path.
+Add `~/.lsp/elixir` to `$PATH` and run `doom env` to make sure Doom know about that path.
 
