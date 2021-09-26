@@ -151,7 +151,9 @@ if type libvirtd > /dev/null 2>&1 ; then
   export VAGRANT_DEFAULT_PROVIDER=libvirt
 fi
 
-# Build Erlang docs
+# Elixir & Erlang settings
+export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
+export PATH="$HOME/.lsp/elixir:$PATH"
 export KERL_BUILD_DOCS=yes
 
 # ================================================================================
