@@ -74,7 +74,7 @@
        :lang
        (cc +lsp)           ; C/C++/Obj-C madness
        data                ; config/data formats
-       ; (dart +flutter)     ; paint ui and not much else
+       (dart +flutter)     ; paint ui and not much else
        (elixir +lsp)       ; erlang done right
        emacs-lisp          ; drown in parentheses
        erlang              ; an elegant language for a more civilized age
@@ -82,7 +82,7 @@
        (javascript +lsp)   ; all(hope(abandon(ye(who(enter(here))))))
        json
        markdown            ; writing docs for people to ignore
-       ;; org                 ; organize your plain life in plain text
+       org                 ; organize your plain life in plain text
        (python +lsp +pyright)           ; beautiful is better than ugly
        (ruby +rails +lsp)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()

@@ -57,8 +57,8 @@
 ;;   :recipe (:host github :repo "bbatsov/zenburn-emacs"))
 
 ;; beancount support for plain text accounting
-(package! beancount
-  :recipe (:host github :repo "beancount/beancount-mode"))
+;; (package! beancount
+;;   :recipe (:host github :repo "beancount/beancount-mode"))
 
 ;; protobuf
 (package! protobuf-mode)
