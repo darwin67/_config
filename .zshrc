@@ -156,6 +156,23 @@ export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
 export PATH="$HOME/.lsp/elixir:$PATH"
 export KERL_BUILD_DOCS=yes
 
+# Dart & Flutter
+export PATH="$HOME/Android/Sdk/tools/bin:$PATH"
+
+## export google chrome bin for flutter usage
+if type google-chrome-stable > /dev/null 2>&1 ; then
+  export CHROME_EXECUTABLE=$(which google-chrome-stable)
+fi
+
+## Setup dart and flutter sdk dir for Emacs
+if type dart > /dev/null 2>&1 ; then
+    export DART_SDK_DIR="$HOME/.asdf/installs/dart/$(asdf current dart | awk '{ print $2 }')/dart-sdk"
+fi
+
+if type flutter > /dev/null 2>&1 ; then
+    export FLUTTER_SDK_DIR="$HOME/.asdf/installs/flutter/$(asdf current flutter | awk '{ print $2 }')"
+fi
+
 # ================================================================================
 #   Functions
 # ================================================================================
