@@ -74,7 +74,7 @@
        :lang
        (cc +lsp)           ; C/C++/Obj-C madness
        data                ; config/data formats
-       (dart +flutter)     ; paint ui and not much else
+       (dart +lsp +flutter)     ; paint ui and not much else
        (elixir +lsp)       ; erlang done right
        emacs-lisp          ; drown in parentheses
        erlang              ; an elegant language for a more civilized age
