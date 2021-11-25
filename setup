@@ -22,24 +22,23 @@ function install_node() {
 }
 
 function install_golang() {
-    go get github.com/cjbassi/gotop
-    go get -u -v github.com/mdempsky/gocode
-    go get -u -v github.com/rogpeppe/godef
-    go get -u -v golang.org/x/tools/cmd/guru
-    go get -u -v golang.org/x/tools/cmd/gorename
-    go get -u -v golang.org/x/tools/cmd/goimports
-    go get -u -v golang.org/x/tools/cmd/godoc
-    go get -u -v github.com/zmb3/gogetdoc
-    go get -u -v github.com/cweill/gotests/...
-    go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
-    go get -u -v github.com/davidrjenni/reftools/cmd/fillstruct
-    go get -u github.com/josharian/impl
-    go get -u -v github.com/alecthomas/gometalinter
-    go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-    go get -u -v github.com/godoctor/godoctor
-    go install github.com/godoctor/godoctor
-    go get -u -v github.com/fatih/gomodifytags
-    GO111MODULE=on go get golang.org/x/tools/gopls@latest
+    go install github.com/cjbassi/gotop@latest
+    go install github.com/mdempsky/gocode@latest
+    # go install github.com/rogpeppe/godef@latest
+    go install golang.org/x/tools/cmd/guru@latest
+    go install github.com/x-motemen/gore/cmd/gore@latest
+    # go install golang.org/x/tools/cmd/goimports@latest
+    # go install golang.org/x/tools/cmd/godoc@latest
+    # go install github.com/zmb3/gogetdoc@latest
+    go get -u github.com/cweill/gotests/...
+    # go install github.com/haya14busa/gopkgs/cmd/gopkgs@latest
+    # go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
+    # go install github.com/josharian/impl@latest
+    # go install github.com/alecthomas/gometalinter@latest
+    # go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    # go install github.com/godoctor/godoctor@latest
+    go install github.com/fatih/gomodifytags@latest
+    go install golang.org/x/tools/gopls@latest
 }
 
 if [[ ${WHICH} == 'all' ]]; then
