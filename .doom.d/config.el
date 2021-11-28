@@ -54,6 +54,7 @@
 (editorconfig-mode t)
 (drag-stuff-global-mode t)
 (+global-word-wrap-mode t)
+(global-tree-sitter-mode)               ; https://emacs-tree-sitter.github.io/getting-started/
 
 ;; ===================================================================
 ;; Key Bindings

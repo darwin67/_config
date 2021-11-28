@@ -53,9 +53,6 @@
 (package! openline
   :recipe (:host github :repo "darwin67/openline"))
 
-;; (package! zenburn-theme
-;;   :recipe (:host github :repo "bbatsov/zenburn-emacs"))
-
 ;; beancount support for plain text accounting
 ;; (package! beancount
 ;;   :recipe (:host github :repo "beancount/beancount-mode"))
@@ -65,3 +62,6 @@
 
 ;; graphql mode
 (package! graphql-mode)
+
+(package! tree-sitter)
+(package! tree-sitter-langs)
