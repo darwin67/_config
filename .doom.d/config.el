@@ -160,6 +160,5 @@
 ;; (add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
 ;; (add-hook 'beancount-mode-hook #'outline-minor-mode)
 
-;; Dart
-(setq lsp-dart-sdk-dir (getenv "DART_SDK_DIR"))
-(setq lsp-dart-flutter-sdk-dir (getenv "FLUTTER_SDK_DIR"))
+;; web-mode
+(setq web-mode-markup-indent-offset 2)
