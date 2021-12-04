@@ -66,7 +66,7 @@
        editorconfig        ; let someone else argue about tabs vs spaces
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       lsp
+       (lsp +peek)
        (magit +forge)      ; a git porcelain for Emacs
        docker
        terraform

@@ -86,7 +86,8 @@
         :desc "Move buffer up" "k" 'buf-move-up
         :desc "Move buffer down" "j" 'buf-move-down
         :desc "Move buffer left" "h" 'buf-move-left
-        :desc "Move buffer right" "l" 'buf-move-right))
+        :desc "Move buffer right" "l" 'buf-move-right
+        :desc "Show imenu" "i" 'lsp-ui-imenu))
 
 ;; ===================================================================
 ;; Language settings
@@ -107,7 +108,13 @@
  lsp-completion-provider :capf
  lsp-idle-delay 0.2
  lsp-auto-configure t
- lsp-enable-file-watchers nil)
+ lsp-enable-file-watchers nil
+ lsp-lens-place-position 'above-line
+ lsp-ui-doc-show-with-mouse nil
+ lsp-headerline-breadcrumb-enable t
+ lsp-ui-sideline-enable nil
+ lsp-eldoc-enable-hover nil
+ lsp-completion-show-detail t)
 
 ;; Load Emacs as full screen on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
