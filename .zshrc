@@ -159,14 +159,8 @@ if type google-chrome-stable > /dev/null 2>&1 ; then
   export CHROME_EXECUTABLE=$(which google-chrome-stable)
 fi
 
-## Setup dart and flutter sdk dir for Emacs
-if type dart > /dev/null 2>&1 ; then
-    export DART_SDK_DIR="$HOME/.asdf/installs/dart/$(asdf current dart | awk '{ print $2 }')/dart-sdk"
-fi
-
-if type flutter > /dev/null 2>&1 ; then
-    export FLUTTER_SDK_DIR="$HOME/.asdf/installs/flutter/$(asdf current flutter | awk '{ print $2 }')"
-fi
+# Python & Ansible
+export PY_COLORS='1' ANSIBLE_FORCE_COLOR='1'
 
 # ================================================================================
 #   Functions
