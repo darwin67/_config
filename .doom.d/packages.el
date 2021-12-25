@@ -46,6 +46,10 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
+;; Theme
+(package! zenburn
+  :recipe (:host github :repo "bbatsov/zenburn-emacs"))
+
 ;; Install buffer-move
 (package! buffer-move
   :recipe (:host github :repo "lukhas/buffer-move"))
