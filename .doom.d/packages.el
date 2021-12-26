@@ -69,3 +69,6 @@
 
 (package! tree-sitter)
 (package! tree-sitter-langs)
+
+(package! systemd)
+(package! nginx-mode)

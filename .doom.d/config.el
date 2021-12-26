@@ -169,3 +169,6 @@
 
 ;; web-mode
 (setq web-mode-markup-indent-offset 2)
+
+;; Nginx
+(add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
