@@ -138,7 +138,7 @@ fi
 # ================================================================================
 
 # Preferred editor for local and remote sessions
-export EDITOR='emacs'
+export EDITOR='emacsclient'
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
