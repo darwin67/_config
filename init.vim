@@ -4,6 +4,7 @@
 " Plugins will be downloaded under this directory
 call plug#begin('~/.vim/plugged')
 
+Plug 'jnurmine/zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
@@ -22,6 +23,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors, Fonts and Theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colors zenburn
 let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
 
