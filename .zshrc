@@ -176,3 +176,9 @@ function prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
 }
+
+# NOTE: uncomment this export for
+# * ibus-mozc
+# * mozc-ut-common
+# This is for direct access to python3 for bazel builds
+# export PATH="/usr/bin:$PATH"
