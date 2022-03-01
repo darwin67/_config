@@ -177,8 +177,10 @@ function prev() {
   sh -c "pet new `printf %q "$PREV"`"
 }
 
-# NOTE: uncomment this export for
+# NOTE: run this command before installing
 # * ibus-mozc
-# * mozc-ut-common
+# * mozc-ut
 # This is for direct access to python3 for bazel builds
-# export PATH="/usr/bin:$PATH"
+function bypass_asdf() {
+  export PATH="/usr/bin:$PATH"
+}
