@@ -12,6 +12,10 @@ $ sudo pacman -S --needed base-devel libffi libyaml openssl zlib
 # Python
 $ sudo pacman -S base-devel openssl zlib xz
 
+# Erlang
+# Reference: https://github.com/asdf-vm/asdf-erlang#arch-linux
+$ sudo pacman -S ncurses glu mesa wxgtk2 libpng libssh unixodbc libxslt fop
+
 # Fonts
 $ sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra adobe-source-han-sans-jp-fonts
 ```
