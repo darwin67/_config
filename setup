@@ -39,6 +39,7 @@ function install_golang() {
     # go install github.com/godoctor/godoctor@latest
     go install github.com/fatih/gomodifytags@latest
     go install golang.org/x/tools/gopls@latest
+    go install github.com/cweill/gotests@latest
 }
 
 if [[ ${WHICH} == 'all' ]]; then

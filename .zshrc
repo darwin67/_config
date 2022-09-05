@@ -40,7 +40,7 @@ zplug 'BurntSushi/ripgrep', as:command, rename-to:rg, from:gh-r
 zplug 'sharkdp/bat', as:command, rename-to:bat, from:gh-r, use:"*x86_64*linux*"
 
 # Language manager
-zplug 'asdf-vm/asdf', from:github, at:v0.9.0
+zplug 'asdf-vm/asdf', from:github
 
 # Github
 zplug 'github/hub', as:command, from:gh-r
