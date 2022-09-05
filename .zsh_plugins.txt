@@ -1,0 +1,34 @@
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+# mafredri/zsh-async
+supercrabtree/k
+
+# NOTE: just need the repo. the rest is done when the shell inits in .zshrc
+tmux-plugins/tpm kind:path
+
+# Language + Binary manager
+asdf-vm/asdf
+
+# Utilities
+# belak/zsh-utils path:editor
+# belak/zsh-utils path:history
+belak/zsh-utils path:prompt
+belak/zsh-utils path:utility
+# belak/zsh-utils path:completion
+
+# Convenient stuff from oh-my-zsh
+# ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/github
+ohmyzsh/ohmyzsh path:plugins/tmux
+
+# Convenient stuff from prezto
+sorin-ionescu/prezto path:modules/editor
+sorin-ionescu/prezto path:modules/completion
+sorin-ionescu/prezto path:modules/history
+
+# Theme
+sindresorhus/pure kind:fpath
+
