@@ -4,6 +4,19 @@
 #   Zsh configs
 #
 
+# ================================================================================
+#   Antidote setup
+# ================================================================================
+
+# Download antidote if not available
+antidote_dir=${ZDOTDIR:-~}/.antidote
+plugins_txt=${ZDOTDIR:-~}/.zsh_plugins.txt
+static_file=${ZDOTDIR:-~}/.zsh_plugins.zsh
+
+if [[ ! $static_file -nt $plugins_txt ]]; then
+  [[ -e $antidote_dir ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
+fi
+
 # Some useful variables
 export CONFIG="$HOME/_config"
 export TPM_PLUGINS="${HOME}/.tmux/plugins"
