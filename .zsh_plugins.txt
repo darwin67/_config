@@ -23,6 +23,7 @@ belak/zsh-utils path:utility
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/github
 ohmyzsh/ohmyzsh path:plugins/tmux
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
 # Convenient stuff from prezto
 sorin-ionescu/prezto path:modules/editor
@@ -31,4 +32,3 @@ sorin-ionescu/prezto path:modules/history
 
 # Theme
 sindresorhus/pure kind:fpath
-

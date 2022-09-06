@@ -1,9 +1,19 @@
 #!/bin/bash
 
-files=(.zshrc .zlogin .pryrc .gitconfig .gitignore_global .tmux.conf .asdfrc .doom.d .zsh_plugins.txt)
+directories=(.doom.d)
+files=(.zshrc .zlogin .pryrc .gitconfig .gitignore_global .tmux.conf .asdfrc .zsh_plugins.txt "${directories[@]}")
 
+# symlink all files and directories
 for file in ${files[@]}; do
     ln -sf "${PWD}/${file}" "${HOME}/${file}"
+done
+
+# clean up duplicates when running symlink on existing dirs
+for dir in ${directories[@]}; do
+    _path=${PWD}/${dir}/${dir}
+    if [[ -d $_path ]]; then
+        rm $_path
+    fi
 done
 
 mkdir -p "${HOME}/.config/nvim"
