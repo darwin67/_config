@@ -1,0 +1,9 @@
+#!/usr/bin/zsh
+#
+
+# NOTE: run this command before installing
+# * ibus-mozc
+# * mozc-ut
+# This is for direct access to python3 for bazel builds
+
+export PATH="/usr/bin:$PATH"

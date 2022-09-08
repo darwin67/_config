@@ -105,6 +105,9 @@ fi
 #   Environment Variables
 # ================================================================================
 
+# Location for zfunctions plugin
+export ZFUNCDIR="$CONFIG/zfunc"
+
 # Preferred editor for local and remote sessions
 export EDITOR='emacsclient'
 
@@ -129,26 +132,3 @@ fi
 
 # Python & Ansible
 export PY_COLORS='1' ANSIBLE_FORCE_COLOR='1'
-
-# ================================================================================
-#   Functions
-# ================================================================================
-
-function replace_in_file () {
-    local current=$1
-    local replacement=$2
-    rg --files-with-matches "$current" | xargs sed -i "s/$current/$replacement/g"
-}
-
-function prev() {
-  PREV=$(fc -lrn | head -n 1)
-  sh -c "pet new `printf %q "$PREV"`"
-}
-
-# NOTE: run this command before installing
-# * ibus-mozc
-# * mozc-ut
-# This is for direct access to python3 for bazel builds
-function bypass_asdf() {
-  export PATH="/usr/bin:$PATH"
-}

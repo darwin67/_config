@@ -1,0 +1,5 @@
+#!/usr/bin/zsh
+
+local current=$1
+local replacement=$2
+grep --files-with-matches "$current" | xargs sed -i "s/$current/$replacement/g"

@@ -1,9 +1,13 @@
+# Plugins
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 # mafredri/zsh-async
 supercrabtree/k
+mattmc3/zfunctions
+# zdharma-continuum/fast-syntax-highlighting kind:defer
+
 
 # NOTE: just need the repo. the rest is done when the shell inits in .zshrc
 tmux-plugins/tpm kind:path
