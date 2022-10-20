@@ -71,19 +71,31 @@ fi
 #   Alias
 # ================================================================================
 
+# Lanugage
 alias rb='ruby'
 alias be='bundle exec'
 alias py='python'
-alias ls='ls --color'
+
+# Shell
 alias ll='ls -lah'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias emacs='emacs -nw'
 alias check_firmware="fwupdmgr get-updates"
 alias update_firmware="fwupdmgr update"
-alias gcst="git-crypt status"
 
 alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
+
+# Git
+alias gst='git status'
+alias gco='git checkout'
+alias gca='git commit -v -a'
+alias gca!='git commit -v -a --amend'
+alias glog="git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
+alias gsta='git stash push'
+alias gstp='git stash pop'
+
+alias gcst="git-crypt status"
 
 # generate ~/.zsh_plugins.zsh
 alias rerun_antidote='antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh'

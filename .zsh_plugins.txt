@@ -24,7 +24,7 @@ belak/zsh-utils path:utility
 
 # Convenient stuff from oh-my-zsh
 # ohmyzsh/ohmyzsh path:lib
-ohmyzsh/ohmyzsh path:plugins/git
+# ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/github
 ohmyzsh/ohmyzsh path:plugins/tmux
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
