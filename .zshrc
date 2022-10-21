@@ -93,6 +93,7 @@ alias gca='git commit -v -a'
 alias gca!='git commit -v -a --amend'
 alias gp='git push'
 alias gr='git remote'
+alias gb='git branch'
 alias glog="git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
 alias gsta='git stash push'
 alias gstp='git stash pop'
