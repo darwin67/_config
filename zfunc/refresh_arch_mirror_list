@@ -1,0 +1,15 @@
+#!/usr/bin/zsh
+#
+# Refresh the Arch pacman mirror list
+#
+# NOTE:
+# This is used in case the system stop updating even when running
+# ```
+# sudo pacman -Syu
+# ```
+
+echo 'Backing up existing mirrorlist to /etc/pacman.d/mirrorlist.bak'
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+
+echo 'Updating arch mirrorlist on /etc/pacman.d/mirrolist'
+sudo reflector --verbose -l 50 -p https --sort rate --save /etc/pacman.d/mirrorlist
