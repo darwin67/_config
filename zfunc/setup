@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 RUBY_PKG='rubocop sqlint mdl rails pry awesome_print neovim bundler pry-byebug pry-doc solargraph'
 NODE_PKG='js-beautify eslint typescript tslint typescript-formatter typescript-language-server dockerfile_lint neovim yarn bash-language-server pyright'
