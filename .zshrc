@@ -63,7 +63,6 @@ fi
 
 if [[ -d $HOME/.emacs.d/bin ]]; then
     export PATH="$HOME/.emacs.d/bin:$PATH"
-    alias doom_compile="doom compile :core modules/{completion,input,ui,checkers,emacs}"
 fi
 
 
@@ -71,18 +70,11 @@ fi
 #   Alias
 # ================================================================================
 
-# Lanugage
-alias rb='ruby'
-alias be='bundle exec'
-alias py='python'
-
 # Shell
 alias ll='ls -lah'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias emacs='emacs -nw'
-alias check_firmware="fwupdmgr get-updates"
-alias update_firmware="fwupdmgr update"
 
 alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
 
@@ -97,11 +89,6 @@ alias gb='git branch'
 alias glog="git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
 alias gsta='git stash push'
 alias gstp='git stash pop'
-
-alias gcst="git-crypt status"
-
-# generate ~/.zsh_plugins.zsh
-alias rerun_antidote='antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh'
 
 if type nvim > /dev/null 2>&1 ; then
     alias vim='nvim'
