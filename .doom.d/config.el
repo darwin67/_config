@@ -141,6 +141,7 @@
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
 
 ;; Typescript
+(setq typescript-indent-level 2)
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -152,6 +153,7 @@
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
   (company-mode +1))
+
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
@@ -169,6 +171,9 @@
 
 ;; web-mode
 (setq web-mode-markup-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-attr-indent-offset 2)
+(setq web-mode-attr-value-indent-offset 2)
 
 ;; Nginx
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
