@@ -27,16 +27,21 @@
        doom-dashboard      ; a nifty splash screen for Emacs
        doom-quit           ; DOOM quit-message prompts when you quit Emacs
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW/BUG/XXX
+       (emoji +ascii +github +unicode)
        neotree
-       modeline            ; snazzy, Atom-inspired modeline, plus API
+       (modeline +light)            ; snazzy, Atom-inspired modeline, plus API
        nav-flash           ; blink the current line after jumping
        ophints             ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        unicode             ; extended unicode support for various languages
-       vc-gutter           ; vcs diff in the fringe
+       (vc-gutter +pretty)           ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
-       window-select       ; visually switch windows
+       (window-select +numbers)       ; visually switch windows
        workspaces          ; tab emulation, persistence & separate workspaces
+       zen
+
+       :os
+       tty
 
        :editor
        file-templates      ; auto-snippets for empty files
@@ -70,25 +75,27 @@
        (magit +forge)      ; a git porcelain for Emacs
        docker
        terraform
+       tree-sitter
 
        :lang
-       (cc +lsp)           ; C/C++/Obj-C madness
+       (cc +lsp +tree-sitter)           ; C/C++/Obj-C madness
        data                ; config/data formats
        ;; (dart +lsp +flutter)     ; paint ui and not much else
-       (elixir +lsp)       ; erlang done right
+       (elixir +lsp +tree-sitter)  ; erlang done right
        emacs-lisp          ; drown in parentheses
-       erlang              ; an elegant language for a more civilized age
-       (go +lsp)           ; the hipster dialect
-       (javascript +lsp)   ; all(hope(abandon(ye(who(enter(here))))))
-       json
-       markdown            ; writing docs for people to ignore
+       (erlang +lsp)              ; an elegant language for a more civilized age
+       (go +lsp +tree-sitter)      ; the hipster dialect
+       (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
+       (json +lsp +tree-sitter)
+       (markdown +grip)            ; writing docs for people to ignore
        org                 ; organize your plain life in plain text
-       (python +lsp +pyright)           ; beautiful is better than ugly
-       (ruby +rails +lsp)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       (python +cpython +lsp +pyright +tree-sitter) ; beautiful is better than ugly
+       (ruby +chruby +rails +lsp +tree-sitter)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       sh                  ; she sells {ba,z,fi}sh shells on the C xor
-       (web +css)          ; the tubes
-       yaml
+       (sh +lsp +tree-sitter)                  ; she sells {ba,z,fi}sh shells on the C xor
+       (web +lsp +tree-sitter)          ; the tubes
+       (yaml +lsp)
+       (zig +lsp +tree-sitter)
 
        :email
        ;;(mu4e +gmail)
