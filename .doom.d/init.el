@@ -92,8 +92,8 @@
        (python +cpython +lsp +pyright +tree-sitter) ; beautiful is better than ugly
        (ruby +chruby +rails +lsp +tree-sitter)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       (sh +lsp +tree-sitter)                  ; she sells {ba,z,fi}sh shells on the C xor
-       (web +lsp +tree-sitter)          ; the tubes
+       (sh +tree-sitter)                  ; she sells {ba,z,fi}sh shells on the C xor
+       (web +tree-sitter)          ; the tubes
        (yaml +lsp)
        (zig +lsp +tree-sitter)
 
