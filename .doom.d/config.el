@@ -28,10 +28,15 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Notes/")
-
 (setq
-   org-bullets-bullet-list '("◉" ">" "◆" "■")
+   org-directory "~/Notes"
+   org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
+   org-archive-location "~/Notes/archives/"
+   org-startup-folded "showeverything"
+   org-hide-leading-stars t
+   org-blank-before-new-entry t
+   org-log-done 'time
+   ;; org-bullets-bullet-list '("◉" ">" "◆" "■")
    org-startup-truncated nil)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
