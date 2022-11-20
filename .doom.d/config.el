@@ -33,8 +33,11 @@
    org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
    org-archive-location "~/Notes/archives/"
    org-startup-folded "showeverything"
+   org-tag-alist '(("@code" . ?c))
    org-hide-leading-stars t
    org-blank-before-new-entry t
+   org-startup-with-inline-images t
+   org-image-actual-width nil
    org-log-done 'time
    ;; org-bullets-bullet-list '("◉" ">" "◆" "■")
    org-startup-truncated nil)
