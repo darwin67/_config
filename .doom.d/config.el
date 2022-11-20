@@ -28,7 +28,11 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Documents/org/")
+(setq org-directory "~/Notes/")
+
+(setq
+   org-bullets-bullet-list '("◉" ">" "◆" "■")
+   org-startup-truncated nil)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -44,10 +48,6 @@
 ;; Auto rebalance windows after window actions like horiozntal or vertical splits
 (setq window-combination-resize t)
 
-;; Org mode settings
-(setq
-   org-bullets-bullet-list '("◉" "▶" "◆" "■")
-   org-startup-truncated nil)
 
 (global-company-mode)
 (global-git-commit-mode t)

@@ -68,6 +68,7 @@
        syntax              ; tasing you for every semicolon you forget
 
        :tools
+       debugger
        editorconfig        ; let someone else argue about tabs vs spaces
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
@@ -88,7 +89,7 @@
        (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
        (json +lsp +tree-sitter)
        (markdown +grip)            ; writing docs for people to ignore
-       org                 ; organize your plain life in plain text
+       (org +dragndrop +gnuplot +journal +pandoc +pretty +roam2)                 ; organize your plain life in plain text
        (python +cpython +lsp +pyright +tree-sitter) ; beautiful is better than ugly
        (ruby +chruby +rails +lsp +tree-sitter)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
