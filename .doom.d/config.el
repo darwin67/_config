@@ -38,7 +38,7 @@
    org-blank-before-new-entry t
    org-startup-with-inline-images t
    org-image-actual-width nil
-   org-log-done 'time
+   org-log-done 'note
    ;; org-bullets-bullet-list '("◉" ">" "◆" "■")
    org-startup-truncated nil)
 
