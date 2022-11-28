@@ -184,11 +184,11 @@ nnoremap <leader>ln :call ToggleLineNumber()<cr>
 " git
 nnoremap <leader>gn :Git-
 nnoremap <leader>ga :Git add .<cr>
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gs :Git status<cr>
 nnoremap <leader>gsd :Gsdiff<cr>
 nnoremap <leader>gvd :Gvdiff<cr>
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gc :Gcommit -v<cr>
+nnoremap <leader>gb :Git blame<cr>
+nnoremap <leader>gc :Git commit -v<cr>
 nnoremap <leader>gh :Git stash<cr>
 nnoremap <leader>gu :Git stash pop<cr>
 nnoremap <leader>gp :Git push
