@@ -1,7 +1,18 @@
 #!/bin/bash
 
 directories=(.doom.d)
-files=(.zshrc .zlogin .pryrc .gitconfig .gitignore_global .tmux.conf .asdfrc .zsh_plugins.txt "${directories[@]}")
+files=(
+  .alacritty.yml
+  .asdfrc
+  .gitconfig
+  .gitignore_global
+  .pryrc
+  .tmux.conf
+  .zlogin
+  .zsh_plugins.txt
+  .zshrc
+  "${directories[@]}"
+)
 
 # symlink all files and directories
 for file in ${files[@]}; do
