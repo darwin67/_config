@@ -178,10 +178,16 @@
 ;; (add-hook 'beancount-mode-hook #'outline-minor-mode)
 
 ;; web-mode
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-(setq web-mode-attr-indent-offset 2)
-(setq web-mode-attr-value-indent-offset 2)
+(setq
+ web-mode-markup-indent-offset 2
+ web-mode-code-indent-offset 2
+ web-mode-attr-indent-offset 2
+ web-mode-attr-value-indent-offset 2
+ web-mode-comment-formats '(("java" . "/*")
+                            ("javascript" . "//")
+                            ("typescript" . "//")
+                            ("php" . "/*")
+                            ("css" . "/*")))
 
 ;; Nginx
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
