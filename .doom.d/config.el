@@ -40,7 +40,15 @@
    org-image-actual-width nil
    org-log-done 'note
    ;; org-bullets-bullet-list '("◉" ">" "◆" "■")
-   org-startup-truncated nil)
+   org-startup-truncated nil
+
+   org-emphasis-alist
+   '(("*" (bold :foreground "orange" ))
+     ("/" italic)
+     ("_" underline)
+     ("=" (:background "maroon" :foreground "white"))
+     ("~" (:background "deep sky blue" :foreground "white"))
+     ("+" (:strike-through t))))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
