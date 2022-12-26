@@ -29,3 +29,16 @@ done
 
 mkdir -p "${HOME}/.config/nvim"
 ln -sf "${PWD}/init.vim" "${HOME}/.config/nvim/init.vim"
+
+#
+# Sway tiling compositor
+#
+mkdir -p ${HOME}/.config/{sway,waybar}
+
+# link sway config
+ln -sf "${PWD}/sway.conf" "${HOME}/.config/sway/config"
+
+# Waybar
+ln -sf "${PWD}/waybar/config.json" "${HOME}/.config/waybar/config"
+ln -sf "${PWD}/waybar/mediaplayer.sh" "${HOME}/.config/waybar/mediaplayer.sh"
+ln -sf "${PWD}/waybar/style.css" "${HOME}/.config/waybar/style.css"
