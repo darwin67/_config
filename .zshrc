@@ -134,3 +134,6 @@ fi
 
 # Python & Ansible
 export PY_COLORS='1' ANSIBLE_FORCE_COLOR='1'
+
+# Wayland
+export MOZ_ENABLE_WAYLAND=1
