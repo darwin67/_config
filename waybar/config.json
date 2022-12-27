@@ -18,8 +18,6 @@
         "cpu",
         "memory",
         "temperature",
-        "sway/language",
-        "keyboard-state",
         "network",
         "battery",
         "clock"
@@ -88,7 +86,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%a, %b %d %Y - %R}"
+        "format": "{:%a, %b %d %Y, %H:%M:%S}",
+        "interval": 1
     },
     "cpu": {
         "format": " {usage}%",
