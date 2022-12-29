@@ -1,0 +1,32 @@
+---
+- name: Install basic packages
+  become: true
+  pacman:
+    name:
+      - base
+      - base-devel
+      - linux
+      - linux-lts
+      - linux-firmware
+      - zsh
+      - neovim
+      - vim
+      - git
+      - sudo
+      - efibootmgr
+      - dialog
+      - wpa_supplicant
+      - tmux
+      - intel-ucode
+      - networkmanager
+      - dhcpcd
+      - systemd
+
+- name: Install fonts
+  become: true
+  pacman:
+    name:
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - noto-fonts-extra

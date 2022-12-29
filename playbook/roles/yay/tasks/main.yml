@@ -1,0 +1,20 @@
+- name: Clone yay repo
+  become: true
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /usr/local/src/yay
+
+- name: Change repo directory owner
+  become: true
+  file:
+    path: /usr/local/src/yay
+    state: directory
+    recurse: yes
+    owner: darwin
+    group: darwin
+
+- name: Install yay
+  command:
+    cmd: makepkg -sfi --noconfirm
+    chdir: /usr/local/src/yay
+    creates: /usr/bin/yay

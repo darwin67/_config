@@ -1,0 +1,6 @@
+- name: Setup
+  hosts: laptop
+  roles:
+    - basic
+    - yay
+    - aur
