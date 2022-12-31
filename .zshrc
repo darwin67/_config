@@ -72,8 +72,8 @@ fi
 
 # Shell
 alias ll='ls -lah'
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias pbcopy='wl-copy'
+alias pbpaste='wl-paste'
 alias emacs='emacs -nw'
 
 alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
