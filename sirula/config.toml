@@ -1,0 +1,53 @@
+# This config file serves as documentation and contains the default values. You are free to omit all values.
+
+exclusive = true  # push all windows aside or appear above existing windows
+icon_size = 20  # icon size in pixels
+lines = 1  # maximum number of lines of app labels
+
+# markup for app labels
+# it seems impossible to theme only parts of a label with CSS
+# therefore, we need to use pango directly
+# you can use all attributes of the <span> tag (https://developer.gnome.org/pygtk/stable/pango-markup-language.html)
+markup_default = ''
+# an extra field is appended to the app name (e.g., evince calls itself just "Document Viewer")
+markup_extra = 'font_style="italic" font_size="smaller"'
+markup_highlight = 'underline="double" weight="bold"'  # highlight matched characters
+
+# anchor window to screen edge
+anchor_left = false
+anchor_right = false
+anchor_top = false
+anchor_bottom = false
+
+# margin of window to screen edge
+margin_top = 1
+margin_bottom = 0
+margin_left = 0
+margin_right = 0
+
+# set width or height (-1 is unset)
+width = 750
+height = 450
+
+# specify extra field to be displayed alongside the name (may be empty)
+extra_field = ["id_suffix"] # variants: id, id_suffix, executable, command_line
+hide_extra_if_contained = true # hide extra field if it is already contained in the app name
+
+hidden_fields = [] # list of fields considered for search but hidden
+
+exclude = [] # list of regexes for excluded app ids (name of the .desktop file)
+
+# prefix for running commands instead of launching an app (e.g., `:xeyes` to launch xeyes)
+# use "" to disable launching commands
+command_prefix = ":"
+
+frequent_first = false # sort matches of equal quality by most frequently used
+recent_first = true # sort matches of equal quality by most recently used
+# when both frequent_first and recent_first are set,
+# sorting is by frequency first, and recency is used to break ties in frequency
+
+# term_command = "alacritty -e {}" # command for applications run in terminal (default uses "$TERMINAL -e")
+
+# specify name overrides (id is the name of the desktop file)
+[name_overrides]
+# id = "name\rextra"
