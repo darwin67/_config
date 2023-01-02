@@ -1,0 +1,7 @@
+# Reference
+# https://man.archlinux.org/man/wofi.1.en
+#
+
+lines=20
+term=alacritty
+matching=fuzzy
