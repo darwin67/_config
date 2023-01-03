@@ -31,7 +31,7 @@
 (setq
    org-directory "~/Notes"
    org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
-   org-archive-location "~/Notes/archives/"
+   org-archive-location "~/Notes/archive.org"
    org-startup-folded "showeverything"
    org-tag-alist '(("@code" . ?c))
    org-hide-leading-stars t
