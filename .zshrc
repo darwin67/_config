@@ -65,6 +65,9 @@ if [[ -d $HOME/.emacs.d/bin ]]; then
     export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 # ================================================================================
 #   Alias
