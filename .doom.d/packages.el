@@ -69,3 +69,5 @@
 
 (package! systemd)
 (package! nginx-mode)
+
+(package! dockerfile-mode)

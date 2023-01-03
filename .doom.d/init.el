@@ -74,7 +74,6 @@
        lookup              ; navigate your code and its documentation
        (lsp +peek)
        (magit +forge)      ; a git porcelain for Emacs
-       docker
        terraform
        tree-sitter
 
