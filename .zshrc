@@ -78,6 +78,7 @@ alias ll='ls -lah'
 alias pbcopy='wl-copy'
 alias pbpaste='wl-paste'
 alias emacs='emacs -nw'
+alias be='bundle exec'
 
 alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
 
