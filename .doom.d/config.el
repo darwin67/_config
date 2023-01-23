@@ -85,7 +85,13 @@
  (:prefix "C-x"
    "-" 'split-window-below
    "|" 'split-window-right
-   "g" 'magit-status))
+   "g" 'magit-status
+
+   ;; Move windows with arrows
+   "<up>" 'windmove-up
+   "<down>" 'windmove-down
+   "<right>" 'windmove-right
+   "<left>" 'windmove-left))
 
 ;; Leader prefix
 (map! :leader
