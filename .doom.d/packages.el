@@ -52,7 +52,7 @@
 
 ;; Install buffer-move
 (package! buffer-move
-  :recipe (:host github :repo "lukhas/buffer-move"))
+  :recipe (:host github :repo "darwin67/buffer-move" :branch "emacs-28"))
 
 (package! openline
   :recipe (:host github :repo "darwin67/openline"))
