@@ -111,6 +111,14 @@
         :desc "Move buffer right" "l" 'buf-move-right
         :desc "Show imenu" "i" 'lsp-ui-imenu))
 
+;; Disable formatting on these modes
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+            sql-mode         ; sqlformat is currently broken
+            tex-mode         ; latexindent is broken
+            latex-mode
+            web-mode))
+
 ;; ===================================================================
 ;; Language settings
 
