@@ -186,6 +186,7 @@
 
 ;; Liquid
 (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mjml\\'" . web-mode))
 
 ;; beancount (plain text accounting)
 ;; (add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
