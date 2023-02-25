@@ -107,10 +107,6 @@ if type go > /dev/null 2>&1 ; then
     export PATH="${GOPATH}/bin:${PATH}"
 fi
 
-if type ssh-agent > /dev/null 2>&1 ; then
-    eval $(ssh-agent) > /dev/null 2>&1
-fi
-
 # ================================================================================
 #   Environment Variables
 # ================================================================================
