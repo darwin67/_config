@@ -107,6 +107,11 @@ if type go > /dev/null 2>&1 ; then
     export PATH="${GOPATH}/bin:${PATH}"
 fi
 
+if type flutter > /dev/null 2>&1; then
+    export PATH="$(asdf where flutter)/bin":"$PATH"
+fi
+
+
 # ================================================================================
 #   Environment Variables
 # ================================================================================

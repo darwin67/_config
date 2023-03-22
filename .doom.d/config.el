@@ -146,6 +146,10 @@
  lsp-eldoc-enable-hover nil
  lsp-completion-show-detail t)
 
+(with-eval-after-load 'projectile
+  (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
+  (add-to-list 'projectile-project-root-files-bottom-up "BUILD"))
+
 ;; Load Emacs as full screen on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
 
