@@ -80,7 +80,7 @@
        :lang
        (cc +lsp +tree-sitter)           ; C/C++/Obj-C madness
        data                ; config/data formats
-       ;; (dart +lsp +flutter)     ; paint ui and not much else
+       (dart +lsp +flutter)     ; paint ui and not much else
        (elixir +lsp +tree-sitter)  ; erlang done right
        emacs-lisp          ; drown in parentheses
        (erlang +lsp)              ; an elegant language for a more civilized age
