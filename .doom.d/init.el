@@ -95,7 +95,7 @@
        (sh +tree-sitter)                  ; she sells {ba,z,fi}sh shells on the C xor
        (web +tree-sitter)          ; the tubes
        (yaml +lsp)
-       (zig +lsp +tree-sitter)
+       ;; (zig +lsp +tree-sitter)
 
        :email
        ;;(mu4e +gmail)
