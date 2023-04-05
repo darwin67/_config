@@ -133,18 +133,18 @@
 
 ;; LSP mode
 (setq
- gc-cons-threshold #x8000000
- read-process-output-max (* 10000 1024) ;; 10mb
- lsp-completion-provider :capf
- lsp-idle-delay 0.2
- lsp-auto-configure t
- lsp-enable-file-watchers nil
- lsp-lens-place-position 'above-line
- lsp-ui-doc-show-with-mouse nil
- lsp-headerline-breadcrumb-enable t
- lsp-ui-sideline-enable nil
- lsp-eldoc-enable-hover nil
- lsp-completion-show-detail t)
+  gc-cons-threshold #x8000000
+  read-process-output-max (* 10000 1024) ;; 10mb
+  lsp-completion-provider :capf
+  lsp-idle-delay 0.2
+  lsp-auto-configure t
+  lsp-enable-file-watchers nil
+  lsp-lens-place-position 'above-line
+  lsp-ui-doc-show-with-mouse nil
+  lsp-headerline-breadcrumb-enable t
+  lsp-ui-sideline-enable nil
+  lsp-eldoc-enable-hover nil
+  lsp-completion-show-detail t)
 
 (with-eval-after-load 'projectile
   (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
@@ -158,12 +158,11 @@
 
 ;; Rust
 (setq
- rustic-lsp-server 'rust-analyzer
- lsp-rust-all-features t
- lsp-rust-analyzer-exclude-globs ["tmp/**/*"]
- lsp-enable-file-watchers nil
- rustic-flycheck-clippy-params "--message-format=json"
- )
+  rustic-lsp-server 'rust-analyzer
+  lsp-rust-all-features t
+  lsp-rust-analyzer-exclude-globs ["tmp/**/*"]
+  lsp-enable-file-watchers nil
+  rustic-flycheck-clippy-params "--message-format=json")
 
 (add-to-list '+word-wrap-disabled-modes 'rust-mode)
 (add-to-list '+word-wrap-disabled-modes 'rustic-mode)
@@ -206,15 +205,15 @@
 
 ;; web-mode
 (setq
- web-mode-markup-indent-offset 2
- web-mode-code-indent-offset 2
- web-mode-attr-indent-offset 2
- web-mode-attr-value-indent-offset 2
- web-mode-comment-formats '(("java" . "/*")
-                            ("javascript" . "//")
-                            ("typescript" . "//")
-                            ("php" . "/*")
-                            ("css" . "/*")))
+  web-mode-markup-indent-offset 2
+  web-mode-code-indent-offset 2
+  web-mode-attr-indent-offset 2
+  web-mode-attr-value-indent-offset 2
+  web-mode-comment-formats '(("java" . "/*")
+                             ("javascript" . "//")
+                             ("typescript" . "//")
+                             ("php" . "/*")
+                             ("css" . "/*")))
 
 ;; Nginx
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
