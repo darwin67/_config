@@ -125,9 +125,6 @@ export EDITOR='emacsclient'
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
 
-# Allow path definition in go get
-export GO111MODULE=on
-
 # Elixir & Erlang settings
 export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
 export PATH="$HOME/.lsp/elixir:$PATH"
