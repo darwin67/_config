@@ -21,31 +21,10 @@ function install_node() {
     npm i -g $NODE_PKG
 }
 
-function install_golang() {
-    go install github.com/mdempsky/gocode@latest
-    # go install github.com/rogpeppe/godef@latest
-    go install golang.org/x/tools/cmd/guru@latest
-    go install github.com/x-motemen/gore/cmd/gore@latest
-    # go install golang.org/x/tools/cmd/goimports@latest
-    # go install golang.org/x/tools/cmd/godoc@latest
-    # go install github.com/zmb3/gogetdoc@latest
-    go get -u github.com/cweill/gotests/...
-    # go install github.com/haya14busa/gopkgs/cmd/gopkgs@latest
-    # go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
-    # go install github.com/josharian/impl@latest
-    # go install github.com/alecthomas/gometalinter@latest
-    # go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-    # go install github.com/godoctor/godoctor@latest
-    go install github.com/fatih/gomodifytags@latest
-    go install golang.org/x/tools/gopls@latest
-    go install github.com/cweill/gotests@latest
-}
-
 if [[ ${WHICH} == 'all' ]]; then
   install_ruby
   install_python
   install_node
-  install_golang
 else
   eval install_${WHICH}
 fi
