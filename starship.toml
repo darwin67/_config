@@ -1,0 +1,53 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = """
+$username\
+$hostname\
+$localip\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$c\
+$cmake\
+$dart\
+$deno\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$kotlin\
+$gradle\
+$lua\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$character"""
+
+[custom.elixir]
+format = '[$symbol(v$output )]($style)'
+command = "elixir --short-version 2>/dev/null || (elixir --version | grep '^Elixir' | awk '{print $2}')"
+when = "test -f mix.exs"
+style = 'bold purple'
+symbol = '💧 '
