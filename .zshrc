@@ -34,9 +34,6 @@ autoload -Uz compinit && compinit
 # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
 antidote load
 
-# Load theme
-autoload -Uz promptinit && promptinit && prompt pure
-
 # ================================================================================
 #   Path and sourcing
 # ================================================================================
@@ -143,3 +140,6 @@ export PY_COLORS='1' ANSIBLE_FORCE_COLOR='1'
 
 # Wayland
 export MOZ_ENABLE_WAYLAND=1
+
+# Initialize starship shell prompt
+eval "$(starship init zsh)"
