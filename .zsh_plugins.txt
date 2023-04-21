@@ -33,3 +33,4 @@ sorin-ionescu/prezto path:modules/history
 
 # Theme
 # sindresorhus/pure kind:fpath
+chisui/zsh-nix-shell
