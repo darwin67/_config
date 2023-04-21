@@ -52,6 +52,8 @@
       - libxslt
       - fop
 
+      - nixfmt
+
       # LSPs
       - gopls
       - typescript-language-server

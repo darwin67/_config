@@ -88,6 +88,7 @@
        (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
        (json +lsp +tree-sitter)
        (markdown +grip)            ; writing docs for people to ignore
+       (nix +tree-sitter)
        (org +dragndrop +gnuplot +journal +pandoc +pretty +roam2)                 ; organize your plain life in plain text
        (python +cpython +lsp +pyright +tree-sitter) ; beautiful is better than ugly
        (ruby +chruby +rails +lsp +tree-sitter)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
