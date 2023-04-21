@@ -15,9 +15,6 @@
     ],
     "modules-right": [
         "pulseaudio",
-        "cpu",
-        "memory",
-        "temperature",
         "network",
         "battery",
         "clock"
@@ -25,7 +22,7 @@
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
-        "disable-click": true,
+        "disable-click": false,
         "all-outputs": false,
         "format": "{name}: {icon}",
         "format-icons": {
@@ -110,7 +107,7 @@
     },
     "battery": {
         "states": {
-            "good": 95,
+            "good": 50,
             "warning": 30,
             "critical": 15
         },
@@ -118,8 +115,6 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": [
             "",
             "",
