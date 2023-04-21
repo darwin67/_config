@@ -1,6 +1,6 @@
 [Unit]
 Description=Dynamic Wallpaper
-After=local-fs.target network.target
+After=sway-session.target
 
 [Service]
 Type=simple
@@ -8,4 +8,4 @@ ExecStart=/usr/bin/settimed "{{ theme }}"
 ExecStop=/usr/bin/pkill settimed
 
 [Install]
-WantedBy=default.target
+WantedBy=sway-session.target
