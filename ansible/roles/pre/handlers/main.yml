@@ -1,0 +1,8 @@
+- name: Change repo directory owner
+  become: true
+  file:
+    path: /usr/local/src/yay
+    state: directory
+    recurse: yes
+    owner: darwin
+    group: darwin

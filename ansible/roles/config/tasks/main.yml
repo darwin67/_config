@@ -1,0 +1,66 @@
+- name: Clone _config repo
+  git:
+    repo: git@github.com:darwin67/_config.git
+    dest: ~/_config
+
+- name: Prepare directories
+  file:
+    path: "~/.config/{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - nvim
+    - sway
+    - waybar
+    - wofi
+    - wob
+    - sirula
+
+- name: Symlink dot files
+  file:
+    src: "~/_config/{{ item }}"
+    dest: "~/{{ item }}"
+  loop:
+    - .alacritty.yml
+    - .asdfrc
+    - .gitconfig
+    - .gitignore_global
+    - .pryrc
+    - .tmux.conf
+    - .zlogin
+    - .zsh_plugins.txt
+    - .zshrc
+
+- name: Check if Doom Emacs config exists
+  stat:
+    path: ~/.doom.d
+  register: doom_config
+
+- name: Symlink Doom Emacs configs
+  file:
+    src: ~/_config/.doom.d
+    dest: ~/.doom.d
+    state: link
+  when: not doom_config.stat.exists
+
+- name: Symlink neovim
+  file:
+    src: "~/_config/init.vim"
+    dest: "~/.config/nvim/init.vim"
+
+- name: Symlink Sway configs
+  file:
+    src: "~/_config/{{ item.src }}"
+    dest: "~/.config/{{ item.dest }}"
+    state: link
+  loop:
+    - { src: sway.conf, dest: sway/config }
+    - { src: starship.toml, dest: starship.toml }
+    - { src: waybar/config.json, dest: waybar/config }
+    - { src: waybar/mediaplayer.sh, dest: waybar/mediaplayer.sh }
+    - { src: waybar/style.css, dest: waybar/style.css }
+    - { src: wofi/config, dest: wofi/config }
+    - { src: wofi/style.css, dest: wofi/style.css }
+    - { src: wob/wob.ini, dest: wob/wob.ini }
+    - { src: sirula/config.toml, dest: sirula/config.toml }
+    - { src: sirula/style.css, dest: sirula/style.css }

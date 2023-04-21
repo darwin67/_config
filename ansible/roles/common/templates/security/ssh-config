@@ -1,0 +1,6 @@
+Host github.com
+  User git
+  IdentityFile ~/.ssh/github
+
+Host *
+  IdentityAgent ~/.1password/agent.sock

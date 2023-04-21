@@ -1,0 +1,67 @@
+---
+- name: Install basic packages
+  become: true
+  pacman:
+    name:
+      - base
+      - base-devel
+      - linux
+      - linux-lts
+      - linux-firmware
+      - sudo
+      - efibootmgr
+      - dialog
+      - wpa_supplicant
+      - intel-ucode
+      - networkmanager
+      - dhcpcd
+      - systemd
+
+      # Theme
+      - arc-gtk-theme
+      - arc-solid-gtk-theme
+
+      # Fonts
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - noto-fonts-extra
+
+- name: Create user bin directory
+  file:
+    path: ~/bin
+    state: directory
+
+# Setup yay and AUR builder
+- name: Clone yay repo
+  become: true
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /usr/local/src/yay
+
+- name: Install yay
+  command:
+    cmd: makepkg -sfi --noconfirm
+    chdir: /usr/local/src/yay
+    creates: /usr/bin/yay
+  notify:
+    - Change repo directory owner
+
+# Run handlers immediately if there are any already notified
+- name: Flush handlers
+  meta: flush_handlers
+
+- name: Create the `aur_builder` user
+  become: true
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
+
+- name: Allow the `aur_builder` user to run `sudo pacman` without a password
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: yes
+    validate: "visudo -cf %s"

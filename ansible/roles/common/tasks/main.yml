@@ -1,0 +1,192 @@
+- name: Install commonly used packages
+  become: true
+  pacman:
+    name:
+      - fwupd
+      - zsh
+      - neovim
+      - vim
+      - git
+      - tmux
+      - ripgrep
+      - jq
+      - yq # similar to jq but also handles YAML, XML, etc
+      - alacritty
+      - copyq
+      - fd
+
+      ## System
+      # Shell
+      - starship
+      - ttf-font-nerd
+
+      # Files
+      - thunar
+      - tumbler
+      - thunar-volman
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+
+      # Bluetooth
+      - blueberry
+
+      # Battery management
+      - tlp
+      - tlp-rdw
+
+      # Programming language setup
+      #   Ruby, Python, Erlang
+      - emacs-nativecomp
+      - libffi
+      - libyaml
+      - openssl
+      - zlib
+      - xz
+      # https://github.com/asdf-vm/asdf-erlang
+      - ncurses
+      - glu
+      - mesa
+      - libpng
+      - libssh
+      - unixodbc
+      - libxslt
+      - fop
+
+      # LSPs
+      - gopls
+      - typescript-language-server
+      - rust-analyzer
+      - yaml-language-server
+      - vscode-json-languageserver
+      - vscode-css-languageserver
+      - vscode-html-languageserver
+      # not available on arch yet
+      # - vscode-markdown-languageserver
+
+      ## Social
+      - discord
+
+      ## Browser
+      - firefox
+      - firefox-developer-edition
+
+      ## Language
+      - fcitx5
+      - fcitx5-mozc
+      - fcitx5-rime
+      - fcitx5-configtool
+      - fcitx5-gtk
+      - fcitx5-qt
+
+      # Chinese
+      - rime-pinyin-zhwiki
+      - rime-luna-pinyin
+      - rime-pinyin-simp
+
+- name: Install commonly used packages - AUR
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      ## System
+      - appmenu-gtk-module
+
+      ## Security
+      - 1password
+      - 1password-cli
+
+      ## File management
+      - insync
+
+      ## Editor
+      - visual-studio-code-bin
+
+      ## LSPs - requires asdf bypass
+      - elixir-ls
+      - vscode-eslint-language-server
+
+      ## Browser
+      - google-chrome
+      - brave-bin
+
+      ## Social
+      - whatsapp-for-linux
+
+# Battery related services
+- name: Enable TLP related services
+  become: true
+  systemd:
+    name: tlp
+    enabled: true
+
+- name: Enable NetworkManager-dispatcher service
+  become: true
+  systemd:
+    name: NetworkManager-dispatcher
+    enabled: true
+
+# https://linrunner.de/tlp/installation/arch.html#service-units
+- name: Mask rfkill to avoid conflict with TLP
+  become: true
+  systemd:
+    name: systemd-rfkill
+    masked: true
+
+- name: Mask rfkill.socket to avoid conflict with TLP
+  become: true
+  systemd:
+    name: systemd-rfkill.socket
+    masked: true
+
+- name: Clone Doom Emacs
+  git:
+    repo: https://github.com/doomemacs/doomemacs
+    dest: ~/.emacs.d
+    update: false
+
+# Security
+- name: Set ssh config
+  template:
+    src: security/ssh-config
+    dest: ~/.ssh/config
+    mode: 0644
+
+# Language
+- name: Configure fcitx5
+  template:
+    src: "fcitx5/{{ item }}"
+    dest: "~/.config/fcitx5/{{ item }}"
+  loop:
+    - config
+    - profile
+
+- name: Set environment variables for fcitx
+  become: true
+  template:
+    src: fcitx5/environment
+    dest: /etc/environment
+
+# Browsers
+- name: Chromnium browser flags
+  template:
+    src: browser/chromnium-flags.conf
+    dest: "~/.config/{{ item }}"
+    mode: 0644
+  loop:
+    - chrome-flags.conf
+    - brave-flags.conf
+
+# File management
+- name: Install systemd service for Insync
+  become: true
+  template:
+    src: insync/systemd.service
+    dest: /usr/lib/systemd/user/insync.service
+    mode: 0644
+
+- name: Start and enable Insync service
+  systemd:
+    name: insync
+    scope: user
+    state: started
+    enabled: true
+    daemon_reload: true

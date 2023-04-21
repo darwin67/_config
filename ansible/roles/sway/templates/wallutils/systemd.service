@@ -1,0 +1,11 @@
+[Unit]
+Description=Dynamic Wallpaper
+After=local-fs.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/settimed "{{ theme }}"
+ExecStop=/usr/bin/pkill settimed
+
+[Install]
+WantedBy=default.target
