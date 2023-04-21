@@ -141,5 +141,10 @@ export PY_COLORS='1' ANSIBLE_FORCE_COLOR='1'
 # Wayland
 export MOZ_ENABLE_WAYLAND=1
 
+# Nix locale archive
+if type nix-env > /dev/null 2>&1; then
+  export LOCALE_ARCHIVE="$(nix-env --installed --no-name --out-path --query glibc-locales)/lib/locale/locale-archive"
+fi
+
 # Initialize starship shell prompt
 eval "$(starship init zsh)"
