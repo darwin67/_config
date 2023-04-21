@@ -2,6 +2,7 @@
   git:
     repo: git@github.com:darwin67/_config.git
     dest: ~/_config
+    update: no
 
 - name: Prepare directories
   file:
