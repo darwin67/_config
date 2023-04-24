@@ -2,6 +2,13 @@
 
 Settings that are shared across computers.
 
+## Add user to groups for access to tools
+
+```
+sudo usermod -aG docker $USER
+sudo usermod -aG nix-users $USER
+```
+
 ## Post language installation
 
 Run the following script to install the common libraries used.
