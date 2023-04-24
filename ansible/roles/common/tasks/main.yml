@@ -52,8 +52,6 @@
       - libxslt
       - fop
 
-      - nixfmt
-
       # LSPs
       - gopls
       - typescript-language-server
@@ -101,6 +99,7 @@
 
       ## Editor
       - visual-studio-code-bin
+      - nixfmt
 
       ## LSPs - requires asdf bypass
       - elixir-ls

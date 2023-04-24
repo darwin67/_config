@@ -2,6 +2,20 @@
 
 Settings that are shared across computers.
 
+## Ansible
+
+```
+cd ansible
+./run
+```
+
+## Dynamic Wallpapers
+
+```
+cd ~/Pictures/DynamicWallpapers
+ls | xargs -I{} sudo heic-install {}
+```
+
 ## Add user to groups for access to tools
 
 ```
