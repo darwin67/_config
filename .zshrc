@@ -143,7 +143,9 @@ export MOZ_ENABLE_WAYLAND=1
 
 # Nix locale archive
 if type nix-env > /dev/null 2>&1; then
+  # Install with `nix-env -iA nixpkgs.glibcLocales`
   export LOCALE_ARCHIVE="$(nix-env --installed --no-name --out-path --query glibc-locales)/lib/locale/locale-archive"
+  export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
 
 # Initialize starship shell prompt
