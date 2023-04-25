@@ -37,7 +37,14 @@
     ## System
     # Shell
     pkgs.starship
+
+    # Fonts
     pkgs.nerdfonts
+    pkgs.noto-fonts
+    pkgs.noto-fonts-emoji
+    pkgs.noto-fonts-cjk-sans
+    pkgs.noto-fonts-cjk-serif
+    pkgs.font-awesome
 
     # Files
     pkgs.xfce.thunar
