@@ -7,4 +7,3 @@
     # setup
     - common
     - sway
-    - config # require SSH key for github
