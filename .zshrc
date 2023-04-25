@@ -108,6 +108,11 @@ if type go >/dev/null 2>&1; then
   export PATH="${GOPATH}/bin:${PATH}"
 fi
 
+if type fly >/dev/null 2>&1; then
+  export FLYCTL_INSTALL="$HOME/.fly"
+  export PATH="$FLYCTL_INSTALL/bin:$PATH"
+fi
+
 # if type flutter > /dev/null 2>&1; then
 #     export PATH="$(asdf where flutter)/bin":"$PATH"
 # fi
