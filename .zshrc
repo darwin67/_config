@@ -139,5 +139,12 @@ if type nix-env >/dev/null 2>&1; then
   export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
 
-# Initialize starship shell prompt
-eval "$(starship init zsh)"
+if type direnv >/dev/null 2>&1; then
+  # Hook direnv
+  eval "$(direnv hook zsh)"
+fi
+
+if type starship >/dev/null 2>&1; then
+  # Initialize starship shell prompt
+  eval "$(starship init zsh)"
+fi
