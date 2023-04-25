@@ -19,7 +19,6 @@
   # environment.
   home.packages = [
     # Common
-    pkgs.fwupd
     pkgs.jq
     pkgs.yq
     pkgs.neovim
