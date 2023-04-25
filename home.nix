@@ -18,10 +18,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
     # Common
     pkgs.fwupd
     pkgs.jq
@@ -37,6 +33,7 @@
     pkgs.curlie
     pkgs.wget
     pkgs.sqlite
+    pkgs.tree
 
     ## System
     # Shell
@@ -49,14 +46,19 @@
     pkgs.go
     pkgs.golangci-lint
     pkgs.gotests
+    pkgs.gomodifytags
+    pkgs.gore
+    pkgs.gotools
     # Ruby
-    pkgs.ruby_3_2
+    # pkgs.ruby_3_1
     # Python
     pkgs.python310Full
     pkgs.python310Packages.pip
+    pkgs.pipenv
     # Node
     pkgs.yarn
     pkgs.nodejs-18_x
+    pkgs.nodePackages.typescript
     # Elixir
     pkgs.elixir
     # Erlang
@@ -82,6 +84,9 @@
     # Linters / Formatters
     pkgs.yamllint
     pkgs.sqlint
+    pkgs.html-tidy
+    pkgs.nodePackages.stylelint
+    pkgs.nodePackages.js-beautify
 
     # Tools
     pkgs.terraform
@@ -94,7 +99,12 @@
     pkgs.discord
 
     ## Security
-    # pkgs._1password # not working?
+    pkgs._1password
+
+    # Others
+    pkgs.mpv
+    pkgs.youtube-dl
+    pkgs.imagemagick
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
