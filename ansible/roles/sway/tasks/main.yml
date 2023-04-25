@@ -32,8 +32,8 @@
       - wf-recorder
 
       # Controls
-      # - playerctl
-      # - brightnessctl
+      - playerctl
+      - brightnessctl
 
       # waybar
       - otf-font-awesome

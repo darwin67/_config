@@ -103,6 +103,10 @@
     ".zshrc" = { source = ~/_config/.zshrc; };
 
     ".config/nvim/init.vim" = { source = ~/_config/init.vim; };
+    # Directory
+    ".doom.d" = { source = ~/_config/.doom.d; };
+
+    # Sway
     ".config/sway/config" = { source = ~/_config/sway.conf; };
     ".config/starship.toml" = { source = ~/_config/starship.toml; };
     ".config/waybar/config" = { source = ~/_config/waybar/config.json; };
@@ -114,8 +118,16 @@
     ".config/wob" = { source = ~/_config/wob; };
     ".config/sirula" = { source = ~/_config/sirula; };
 
-    # Directory
-    ".doom.d" = { source = ~/_config/.doom.d; };
+    # Flags
+    ".config/chromium-flags.conf" = {
+      text = ''
+        --enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+      '';
+    };
+    ".config/brave-flags.conf" = { source = ~/.config/chromium-flags.conf; };
+    ".config/chrome-flags.conf" = { source = ~/.config/chromium-flags.conf; };
+    ".config/discord-flags.conf" = { source = ~/.config/chromium-flags.conf; };
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

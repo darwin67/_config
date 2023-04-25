@@ -13,11 +13,11 @@
       # - ttf-font-nerd
 
       # Files
-      # - thunar
-      # - tumbler
-      # - thunar-volman
-      # - thunar-archive-plugin
-      # - thunar-media-tags-plugin
+      - thunar
+      - tumbler
+      - thunar-volman
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
 
       # Bluetooth
       - blueberry
@@ -157,16 +157,6 @@
   template:
     src: fcitx5/environment
     dest: /etc/environment
-
-# Browsers
-- name: Chromnium browser flags
-  template:
-    src: browser/chromnium-flags.conf
-    dest: "~/.config/{{ item }}"
-    mode: 0644
-  loop:
-    - chrome-flags.conf
-    - brave-flags.conf
 
 # File management
 - name: Install systemd service for Insync
