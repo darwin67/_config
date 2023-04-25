@@ -42,28 +42,28 @@ antidote load
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 if [[ -d $HOME/bin ]]; then
-    export PATH="$HOME/bin:${PATH}"
+  export PATH="$HOME/bin:${PATH}"
 fi
 
-if [ $commands[kubectl] ]; then
-    source <(kubectl completion zsh)
-fi
+# if [ $commands[kubectl] ]; then
+#   source <(kubectl completion zsh)
+# fi
 
 if [[ ! -d ${TPM_PLUGINS} ]]; then
-    mkdir -p ${TPM_PLUGINS}
-    ln -s "${ANTIDOTE_CACHE}/tmux-plugins/tpm" ${TPM_PLUGINS}
+  mkdir -p ${TPM_PLUGINS}
+  ln -s "${ANTIDOTE_CACHE}/tmux-plugins/tpm" ${TPM_PLUGINS}
 fi
 
 if [[ -d $HOME/.cargo ]]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 if [[ -d $HOME/.emacs.d/bin ]]; then
-    export PATH="$HOME/.emacs.d/bin:$PATH"
+  export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # ================================================================================
@@ -77,7 +77,7 @@ alias pbpaste='wl-paste'
 alias emacs='emacs -nw'
 alias be='bundle exec'
 
-alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
+# alias backup="restic backup --verbose --exclude-file=$HOME/_config/etc/backup-excludes.txt backup ~/"
 
 # Git
 alias gst='git status'
@@ -91,23 +91,26 @@ alias glog="git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d
 alias gsta='git stash push'
 alias gstp='git stash pop'
 
-if type nvim > /dev/null 2>&1 ; then
-    alias vim='nvim'
+if type hub >/dev/null 2>&1; then
+  alias git="hub"
 fi
 
-if type rg > /dev/null 2>&1 ; then
-    alias grep='rg'
+if type nvim >/dev/null 2>&1; then
+  alias vim='nvim'
 fi
 
-if type go > /dev/null 2>&1 ; then
-    export GOPATH=$(go env GOPATH)
-    export PATH="${GOPATH}/bin:${PATH}"
+if type rg >/dev/null 2>&1; then
+  alias grep='rg'
 fi
 
-if type flutter > /dev/null 2>&1; then
-    export PATH="$(asdf where flutter)/bin":"$PATH"
+if type go >/dev/null 2>&1; then
+  export GOPATH=$(go env GOPATH)
+  export PATH="${GOPATH}/bin:${PATH}"
 fi
 
+# if type flutter > /dev/null 2>&1; then
+#     export PATH="$(asdf where flutter)/bin":"$PATH"
+# fi
 
 # ================================================================================
 #   Environment Variables
@@ -115,12 +118,6 @@ fi
 
 # Location for zfunctions plugin
 export ZFUNCDIR="$CONFIG/zfunc"
-
-# Preferred editor for local and remote sessions
-export EDITOR='emacsclient'
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/"
 
 # Elixir & Erlang settings
 export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
@@ -131,18 +128,12 @@ export KERL_BUILD_DOCS=yes
 export PATH="$HOME/Android/Sdk/tools/bin:$PATH"
 
 ## export google chrome bin for flutter usage
-if type google-chrome-stable > /dev/null 2>&1 ; then
+if type google-chrome-stable >/dev/null 2>&1; then
   export CHROME_EXECUTABLE=$(which google-chrome-stable)
 fi
 
-# Python & Ansible
-export PY_COLORS='1' ANSIBLE_FORCE_COLOR='1'
-
-# Wayland
-export MOZ_ENABLE_WAYLAND=1
-
 # Nix locale archive
-if type nix-env > /dev/null 2>&1; then
+if type nix-env >/dev/null 2>&1; then
   # Install with `nix-env -iA nixpkgs.glibcLocales`
   export LOCALE_ARCHIVE="$(nix-env --installed --no-name --out-path --query glibc-locales)/lib/locale/locale-archive"
   export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS

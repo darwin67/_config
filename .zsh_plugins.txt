@@ -8,12 +8,8 @@ supercrabtree/k
 mattmc3/zfunctions
 # zdharma-continuum/fast-syntax-highlighting kind:defer
 
-
 # NOTE: just need the repo. the rest is done when the shell inits in .zshrc
 tmux-plugins/tpm kind:path
-
-# Language + Binary manager
-asdf-vm/asdf
 
 # Utilities
 # belak/zsh-utils path:editor

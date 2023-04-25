@@ -29,10 +29,14 @@
     pkgs.neovim
     pkgs.vim
     pkgs.git
+    pkgs.hub
     pkgs.fd
     pkgs.tmux
     pkgs.ripgrep
-    # pkgs.alacritty
+    pkgs.bat
+    pkgs.curlie
+    pkgs.wget
+    pkgs.sqlite
 
     ## System
     # Shell
@@ -40,20 +44,26 @@
 
     # Programming language setup
     #   Ruby, Python, Erlang
-    pkgs.libffi
-    pkgs.libyaml
     pkgs.openssl
-    pkgs.zlib
-    pkgs.xz
-    # https://github.com/asdf-vm/asdf-erlang
-    pkgs.ncurses
-    pkgs.libGLU
-    pkgs.mesa
-    pkgs.libpng
-    pkgs.libssh
-    pkgs.unixODBC
-    pkgs.libxslt
-    pkgs.fop
+    # Golang
+    pkgs.go
+    pkgs.golangci-lint
+    pkgs.gotests
+    # Ruby
+    pkgs.ruby_3_2
+    # Python
+    pkgs.python310Full
+    pkgs.python310Packages.pip
+    # Node
+    pkgs.yarn
+    pkgs.nodejs-18_x
+    # Elixir
+    pkgs.elixir
+    # Erlang
+    pkgs.erlang
+    # Flutter / Dart
+    pkgs.flutter
+    pkgs.dart
 
     # Editor
     pkgs.nixfmt
@@ -67,6 +77,18 @@
     pkgs.nodePackages.vscode-css-languageserver-bin
     pkgs.nodePackages.vscode-html-languageserver-bin
     pkgs.elixir-ls
+    pkgs.erlang-ls
+
+    # Linters / Formatters
+    pkgs.yamllint
+    pkgs.sqlint
+
+    # Tools
+    pkgs.terraform
+    pkgs.tflint
+    pkgs.protobuf
+    pkgs.awscli2
+    pkgs.kubectl
 
     ## Social
     pkgs.discord
@@ -93,10 +115,10 @@
   home.file = {
     # dotfiles
     ".alacritty.yml" = { source = ~/_config/.alacritty.yml; };
-    ".asdfrc" = { source = ~/_config/.asdfrc; };
+    # ".asdfrc" = { source = ~/_config/.asdfrc; };
     ".gitconfig" = { source = ~/_config/.gitconfig; };
     ".gitignore_global" = { source = ~/_config/.gitignore_global; };
-    # ".pryrc" = { source = ~/_config/.pryrc; };
+    ".pryrc" = { source = ~/_config/.pryrc; };
     ".tmux.conf" = { source = ~/_config/.tmux.conf; };
     ".zlogin" = { source = ~/_config/.zlogin; };
     ".zsh_plugins.txt" = { source = ~/_config/.zsh_plugins.txt; };
@@ -128,26 +150,27 @@
     ".config/brave-flags.conf" = { source = ~/.config/chromium-flags.conf; };
     ".config/chrome-flags.conf" = { source = ~/.config/chromium-flags.conf; };
     ".config/discord-flags.conf" = { source = ~/.config/chromium-flags.conf; };
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
   };
 
   # You can also manage environment variables but you will have to manually
   # source
   #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  /etc/profiles/per-user/darwin/etc/profile.d/hm-session-vars.sh
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "emacsclient";
+    SSH_KEY_PATH = "~/.ssh/";
+    KERL_BUILD_DOCS = "yes";
+
+    # Python / Ansible
+    PY_COLORS = "1";
+    ANSIBLE_FORCE_COLOR = "1";
+
+    # Wayland
+    MOZ_ENABLE_WAYLAND = 1;
   };
 
   # Let Home Manager install and manage itself.
