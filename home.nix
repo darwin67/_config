@@ -35,6 +35,25 @@
     # pkgs.alacritty
 
     ## System
+    # Sway
+    pkgs.sway
+    pkgs.swaybg
+    pkgs.swayimg
+    pkgs.swaylock-effects
+    pkgs.swayidle
+    pkgs.swaynotificationcenter
+    pkgs.wob
+    pkgs.wev
+    # Screenshots
+    pkgs.grim
+    pkgs.slurp
+    # Recorder
+    pkgs.wf-recorder
+    # Controls
+    pkgs.playerctl
+    pkgs.brightnessctl
+    pkgs.sirula # app launcher
+
     # Shell
     pkgs.starship
 
