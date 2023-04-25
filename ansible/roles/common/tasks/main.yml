@@ -183,3 +183,20 @@
     state: started
     enabled: true
     daemon_reload: true
+
+# Configs
+- name: Clone _config repo
+  git:
+    repo: git@github.com:darwin67/_config.git
+    dest: ~/_config
+    update: no
+
+- name: Prepare directories
+  file:
+    path: "~/.config/{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - nvim
+    - sway
+    - waybar

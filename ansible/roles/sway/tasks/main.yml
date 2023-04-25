@@ -3,9 +3,9 @@
   pacman:
     name:
       - sway
-      # - swayimg
-      # - swayidle
-      # - swaybg
+      - swayimg
+      - swayidle
+      - swaybg
 
       - waybar
       - wofi
@@ -21,15 +21,15 @@
       - wl-clipboard
 
       # Screenshots
-      # - grim
-      # - slurp
+      - grim
+      - slurp
 
       # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/Screencast-Compatibility
       - xdg-desktop-portal-wlr
       - xdg-desktop-portal
 
       # Screen recorder
-      # - wf-recorder
+      - wf-recorder
 
       # Controls
       # - playerctl
@@ -45,11 +45,11 @@
       - libappindicator-gtk3
       - greetd # login manager
       - greetd-gtkgreet-git
-      # - swaylock-effects # lock screen
-      # - sirula # app launcher
-      # - swaync # notification daemon
-      # - wob # wob
-      # - wev # event debugging
+      - swaylock-effects # lock screen
+      - sirula # app launcher
+      - swaync # notification daemon
+      - wob # wob
+      - wev # event debugging
 
 - name: Create local systemd directory
   file:

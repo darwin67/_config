@@ -35,45 +35,8 @@
     # pkgs.alacritty
 
     ## System
-    # Sway
-    pkgs.sway
-    pkgs.swaybg
-    pkgs.swayimg
-    pkgs.swaylock-effects
-    pkgs.swayidle
-    pkgs.swaynotificationcenter
-    pkgs.wob
-    pkgs.wev
-    # Screenshots
-    pkgs.grim
-    pkgs.slurp
-    # Recorder
-    pkgs.wf-recorder
-    # Controls
-    pkgs.playerctl
-    pkgs.brightnessctl
-    pkgs.sirula # app launcher
-
     # Shell
     pkgs.starship
-
-    # Fonts
-    pkgs.nerdfonts
-    pkgs.noto-fonts
-    pkgs.noto-fonts-emoji
-    pkgs.noto-fonts-cjk-sans
-    pkgs.noto-fonts-cjk-serif
-    pkgs.font-awesome
-
-    # Files
-    pkgs.xfce.thunar
-    pkgs.xfce.tumbler
-    pkgs.xfce.thunar-volman
-    pkgs.xfce.thunar-archive-plugin
-    pkgs.xfce.thunar-media-tags-plugin
-
-    # Battery management
-    pkgs.tlp
 
     # Programming language setup
     #   Ruby, Python, Erlang
@@ -105,14 +68,6 @@
     pkgs.nodePackages.vscode-html-languageserver-bin
     pkgs.elixir-ls
 
-    ## Human language
-    # pkgs.fcitx5
-    # pkgs.fcitx5-mozc
-    # pkgs.fcitx5-rime
-    # pkgs.fcitx5-configtool
-    # pkgs.fcitx5-gtk
-    # pkgs.fcitx5-qt
-
     ## Social
     pkgs.discord
 
@@ -136,12 +91,31 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-    # ".alacritty.yml" = _config/.alacritty.yml;
-    # ".pryrc" = _config/.pryrc;
+    # dotfiles
+    ".alacritty.yml" = { source = ~/_config/.alacritty.yml; };
+    ".asdfrc" = { source = ~/_config/.asdfrc; };
+    ".gitconfig" = { source = ~/_config/.gitconfig; };
+    ".gitignore_global" = { source = ~/_config/.gitignore_global; };
+    # ".pryrc" = { source = ~/_config/.pryrc; };
+    ".tmux.conf" = { source = ~/_config/.tmux.conf; };
+    ".zlogin" = { source = ~/_config/.zlogin; };
+    ".zsh_plugins.txt" = { source = ~/_config/.zsh_plugins.txt; };
+    ".zshrc" = { source = ~/_config/.zshrc; };
+
+    ".config/nvim/init.vim" = { source = ~/_config/init.vim; };
+    ".config/sway/config" = { source = ~/_config/sway.conf; };
+    ".config/starship.toml" = { source = ~/_config/starship.toml; };
+    ".config/waybar/config" = { source = ~/_config/waybar/config.json; };
+    ".config/waybar/mediaplayer.sh" = {
+      source = ~/_config/waybar/mediaplayer.sh;
+    };
+    ".config/waybar/style.css" = { source = ~/_config/waybar/style.css; };
+    ".config/wofi" = { source = ~/_config/wofi; };
+    ".config/wob" = { source = ~/_config/wob; };
+    ".config/sirula" = { source = ~/_config/sirula; };
+
+    # Directory
+    ".doom.d" = { source = ~/_config/.doom.d; };
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -163,9 +137,6 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
-  # Services
-  # services = { tlp = { enable = true; }; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
