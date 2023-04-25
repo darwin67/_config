@@ -9,11 +9,7 @@
       - git
       - tmux
       - ripgrep
-      - jq
-      - yq # similar to jq but also handles YAML, XML, etc
-      - alacritty
       - copyq
-      - fd
 
       ## System
       # Shell
@@ -21,11 +17,11 @@
       - ttf-font-nerd
 
       # Files
-      - thunar
-      - tumbler
-      - thunar-volman
-      - thunar-archive-plugin
-      - thunar-media-tags-plugin
+      # - thunar
+      # - tumbler
+      # - thunar-volman
+      # - thunar-archive-plugin
+      # - thunar-media-tags-plugin
 
       # Bluetooth
       - blueberry

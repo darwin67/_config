@@ -21,8 +21,30 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+
+    # Common
+    pkgs.fwupd
     pkgs.jq
     pkgs.yq
+    pkgs.neovim
+    pkgs.vim
+    pkgs.git
+    pkgs.fd
+    pkgs.tmux
+    pkgs.ripgrep
+    # pkgs.alacritty
+
+    ## System
+    # Shell
+    pkgs.starship
+    pkgs.nerdfonts
+
+    # Files
+    pkgs.xfce.thunar
+    pkgs.xfce.tumbler
+    pkgs.xfce.thunar-volman
+    pkgs.xfce.thunar-archive-plugin
+    pkgs.xfce.thunar-media-tags-plugin
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -45,8 +67,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".alacritty.yml" = _config/.alacritty.yml;
-    ".pryrc" = _config/.pryrc;
+    # ".alacritty.yml" = _config/.alacritty.yml;
+    # ".pryrc" = _config/.pryrc;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
