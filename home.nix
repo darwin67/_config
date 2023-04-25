@@ -33,6 +33,7 @@
     pkgs.wget
     pkgs.sqlite
     pkgs.tree
+    pkgs.pet
 
     ## System
     # Shell
