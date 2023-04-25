@@ -8,9 +8,7 @@
       - copyq
 
       ## System
-      # Shell
-      # - starship
-      # - ttf-font-nerd
+      - docker
 
       # Files
       - thunar
@@ -29,31 +27,6 @@
       # Programming language setup
       #   Ruby, Python, Erlang
       - emacs-nativecomp
-      # - libffi
-      # - libyaml
-      # - openssl
-      # - zlib
-      # - xz
-      # # https://github.com/asdf-vm/asdf-erlang
-      # - ncurses
-      # - glu
-      # - mesa
-      # - libpng
-      # - libssh
-      # - unixodbc
-      # - libxslt
-      # - fop
-
-      # LSPs
-      # - gopls
-      # - typescript-language-server
-      # - rust-analyzer
-      # - yaml-language-server
-      # - vscode-json-languageserver
-      # - vscode-css-languageserver
-      # - vscode-html-languageserver
-      # not available on arch yet
-      # - vscode-markdown-languageserver
 
       ## Social
       - discord
@@ -84,18 +57,12 @@
 
       ## Security
       - 1password
-      # - 1password-cli
 
       ## File management
       - insync
 
       ## Editor
       - visual-studio-code-bin
-      # - nixfmt
-
-      ## LSPs - requires asdf bypass
-      # - elixir-ls
-      - vscode-eslint-language-server
 
       ## Browser
       - google-chrome
@@ -103,6 +70,13 @@
 
       ## Social
       - whatsapp-for-linux
+
+- name: Add 'darwin' user to system groups
+  become: true
+  user:
+    name: darwin
+    groups: docker,nix-users
+    append: true
 
 # Battery related services
 - name: Enable TLP related services

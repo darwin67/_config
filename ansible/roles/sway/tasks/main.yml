@@ -92,26 +92,24 @@
 
 - name: Download Dynamic Wallpapers
   get_url:
-    url: "{{ item.src }}"
+    url: "https://cdn.dynamicwallpaper.club/wallpapers/{{ item.src }}"
     dest: "~/Pictures/DynamicWallpapers/{{ item.filename }}"
   loop:
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/a9q1jiy0cu/%22Desert%20Sands%22%20by%20Louis%20Coyle.heic"
+    - src: "a9q1jiy0cu/%22Desert%20Sands%22%20by%20Louis%20Coyle.heic"
       filename: DesertSands.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/f8jzf4ugy8/Mojave%20XP.heic"
+    - src: "f8jzf4ugy8/Mojave%20XP.heic"
       filename: Mojave.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/hqzkn6nai0f/earth%20.heic"
+    - src: "hqzkn6nai0f/earth%20.heic"
       filename: Earth.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/ze2isquaf7n/Tech%20Factory.heic"
+    - src: "ze2isquaf7n/Tech%20Factory.heic"
       filename: TechFactory.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/v5y04cx6k9k/Catalina.heic"
+    - src: "v5y04cx6k9k/Catalina.heic"
       filename: Catalina.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/s3uyjbhvnma/New%20Ipad%202018.heic"
-      filename: iPad2018.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/boc339cw3n/Big%20macOS%20Sur.heic"
+    - src: "boc339cw3n/Big%20macOS%20Sur.heic"
       filename: macBigSur.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/la4wfuwtkg/macOS%20Monterey.heic"
+    - src: "la4wfuwtkg/macOS%20Monterey.heic"
       filename: macMonterey.heic
-    - src: "https://cdn.dynamicwallpaper.club/wallpapers/gpf7f97jk3b/Fuji.heic"
+    - src: "gpf7f97jk3b/Fuji.heic"
       filename: Fuji.heic
 
 - name: Install systemd service for Dynamic Wallpaper
