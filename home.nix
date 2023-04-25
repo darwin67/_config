@@ -46,6 +46,9 @@
     pkgs.xfce.thunar-archive-plugin
     pkgs.xfce.thunar-media-tags-plugin
 
+    # Battery management
+    pkgs.tlp
+
     # Programming language setup
     #   Ruby, Python, Erlang
     pkgs.libffi
@@ -75,6 +78,20 @@
     pkgs.nodePackages.vscode-css-languageserver-bin
     pkgs.nodePackages.vscode-html-languageserver-bin
     pkgs.elixir-ls
+
+    ## Human language
+    # pkgs.fcitx5
+    # pkgs.fcitx5-mozc
+    # pkgs.fcitx5-rime
+    # pkgs.fcitx5-configtool
+    # pkgs.fcitx5-gtk
+    # pkgs.fcitx5-qt
+
+    ## Social
+    pkgs.discord
+
+    ## Security
+    # pkgs._1password # not working?
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -120,6 +137,9 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
+  # Services
+  # services = { tlp = { enable = true; }; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
