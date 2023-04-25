@@ -4,17 +4,13 @@
     name:
       - fwupd
       - zsh
-      - neovim
-      - vim
-      - git
-      - tmux
-      - ripgrep
+      - alacritty
       - copyq
 
       ## System
       # Shell
-      - starship
-      - ttf-font-nerd
+      # - starship
+      # - ttf-font-nerd
 
       # Files
       # - thunar
@@ -33,29 +29,29 @@
       # Programming language setup
       #   Ruby, Python, Erlang
       - emacs-nativecomp
-      - libffi
-      - libyaml
-      - openssl
-      - zlib
-      - xz
-      # https://github.com/asdf-vm/asdf-erlang
-      - ncurses
-      - glu
-      - mesa
-      - libpng
-      - libssh
-      - unixodbc
-      - libxslt
-      - fop
+      # - libffi
+      # - libyaml
+      # - openssl
+      # - zlib
+      # - xz
+      # # https://github.com/asdf-vm/asdf-erlang
+      # - ncurses
+      # - glu
+      # - mesa
+      # - libpng
+      # - libssh
+      # - unixodbc
+      # - libxslt
+      # - fop
 
       # LSPs
-      - gopls
-      - typescript-language-server
-      - rust-analyzer
-      - yaml-language-server
-      - vscode-json-languageserver
-      - vscode-css-languageserver
-      - vscode-html-languageserver
+      # - gopls
+      # - typescript-language-server
+      # - rust-analyzer
+      # - yaml-language-server
+      # - vscode-json-languageserver
+      # - vscode-css-languageserver
+      # - vscode-html-languageserver
       # not available on arch yet
       # - vscode-markdown-languageserver
 
@@ -95,10 +91,10 @@
 
       ## Editor
       - visual-studio-code-bin
-      - nixfmt
+      # - nixfmt
 
       ## LSPs - requires asdf bypass
-      - elixir-ls
+      # - elixir-ls
       - vscode-eslint-language-server
 
       ## Browser

@@ -46,6 +46,36 @@
     pkgs.xfce.thunar-archive-plugin
     pkgs.xfce.thunar-media-tags-plugin
 
+    # Programming language setup
+    #   Ruby, Python, Erlang
+    pkgs.libffi
+    pkgs.libyaml
+    pkgs.openssl
+    pkgs.zlib
+    pkgs.xz
+    # https://github.com/asdf-vm/asdf-erlang
+    pkgs.ncurses
+    pkgs.libGLU
+    pkgs.mesa
+    pkgs.libpng
+    pkgs.libssh
+    pkgs.unixODBC
+    pkgs.libxslt
+    pkgs.fop
+
+    # Editor
+    pkgs.nixfmt
+
+    # Language Servers
+    pkgs.gopls
+    pkgs.rust-analyzer
+    pkgs.nodePackages.typescript-language-server
+    pkgs.nodePackages.vscode-json-languageserver
+    pkgs.nodePackages.yaml-language-server
+    pkgs.nodePackages.vscode-css-languageserver-bin
+    pkgs.nodePackages.vscode-html-languageserver-bin
+    pkgs.elixir-ls
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
