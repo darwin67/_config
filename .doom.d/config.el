@@ -70,7 +70,6 @@
 (editorconfig-mode t)
 (drag-stuff-global-mode t)
 (+global-word-wrap-mode t)
-(global-tree-sitter-mode)               ; https://emacs-tree-sitter.github.io/getting-started/
 
 ;; ===================================================================
 ;; Key Bindings
@@ -123,17 +122,6 @@
 ;; Language settings
 
 ;; Elixir
-
-;; Add heex-mode for modifying .heex files
-(define-derived-mode heex-mode web-mode "HEEx" "Major mode for editing HEEx files")
-(add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-mode))
-(add-to-list 'tree-sitter-major-mode-language-alist '(heex-mode . heex))
-
-(add-hook 'heex-mode-hook #'tree-sitter-hl-mode)
-(add-hook 'heex-mode-hook
-          (lambda()
-            (tree-sitter-load 'heex)
-            (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;; Create a buffer-local hook to run elixir-format on save
 (add-hook 'elixir-mode-hook

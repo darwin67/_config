@@ -51,6 +51,7 @@
     pkgs.gomodifytags
     pkgs.gore
     pkgs.gotools
+    pkgs.gocode
     # Ruby
     # pkgs.ruby_3_1
     # Python
