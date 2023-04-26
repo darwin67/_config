@@ -71,6 +71,20 @@
 
     # Editor
     pkgs.nixfmt
+    pkgs.editorconfig-core-c
+    pkgs.python310Packages.grip
+    pkgs.python310Packages.pytest
+    pkgs.python310Packages.pyflakes
+    pkgs.python310Packages.nose
+    pkgs.python310Packages.isort
+    pkgs.black
+    pkgs.gnuplot
+    pkgs.shfmt
+    pkgs.shellcheck
+    pkgs.glslang
+    pkgs.maim
+    pkgs.scrot
+    pkgs.multimarkdown
 
     # Language Servers
     pkgs.gopls
