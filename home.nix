@@ -155,7 +155,7 @@
     ".doom.d" = { source = ~/_config/.doom.d; };
 
     # Sway
-    ".config/sway/config" = { source = ~/_config/sway.conf; };
+    ".config/sway" = { source = ~/_config/sway; };
     ".config/starship.toml" = { source = ~/_config/starship.toml; };
     ".config/waybar/config" = { source = ~/_config/waybar/config.json; };
     ".config/waybar/mediaplayer.sh" = {

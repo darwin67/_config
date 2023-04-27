@@ -59,13 +59,8 @@ exec --no-startup-id fcitx5 -d
 #
 # Background images are set using a systemd service running wallutils
 
-# Screen setup
+# Screen setup (default value, can be overwritten)
 output eDP-1 scale 1.5
-
-# Desktop
-output DP-1 pos 0 1670 scale 1.3
-output DP-2 pos 0 0 scale 1.3
-output HDMI-A-1 pos 2953 720 scale 1
 
 # Force to focus on browser when clicking links and stuff
 # Should work for native apps as well?
@@ -299,4 +294,4 @@ bar {
     swaybar_command waybar
 }
 
-include /etc/sway/config.d/*
+include ./config.d/*.conf

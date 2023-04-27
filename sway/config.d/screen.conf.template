@@ -1,0 +1,7 @@
+# Main display
+# output eDP-1 scale 2
+
+# Monitors
+# output DP-1 pos 0 1670 scale 1.3
+# output DP-2 pos 0 0 scale 1.3
+# output HDMI-A-1 pos 2953 720 scale 1

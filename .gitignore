@@ -8,3 +8,5 @@ temp/
 merged
 rollbacks
 Gemfile.lock
+
+sway/config.d/*.conf

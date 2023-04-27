@@ -167,5 +167,4 @@
     recurse: yes
   loop:
     - nvim
-    - sway
     - waybar
