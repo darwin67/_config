@@ -57,7 +57,6 @@
     # Python
     pkgs.python310Full
     pkgs.python310Packages.pip
-    pkgs.pipenv
     # Node
     pkgs.yarn
     pkgs.nodejs-18_x
@@ -176,7 +175,13 @@
     };
     ".config/brave-flags.conf" = { source = ~/.config/chromium-flags.conf; };
     ".config/chrome-flags.conf" = { source = ~/.config/chromium-flags.conf; };
-    ".config/discord-flags.conf" = { source = ~/.config/chromium-flags.conf; };
+    ".config/discord-flags.conf" = {
+      text = ''
+        --enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+        --enable-features=WebRTCPipeWireCapturer
+      '';
+    };
   };
 
   # You can also manage environment variables but you will have to manually

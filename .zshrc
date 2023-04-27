@@ -91,10 +91,6 @@ alias glog="git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d
 alias gsta='git stash push'
 alias gstp='git stash pop'
 
-if type hub >/dev/null 2>&1; then
-  alias git="hub"
-fi
-
 if type nvim >/dev/null 2>&1; then
   alias vim='nvim'
 fi
