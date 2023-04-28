@@ -1,6 +1,10 @@
 # Main display
 # output eDP-1 scale 2
 
+## Disable laptop screen when it's closed
+# bindswitch lid:on output eDP-1 disable
+# bindswitch lid:off output eDP-1 enable
+
 # Monitors
 # output DP-1 pos 0 1670 scale 1.3
 # output DP-2 pos 0 0 scale 1.3
