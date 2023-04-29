@@ -6,6 +6,6 @@
 # bindswitch lid:off output eDP-1 enable
 
 # Monitors
-# output DP-1 pos 0 1670 scale 1.3
+# output DP-1 pos 2952 0 scale 1.3
 # output DP-2 pos 0 0 scale 1.3
-# output HDMI-A-1 pos 2953 720 scale 1
+# output HDMI-A-1 pos 5906 0 scale 1
