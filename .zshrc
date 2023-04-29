@@ -121,9 +121,9 @@ fi
 export ZFUNCDIR="$CONFIG/zfunc"
 
 # Elixir & Erlang settings
-export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
-export PATH="$HOME/.lsp/elixir:$PATH"
-export KERL_BUILD_DOCS=yes
+# export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
+# export PATH="$HOME/.lsp/elixir:$PATH"
+# export KERL_BUILD_DOCS=yes
 
 # Dart & Flutter
 export PATH="$HOME/Android/Sdk/tools/bin:$PATH"
@@ -137,6 +137,7 @@ fi
 if type nix-env >/dev/null 2>&1; then
   # Install with `nix-env -iA nixpkgs.glibcLocales`
   export LOCALE_ARCHIVE="$(nix-env --installed --no-name --out-path --query glibc-locales)/lib/locale/locale-archive"
+  # If $XDG_DATA_DIRS is either not set or empty, a value equal to /usr/local/share/:/usr/share/ should be used.
   export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
 
