@@ -29,6 +29,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq
+   deft-directory "~/Notes"
    org-directory "~/Notes"
    org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
    org-archive-location "~/Notes/archive/%s_archive::"
@@ -50,9 +51,23 @@
      ("~" (:background "deep sky blue" :foreground "white"))
      ("+" (:strike-through t))))
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
+;; Show line numbers only on the focused file
+(defun display-line-numbers-current-buffer ()
+  "Enable line numbers in the currently focused buffer, and disable it in all other buffers."
+  (when (and (equal (selected-frame) (window-frame))
+             (not (frame-parent)))
+    (let ((buffer-list (buffer-list)))
+      (dolist (buf buffer-list)
+        (with-current-buffer buf
+          (when (and (not (eq (current-buffer) (window-buffer)))
+                     (display-line-numbers-mode))
+            (display-line-numbers-mode -1)))
+        (with-current-buffer (window-buffer)
+          (when (eq buf (current-buffer))
+            (unless (display-line-numbers-mode)
+              (display-line-numbers-mode 1))))))))
+
+(add-hook 'buffer-list-update-hook #'display-line-numbers-current-buffer)
 
 ;; tab width
 (setq-default indent-tabs-mode nil)

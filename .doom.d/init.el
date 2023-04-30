@@ -20,9 +20,11 @@
 
        :completion
        company             ; the ultimate code completion backend
-       (ivy +fuzzy +prescient +icons) ; a search engine for love and life
+       ;; (ivy +fuzzy +prescient +icons) ; a search engine for love and life
+       (vertico +icons)
 
        :ui
+       deft
        doom                ; what makes DOOM look the way it does
        doom-dashboard      ; a nifty splash screen for Emacs
        doom-quit           ; DOOM quit-message prompts when you quit Emacs
@@ -37,7 +39,7 @@
        (vc-gutter +pretty)           ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
        (window-select +numbers)       ; visually switch windows
-       workspaces          ; tab emulation, persistence & separate workspaces
+       ;; workspaces          ; tab emulation, persistence & separate workspaces
        zen
 
        :os
@@ -59,16 +61,17 @@
        vc                  ; version-control and Emacs, sitting in a tree
 
        :term
-       ;;eshell            ; the elisp shell that works everywhere
-       ;;shell             ; simple shell REPL for Emacs
+       eshell            ; the elisp shell that works everywhere
+       shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        ;;vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
+       ;; (spell +enchant)
 
        :tools
-       debugger
+       (debugger +lsp)
        editorconfig        ; let someone else argue about tabs vs spaces
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
