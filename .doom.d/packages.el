@@ -71,3 +71,5 @@
 (package! nginx-mode)
 
 (package! dockerfile-mode)
+
+(package! org-rainbow-tags)

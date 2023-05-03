@@ -51,6 +51,8 @@
      ("~" (:background "deep sky blue" :foreground "white"))
      ("+" (:strike-through t))))
 
+(add-hook 'org-mode-hook 'org-rainbow-tags-mode)
+
 ;; Show line numbers only on the focused file
 (defun display-line-numbers-current-buffer ()
   "Enable line numbers in the currently focused buffer, and disable it in all other buffers."
