@@ -40,7 +40,7 @@
    org-startup-with-inline-images t
    org-image-actual-width nil
    org-log-done 'note
-   ;; org-bullets-bullet-list '("◉" ">" "◆" "■")
+   org-bullets-bullet-list '("◉" "○" "✸" "►" ">" ">>")
    org-startup-truncated nil
 
    org-emphasis-alist

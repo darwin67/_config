@@ -68,6 +68,10 @@
     # Flutter / Dart
     pkgs.flutter
     pkgs.dart
+    # Lua
+    pkgs.lua
+    pkgs.luajitPackages.luarocks
+    # pkgs.sumneko-lua-language-server
 
     # Editor
     pkgs.nixfmt
