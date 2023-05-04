@@ -29,7 +29,7 @@
        doom-dashboard      ; a nifty splash screen for Emacs
        doom-quit           ; DOOM quit-message prompts when you quit Emacs
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW/BUG/XXX
-       (emoji +ascii +github +unicode)
+       ;; (emoji +ascii +github +unicode)
        neotree
        (modeline +light)            ; snazzy, Atom-inspired modeline, plus API
        nav-flash           ; blink the current line after jumping
