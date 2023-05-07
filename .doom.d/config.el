@@ -52,6 +52,7 @@
      ("+" (:strike-through t))))
 
 (add-hook 'org-mode-hook 'org-rainbow-tags-mode)
+(add-hook 'org-mode-hook (lambda() (setq display-line-numbers-type nil)))
 
 ;; Show line numbers only on the focused file
 (defun display-line-numbers-current-buffer ()
