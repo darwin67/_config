@@ -51,6 +51,7 @@
      ("~" (:background "deep sky blue" :foreground "white"))
      ("+" (:strike-through t))))
 
+(add-hook 'org-mode-hook 'org-hide-block-all)
 (add-hook 'org-mode-hook 'org-rainbow-tags-mode)
 (add-hook 'org-mode-hook (lambda() (setq display-line-numbers-type nil)))
 
@@ -234,3 +235,18 @@
 
 ;; Nginx
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
+
+;; MDX (Markdown with JSX)
+(add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
+
+(defun enable-jsx-in-markdown ()
+  (when (and (stringp buffer-file-name)
+             (string-match-p "\\.mdx\\'" buffer-file-name))
+    (setq-local markdown-enable-wiki-linkification nil)
+    (setq-local markdown-enable-math t)
+    (markdown-toggle-math t)
+    (markdown-toggle-url-hiding nil)
+    (web-mode-set-content-type "jsx")
+    (web-mode)))
+
+(add-hook 'markdown-mode-hook 'enable-jsx-in-markdown)
