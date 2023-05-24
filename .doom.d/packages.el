@@ -73,3 +73,5 @@
 (package! dockerfile-mode)
 
 (package! org-rainbow-tags)
+
+(package! dotenv-mode)

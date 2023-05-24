@@ -164,6 +164,29 @@
   lsp-eldoc-enable-hover nil
   lsp-completion-show-detail t)
 
+;; DAP mode
+;; ref: https://emacs-lsp.github.io/dap-mode/page/configuration
+(setq dap-auto-configure-features '(sessions locals controls tooltip))
+
+;; Golang
+(require 'dap-dlv-go)
+;; JavaScript
+(require 'dap-firefox)
+(require 'dap-node)
+;; BEAM
+(require 'dap-elixir)
+(require 'dap-erlang)
+;; Rust
+(require 'dap-gdb-lldb)
+;; (dap-register-debug-template "Rust::GDB Run Configuration"
+;;                              (list :type "gdb"
+;;                                    :request "launch"
+;;                                    :name "GDB::Run"
+;;                            :gdbpath "rust-gdb"
+;;                                    :target nil
+;;                                    :cwd nil))
+
+;; Projects
 (with-eval-after-load 'projectile
   (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
   (add-to-list 'projectile-project-root-files-bottom-up "BUILD"))
