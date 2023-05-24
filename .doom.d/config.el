@@ -127,7 +127,14 @@
         :desc "Move buffer down" "j" 'buf-move-down
         :desc "Move buffer left" "h" 'buf-move-left
         :desc "Move buffer right" "l" 'buf-move-right
-        :desc "Show imenu" "i" 'lsp-ui-imenu))
+        :desc "Show imenu" "i" 'lsp-ui-imenu)
+
+      ;; Debugger
+      :desc "debug" "d" nil
+      (:prefix "d"
+        :desc "Add breakpoint" "a" 'dap-breakpoint-add
+        :desc "Delete breakpoint" "d" 'dap-breakpoint-delete
+        :desc "Clear breakpoints" "c" 'dap-breakpoint-delete-all))
 
 ;; Disable formatting on these modes
 (setq +format-on-save-enabled-modes
