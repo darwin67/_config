@@ -267,7 +267,7 @@
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
 
 ;; MDX (Markdown with JSX)
-(add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mdx\\'" . gfm-mode))
 
 (defun enable-jsx-in-markdown ()
   (when (and (stringp buffer-file-name)
