@@ -16,7 +16,6 @@ command = "sway --config /etc/greetd/sway-config"
 # in the `video` group.
 user = "greeter"
 
-[initial_session]
-
-command = "sway-run"
-user = "darwin"
+# [initial_session]
+# command = "sway-run"
+# user = "darwin"
