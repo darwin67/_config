@@ -49,6 +49,10 @@ fi
 #   source <(kubectl completion zsh)
 # fi
 
+if [[ ! -d $HOME/.npm-pkgs ]]; then
+  export PATH="$HOME/.npm-pkgs/bin:$PATH"
+fi
+
 if [[ ! -d ${TPM_PLUGINS} ]]; then
   mkdir -p ${TPM_PLUGINS}
   ln -s "${ANTIDOTE_CACHE}/tmux-plugins/tpm" ${TPM_PLUGINS}

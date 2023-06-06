@@ -149,6 +149,7 @@
     ".gitconfig" = { source = ~/_config/.gitconfig; };
     ".gitignore_global" = { source = ~/_config/.gitignore_global; };
     ".pryrc" = { source = ~/_config/.pryrc; };
+    ".npmrc" = { source = ~/_config/.npmrc; };
     ".tmux.conf" = { source = ~/_config/.tmux.conf; };
     ".zlogin" = { source = ~/_config/.zlogin; };
     ".zsh_plugins.txt" = { source = ~/_config/.zsh_plugins.txt; };
