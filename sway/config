@@ -104,7 +104,7 @@ for_window [app_id=".*"] inhibit_idle fullscreen
 # Read `man 5 sway-input` for more information about this section.
 
 input "type:touchpad" {
-  tap disabled
+  tap enabled
   drag enabled
   dwt enabled
   natural_scroll enabled
