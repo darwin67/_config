@@ -119,7 +119,7 @@
     pkgs.discord
 
     ## Security
-    pkgs._1password
+    # pkgs._1password
 
     # Others
     pkgs.mpv
