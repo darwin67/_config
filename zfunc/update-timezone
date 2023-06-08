@@ -1,9 +1,10 @@
 #!/usr/bin/zsh
 
-# Sign in to 1password and set temp session token
-eval $(op signin)
-
-IPINFO_TOKEN=$(op item get IPInfo --fields label=Token)
+if [ -z $IPINFO_TOKEN ]; then
+    # Sign in to 1password and set temp session token
+    eval $(op signin)
+    IPINFO_TOKEN=$(op item get IPInfo --fields label=Token)
+fi
 TIMEZONE=$(curl -s "https://ipinfo.io?token=$IPINFO_TOKEN" | jq -r .timezone)
 # echo $TIMEZONE
 
