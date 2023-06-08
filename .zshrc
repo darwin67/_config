@@ -50,8 +50,9 @@ fi
 # fi
 
 if [[ ! -d $HOME/.npm-pkgs ]]; then
-  export PATH="$HOME/.npm-pkgs/bin:$PATH"
+  mkdir -p $HOME/.npm-pkgs/{lib,bin}
 fi
+export PATH="$HOME/.npm-pkgs/bin:$PATH"
 
 if [[ ! -d ${TPM_PLUGINS} ]]; then
   mkdir -p ${TPM_PLUGINS}
