@@ -232,7 +232,10 @@
     "Run lsp-eslint-apply-all-fixes and then run the original lsp--before-save."
     (when lsp-eslint-auto-fix-on-save (lsp-eslint-apply-all-fixes))
     (funcall orig-fun))
-(advice-add 'lsp--before-save :around #'lsp--eslint-before-save)
+
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (advice-add 'lsp--before-save :around #'lsp--eslint-before-save)))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode))
 
 ;; Liquid
