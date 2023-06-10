@@ -73,16 +73,34 @@
 
 (add-hook 'buffer-list-update-hook #'display-line-numbers-current-buffer)
 
-;; tab width
 (setq-default indent-tabs-mode nil)
-(setq tab-width 2)
+(setq
+  ;; tab width
+  tab-width 2
+  ;; set cursor margin to 7 lines
+  scroll-margin 7
+  ;; Auto rebalance windows after window actions like horiozntal or vertical splits
+  window-combination-resize t
+  ;; aligns annotation to the right hand side
+  company-tooltip-align-annotations t
 
-;; set cursor margin to 7 lines
-(setq scroll-margin 7)
+  ;; LSP mode
+  gc-cons-threshold #x8000000
+  read-process-output-max (* 10000 1024) ;; 10mb
+  lsp-completion-provider :capf
+  lsp-idle-delay 0.2
+  lsp-auto-configure t
+  lsp-enable-file-watchers nil
+  lsp-lens-place-position 'above-line
+  lsp-ui-doc-show-with-mouse nil
+  lsp-headerline-breadcrumb-enable t
+  lsp-ui-sideline-enable nil
+  lsp-eldoc-enable-hover nil
+  lsp-completion-show-detail t
 
-;; Auto rebalance windows after window actions like horiozntal or vertical splits
-(setq window-combination-resize t)
-
+  ;; DAP mode
+  ;; ref: https://emacs-lsp.github.io/dap-mode/page/configuration
+  dap-auto-configure-features '(sessions locals controls tooltip))
 
 (global-company-mode)
 (global-git-commit-mode t)
@@ -142,6 +160,7 @@
             sql-mode         ; sqlformat is currently broken
             tex-mode         ; latexindent is broken
             latex-mode
+            typescript-mode
             web-mode))
 
 ;; ===================================================================
@@ -155,25 +174,6 @@
 
 ;; ===================================================================
 ;; Others
-
-;; LSP mode
-(setq
-  gc-cons-threshold #x8000000
-  read-process-output-max (* 10000 1024) ;; 10mb
-  lsp-completion-provider :capf
-  lsp-idle-delay 0.2
-  lsp-auto-configure t
-  lsp-enable-file-watchers nil
-  lsp-lens-place-position 'above-line
-  lsp-ui-doc-show-with-mouse nil
-  lsp-headerline-breadcrumb-enable t
-  lsp-ui-sideline-enable nil
-  lsp-eldoc-enable-hover nil
-  lsp-completion-show-detail t)
-
-;; DAP mode
-;; ref: https://emacs-lsp.github.io/dap-mode/page/configuration
-(setq dap-auto-configure-features '(sessions locals controls tooltip))
 
 ;; Golang
 (require 'dap-dlv-go)
@@ -222,25 +222,17 @@
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
 
 ;; Typescript
-(setq typescript-indent-level 2)
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+(setq
+  typescript-indent-level 2
+  ;; NOTE: not implemented yet apparently
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/1842
+  lsp-eslint-auto-fix-on-save t)
 
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
-
-;; formats the buffer before saving
-(add-hook 'before-save-hook 'tide-format-before-save)
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
+(defun lsp--eslint-before-save (orig-fun)
+    "Run lsp-eslint-apply-all-fixes and then run the original lsp--before-save."
+    (when lsp-eslint-auto-fix-on-save (lsp-eslint-apply-all-fixes))
+    (funcall orig-fun))
+(advice-add 'lsp--before-save :around #'lsp--eslint-before-save)
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode))
 
 ;; Liquid
