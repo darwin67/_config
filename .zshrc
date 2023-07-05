@@ -49,10 +49,10 @@ fi
 #   source <(kubectl completion zsh)
 # fi
 
-if [[ ! -d $HOME/.npm-pkgs ]]; then
-  mkdir -p $HOME/.npm-pkgs/{lib,bin}
+if [[ ! -d $HOME/.node/npm-pkgs ]]; then
+  mkdir -p $HOME/.node/npm-pkgs/{lib,bin}
 fi
-export PATH="$HOME/.npm-pkgs/bin:$PATH"
+export PATH="$HOME/.node/npm-pkgs/bin:$PATH"
 
 if [[ ! -d ${TPM_PLUGINS} ]]; then
   mkdir -p ${TPM_PLUGINS}
