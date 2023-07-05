@@ -73,10 +73,10 @@
 
 (add-hook 'buffer-list-update-hook #'display-line-numbers-current-buffer)
 
-(setq-default indent-tabs-mode nil)
+(setq-default
+  indent-tabs-mode nil
+  tab-width 2)
 (setq
-  ;; tab width
-  tab-width 2
   ;; set cursor margin to 7 lines
   scroll-margin 7
   ;; Auto rebalance windows after window actions like horiozntal or vertical splits
