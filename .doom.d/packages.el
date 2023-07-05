@@ -64,9 +64,6 @@
 ;; protobuf
 (package! protobuf-mode)
 
-;; graphql mode
-(package! graphql-mode)
-
 (package! systemd)
 (package! nginx-mode)
 

@@ -88,6 +88,7 @@
        emacs-lisp          ; drown in parentheses
        (erlang +lsp)              ; an elegant language for a more civilized age
        (go +lsp +tree-sitter)      ; the hipster dialect
+       (graphql +lsp)
        (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
        (json +lsp +tree-sitter)
        (markdown +grip)            ; writing docs for people to ignore
