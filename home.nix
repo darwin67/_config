@@ -54,20 +54,26 @@
     pkgs.gocode
     # Ruby
     # pkgs.ruby_3_1
+
     # Python
     pkgs.python311
     pkgs.python311Packages.pip
+
     # Node
     pkgs.yarn
     pkgs.nodejs-18_x
     pkgs.nodePackages.typescript
+
     # Elixir
     pkgs.elixir
+
     # Erlang
     pkgs.erlang
+
     # Flutter / Dart
     pkgs.flutter
     # pkgs.dart
+
     # Lua
     pkgs.lua
     pkgs.luajitPackages.luarocks
@@ -116,6 +122,7 @@
     pkgs.protobuf
     pkgs.awscli2
     pkgs.kubectl
+    pkgs.docker-compose
 
     ## Social
     pkgs.discord
