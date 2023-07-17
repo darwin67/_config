@@ -165,6 +165,8 @@ input "type:keyboard" {
     bindsym XF86AudioPrev exec playerctl previous
 
     # Kinesis freestyle
+    bindsym F3 exec pactl set-source-volume @DEFAULT_SOURCE@ -5% && pactl get-source-volume @DEFAULT_SOURCE@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+    bindsym F4 exec pactl set-source-volume @DEFAULT_SOURCE@ +5% && pactl get-source-volume @DEFAULT_SOURCE@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
     bindsym F5 exec playerctl previous
     bindsym F6 exec playerctl play-pause
     bindsym F7 exec playerctl next
