@@ -25,10 +25,6 @@
       - tlp
       - tlp-rdw
 
-      # Programming language setup
-      #   Ruby, Python, Erlang
-      - emacs-nativecomp
-
       ## Social
       - discord
       - signal-desktop
@@ -68,6 +64,7 @@
 
       ## Editor
       - visual-studio-code-bin
+      - emacs29-git
 
       ## Browser
       - google-chrome
