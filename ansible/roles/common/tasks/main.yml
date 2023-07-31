@@ -49,6 +49,8 @@
       ## Entertainment
       - spotify-launcher
 
+      - emacs
+
 - name: Install commonly used packages - AUR
   kewlfft.aur.aur:
     use: yay
@@ -64,7 +66,6 @@
 
       ## Editor
       - visual-studio-code-bin
-      - emacs29-git
 
       ## Browser
       - google-chrome
