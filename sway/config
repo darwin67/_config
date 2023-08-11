@@ -142,6 +142,10 @@ input "type:keyboard" {
 
     bindsym $mod+q exec $screenlock
 
+    # Screenshots
+    bindsym $mod+p exec grimshot save area ~/Pictures/Screenshots/screenshot-area.png
+    bindsym $mod+Shift+p exec grimshot save area ~/Pictures/Screenshots/screenshot-area.png
+
     # Toggle notification center
     bindsym $mod+Shift+n exec swaync-client -t -sw
 
