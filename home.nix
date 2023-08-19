@@ -165,7 +165,8 @@
     ".zsh_plugins.txt" = { source = ~/_config/.zsh_plugins.txt; };
     ".zshrc" = { source = ~/_config/.zshrc; };
 
-    ".config/nvim/init.vim" = { source = ~/_config/nvim/init.vim; };
+    ".config/nvim/init.vim" = { source = ~/_config/init.vim; };
+    ".config/nvim/lua" = { source = ~/_config/nvim; };
     # Directory
     ".doom.d" = { source = ~/_config/.doom.d; };
 

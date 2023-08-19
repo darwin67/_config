@@ -27,7 +27,6 @@ colors zenburn
 let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Core configurations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -35,6 +34,7 @@ let g:airline_theme='onedark'
 let mapleader = ',' " key leader
 syntax enable
 filetype plugin indent on  " enable filetype plugins and indent
+hi CursorLine term=bold cterm=none ctermbg=8 guibg=Grey40
 
 " disable scrollbars
 set guioptions-=r
@@ -42,45 +42,8 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 
-set encoding=utf8                                              " set utf8 as standard encoding
-set history=1000                                               " the amount of history to preserve
-set autoread                                                   " set to autoread when a file is changed outside of Vim
-set wildmenu                                                   " turn on wild menu
-set ruler                                                      " always show the current position
-set cmdheight=1                                                " height of the command bar
-set hidden                                                     " a buffer becomes hidden when it's abandoned
-set ignorecase                                                 " ignore case when searching
-set smartcase                                                  " but also try to be smart when searching
-set hlsearch                                                   " highlight search results
-set incsearch                                                  " makes search act like search in modern browsers
-set lazyredraw                                                 " don't redraw while executing macros (good performance config)
-set magic                                                      " for regular expressions, turn magic on
-set showmatch                                                  " show matching brackets under the cursor
-set mat=2                                                      " how many tenths of a second to blink when matching brackets
-set helpheight=999                                             " maximize help screen
-set confirm                                                    " confirm before closing file
-set scrolloff=8                                                " see at least 8 lines when scroliing up or down
-set paste                                                      " prevent extra indentation when copy and pasting
-set clipboard=unnamed                                          " remap copy and paste to clipboard instead of buffer
-set smarttab                                                   " be smart when using tabs
-set shiftwidth=2 softtabstop=2 tabstop=2 expandtab             " 1 tab = 2 spaces
-set nobackup nowb noswapfile                                   " turn backup off since most stuff are in version control anyway
-set backspace=eol,start,indent whichwrap+=<,>,h,l              " configure backspace to act like one
-set noerrorbells novisualbell t_vb= tm=500                     " disable annoying sounds on errors
-set lbr tw=500                                                 " line break on 500 characters
-set autoindent smartindent                                     " nice indentation
-set wrap wrapscan                                              " wrap lines
-set list listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:% " make space visible
-set viminfo^=%                                                 " remember info about open buffers on close
-set laststatus=2                                               " always show the status line
-
-set cursorline " highlight current cusor's location
-hi CursorLine term=bold cterm=none ctermbg=8 guibg=Grey40
-
-" enable mouse if it has one
-if has('mouse')
-  set mouse=a
-endif
+" Configs with Lua
+lua require('core')
 
 " Key Mappings
 " ==================
