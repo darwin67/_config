@@ -34,6 +34,7 @@ set guioptions-=L
 lua require('core')
 lua require('core-keymap')
 lua require('plugin-git')
+  lua require('plugin-nerdtree')
 
 " Key Mappings
 " ==================
@@ -57,33 +58,4 @@ function ToggleLineNumber()
   endif
 endfunction
 nnoremap <leader>ln :call ToggleLineNumber()<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Configurations
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" nerdtree
-nnoremap <leader>nb :NERDTree<cr>
-nnoremap <leader>nm :NERDTreeMirror<cr>
-nnoremap <leader>nc :NERDTreeClose<cr>
-
-" Nerdtree git plugin
-let g:NERDTreeIndicatorMapCustom = {
-  \ "Modified"  : "✹",
-  \ "Staged"    : "✚",
-  \ "Untracked" : "✭",
-  \ "Renamed"   : "➜",
-  \ "Unmerged"  : "═",
-  \ "Deleted"   : "✖",
-  \ "Dirty"     : "✗",
-  \ "Clean"     : "✔︎",
-  \ "Unknown"   : "?"
-  \ }
-
-let g:NERDTreeIgnore = [ '\.sock$', '\.git$' ]
-
-augroup nerdtree_group
-  autocmd!
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
 
