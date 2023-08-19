@@ -32,16 +32,10 @@ set guioptions-=L
 
 " Configs with Lua
 lua require('core')
+lua require('core-keymap')
 
 " Key Mappings
 " ==================
-let mapleader = ',' " key leader
-
-" Copy
-nnoremap y "*y
-nnoremap yy "*yy
-vnoremap Y "*Y
-vnoremap y "*y
 
 " Cut
 nnoremap dd "+dd
