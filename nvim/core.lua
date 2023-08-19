@@ -75,6 +75,11 @@ set.viminfo:prepend('%')                                                        
 set.laststatus = 2                                                                     -- always show the status line
 set.cursorline = true                                                                  -- highlight current cusor's location
 
+
+-- specify behavior when switching between buffers
+set.switchbuf = { 'useopen', 'usetab', 'newtab' }
+set.stal = 2
+
 -- enable mouse if it has one
 if vim.fn.has('mouse') then
   set.mouse = 'a'
