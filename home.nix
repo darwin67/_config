@@ -108,6 +108,7 @@
     pkgs.nodePackages.vscode-html-languageserver-bin
     pkgs.elixir-ls
     pkgs.erlang-ls
+    pkgs.vimPlugins.vim-lsp
 
     # Linters / Formatters
     pkgs.yamllint
@@ -164,7 +165,7 @@
     ".zsh_plugins.txt" = { source = ~/_config/.zsh_plugins.txt; };
     ".zshrc" = { source = ~/_config/.zshrc; };
 
-    ".config/nvim/init.vim" = { source = ~/_config/init.vim; };
+    ".config/nvim/init.vim" = { source = ~/_config/nvim/init.vim; };
     # Directory
     ".doom.d" = { source = ~/_config/.doom.d; };
 
