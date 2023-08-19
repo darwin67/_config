@@ -16,6 +16,8 @@ vim.cmd [[
 ]]
 
 local set = vim.opt
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- Disable scrollbars
 -- set.guioptions:remove('r')
@@ -84,3 +86,36 @@ set.stal = 2
 if vim.fn.has('mouse') then
   set.mouse = 'a'
 end
+
+local function toggle_line_numbers(enable)
+  if enable then
+    vim.wo.number = true
+    -- vim.wo.relativenumber = true
+  else
+    vim.wo.number = false
+    -- vim.wo.relativenumber = false
+  end
+end
+
+-- Auto enable or disable line numbers based on active buffer or not
+local line_number_toggle = augroup('line_number_toggle', { clear = true })
+autocmd('BufEnter', {
+  pattern = '*',
+  group = line_number_toggle,
+  callback = function()
+    vim.wo.number = true
+  end
+})
+autocmd('BufLeave', {
+  pattern = '*',
+  group = line_number_toggle,
+  callback = function()
+    vim.wo.number = false
+  end
+})
+
+-- Deletei trailing whitespaces on save
+autocmd('BufWritePre', {
+  pattern = '*',
+  command = '%s/\\s\\+$//ge'
+})

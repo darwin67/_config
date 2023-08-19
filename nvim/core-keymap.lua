@@ -80,3 +80,12 @@ keymap.set('n', '<leader>a', ':Ack')
 
 -- When you press <leader>r you can search and replace the selected text
 keymap.set('v', '<silent><leader>r', ':call VisualSelection(\'replace\', \'\')<cr>')
+
+local function toggle_line_numbers()
+  if vim.wo.number then
+    vim.wo.number = false
+  else
+    vim.wo.number = true
+  end
+end
+keymap.set('n', '<leader>ln', toggle_line_numbers)
