@@ -1,12 +1,6 @@
 " Plugin settings
 lua require('plug')
 
-" disable scrollbars
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-
 " Configs with Lua
 lua require('core')
 lua require('core-keymap')
