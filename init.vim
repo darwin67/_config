@@ -21,20 +21,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors, Fonts and Theme
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colors zenburn
-let g:airline_powerline_fonts = 1
-let g:airline_theme='onedark'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Core configurations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let mapleader = ',' " key leader
-syntax enable
-filetype plugin indent on  " enable filetype plugins and indent
-hi CursorLine term=bold cterm=none ctermbg=8 guibg=Grey40
 
 " disable scrollbars
 set guioptions-=r
@@ -47,6 +35,7 @@ lua require('core')
 
 " Key Mappings
 " ==================
+let mapleader = ',' " key leader
 
 " Copy
 nnoremap y "*y

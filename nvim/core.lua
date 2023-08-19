@@ -1,9 +1,20 @@
--- vim.g.airline_powerfonts = 1
--- vim.g.airline_theme = 'onedark'
+--
+-- Colors, Fonts and Theme
+--
+vim.cmd 'colors zenburn'
+vim.g.airline_powerline_fonts = true
+vim.g.airline_theme = 'onedark'
 
 --
 -- Core configurations
 --
+
+vim.cmd [[
+  syntax enable
+  filetype plugin indent on
+  hi CursorLine term=bold cterm=none ctermbg=8 guibg=Grey40
+]]
+
 local set = vim.opt
 
 -- Disable scrollbars
