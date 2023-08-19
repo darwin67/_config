@@ -1,28 +1,5 @@
-" install with the following command
-" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-" Plugins will be downloaded under this directory
-call plug#begin('~/.vim/plugged')
-
-Plug 'jnurmine/zenburn'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
-
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-" Plugin list end
-call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Core configurations
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin settings
+lua require('plug')
 
 " disable scrollbars
 set guioptions-=r
@@ -34,7 +11,7 @@ set guioptions-=L
 lua require('core')
 lua require('core-keymap')
 lua require('plugin-git')
-  lua require('plugin-nerdtree')
+lua require('plugin-nerdtree')
 
 " Key Mappings
 " ==================
