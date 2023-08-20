@@ -71,7 +71,7 @@
     pkgs.erlang
 
     # Flutter / Dart
-    pkgs.flutter
+    # pkgs.flutter
     # pkgs.dart
 
     # Lua
