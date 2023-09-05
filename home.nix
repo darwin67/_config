@@ -83,6 +83,7 @@
     pkgs.nixfmt
     pkgs.editorconfig-core-c
     pkgs.python311Packages.grip
+    pkgs.python311Packages.build
     pkgs.python311Packages.pytest
     pkgs.python311Packages.pyflakes
     pkgs.python311Packages.nose
