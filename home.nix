@@ -60,17 +60,20 @@
       with p; [
         pip
         grip
-        build
-        setuptools
-        setuptools-scm
-        installer
-        wheel
         pytest
         pyflakes
         nose
         isort
         cffi
         ipython
+
+        # Used for steam
+        build
+        wheel
+        setuptools
+        setuptools-scm
+        installer
+        scikit-build
       ]))
 
     # Node
