@@ -56,8 +56,22 @@
     # pkgs.ruby_3_1
 
     # Python
-    pkgs.python311
-    pkgs.python311Packages.pip
+    (pkgs.python311.withPackages (p:
+      with p; [
+        pip
+        grip
+        build
+        setuptools
+        setuptools-scm
+        installer
+        wheel
+        pytest
+        pyflakes
+        nose
+        isort
+        cffi
+        ipython
+      ]))
 
     # Node
     pkgs.yarn
@@ -82,14 +96,6 @@
     # Editor
     pkgs.nixfmt
     pkgs.editorconfig-core-c
-    pkgs.python311Packages.grip
-    pkgs.python311Packages.build
-    pkgs.python311Packages.pytest
-    pkgs.python311Packages.pyflakes
-    pkgs.python311Packages.nose
-    pkgs.python311Packages.isort
-    pkgs.python311Packages.cffi
-    pkgs.python311Packages.ipython
     pkgs.black
     pkgs.gnuplot
     pkgs.shfmt
