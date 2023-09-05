@@ -66,6 +66,7 @@
         isort
         cffi
         ipython
+        ansible-core
 
         # Used for steam
         build
