@@ -75,6 +75,7 @@
         setuptools-scm
         installer
         scikit-build
+        afdko
       ]))
 
     # Node
