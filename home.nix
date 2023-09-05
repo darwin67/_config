@@ -82,10 +82,8 @@
     pkgs.nodejs-18_x
     pkgs.nodePackages.typescript
 
-    # Elixir
+    # Elixir / Erlang
     pkgs.elixir
-
-    # Erlang
     pkgs.erlang
 
     # Flutter / Dart
@@ -131,16 +129,11 @@
     # Tools
     pkgs.terraform
     pkgs.tflint
-    pkgs.protobuf
     pkgs.awscli2
-    pkgs.kubectl
     pkgs.docker-compose
 
     ## Social
     pkgs.discord
-
-    ## Security
-    # pkgs._1password
 
     # Others
     pkgs.mpv
