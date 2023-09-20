@@ -49,7 +49,7 @@
       ## Entertainment
       - spotify-launcher
 
-      - emacs
+      - emacs-nativecomp
 
 - name: Install commonly used packages - AUR
   kewlfft.aur.aur:
