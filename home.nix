@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let unstable = import <nixpkgs> { };
+
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "darwin";
