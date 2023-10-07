@@ -22,6 +22,10 @@ export CONFIG="$HOME/_config"
 export TPM_PLUGINS="${HOME}/.tmux/plugins"
 export ANTIDOTE_CACHE="${HOME}/.cache/antidote"
 
+# Nix related
+# export LC_ALL=C
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+
 # Use friendly path names for antidote
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 
