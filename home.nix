@@ -121,6 +121,7 @@ in {
     pkgs.elixir-ls
     pkgs.erlang-ls
     pkgs.vimPlugins.vim-lsp
+    pkgs.terraform-ls
 
     # Linters / Formatters
     pkgs.yamllint

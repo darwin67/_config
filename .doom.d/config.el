@@ -29,27 +29,27 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq
-   deft-directory "~/Notes"
-   org-directory "~/Notes"
-   org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
-   org-archive-location "~/Notes/archive/%s_archive::"
-   org-startup-folded "showeverything"
-   org-tag-alist '(("@code" . ?c))
-   org-hide-leading-stars t
-   org-blank-before-new-entry t
-   org-startup-with-inline-images t
-   org-image-actual-width nil
-   org-log-done 'note
-   org-bullets-bullet-list '("◉" "○" "✸" "►" ">" ">>")
-   org-startup-truncated nil
+ deft-directory "~/Notes"
+ org-directory "~/Notes"
+ org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
+ org-archive-location "~/Notes/archive/%s_archive::"
+ org-startup-folded "showeverything"
+ org-tag-alist '(("@code" . ?c))
+ org-hide-leading-stars t
+ org-blank-before-new-entry t
+ org-startup-with-inline-images t
+ org-image-actual-width nil
+ org-log-done 'note
+ org-bullets-bullet-list '("◉" "○" "✸" "►" ">" ">>")
+ org-startup-truncated nil
 
-   org-emphasis-alist
-   '(("*" (bold :foreground "orange" ))
-     ("/" italic)
-     ("_" underline)
-     ("=" (:background "maroon" :foreground "white"))
-     ("~" (:background "deep sky blue" :foreground "white"))
-     ("+" (:strike-through t))))
+ org-emphasis-alist
+ '(("*" (bold :foreground "orange" ))
+   ("/" italic)
+   ("_" underline)
+   ("=" (:background "maroon" :foreground "white"))
+   ("~" (:background "deep sky blue" :foreground "white"))
+   ("+" (:strike-through t))))
 
 (add-hook 'org-mode-hook 'org-hide-block-all)
 (add-hook 'org-mode-hook 'org-rainbow-tags-mode)
@@ -74,33 +74,33 @@
 (add-hook 'buffer-list-update-hook #'display-line-numbers-current-buffer)
 
 (setq-default
-  indent-tabs-mode nil
-  tab-width 2)
+ indent-tabs-mode nil
+ tab-width 2)
 (setq
-  ;; set cursor margin to 7 lines
-  scroll-margin 7
-  ;; Auto rebalance windows after window actions like horiozntal or vertical splits
-  window-combination-resize t
-  ;; aligns annotation to the right hand side
-  company-tooltip-align-annotations t
+ ;; set cursor margin to 7 lines
+ scroll-margin 7
+ ;; Auto rebalance windows after window actions like horiozntal or vertical splits
+ window-combination-resize t
+ ;; aligns annotation to the right hand side
+ company-tooltip-align-annotations t
 
-  ;; LSP mode
-  gc-cons-threshold #x8000000
-  read-process-output-max (* 10000 1024) ;; 10mb
-  lsp-completion-provider :capf
-  lsp-idle-delay 0.2
-  lsp-auto-configure t
-  lsp-enable-file-watchers nil
-  lsp-lens-place-position 'above-line
-  lsp-ui-doc-show-with-mouse nil
-  lsp-headerline-breadcrumb-enable t
-  lsp-ui-sideline-enable nil
-  lsp-eldoc-enable-hover nil
-  lsp-completion-show-detail t
+ ;; LSP mode
+ gc-cons-threshold #x8000000
+ read-process-output-max (* 10000 1024) ;; 10mb
+ lsp-completion-provider :capf
+ lsp-idle-delay 0.2
+ lsp-auto-configure t
+ lsp-enable-file-watchers nil
+ lsp-lens-place-position 'above-line
+ lsp-ui-doc-show-with-mouse nil
+ lsp-headerline-breadcrumb-enable t
+ lsp-ui-sideline-enable nil
+ lsp-eldoc-enable-hover nil
+ lsp-completion-show-detail t
 
-  ;; DAP mode
-  ;; ref: https://emacs-lsp.github.io/dap-mode/page/configuration
-  dap-auto-configure-features '(sessions locals controls tooltip))
+ ;; DAP mode
+ ;; ref: https://emacs-lsp.github.io/dap-mode/page/configuration
+ dap-auto-configure-features '(sessions locals controls tooltip))
 
 (global-company-mode)
 (global-git-commit-mode t)
@@ -119,15 +119,15 @@
 
  ;; Set bindings for window splits that are more intuitive
  (:prefix "C-x"
-   "-" 'split-window-below
-   "|" 'split-window-right
-   "g" 'magit-status
+          "-" 'split-window-below
+          "|" 'split-window-right
+          "g" 'magit-status
 
-   ;; Move windows with arrows
-   "<up>" 'windmove-up
-   "<down>" 'windmove-down
-   "<right>" 'windmove-right
-   "<left>" 'windmove-left))
+          ;; Move windows with arrows
+          "<up>" 'windmove-up
+          "<down>" 'windmove-down
+          "<right>" 'windmove-right
+          "<left>" 'windmove-left))
 
 ;; Leader prefix
 (map! :leader
@@ -141,27 +141,27 @@
       ;; Swap buffers
       :desc "buffer" "b" nil
       (:prefix "b"
-        :desc "Move buffer up" "k" 'buf-move-up
-        :desc "Move buffer down" "j" 'buf-move-down
-        :desc "Move buffer left" "h" 'buf-move-left
-        :desc "Move buffer right" "l" 'buf-move-right
-        :desc "Show imenu" "i" 'lsp-ui-imenu)
+       :desc "Move buffer up" "k" 'buf-move-up
+       :desc "Move buffer down" "j" 'buf-move-down
+       :desc "Move buffer left" "h" 'buf-move-left
+       :desc "Move buffer right" "l" 'buf-move-right
+       :desc "Show imenu" "i" 'lsp-ui-imenu)
 
       ;; Debugger
       :desc "debug" "d" nil
       (:prefix "d"
-        :desc "Add breakpoint" "a" 'dap-breakpoint-add
-        :desc "Delete breakpoint" "d" 'dap-breakpoint-delete
-        :desc "Clear breakpoints" "c" 'dap-breakpoint-delete-all))
+       :desc "Add breakpoint" "a" 'dap-breakpoint-add
+       :desc "Delete breakpoint" "d" 'dap-breakpoint-delete
+       :desc "Clear breakpoints" "c" 'dap-breakpoint-delete-all))
 
 ;; Disable formatting on these modes
 (setq +format-on-save-enabled-modes
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-            sql-mode         ; sqlformat is currently broken
-            tex-mode         ; latexindent is broken
-            latex-mode
-            typescript-mode
-            web-mode))
+        sql-mode         ; sqlformat is currently broken
+        tex-mode         ; latexindent is broken
+        latex-mode
+        typescript-mode
+        web-mode))
 
 ;; ===================================================================
 ;; Language settings
@@ -206,11 +206,11 @@
 
 ;; Rust
 (setq
-  rustic-lsp-server 'rust-analyzer
-  lsp-rust-all-features t
-  lsp-rust-analyzer-exclude-globs ["tmp/**/*"]
-  lsp-enable-file-watchers nil
-  rustic-flycheck-clippy-params "--message-format=json")
+ rustic-lsp-server 'rust-analyzer
+ lsp-rust-all-features t
+ lsp-rust-analyzer-exclude-globs ["tmp/**/*"]
+ lsp-enable-file-watchers nil
+ rustic-flycheck-clippy-params "--message-format=json")
 
 (add-to-list '+word-wrap-disabled-modes 'rust-mode)
 (add-to-list '+word-wrap-disabled-modes 'rustic-mode)
@@ -223,15 +223,15 @@
 
 ;; Typescript
 (setq
-  typescript-indent-level 2
-  ;; NOTE: not implemented yet apparently
-  ;; https://github.com/emacs-lsp/lsp-mode/issues/1842
-  lsp-eslint-auto-fix-on-save t)
+ typescript-indent-level 2
+ ;; NOTE: not implemented yet apparently
+ ;; https://github.com/emacs-lsp/lsp-mode/issues/1842
+ lsp-eslint-auto-fix-on-save t)
 
 (defun lsp--eslint-before-save (orig-fun)
-    "Run lsp-eslint-apply-all-fixes and then run the original lsp--before-save."
-    (when lsp-eslint-auto-fix-on-save (lsp-eslint-apply-all-fixes))
-    (funcall orig-fun))
+  "Run lsp-eslint-apply-all-fixes and then run the original lsp--before-save."
+  (when lsp-eslint-auto-fix-on-save (lsp-eslint-apply-all-fixes))
+  (funcall orig-fun))
 
 ;; (add-hook 'typescript-mode-hook
 ;;           (lambda ()
@@ -248,15 +248,15 @@
 
 ;; web-mode
 (setq
-  web-mode-markup-indent-offset 2
-  web-mode-code-indent-offset 2
-  web-mode-attr-indent-offset 2
-  web-mode-attr-value-indent-offset 2
-  web-mode-comment-formats '(("java" . "/*")
-                             ("javascript" . "//")
-                             ("typescript" . "//")
-                             ("php" . "/*")
-                             ("css" . "/*")))
+ web-mode-markup-indent-offset 2
+ web-mode-code-indent-offset 2
+ web-mode-attr-indent-offset 2
+ web-mode-attr-value-indent-offset 2
+ web-mode-comment-formats '(("java" . "/*")
+                            ("javascript" . "//")
+                            ("typescript" . "//")
+                            ("php" . "/*")
+                            ("css" . "/*")))
 
 ;; Nginx
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
@@ -275,3 +275,10 @@
     (web-mode)))
 
 (add-hook 'markdown-mode-hook 'enable-jsx-in-markdown)
+
+;; Terraform
+(setq
+ lsp-disabled-clients '(tfls)
+ lsp-semantic-tokens-enable t
+ lsp-semantic-tokens-honor-refresh-requests t
+ lsp-enable-links t)
