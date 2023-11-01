@@ -89,10 +89,6 @@ in {
     pkgs.elixir
     pkgs.erlang
 
-    # Flutter / Dart
-    # pkgs.flutter
-    # pkgs.dart
-
     # Lua
     pkgs.lua
     pkgs.luajitPackages.luarocks

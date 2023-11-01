@@ -118,10 +118,6 @@ if type fly >/dev/null 2>&1; then
   export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
 
-# if type flutter > /dev/null 2>&1; then
-#     export PATH="$(asdf where flutter)/bin":"$PATH"
-# fi
-
 # ================================================================================
 #   Environment Variables
 # ================================================================================
@@ -133,9 +129,6 @@ export ZFUNCDIR="$CONFIG/zfunc"
 # export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
 # export PATH="$HOME/.lsp/elixir:$PATH"
 # export KERL_BUILD_DOCS=yes
-
-# Dart & Flutter
-export PATH="$HOME/Android/Sdk/tools/bin:$PATH"
 
 ## export google chrome bin for flutter usage
 if type google-chrome-stable >/dev/null 2>&1; then
