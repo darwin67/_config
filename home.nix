@@ -86,7 +86,7 @@ in {
     pkgs.nodePackages.typescript
 
     # Elixir / Erlang
-    pkgs.elixir
+    pkgs.elixir_1_15
     pkgs.erlang
 
     # Lua
