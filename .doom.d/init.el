@@ -79,6 +79,7 @@
        (magit +forge)      ; a git porcelain for Emacs
        (terraform +lsp)
        tree-sitter
+       direnv
 
        :lang
        (cc +lsp +tree-sitter)           ; C/C++/Obj-C madness

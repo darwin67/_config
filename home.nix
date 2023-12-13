@@ -38,24 +38,11 @@ in {
     pkgs.pet
     pkgs.direnv
     pkgs.nix-direnv
+    pkgs.openssl
 
     ## System
     # Shell
     pkgs.starship
-
-    # Programming language setup
-    #   Ruby, Python, Erlang
-    pkgs.openssl
-    # Golang
-    pkgs.go
-    pkgs.golangci-lint
-    pkgs.gotests
-    pkgs.gomodifytags
-    pkgs.gore
-    pkgs.gotools
-    pkgs.gocode
-    # Ruby
-    # pkgs.ruby_3_1
 
     # Python
     (pkgs.python311.withPackages (p:
@@ -74,16 +61,6 @@ in {
     # Node
     pkgs.yarn
     pkgs.nodejs-18_x
-    pkgs.nodePackages.typescript
-
-    # Elixir / Erlang
-    pkgs.elixir
-    pkgs.erlang
-
-    # Lua
-    pkgs.lua
-    pkgs.luajitPackages.luarocks
-    # pkgs.sumneko-lua-language-server
 
     # Editor
     pkgs.nixfmt
@@ -95,41 +72,16 @@ in {
     pkgs.glslang
     pkgs.maim
     pkgs.scrot
-    pkgs.multimarkdown
 
     # Language Servers
-    pkgs.gopls
-    pkgs.rust-analyzer
-    pkgs.nodePackages.typescript-language-server
-    pkgs.nodePackages.vscode-json-languageserver
-    pkgs.nodePackages.yaml-language-server
-    pkgs.nodePackages.vscode-css-languageserver-bin
-    pkgs.nodePackages.vscode-html-languageserver-bin
-    pkgs.elixir-ls
-    pkgs.erlang-ls
     pkgs.vimPlugins.vim-lsp
-    pkgs.terraform-ls
-
-    # Linters / Formatters
-    pkgs.yamllint
-    pkgs.sqlint
-    pkgs.html-tidy
-    pkgs.nodePackages.stylelint
-    pkgs.nodePackages.js-beautify
 
     # Tools
-    pkgs.terraform
-    pkgs.tflint
     pkgs.awscli2
-    pkgs.docker-compose
-
-    ## Social
-    pkgs.discord
 
     # Others
     pkgs.mpv
     pkgs.youtube-dl
-    pkgs.imagemagick
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
