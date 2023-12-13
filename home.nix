@@ -125,7 +125,6 @@ in {
     ".config/wofi" = { source = ~/_config/wofi; };
     ".config/wob" = { source = ~/_config/wob; };
     ".config/sirula" = { source = ~/_config/sirula; };
-    ".config/zellij" = { source = ~/_config/zellij.kdl; };
 
     # Flags
     ".config/chromium-flags.conf" = {
