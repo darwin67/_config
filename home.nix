@@ -39,10 +39,7 @@ in {
     pkgs.direnv
     pkgs.nix-direnv
     pkgs.openssl
-
-    ## System
-    # Shell
-    pkgs.starship
+    pkgs.starship # shell
 
     # Python
     (pkgs.python311.withPackages (p:
