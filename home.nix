@@ -98,7 +98,7 @@ in {
   # plain files is through 'home.file'.
   home.file = {
     # dotfiles
-    ".alacritty.yml" = { source = ~/_config/.alacritty.yml; };
+    ".alacritty.toml" = { source = ~/_config/.alacritty.toml; };
     # ".asdfrc" = { source = ~/_config/.asdfrc; };
     ".gitconfig" = { source = ~/_config/.gitconfig; };
     ".gitignore_global" = { source = ~/_config/.gitignore_global; };
