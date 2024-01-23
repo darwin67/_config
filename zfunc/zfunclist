@@ -1,6 +1,0 @@
-#!/usr/bin/zsh
-#
-# List all custom functions
-#
-
-find . -maxdepth 1 -type f -not -path "$ZFUNCDIR/\.*" | sed 's/^\.\///g' | sort
