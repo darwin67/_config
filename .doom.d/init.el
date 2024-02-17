@@ -87,20 +87,22 @@
        (dart +lsp +flutter)     ; paint ui and not much else
        (elixir +lsp +tree-sitter)  ; erlang done right
        emacs-lisp          ; drown in parentheses
-       (erlang +lsp)              ; an elegant language for a more civilized age
+       (erlang +lsp +tree-sitter)  ; an elegant language for a more civilized age
        (go +lsp +tree-sitter)      ; the hipster dialect
        (graphql +lsp)
        (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
        (json +lsp +tree-sitter)
        (markdown +grip)            ; writing docs for people to ignore
-       (nix +tree-sitter)
+       (nix +lsp +tree-sitter)
        (org +dragndrop +gnuplot +journal +pandoc +pretty +roam2)                 ; organize your plain life in plain text
        (python +cpython +lsp +pyright +tree-sitter) ; beautiful is better than ugly
        (ruby +chruby +rails +lsp +tree-sitter)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       (sh +tree-sitter)                  ; she sells {ba,z,fi}sh shells on the C xor
+       (rust +lsp +tree-sitter)    ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (java +lsp +tree-sitter)
+       (kotlin +lsp +tree-sitter)
+       (sh +tree-sitter)           ; she sells {ba,z,fi}sh shells on the C xor
        (web +tree-sitter)          ; the tubes
-       (yaml +lsp)
+       (yaml +lsp +tree-sitter)
        (lua +lsp +tree-sitter)
        ;; (zig +lsp +tree-sitter)
 
