@@ -122,9 +122,6 @@ fi
 #   Environment Variables
 # ================================================================================
 
-# Location for zfunctions plugin
-export ZFUNCDIR="$CONFIG/zfunc"
-
 # Elixir & Erlang settings
 # export ELS_INSTALL_PREFIX="$HOME/.lsp/elixir"
 # export PATH="$HOME/.lsp/elixir:$PATH"

@@ -99,7 +99,6 @@ in {
   home.file = {
     # dotfiles
     ".alacritty.toml" = { source = ~/_config/.alacritty.toml; };
-    # ".asdfrc" = { source = ~/_config/.asdfrc; };
     ".gitconfig" = { source = ~/_config/.gitconfig; };
     ".gitignore_global" = { source = ~/_config/.gitignore_global; };
     ".pryrc" = { source = ~/_config/.pryrc; };
@@ -113,6 +112,7 @@ in {
     ".config/nvim/lua" = { source = ~/_config/nvim; };
     # Directory
     ".doom.d" = { source = ~/_config/.doom.d; };
+    ".config/zsh/functions" = { source = ~/_config/zfunc; };
 
     # Sway
     ".config/sway" = { source = ~/_config/sway; };
