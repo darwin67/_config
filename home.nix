@@ -69,6 +69,11 @@ in {
     pkgs.glslang
     pkgs.maim
     pkgs.scrot
+    pkgs.nodePackages.prettier
+    pkgs.nodePackages.js-beautify
+    pkgs.stylelint
+    pkgs.html-tidy
+    pkgs.markdownlint-cli
 
     # Language Servers
     pkgs.vimPlugins.vim-lsp
