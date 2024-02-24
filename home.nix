@@ -77,6 +77,7 @@ in {
 
     # Language Servers
     pkgs.vimPlugins.vim-lsp
+    pkgs.nil
 
     # Tools
     pkgs.awscli2
