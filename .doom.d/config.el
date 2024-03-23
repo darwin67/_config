@@ -204,6 +204,14 @@
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Elixir
+(after! lsp-mode
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("nextls" "--stdio"))
+                    :multi-root t
+                    :activation-fn (lsp-activate-on "elixir")
+                    :server-id 'next-ls)))
+
 ;; Rust
 (setq
  rustic-lsp-server 'rust-analyzer
