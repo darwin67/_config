@@ -41,6 +41,9 @@ in {
     pkgs.openssl
     pkgs.starship # shell
 
+    # Elixir
+    pkgs.elixir
+
     # Python
     (pkgs.python311.withPackages (p:
       with p; [

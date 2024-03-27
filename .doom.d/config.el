@@ -205,12 +205,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Elixir
-(after! lsp-mode
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("nextls" "--stdio"))
-                    :multi-root t
-                    :activation-fn (lsp-activate-on "elixir")
-                    :server-id 'next-ls)))
+(setq
+ lsp-elixir-server-command '("/home/darwin/bin/lexical/bin/start_lexical.sh"))
 
 ;; Rust
 (setq
