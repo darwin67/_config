@@ -126,9 +126,11 @@
     sway
     fzf
     alacritty
+
     firefox-bin
     firefox-devedition-bin
     google-chrome
+
     nordic
     _1password-gui
     _1password # cli tool
@@ -137,6 +139,10 @@
     youtube-dl
     spotify
     gnumake
+
+    ## Comms
+    signal-desktop
+    whatsapp-for-linux
 
     i3pystatus (python311.withPackages(ps: with ps; [ i3pystatus keyring ]))
   ];
