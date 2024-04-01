@@ -124,6 +124,7 @@
     git
     hub
     sway
+    fzf
     alacritty
     firefox-bin
     firefox-devedition-bin
@@ -173,6 +174,7 @@
 
   programs = {
     zsh = { enable = true; };
+    ssh.startAgent = true;
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
