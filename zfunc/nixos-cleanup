@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+# test privilege before proceeding
+sudo -v
+
+echo "Available NixOS generations:"
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+
+printf "\n\n"
+
+# read in range to delete
+echo -n "Enter range to be deleted: "
+read RANGE
+
+# Set the delimiter
+IFS='-' read -rA array <<< "$RANGE"
+
+# prepare the list of generations based on range
+GENS=()
+for item in {${array[1]}..${array[2]}}
+do
+    GENS+=("$item")
+done
+
+read -q "PROCEED?Delete the list of NixOS generations [ $GENS ]? (Y/n)"
+PROCEED="${PROCEED:-Y}"
+
+printf "\n\n"
+
+# delete the list of generations
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations $GENS

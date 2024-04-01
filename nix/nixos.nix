@@ -54,7 +54,7 @@
       };
     };
   };
-  environment.variables.GLFW_IM_MODULE = "ibus";
+  # environment.variables.GLFW_IM_MODULE = "ibus";
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -96,7 +96,10 @@
       package = pkgs.emacs29;
     };
   };
-  security.rtkit.enable = true;
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
 
   users.defaultUserShell = pkgs.zsh;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -140,33 +143,57 @@
     spotify
     gnumake
 
+    rtkit # for pipewire
+    polkit # for 1password
+    polkit_gnome
+
     ## Comms
     signal-desktop
     whatsapp-for-linux
 
     i3pystatus (python311.withPackages(ps: with ps; [ i3pystatus keyring ]))
+
+    libayatana-appindicator
   ];
 
-  # configuring sway itself
-  systemd.user.targets.sway-session = {
-    description = "Sway compositor session";
-    documentation = [ "man:systemd.special(7)" ];
-    bindsTo = [ "graphical-session.target" ];
-    wants = [ "graphical-session-pre.target" ];
-    after = [ "graphical-session-pre.target" ];
-  };
-  # configuring kanshi
-  systemd.user.services.kanshi = {
-    description = "Kanshi output autoconfig";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    environment = { XDG_CONFIG_HOME = "/home/darwin/.config"; };
-    serviceConfig = {
-      ExecStart = ''
-        ${pkgs.kanshi}/bin/kanshi
-      '';
-      RestartSec = 5;
-      Restart = "always";
+  systemd = {
+    # configuring sway itself
+    user = {
+      targets.sway-session = {
+        description = "Sway compositor session";
+        documentation = [ "man:systemd.special(7)" ];
+        bindsTo = [ "graphical-session.target" ];
+        wants = [ "graphical-session-pre.target" ];
+        after = [ "graphical-session-pre.target" ];
+      };
+      # configuring kanshi
+      services.kanshi = {
+        description = "Kanshi output autoconfig";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        environment = { XDG_CONFIG_HOME = "/home/darwin/.config"; };
+        serviceConfig = {
+          ExecStart = ''
+            ${pkgs.kanshi}/bin/kanshi
+          '';
+          RestartSec = 5;
+          Restart = "always";
+        };
+      };
+
+      services.polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
     };
   };
 
@@ -190,6 +217,7 @@
         swaylock-effects
         swayidle
         xwayland
+        waybar
         # mako
         swaynotificationcenter
         kanshi
@@ -208,9 +236,7 @@
         export MOZ_ENABLE_WAYLAND=1
       '';
     };
-    waybar = {
-      enable = true;
-    };
+    # waybar = { enable = true; };
 
     _1password.enable = true;
     _1password-gui = {
