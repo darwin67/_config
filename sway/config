@@ -36,8 +36,8 @@ set $screenlock swaylock \
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 
-# set $menu wofi --show=drun --sort-order=alphabetical --matching=contains --lines=10 --prompt="Select Application"
-set $menu sirula
+set $menu wofi --show=drun --sort-order=alphabetical --matching=contains --lines=10 --prompt="Select Application"
+# set $menu sirula
 
 # Bar representation of audio/brightness etc.
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -51,6 +51,8 @@ exec_always "systemctl --user import-environment; systemctl --user start sway-se
 
 # Start fcitx5 for language input
 exec --no-startup-id fcitx5 -d
+
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 ### Output configuration
 #
