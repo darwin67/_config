@@ -32,7 +32,6 @@ in {
     pkgs.ripgrep
     pkgs.bat
     pkgs.curlie
-    pkgs.wget
     pkgs.sqlite
     pkgs.tree
     pkgs.pet
@@ -41,10 +40,9 @@ in {
     pkgs.openssl
     pkgs.starship # shell
 
-    # Elixir
+    # Languages
     pkgs.elixir
-
-    # Python
+    pkgs.ruby
     (pkgs.python311.withPackages (p:
       with p; [
         pip
@@ -84,10 +82,6 @@ in {
 
     # Tools
     pkgs.awscli2
-
-    # Others
-    pkgs.mpv
-    pkgs.youtube-dl
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -162,7 +156,8 @@ in {
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    EDITOR = "emacsclient";
+    # EDITOR = "emacsclient";
+    EDITOR = "vim";
     SSH_KEY_PATH = "~/.ssh/";
     KERL_BUILD_DOCS = "yes";
 
@@ -176,6 +171,13 @@ in {
 
   # Let Home Manager install and manage itself.
   programs = {
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      # autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
+      history.size = 10000;
+    };
     home-manager = { enable = true; };
     direnv = {
       enable = true;
