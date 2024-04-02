@@ -5,16 +5,16 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-6f2cda4d-854b-4096-93ee-a0bdeadd03e3".device = "/dev/disk/by-uuid/6f2cda4d-854b-4096-93ee-a0bdeadd03e3";
+  boot.initrd.luks.devices."luks-6f2cda4d-854b-4096-93ee-a0bdeadd03e3".device =
+    "/dev/disk/by-uuid/6f2cda4d-854b-4096-93ee-a0bdeadd03e3";
   networking.hostName = "nixos-xps15-9550"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -24,6 +24,13 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -46,11 +53,7 @@
     inputMethod = {
       enabled = "fcitx5";
       fcitx5 = {
-        addons = [
-          pkgs.fcitx5-mozc
-          pkgs.fcitx5-gtk
-          pkgs.fcitx5-configtool
-        ];
+        addons = [ pkgs.fcitx5-mozc pkgs.fcitx5-gtk pkgs.fcitx5-configtool ];
       };
     };
   };
@@ -72,9 +75,7 @@
         gdm.enable = true;
         # sddm.enable = true;
       };
-      desktopManager = {
-        runXdgAutostartIfNone = true;
-      };
+      desktopManager = { runXdgAutostartIfNone = true; };
       libinput.enable = true;
       layout = "us";
       xkbVariant = "";
@@ -91,6 +92,8 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    blueman.enable = true;
+
     emacs = {
       enable = true;
       package = pkgs.emacs29;
@@ -107,7 +110,7 @@
     isNormalUser = true;
     description = "Darwin Wu";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
     useDefaultShell = true;
   };
 
@@ -118,6 +121,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     zsh
+    pulseaudio
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     neovim
     tmux
@@ -151,7 +155,11 @@
     signal-desktop
     whatsapp-for-linux
 
-    i3pystatus (python311.withPackages(ps: with ps; [ i3pystatus keyring ]))
+    playerctl
+    brightnessctl
+
+    i3pystatus
+    (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
 
     libayatana-appindicator
   ];
@@ -188,7 +196,8 @@
         after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          ExecStart =
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -225,7 +234,7 @@
         slurp
         wl-clipboard
         wf-recorder
-        (python311.withPackages(ps: with ps; [ i3pystatus keyring ]))
+        (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
       ];
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
@@ -236,7 +245,7 @@
         export MOZ_ENABLE_WAYLAND=1
       '';
     };
-    # waybar = { enable = true; };
+    waybar = { enable = false; };
 
     _1password.enable = true;
     _1password-gui = {
