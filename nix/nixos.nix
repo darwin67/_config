@@ -53,7 +53,12 @@
     inputMethod = {
       enabled = "fcitx5";
       fcitx5 = {
-        addons = [ pkgs.fcitx5-mozc pkgs.fcitx5-gtk pkgs.fcitx5-configtool ];
+        addons = [
+          pkgs.fcitx5-mozc
+          pkgs.fcitx5-rime
+          pkgs.fcitx5-gtk
+          pkgs.fcitx5-configtool
+        ];
       };
     };
   };
@@ -68,6 +73,7 @@
 
   # Configure keymap in X11
   services = {
+    tlp.enable = true;
     xserver = {
       enable = true;
       displayManager = {
@@ -99,6 +105,9 @@
       package = pkgs.emacs29;
     };
   };
+
+  virtualisation = { docker.enable = true; };
+
   security = {
     polkit.enable = true;
     rtkit.enable = true;
@@ -109,7 +118,7 @@
   users.users.darwin = {
     isNormalUser = true;
     description = "Darwin Wu";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [ ];
     useDefaultShell = true;
   };
@@ -151,6 +160,8 @@
     polkit # for 1password
     polkit_gnome
 
+    gnome.nautilus
+
     ## Comms
     signal-desktop
     whatsapp-for-linux
@@ -162,6 +173,14 @@
     (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
 
     libayatana-appindicator
+
+    docker
+
+    fwupd # hardware
+    tlp # battery management
+    wallutils # wallpaper
+    imagemagick
+    libheif
   ];
 
   systemd = {
@@ -174,33 +193,44 @@
         wants = [ "graphical-session-pre.target" ];
         after = [ "graphical-session-pre.target" ];
       };
-      # configuring kanshi
-      services.kanshi = {
-        description = "Kanshi output autoconfig";
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        environment = { XDG_CONFIG_HOME = "/home/darwin/.config"; };
-        serviceConfig = {
-          ExecStart = ''
-            ${pkgs.kanshi}/bin/kanshi
-          '';
-          RestartSec = 5;
-          Restart = "always";
+      services = {
+        # configuring kanshi
+        kanshi = {
+          description = "Kanshi output autoconfig";
+          wantedBy = [ "graphical-session.target" ];
+          partOf = [ "graphical-session.target" ];
+          environment = { XDG_CONFIG_HOME = "/home/darwin/.config"; };
+          serviceConfig = {
+            ExecStart = ''
+              ${pkgs.kanshi}/bin/kanshi
+            '';
+            RestartSec = 5;
+            Restart = "always";
+          };
         };
-      };
 
-      services.polkit-gnome-authentication-agent-1 = {
-        description = "polkit-gnome-authentication-agent-1";
-        wantedBy = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart =
-            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
+        # polkit
+        polkit-gnome-authentication-agent-1 = {
+          description = "polkit-gnome-authentication-agent-1";
+          wantedBy = [ "graphical-session.target" ];
+          wants = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStart =
+              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+          };
+        };
+
+        dynamic-wallpaper = {
+          description = "";
+          wantedBy = [ ];
+          wants = [ ];
+          after = [ ];
+          serviceConfig = { };
         };
       };
     };
