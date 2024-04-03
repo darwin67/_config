@@ -4,7 +4,26 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  wallpaperTheme = "macBigSur";
+  # wallutils helper script to convert .heic format wallpapers
+  heicinstall = pkgs.stdenv.mkDerivation {
+    name = "heic-install";
+    src = builtins.fetchurl {
+      url =
+        "https://raw.githubusercontent.com/xyproto/wallutils/main/scripts/heic-install";
+    };
+    phases = [ "installPhase" ];
+
+    installPhase = ''
+      mkdir -p $out/bin
+      cp $src $out/bin/heic-install
+      sed -i -e 's/\r$//' $out/bin/heic-install
+      chmod +x $out/bin/heic-install
+    '';
+  };
+
+in {
   imports = [ # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
   ];
@@ -119,7 +138,7 @@
     isNormalUser = true;
     description = "Darwin Wu";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [ ];
+    packages = [ heicinstall ];
     useDefaultShell = true;
   };
 
@@ -226,11 +245,16 @@
         };
 
         dynamic-wallpaper = {
-          description = "";
-          wantedBy = [ ];
-          wants = [ ];
-          after = [ ];
-          serviceConfig = { };
+          description = "Dynamic Wallpaper";
+          wantedBy = [ "sway-session.target" ];
+          # wants = [ "sway-session.target" ];
+          after = [ "sway-session.target" ];
+          path = [ pkgs.sway ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStart = ''${pkgs.wallutils}/bin/settimed "${wallpaperTheme}"'';
+            ExecStop = "${pkgs.procps}/bin/pkill settimed";
+          };
         };
       };
     };
@@ -304,4 +328,13 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
+  # link /bin/sh to /bin/bash because it doesn't exist and it's a fucking pain
+  system.activationScripts.binbash = {
+    deps = [ "binsh" ];
+    text = ''
+      ln -sf /bin/sh /bin/bash
+    '';
+  };
+
 }
