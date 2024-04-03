@@ -5,7 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  wallpaperTheme = "macBigSur";
+  wallpaperTheme = "macMonterey";
   # wallutils helper script to convert .heic format wallpapers
   heicinstall = pkgs.stdenv.mkDerivation {
     name = "heic-install";
@@ -197,9 +197,6 @@ in {
 
     fwupd # hardware
     tlp # battery management
-    wallutils # wallpaper
-    imagemagick
-    libheif
   ];
 
   systemd = {
@@ -289,6 +286,11 @@ in {
         wl-clipboard
         wf-recorder
         (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
+
+        # wallpaper
+        wallutils
+        imagemagick
+        libheif
       ];
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway
