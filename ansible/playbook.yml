@@ -2,8 +2,8 @@
   hosts: laptop
   roles:
     # pre-requisites
-    - pre
+    # - pre
 
     # setup
-    - common
+    # - common
     - sway

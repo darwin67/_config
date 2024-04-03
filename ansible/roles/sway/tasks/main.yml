@@ -1,89 +1,3 @@
-- name: Install Sway and related packages
-  become: true
-  pacman:
-    name:
-      - sway
-      - swayimg
-      - swayidle
-      - swaybg
-
-      - waybar
-      - wofi
-      - xorg-xwayland
-      - xorg-xlsclients
-      - qt5-wayland
-      - glfw-wayland
-      - wallutils
-
-      - archlinux-wallpaper
-
-      # clipboard
-      - wl-clipboard
-
-      # Screenshots
-      - grim
-      - slurp
-
-      # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/Screencast-Compatibility
-      - xdg-desktop-portal-wlr
-      - xdg-desktop-portal
-
-      # Screen recorder
-      - wf-recorder
-
-      # Controls
-      - playerctl
-      - brightnessctl
-
-      # waybar
-      - otf-font-awesome
-
-- name: Install Sway related packages (AUR)
-  kewlfft.aur.aur:
-    use: yay
-    name:
-      - libappindicator-gtk3
-      - greetd # login manager
-      - greetd-gtkgreet-git
-      - swaylock-effects # lock screen
-      - sirula # app launcher
-      - swaync # notification daemon
-      - wob # wob
-      - wev # event debugging
-
-- name: Create local systemd directory
-  file:
-    path: ~/.config/systemd/user
-    state: directory
-    recurse: true
-
-- name: Create systemd user conf
-  become: true
-  template:
-    src: sway/50-systemd-user.conf
-    dest: /etc/sway/config.d/50-systemd-user.conf
-
-- name: Create sway-session.target
-  template:
-    src: sway/session.target
-    dest: ~/.config/systemd/user/sway-session.target
-    mode: 0644
-  notify:
-    - Reload user systemd
-
-- name: Create startup script after login
-  become: true
-  template:
-    src: sway/sway-run
-    dest: /usr/local/bin/sway-run
-    mode: 0755
-
-- name: Symlink grimshot
-  file:
-    src: /usr/share/sway/scripts/grimshot
-    dest: ~/bin/grimshot
-    state: link
-
 - name: Dynamic Wallpaper directory
   file:
     state: directory
@@ -111,40 +25,20 @@
       filename: macMonterey.heic
     - src: "gpf7f97jk3b/Fuji.heic"
       filename: Fuji.heic
+# - name: Install systemd service for Dynamic Wallpaper
+#   become: true
+#   template:
+#     src: wallutils/systemd.service
+#     dest: /usr/lib/systemd/user/dwall.service
+#     mode: 0644
+#   notify:
+#     - Restart Dynamic Wallpapers
+#   vars:
+#     theme: macBigSur
 
-- name: Install systemd service for Dynamic Wallpaper
-  become: true
-  template:
-    src: wallutils/systemd.service
-    dest: /usr/lib/systemd/user/dwall.service
-    mode: 0644
-  notify:
-    - Restart Dynamic Wallpapers
-  vars:
-    theme: macBigSur
-
-- name: Start and enable Dynamic Wallpaper service
-  systemd:
-    name: dwall
-    scope: user
-    state: started
-    enabled: true
-
-# Greetd settings
-# https://wiki.archlinux.org/title/Greetd
-- name: Setup greetd config
-  become: true
-  template:
-    src: "greetd/{{ item }}"
-    dest: "/etc/greetd/{{ item }}"
-  loop:
-    - config.toml
-    - environment
-    - sway-config
-    - gtkgreet.css
-
-- name: Enable greetd
-  become: true
-  systemd:
-    name: greetd
-    enabled: true
+# - name: Start and enable Dynamic Wallpaper service
+#   systemd:
+#     name: dwall
+#     scope: user
+#     state: started
+#     enabled: true
