@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+
+GITPATH=/tmp/nixos-artwork
+DEST=/usr/share/backgrounds/nixos
+
+sudo -v
+
+if [[ ! -d $GITPATH ]]; then
+    git clone git@github.com:NixOS/nixos-artwork.git $GITPATH
+fi
+
+sudo mkdir -p $DEST
+sudo cp $GITPATH/wallpapers/*.{png,svg} $DEST

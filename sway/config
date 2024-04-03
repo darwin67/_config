@@ -22,7 +22,7 @@ set $screenlock swaylock \
     --indicator-x-position $(shuf -i 100-1400 -n 1) \
     --indicator-y-position $(shuf -i 100-900 -n 1) \
     --scaling fill \
-    --image $(find /usr/share/backgrounds/archlinux -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1) \
+    --image $(find /usr/share/backgrounds/nixos -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1) \
     --ring-color 7393B3 \
     --daemonize \
     --show-failed-attempts \
