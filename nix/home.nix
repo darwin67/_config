@@ -38,6 +38,7 @@ in {
     pkgs.direnv
     pkgs.nix-direnv
     pkgs.openssl
+    pkgs.bottom
     pkgs.starship # shell
 
     # Languages
