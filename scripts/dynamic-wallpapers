@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+
+DEST=$HOME/Pictures/DynamicWallpapers
+
+declare -A wallpapers
+
+wallpapers[DesertSands]="a9q1jiy0cu/%22Desert%20Sands%22%20by%20Louis%20Coyle.heic"
+wallpapers[Mojave]="f8jzf4ugy8/Mojave%20XP.heic"
+wallpapers[Earth]="hqzkn6nai0f/earth%20.heic"
+wallpapers[TechFactory]="ze2isquaf7n/Tech%20Factory.heic"
+wallpapers[Catalina]="v5y04cx6k9k/Catalina.heic"
+wallpapers[macBigSur]="boc339cw3n/Big%20macOS%20Sur.heic"
+wallpapers[macMonterey]="la4wfuwtkg/macOS%20Monterey.heic"
+wallpapers[Fuji]="gpf7f97jk3b/Fuji.heic"
+
+# Create directory if it doesn't exist
+mkdir -p $DEST
+
+PREFIX="https://cdn.dynamicwallpaper.club/wallpapers"
+
+for name in "${!wallpapers[@]}"
+do
+    echo "Downloading wallpaper: $name"
+    wget -qO "$DEST/$name.heic" "$PREFIX/${wallpapers[$name]}"
+done
+
+echo "Download complete"
