@@ -194,9 +194,16 @@ in {
     libayatana-appindicator
 
     docker
+    android-studio
+    bottom
 
     fwupd # hardware
     tlp # battery management
+    inotify-tools
+
+    # Lang
+    flutter
+    jdk
   ];
 
   systemd = {
