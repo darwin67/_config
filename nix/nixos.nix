@@ -199,10 +199,6 @@ in {
     fwupd # hardware
     tlp # battery management
     inotify-tools
-
-    # Lang
-    flutter
-    jdk
   ];
 
   systemd = {
