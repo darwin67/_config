@@ -194,7 +194,6 @@ in {
     libayatana-appindicator
 
     docker
-    android-studio
     bottom
 
     fwupd # hardware
@@ -345,5 +344,4 @@ in {
       ln -sf /bin/sh /bin/bash
     '';
   };
-
 }
