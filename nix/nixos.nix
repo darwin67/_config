@@ -193,6 +193,7 @@ in {
     mpv
     youtube-dl
     spotify
+    discord
     gnumake
 
     rtkit # for pipewire

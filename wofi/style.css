@@ -1,50 +1,64 @@
 /*
  * Reference:
  * https://man.archlinux.org/man/wofi.7.en
+ *
+ * Colors from Nord's color palettes
+ * https://www.nordtheme.com/docs/colors-and-palettes
 */
 
 window {
+    margin: 0px;
+    border: 1px solid #5e81ac;
     border-radius: 10px;
-}
-
-#outer-box {
-    padding: 20px;
-    border: 5px solid #7393B3;
-    border-radius: 10px;
-}
-
-#inner-box {
-    line-height: 20px;
+    background-color: #2e3440;
 }
 
 #input {
-    border-radius: 10px;
-    margin-bottom: 15px;
+    margin: 5px;
+    border: none;
+    color: #d8dee9;
+    background-color: #2e3440;
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: #2e3440;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: #2e3440;
 }
 
 #scroll {
-    margin: 5px;
+    margin: 0px;
+    border: none;
 }
 
-#text {}
+#text {
+    margin: 5px;
+    border: none;
+    color: #d8dee9;
+}
 
-#img {}
+#entry.activatable {
+    background-color: #4c566a;
+}
 
-#entry {}
+#entry.activatable #text {
+    color: #88c0d0;
+}
 
-.entry {}
-
-#selected {}
-
-#unselected {}
+#entry > * {
+    color: #d8dee9;
+}
 
 #entry:selected {
+    background-color: #81a1c1;
+}
+
+#entry:selected #text {
     font-weight: bold;
-    background-color: #7393B3;
 }
-
-#text:selected {
-    color: #FFFFFF;
-}
-
-#img:selected {}
