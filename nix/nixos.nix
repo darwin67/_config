@@ -180,6 +180,7 @@ in {
     hub
     sway
     fzf
+    openssl
     alacritty
 
     firefox-bin
