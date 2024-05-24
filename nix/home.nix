@@ -170,6 +170,13 @@ in {
     MOZ_ENABLE_WAYLAND = 1;
   };
 
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs = {
     zsh = {

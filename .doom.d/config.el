@@ -206,7 +206,7 @@
 
 ;; Elixir
 (setq
- lsp-elixir-server-command '("/home/darwin/bin/lexical/bin/start_lexical.sh"))
+ lsp-elixir-server-command '("lexical"))
 
 ;; Rust
 (setq
