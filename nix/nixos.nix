@@ -26,6 +26,7 @@ let
 in {
   imports = [ # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
+    <home-manager/nixos>
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -105,26 +106,31 @@ in {
         # full charge.
         # https://linrunner.de/tlp/faq/battery.html#how-to-choose-good-battery-charge-thresholds
         START_CHARGE_THRESH_BAT0 = 40;
-        STOP_CHARGE_THRESH_BAT0 = 80;
+        STOP_CHARGE_THRESH_BAT0 = 90;
 
         # 100 being the maximum, limit the speed of my CPU to reduce
         # heat and increase battery usage:
-        CPU_MAX_PERF_ON_AC = 90;
-        CPU_MAX_PERF_ON_BAT = 60;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MAX_PERF_ON_BAT = 90;
+      };
+    };
+    libinput.enable = true;
+    displayManager = {
+      enable = true;
+      defaultSession = "sway";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
       };
     };
     xserver = {
       enable = true;
-      displayManager = {
-        defaultSession = "sway";
-        gdm.enable = true;
-        # sddm.enable = true;
-      };
       desktopManager = { runXdgAutostartIfNone = true; };
-      libinput.enable = true;
-      layout = "us";
-      xkbVariant = "";
-      xkbOptions = "ctrl:swapcaps"; # remap caps lock to control
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "ctrl:swapcaps"; # remap caps lock to control
+      };
     };
     # enable the gnome-keyring secrets vault.
     # will be exposed through DBus to programs willing to store secrets
@@ -161,6 +167,129 @@ in {
     packages = [ heicinstall ];
     useDefaultShell = true;
   };
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.darwin = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      jq
+      yq
+      neovim
+      tmux
+      ripgrep
+      direnv
+      nix-direnv
+      hub
+      fd
+      curlie
+      bat
+      sqlite
+      tree
+      pet
+      bottom
+      starship
+
+      (python311.withPackages
+        (p: with p; [ pip grip pytest pyflakes nose isort cffi ipython black ]))
+
+      # Editor
+      nixfmt
+      editorconfig-core-c
+      shfmt
+      shellcheck
+      glslang
+      markdownlint-cli
+
+      # org mode
+      maim
+      scrot
+      gnuplot
+
+      # LSPs
+      vimPlugins.vim-lsp
+      nil
+    ];
+
+    home.file = {
+      ".alacritty.toml" = { source = "/home/darwin/_config/.alacritty.toml"; };
+      ".gitconfig" = { source = "/home/darwin/_config/.gitconfig"; };
+      ".gitignore_global" = {
+        source = "/home/darwin/_config/.gitignore_global";
+      };
+      ".pryrc" = { source = "/home/darwin/_config/.pryrc"; };
+      ".npmrc" = { source = "/home/darwin/_config/.npmrc"; };
+      ".tmux.conf" = { source = "/home/darwin/_config/.tmux.conf"; };
+      ".zlogin" = { source = "/home/darwin/_config/.zlogin"; };
+      ".zsh_plugins.txt" = {
+        source = "/home/darwin/_config/.zsh_plugins.txt";
+      };
+      ".zshrc" = { source = "/home/darwin/_config/.zshrc"; };
+
+      ".config/nvim/init.vim" = { source = "/home/darwin/_config/init.vim"; };
+      ".config/nvim/lua" = { source = "/home/darwin/_config/nvim"; };
+      # Directory
+      ".doom.d" = { source = "/home/darwin/_config/.doom.d"; };
+      ".config/zsh/functions" = { source = "/home/darwin/_config/zfunc"; };
+
+      # Sway
+      ".config/sway" = { source = "/home/darwin/_config/sway"; };
+      ".config/starship.toml" = {
+        source = "/home/darwin/_config/starship.toml";
+      };
+      ".config/waybar/config" = {
+        source = "/home/darwin/_config/waybar/config.json";
+      };
+      ".config/waybar/style.css" = {
+        source = "/home/darwin/_config/waybar/style.css";
+      };
+      ".config/wofi" = { source = "/home/darwin/_config/wofi"; };
+      ".config/wob" = { source = "/home/darwin/_config/wob"; };
+
+      # Flags
+      ".config/brave-flags.conf" = {
+        text = ''
+          --enable-features=UseOzonePlatform
+          --ozone-platform=wayland
+        '';
+      };
+      ".config/chrome-flags.conf" = {
+        text = ''
+          --enable-features=UseOzonePlatform
+          --ozone-platform=wayland
+        '';
+      };
+      ".config/discord-flags.conf" = {
+        text = ''
+          --enable-features=UseOzonePlatform
+          --ozone-platform=wayland
+        '';
+      };
+    };
+
+    home.sessionVariables = {
+      EDITOR = "vim";
+      SSH_KEY_PATH = "~/.ssh/";
+
+      # Python
+      PY_COLORS = "1";
+
+      # Wayland
+      MOZ_ENABLE_WAYLAND = 1;
+    };
+
+    programs = {
+      zsh = {
+        enable = true;
+        enableCompletion = true;
+        syntaxHighlighting.enable = true;
+        history.size = 10000;
+      };
+      direnv = {
+        enable = true;
+        nix-direnv = { enable = true; };
+      };
+    };
+
+    home.stateVersion = "24.05";
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -182,6 +311,7 @@ in {
     fzf
     openssl
     alacritty
+    glibcLocales
 
     firefox-bin
     firefox-devedition-bin
@@ -201,8 +331,6 @@ in {
     polkit # for 1password
     polkit_gnome
 
-    gnome.nautilus
-
     ## Comms
     signal-desktop
     whatsapp-for-linux
@@ -221,6 +349,8 @@ in {
     fwupd # hardware
     tlp # battery management
     inotify-tools
+    graphviz
+    libxml2
   ];
 
   systemd = {
