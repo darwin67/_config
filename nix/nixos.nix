@@ -26,6 +26,7 @@ let
 in {
   imports = [ # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
+    /etc/nixos/luks.nix
     <home-manager/nixos>
   ];
 
@@ -35,14 +36,9 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-6f2cda4d-854b-4096-93ee-a0bdeadd03e3".device =
-    "/dev/disk/by-uuid/6f2cda4d-854b-4096-93ee-a0bdeadd03e3";
-  networking.hostName = "nixos-xps15-9550"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # NOTE:
+  # LUKs related settings should be moved to nixos.d/luks.nix
+  # and copied to /etc/nixos/luks.nix
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -483,7 +479,7 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05";
 
   # link /bin/sh to /bin/bash because it doesn't exist and it's a fucking pain
   system.activationScripts.binbash = {
