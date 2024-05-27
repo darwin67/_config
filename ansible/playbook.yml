@@ -1,9 +1,0 @@
-- name: Setup
-  hosts: laptop
-  roles:
-    # pre-requisites
-    # - pre
-
-    # setup
-    # - common
-    - sway
