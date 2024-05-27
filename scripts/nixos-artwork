@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 
-GITPATH=/tmp/nixos-artwork
+GITPATH=~/Pictures/nixos-artwork
 DEST=/usr/share/backgrounds/nixos
 
 sudo -v
