@@ -94,8 +94,11 @@ in {
     tlp = {
       enable = true;
       settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "balanced";
 
         # The following prevents the battery from charging fully to
         # preserve lifetime. Run `tlp fullcharge` to temporarily force
@@ -106,8 +109,8 @@ in {
 
         # 100 being the maximum, limit the speed of my CPU to reduce
         # heat and increase battery usage:
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MAX_PERF_ON_BAT = 90;
+        # CPU_MAX_PERF_ON_AC = 100;
+        # CPU_MAX_PERF_ON_BAT = 90;
       };
     };
     libinput.enable = true;
