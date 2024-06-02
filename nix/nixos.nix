@@ -271,6 +271,12 @@ in {
           --ozone-platform=wayland
         '';
       };
+      ".config/zoom-flags.conf" = {
+        text = ''
+          --enable-features=UseOzonePlatform
+          --ozone-platform=wayland
+        '';
+      };
     };
 
     home.sessionVariables = {
@@ -360,6 +366,11 @@ in {
     inotify-tools
     graphviz
     libxml2
+
+    # Work
+    ctop
+    slack
+    zoom-us
   ];
 
   systemd = {

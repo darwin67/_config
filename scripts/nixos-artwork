@@ -7,7 +7,7 @@ DEST=/usr/share/backgrounds/nixos
 sudo -v
 
 if [[ ! -d $GITPATH ]]; then
-    git clone git@github.com:NixOS/nixos-artwork.git $GITPATH
+    git clone https://github.com/NixOS/nixos-artwork.git $GITPATH
 fi
 
 sudo mkdir -p $DEST
