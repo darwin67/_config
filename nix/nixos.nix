@@ -73,6 +73,12 @@ in {
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
     };
   };
 
@@ -252,6 +258,8 @@ in {
       pet
       bottom
       starship
+      insomnia
+      redisinsight
 
       (python311.withPackages
         (p: with p; [ pip grip pytest pyflakes nose isort cffi ipython black ]))
@@ -384,6 +392,7 @@ in {
     openssl
     alacritty
     glibcLocales
+    xfce.thunar
 
     firefox-bin
     firefox-devedition-bin
@@ -409,6 +418,8 @@ in {
 
     playerctl
     brightnessctl
+    bluez
+    bluez-tools
 
     i3pystatus
     (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
@@ -484,6 +495,14 @@ in {
             ExecStop = "${pkgs.procps}/bin/pkill settimed";
           };
         };
+
+        # for controller via bluetooth devices
+        mpris-proxy = {
+          description = "Mpris proxy";
+          after = [ "network.target" "sound.target" ];
+          wantedBy = [ "default.target" ];
+          serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+        };
       };
     };
   };
@@ -509,6 +528,7 @@ in {
         swayidle
         xwayland
         waybar
+        sway-contrib.grimshot
         # mako
         swaynotificationcenter
         kanshi
