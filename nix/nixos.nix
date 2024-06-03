@@ -59,7 +59,7 @@ in {
         };
         # NOTE: the local bridge interface name
         # `ip link show`
-        "br-1f4c991c3228" = {
+        "br-3a21767dc9dd" = {
           allowedTCPPortRanges = [{
             from = 3000;
             to = 65535;
@@ -181,19 +181,29 @@ in {
     };
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
     };
   };
 
   virtualisation = {
+    # podman = {
+    #   enable = true;
+    #   dockerCompat = true;
+    #   defaultNetwork.settings.dns_enabled = true;
+
+    #   dockerSocket.enable = true;
+    #   autoPrune.enable = true;
+    # };
+
     docker = {
       enable = true;
 
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+      # NOTE: doesn't work with host.docker.internal
+      # rootless = {
+      #   enable = true;
+      #   setSocketVariable = true;
+      # };
 
       autoPrune.enable = true;
     };
