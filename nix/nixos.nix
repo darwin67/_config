@@ -76,9 +76,6 @@ in {
     };
   };
 
-  # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
-
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -117,6 +114,8 @@ in {
 
   # Configure keymap in X11
   services = {
+    timesyncd.enable = true;
+    automatic-timezoned.enable = true;
     tlp = {
       enable = true;
       settings = {
