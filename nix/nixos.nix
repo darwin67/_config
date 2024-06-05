@@ -397,6 +397,7 @@ in {
     firefox-bin
     firefox-devedition-bin
     google-chrome
+    brave
 
     nordic
     _1password-gui
