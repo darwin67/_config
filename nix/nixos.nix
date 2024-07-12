@@ -385,6 +385,7 @@ in {
     wget
     curlie
     emacs29
+    zed-editor
     git
     hub
     sway
@@ -404,7 +405,7 @@ in {
     _1password # cli tool
     insync
     mpv
-    youtube-dl
+    yt-dlp
     spotify
     discord
     gnumake
