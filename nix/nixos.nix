@@ -23,22 +23,6 @@ let
     '';
   };
 
-  sddm-nordic = pkgs.stdenv.mkDerivation {
-    pname = "sddm-nordic";
-    dontBuild = true;
-    version = "1.0.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "EliverLara";
-      repo = "Nordic";
-      rev = "456835de49aa6ada99400c6b09ac3ef5feaa1db9";
-      sha256 = "yM/eQKwntGRnXphruAC6BsmvZ7moOsXZ9p4uMrwWy4Q=";
-    };
-    installPhase = ''
-      mkdir -p $out/share/sddm/themes
-      cp -aR $src/kde/sddm/Nordic $out/share/sddm/themes/nordic
-    '';
-  };
-
 in {
   imports = [ # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
@@ -137,6 +121,7 @@ in {
   # Configure keymap in X11
   services = {
     timesyncd.enable = true;
+    geoclue2.enable = true;
     automatic-timezoned.enable = true;
     tlp = {
       enable = true;
@@ -165,7 +150,6 @@ in {
       enable = true;
       defaultSession = "sway";
       sddm = {
-        theme = "sddm-nordic";
         enable = true;
         wayland.enable = true;
       };
@@ -457,9 +441,6 @@ in {
     ctop
     slack
     zoom-us
-
-    # login
-    sddm-nordic
   ];
 
   systemd = {
