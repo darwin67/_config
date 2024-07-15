@@ -410,6 +410,7 @@ in {
     yt-dlp
     spotify
     discord
+    pocket-casts
     gnumake
 
     rtkit # for pipewire
