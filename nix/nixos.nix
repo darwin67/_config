@@ -123,6 +123,7 @@ in {
     timesyncd.enable = true;
     geoclue2.enable = true;
     automatic-timezoned.enable = true;
+    fwupd.enable = true;
     tlp = {
       enable = true;
       settings = {
