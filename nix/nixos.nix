@@ -395,6 +395,7 @@ in {
     alacritty
     glibcLocales
     xfce.thunar
+    neofetch
 
     firefox-bin
     firefox-devedition-bin
