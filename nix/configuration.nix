@@ -27,6 +27,7 @@ in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./nixos.d/luks.nix
+    ./nixos.d/packages.nix
     ./modules/inngest.nix
     <home-manager/nixos>
   ];
@@ -195,33 +196,6 @@ in {
     };
   };
 
-  virtualisation = {
-    # podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    #   defaultNetwork.settings.dns_enabled = true;
-
-    #   dockerSocket.enable = true;
-    #   autoPrune.enable = true;
-    # };
-
-    docker = {
-      enable = true;
-
-      # NOTE: doesn't work with host.docker.internal
-      # rootless = {
-      #   enable = true;
-      #   setSocketVariable = true;
-      # };
-      # autoPrune.enable = true;
-    };
-  };
-
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
-  };
-
   users.defaultUserShell = pkgs.zsh;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.darwin = {
@@ -243,46 +217,7 @@ in {
       };
     };
 
-    home.packages = with pkgs; [
-      jq
-      yq
-      neovim
-      tmux
-      ripgrep
-      direnv
-      nix-direnv
-      hub
-      fd
-      curlie
-      bat
-      sqlite
-      tree
-      pet
-      bottom
-      starship
-      insomnia
-      redisinsight
-
-      (python311.withPackages
-        (p: with p; [ pip grip pytest pyflakes nose isort cffi ipython black ]))
-
-      # Editor
-      nixfmt
-      editorconfig-core-c
-      shfmt
-      shellcheck
-      glslang
-      markdownlint-cli
-
-      # org mode
-      maim
-      scrot
-      gnuplot
-
-      # LSPs
-      vimPlugins.vim-lsp
-      nil
-    ];
+    home.packages = with pkgs; [ starship ];
 
     home.file = {
       ".alacritty.toml" = { source = "/home/darwin/_config/.alacritty.toml"; };
@@ -374,79 +309,10 @@ in {
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    zsh
-    pulseaudio
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    neovim
-    tmux
-    wget
-    curlie
-    emacs29
-    zed-editor
-    git
-    hub
-    sway
-    fzf
-    openssl
-    alacritty
-    glibcLocales
-    xfce.thunar
-    neofetch
-    file
-
-    firefox-bin
-    firefox-devedition-bin
-    google-chrome
-    brave
-
-    nordic
-    _1password-gui
-    _1password # cli tool
-    insync
-    mpv
-    yt-dlp
-    spotify
-    discord
-    pocket-casts
-    gnumake
-
-    rtkit # for pipewire
-    polkit # for 1password
-    polkit_gnome
-
-    ## Comms
-    signal-desktop
-    whatsapp-for-linux
-
-    playerctl
-    brightnessctl
-    bluez
-    bluez-tools
-
-    i3pystatus
-    (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
-
-    libayatana-appindicator
-
-    docker
-    bottom
-
-    fwupd # hardware
-    tlp # battery management
-    inotify-tools
-    graphviz
-    libxml2
-
-    # Work
-    ctop
-    slack
-    zoom-us
-  ];
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = false;
+  };
 
   systemd = {
     # configuring sway itself
@@ -523,7 +389,6 @@ in {
   # };
 
   programs = {
-    zsh = { enable = true; };
     ssh.startAgent = true;
     sway = {
       enable = true;
@@ -560,14 +425,6 @@ in {
       '';
     };
     waybar = { enable = false; };
-
-    _1password.enable = true;
-    _1password-gui = {
-      enable = true;
-      # Certain features, including CLI integration and system authentication support,
-      # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-      polkitPolicyOwners = [ "darwin" ];
-    };
   };
 
   # This value determines the NixOS release from which the default
