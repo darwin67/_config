@@ -2,6 +2,15 @@
 
 Settings that are shared across computers.
 
+## NixOS setup
+
+```sh
+# back it up
+sudo mv /etc/nixos /etc/nixos.old
+
+sudo ln -s ~/_config/nix /etc/nixos
+```
+
 ## Dynamic Wallpapers
 
 ```
@@ -9,11 +18,4 @@ Settings that are shared across computers.
 
 cd ~/Pictures/DynamicWallpapers
 ls | xargs -I{} sudo heic-install {}
-```
-
-## Add user to groups for access to tools
-
-```
-sudo usermod -aG docker $USER
-sudo usermod -aG nix-users $USER
 ```

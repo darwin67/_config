@@ -25,8 +25,8 @@ let
 
 in {
   imports = [ # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
-    /etc/nixos/luks.nix
+    ./hardware-configuration.nix
+    ./nixos.d/luks.nix
     <home-manager/nixos>
   ];
 
@@ -396,6 +396,7 @@ in {
     glibcLocales
     xfce.thunar
     neofetch
+    file
 
     firefox-bin
     firefox-devedition-bin
