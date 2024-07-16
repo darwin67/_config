@@ -27,6 +27,7 @@ in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./nixos.d/luks.nix
+    ./modules/inngest.nix
     <home-manager/nixos>
   ];
 
