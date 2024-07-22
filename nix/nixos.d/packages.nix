@@ -61,6 +61,7 @@ let
     glibcLocales
     xfce.thunar
     file
+    warp-terminal
   ];
 
   desktop = with pkgs; [
@@ -159,10 +160,5 @@ in {
       # };
       # autoPrune.enable = true;
     };
-  };
-
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
   };
 }

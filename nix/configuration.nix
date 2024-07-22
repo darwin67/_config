@@ -28,6 +28,7 @@ in {
     ./hardware-configuration.nix
     ./nixos.d/luks.nix
     ./nixos.d/packages.nix
+    ./nixos.d/security.nix
     ./modules/inngest.nix
     <home-manager/nixos>
   ];
@@ -425,6 +426,7 @@ in {
       '';
     };
     waybar = { enable = false; };
+    nix-ld.enable = true;
   };
 
   # This value determines the NixOS release from which the default
