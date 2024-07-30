@@ -4,24 +4,7 @@
 
 { config, pkgs, ... }:
 
-let
-  wallpaperTheme = "macMonterey";
-  # wallutils helper script to convert .heic format wallpapers
-  heicinstall = pkgs.stdenv.mkDerivation {
-    name = "heic-install";
-    src = builtins.fetchurl {
-      url =
-        "https://raw.githubusercontent.com/xyproto/wallutils/main/scripts/heic-install";
-    };
-    phases = [ "installPhase" ];
-
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/heic-install
-      sed -i -e 's/\r$//' $out/bin/heic-install
-      chmod +x $out/bin/heic-install
-    '';
-  };
+let wallpaperTheme = "macMonterey";
 
 in {
   imports = [ # Include the results of the hardware scan.
@@ -36,8 +19,10 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # NOTE:
   # LUKs related settings should be moved to nixos.d/luks.nix
@@ -167,9 +152,6 @@ in {
         options = "ctrl:swapcaps"; # remap caps lock to control
       };
     };
-    # enable the gnome-keyring secrets vault.
-    # will be exposed through DBus to programs willing to store secrets
-    gnome.gnome-keyring.enable = true;
 
     # Audio
     pipewire = {
@@ -203,7 +185,6 @@ in {
     isNormalUser = true;
     description = "Darwin Wu";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = [ heicinstall ];
     useDefaultShell = true;
   };
   home-manager.useGlobalPkgs = true;
