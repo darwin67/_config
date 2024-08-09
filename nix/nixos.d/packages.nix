@@ -81,7 +81,7 @@ let
     glibcLocales
     xfce.thunar
     file
-    warp-terminal
+    gnome.gnome-terminal
   ];
 
   desktop = with pkgs; [
