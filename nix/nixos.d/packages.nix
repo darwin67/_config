@@ -40,7 +40,7 @@ let
 
     # LSPs
     vimPlugins.vim-lsp
-    nil
+    nixd
   ];
 
   apps = with pkgs; [
