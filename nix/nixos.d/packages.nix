@@ -76,12 +76,11 @@ let
     fzf
     openssl
     alacritty
-    warp-terminal
-    xfce.xfce4-terminal
     glibcLocales
     xfce.thunar
     file
     gnome.gnome-terminal
+    kitty
   ];
 
   desktop = with pkgs; [
