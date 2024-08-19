@@ -139,6 +139,7 @@ let
     tree
     pet
     bottom
+    dig
   ];
 
 in {
