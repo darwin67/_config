@@ -140,6 +140,7 @@ let
     pet
     bottom
     dig
+    tailscale
   ];
 
 in {

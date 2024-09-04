@@ -68,6 +68,18 @@ in {
         };
       };
     };
+
+    # Scanner
+    sane = {
+      enable = true;
+      extraBackends = with pkgs; [
+        sane-airscan
+        hplipWithPlugin
+        epkowa
+        utsushi
+      ];
+      disabledDefaultBackends = [ "escl" ];
+    };
   };
 
   # Select internationalisation properties.
@@ -177,6 +189,10 @@ in {
       nssmdns4 = true;
       openFirewall = true;
     };
+    # scanner
+    udev = { packages = with pkgs; [ sane-airscan ]; };
+
+    tailscale = { enable = true; };
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -184,7 +200,7 @@ in {
   users.users.darwin = {
     isNormalUser = true;
     description = "Darwin Wu";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "scanner" "lp" ];
     useDefaultShell = true;
   };
   home-manager.useGlobalPkgs = true;
