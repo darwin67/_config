@@ -22,7 +22,6 @@ let
     vim
     neovim
     emacs29
-    zed-editor
     vscode
 
     # editor utilities
