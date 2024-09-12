@@ -47,7 +47,6 @@ let
     whatsapp-for-linux
     # wechat-uos
     discord
-    pocket-casts
     nordic
     _1password-gui
     _1password # cli tool
@@ -80,6 +79,7 @@ let
     file
     gnome.gnome-terminal
     kitty
+    yazi
   ];
 
   desktop = with pkgs; [
