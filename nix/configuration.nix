@@ -246,6 +246,9 @@ in {
       ".config/wofi" = { source = "/home/darwin/_config/wofi"; };
       ".config/wob" = { source = "/home/darwin/_config/wob"; };
 
+      # Terminal
+      ".config/kitty" = { source = "/home/darwin/_config/kitty"; };
+
       # Flags
       ".config/brave-flags.conf" = {
         text = ''
