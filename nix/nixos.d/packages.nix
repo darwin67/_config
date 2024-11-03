@@ -140,6 +140,9 @@ let
     bottom
     dig
     tailscale
+
+    # scanner
+    gnome.simple-scan
   ];
 
 in {

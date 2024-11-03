@@ -184,7 +184,7 @@ in {
       openFirewall = true;
     };
     # scanner
-    udev = { packages = with pkgs; [ sane-airscan ]; };
+    udev = { packages = with pkgs; [ sane-airscan utsushi ]; };
 
     tailscale = { enable = true; };
   };
