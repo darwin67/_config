@@ -77,7 +77,7 @@ let
     glibcLocales
     xfce.thunar
     file
-    gnome.gnome-terminal
+    gnome.seahorse
     kitty
     yazi
   ];
