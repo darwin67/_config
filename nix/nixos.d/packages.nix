@@ -58,7 +58,6 @@ let
     # Work
     slack
     zoom-us
-    redisinsight
     insomnia
   ];
 
@@ -80,6 +79,7 @@ let
     gnome.seahorse
     kitty
     yazi
+    flatpak
   ];
 
   desktop = with pkgs; [

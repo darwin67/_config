@@ -113,6 +113,7 @@ in {
   ];
 
   # Configure keymap in X11
+  xdg = { portal = { enable = true; }; };
   services = {
     timesyncd.enable = true;
     geoclue2.enable = true;
@@ -187,6 +188,8 @@ in {
     udev = { packages = with pkgs; [ sane-airscan utsushi ]; };
 
     tailscale = { enable = true; };
+
+    flatpak.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;
