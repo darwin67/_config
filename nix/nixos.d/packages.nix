@@ -101,7 +101,7 @@ let
   ];
 
   browser = with pkgs; [
-    firefox-bin
+    # firefox-bin
     firefox-devedition-bin
     google-chrome
     brave
