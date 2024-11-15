@@ -54,6 +54,7 @@ let
     mpv
     yt-dlp
     spotify
+    insync
 
     # Work
     slack
