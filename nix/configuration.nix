@@ -204,7 +204,7 @@ in {
   home-manager.users.darwin = { pkgs, ... }: {
     home.pointerCursor = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       size = 24;
       x11 = {
         enable = true;
@@ -303,7 +303,7 @@ in {
       };
     };
 
-    home.stateVersion = "24.05";
+    home.stateVersion = "24.11";
   };
 
   # Allow unfree packages
@@ -316,7 +316,7 @@ in {
     # configuring sway itself
     user = {
       targets.sway-session = {
-        description = "Sway compositor session";
+        description = "sway compositor session";
         documentation = [ "man:systemd.special(7)" ];
         bindsTo = [ "graphical-session.target" ];
         wants = [ "graphical-session-pre.target" ];
@@ -432,7 +432,7 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 
   # link /bin/sh to /bin/bash because it doesn't exist and it's a fucking pain
   system.activationScripts.binbash = {

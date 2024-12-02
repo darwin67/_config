@@ -49,7 +49,7 @@ let
     discord
     nordic
     _1password-gui
-    _1password # cli tool
+    _1password-cli # cli tool
     insync
     mpv
     yt-dlp
@@ -77,7 +77,7 @@ let
     glibcLocales
     xfce.thunar
     file
-    gnome.seahorse
+    seahorse
     kitty
     yazi
     flatpak
@@ -119,7 +119,6 @@ let
         grip
         pytest
         pyflakes
-        nose
         isort
         cffi
         ipython
@@ -143,7 +142,7 @@ let
     tailscale
 
     # scanner
-    gnome.simple-scan
+    simple-scan
   ];
 
 in {
