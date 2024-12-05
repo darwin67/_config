@@ -66,6 +66,7 @@ let
     zsh
     pulseaudio
     gnumake
+    gnutar
     tmux
     wget
     curlie
@@ -81,6 +82,8 @@ let
     kitty
     yazi
     flatpak
+    zip
+    unzip
   ];
 
   desktop = with pkgs; [
