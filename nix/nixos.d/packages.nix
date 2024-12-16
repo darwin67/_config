@@ -55,6 +55,7 @@ let
     yt-dlp
     spotify
     insync
+    obsidian
 
     # Work
     slack
