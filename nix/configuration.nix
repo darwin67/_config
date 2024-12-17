@@ -119,6 +119,7 @@ in {
     geoclue2.enable = true;
     automatic-timezoned.enable = true;
     fwupd.enable = true;
+    gnome = { gnome-keyring.enable = true; }; # keyring
     tlp = {
       enable = true;
       settings = {
