@@ -1,10 +1,10 @@
 { stdenv, fetchurl, dpkg, autoPatchelfHook, zlib }:
 
-let version = "2.0.0";
+let ver = "2.8.1";
 
 in stdenv.mkDerivation rec {
   pname = "vanta-agent";
-  version = "2.8.1";
+  version = ver;
 
   src = fetchurl {
     url =
