@@ -145,6 +145,7 @@ let
     bottom
     dig
     tailscale
+    sops
 
     # scanner
     simple-scan
