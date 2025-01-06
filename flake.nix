@@ -3,9 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      # url = "github:nix-community/home-manager";
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -28,7 +26,13 @@
     in {
       # Linux setup
       nixosConfigurations = {
-        nixos-sophie = nixpkgs.lib.nixosSystem {
+        nixos-sophie = let
+          additionalFiles = {
+            ".config/sway/config.d/screen.conf" = {
+              source = "${self}/nixos/desktop/sophie/sway/screen.conf";
+            };
+          };
+        in nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
@@ -39,7 +43,8 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit self pkgs stateVersion system;
+                  inherit self pkgs username stateVersion system
+                    additionalFiles;
                 };
               };
             }
