@@ -50,6 +50,25 @@
             }
           ];
         };
+
+        framework = let additionalFiles = { };
+        in nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./nixos/laptop/framework13/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.darwin = import ./nixos/common/linux/home.nix {
+                  inherit self pkgs username stateVersion system
+                    additionalFiles;
+                };
+              };
+            }
+          ];
+        };
       };
 
       # TODO: macOS setup
