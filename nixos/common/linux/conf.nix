@@ -1,9 +1,32 @@
 { config, lib, pkgs, ... }:
 
-let wallpaperTheme = "macMonterey";
+let
+  wallpaperTheme = "macMonterey";
+
+  artwork = pkgs.stdenv.mkDerivation {
+    name = "artwork";
+    src = pkgs.fetchFromGitHub {
+      owner = "NixOS";
+      repo = "nixos-artwork";
+      rev = "63f68a917f4e8586c5d35e050cdaf1309832272d";
+      sha256 = "sha256-XquSEijNYtGDkW35bibT2ki18qicENCsIcDzDxrgQkM=";
+    };
+    phases = [ "installPhase" ];
+
+    installPhase = ''
+      mkdir -p $out/artwork
+      cp $src/wallpapers/*.{png,svg} $out/artwork
+    '';
+  };
 
 in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment = {
+    systemPackages = [ artwork ];
+    sessionVariables = { ARTWORK_PATH = "${artwork}/artwork"; };
+    # variables.GLFW_IM_MODULE = "ibus";
+  };
 
   # NOTE:
   # LUKs related settings should be moved to nixos.d/luks.nix
@@ -90,7 +113,6 @@ in {
       };
     };
   };
-  # environment.variables.GLFW_IM_MODULE = "ibus";
 
   fonts.packages = with pkgs; [
     noto-fonts
