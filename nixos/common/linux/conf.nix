@@ -14,8 +14,8 @@ let
     phases = [ "installPhase" ];
 
     installPhase = ''
-      mkdir -p $out/artwork
-      cp $src/wallpapers/*.{png,svg} $out/artwork
+      mkdir -p $out
+      cp $src/wallpapers/*.{png,svg} $out
     '';
   };
 
@@ -24,8 +24,10 @@ in {
 
   environment = {
     systemPackages = [ artwork ];
-    sessionVariables = { ARTWORK_PATH = "${artwork}/artwork"; };
-    # variables.GLFW_IM_MODULE = "ibus";
+    variables = {
+      ARTWORK_PATH = "${artwork}";
+      # GLFW_IM_MODULE = "ibus";
+    };
   };
 
   # NOTE:
