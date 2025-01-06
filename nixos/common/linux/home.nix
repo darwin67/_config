@@ -37,20 +37,22 @@ in {
 
     ## Files
     file = {
-      ".gitconfig" = { source = "${self}/.gitconfig"; };
-      ".gitignore_global" = { source = "${self}/.gitignore_global"; };
-      ".pryrc" = { source = "${self}/.pryrc"; };
-      ".npmrc" = { source = "${self}/.npmrc"; };
-      ".tmux.conf" = { source = "${self}/.tmux.conf"; };
-      ".zlogin" = { source = "${self}/.zlogin"; };
-      ".zsh_plugins.txt" = { source = "${self}/.zsh_plugins.txt"; };
-      ".zshrc" = { source = "${self}/.zshrc"; };
+      # dot files
+      ".gitconfig" = { source = "${self}/dots/.gitconfig"; };
+      ".gitignore_global" = { source = "${self}/dots/.gitignore_global"; };
+      ".pryrc" = { source = "${self}/dots/.pryrc"; };
+      ".npmrc" = { source = "${self}/dots/.npmrc"; };
+      ".tmux.conf" = { source = "${self}/dots/.tmux.conf"; };
 
-      ".config/nvim/init.vim" = { source = "${self}/init.vim"; };
-      ".config/nvim/lua" = { source = "${self}/nvim"; };
-      # Directory
+      # zsh
+      ".zlogin" = { source = "${self}/zsh/.zlogin"; };
+      ".zsh_plugins.txt" = { source = "${self}/zsh/.zsh_plugins.txt"; };
+      ".zshrc" = { source = "${self}/zsh/.zshrc"; };
+      ".config/zsh/functions" = { source = "${self}/zsh/zfunc"; };
+
+      # editor
       ".doom.d" = { source = "${self}/.doom.d"; };
-      ".config/zsh/functions" = { source = "${self}/zfunc"; };
+      ".config/nvim" = { source = "${self}/nvim"; };
 
       # Sway
       ".config/sway/config" = { source = "${self}/sway/config"; };
@@ -64,7 +66,7 @@ in {
       ".config/wob" = { source = "${self}/wob"; };
 
       # Terminal
-      ".alacritty.toml" = { source = "${self}/.alacritty.toml"; };
+      ".alacritty.toml" = { source = "${self}/dots/.alacritty.toml"; };
       ".config/kitty" = { source = "${self}/kitty"; };
 
       # Flags
