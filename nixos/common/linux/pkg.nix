@@ -1,24 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  # wallutils helper script to convert .heic format wallpapers
-  heicinstall = pkgs.stdenv.mkDerivation {
-    name = "heic-install";
-    src = builtins.fetchurl {
-      url =
-        "https://raw.githubusercontent.com/xyproto/wallutils/main/scripts/heic-install";
-      sha256 = "0lc6qahzzrxzh3dlc5191ahnrc8499rq7b1lhpi057zsdi4v66ka";
-    };
-    phases = [ "installPhase" ];
-
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/heic-install
-      sed -i -e 's/\r$//' $out/bin/heic-install
-      chmod +x $out/bin/heic-install
-    '';
-  };
-
   editor = with pkgs; [
     vim
     neovim
@@ -155,7 +137,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps
-    ++ utils ++ [ heicinstall ];
+    ++ utils;
 
   programs = {
     zsh.enable = true;

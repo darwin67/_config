@@ -37,8 +37,7 @@ in {
       path = [ pkgs.sway ];
       serviceConfig = {
         Type = "simple";
-        ExecStart =
-          "${pkgs.wallutils}/bin/settimed ${cfg.theme} ${timed-wallpaper}";
+        ExecStart = "${pkgs.wallutils}/bin/settimed ${cfg.theme}";
         ExecStop = "${pkgs.procps}/bin/pkill settimed";
       };
     };
