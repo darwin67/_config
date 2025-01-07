@@ -13,70 +13,60 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        config = {
-          allowUnfree = true;
-          allowBroken = false;
-        };
-
-        inherit system;
-
-        overlays = [ inputs.timewall.overlays.default ];
-      };
-
       stateVersion = "24.11";
       username = "darwin";
       wallpaperTheme = "macMonterey";
-    in {
-      # Linux setup
-      nixosConfigurations = {
-        nixos-sophie = let
+
+      mkLinuxSystem = { system, modules ? [ ], additionalFiles ? { } }:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config = {
+              allowUnfree = true;
+              allowBroken = false;
+            };
+
+            overlays = [ inputs.timewall.overlays.default ];
+          };
+        in {
+          specialArgs = { inherit system pkgs; };
+
+          modules = modules ++ [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.darwin = import ./nixos/common/linux/home.nix {
+                  inherit self inputs pkgs username wallpaperTheme stateVersion
+                    additionalFiles;
+                };
+              };
+            }
+          ];
+        };
+
+      hosts = {
+        nixos-sophie = mkLinuxSystem {
+          system = "x86_64-linux";
+          modules = [ ./nixos/desktop/sophie/configuration.nix ];
           additionalFiles = {
             ".config/sway/config.d/screen.conf" = {
               source = "${self}/nixos/desktop/sophie/sway/screen.conf";
             };
           };
-        in nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit pkgs; };
-
-          modules = [
-            ./nixos/desktop/sophie/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit self inputs pkgs username wallpaperTheme stateVersion
-                    system additionalFiles;
-                };
-              };
-            }
-          ];
         };
 
-        framework = let additionalFiles = { };
-        in nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit pkgs; };
-
-          modules = [
-            ./nixos/laptop/framework13/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit self inputs pkgs username wallpaperTheme stateVersion
-                    system additionalFiles;
-                };
-              };
-            }
-          ];
+        framework13 = mkLinuxSystem {
+          system = "x86_64-linux";
+          modules = [ ./nixos/laptop/framework13/configuration.nix ];
         };
+      };
+    in {
+      # Linux setup
+      nixosConfigurations = {
+        nixos-sophie = nixpkgs.lib.nixosSystem (hosts.nixos-sophie);
+        framework = nixpkgs.lib.nixosSystem (hosts.framework13);
       };
 
       # TODO: macOS setup
