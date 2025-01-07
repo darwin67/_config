@@ -17,6 +17,7 @@
       username = "darwin";
       wallpaperTheme = "macMonterey";
 
+      # Function for helping configuration linux systems
       mkLinuxSystem = { system, modules ? [ ], additionalFiles ? { } }:
         let
           pkgs = import nixpkgs {
@@ -46,6 +47,7 @@
           ];
         };
 
+      ## list of hosts
       hosts = {
         nixos-sophie = mkLinuxSystem {
           system = "x86_64-linux";
