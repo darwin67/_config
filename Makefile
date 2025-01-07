@@ -1,3 +1,4 @@
 .PHONY: link-nixos
 link-nixos:
-	sudo ln -s ~/_config/nix /etc/nixos
+	sudo mv /etc/nixos /etc/nixos.old
+	sudo ln -s ~/_config /etc/nixos
