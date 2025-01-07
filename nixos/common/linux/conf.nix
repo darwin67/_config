@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  wallpaperTheme = "macMonterey";
-
   artwork = pkgs.stdenv.mkDerivation {
     name = "artwork";
     src = pkgs.fetchFromGitHub {
@@ -19,7 +17,11 @@ let
     '';
   };
 
+  wallpaperTheme = "macMonterey";
+
 in {
+  imports = [ ../../modules/timed-wallpaper/module.nix ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment = {
@@ -205,6 +207,12 @@ in {
     tailscale = { enable = true; };
 
     flatpak.enable = true;
+
+    # Timed wallpaper
+    timed-wallpaper = {
+      enable = true;
+      theme = wallpaperTheme;
+    };
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -245,19 +253,6 @@ in {
             '';
             RestartSec = 5;
             Restart = "always";
-          };
-        };
-
-        dynamic-wallpaper = {
-          description = "Dynamic Wallpaper";
-          wantedBy = [ "sway-session.target" ];
-          # wants = [ "sway-session.target" ];
-          after = [ "sway-session.target" ];
-          path = [ pkgs.sway ];
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = ''${pkgs.wallutils}/bin/settimed "${wallpaperTheme}"'';
-            ExecStop = "${pkgs.procps}/bin/pkill settimed";
           };
         };
 
