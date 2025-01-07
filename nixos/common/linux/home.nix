@@ -129,7 +129,11 @@ in {
       wallpaperPath = "${timed-wallpaper}";
       config = {
         daemon = { update_interval_seconds = 600; };
-        setter = { command = [ "swaybg" "--mode" "fill" "--image" "%f" ]; };
+        setter = {
+          # NOTE: based on
+          # https://docs.rs/wallpape-rs/latest/wallpape_rs/
+          command = [ "swaybg" "--mode" "fill" "--image" "%f" ];
+        };
       };
     };
   };
