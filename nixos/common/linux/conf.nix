@@ -129,7 +129,10 @@ in {
   xdg = { portal = { enable = true; }; };
   services = {
     timesyncd.enable = true;
-    geoclue2.enable = true;
+    geoclue2 = {
+      enable = true;
+      geoProviderUrl = "https://api.beacondb.net/v1/geolocate?key=geoclue";
+    };
     automatic-timezoned.enable = true;
     fwupd.enable = true;
     # enable the gnome-keyring secrets vault.
