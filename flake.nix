@@ -69,7 +69,6 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit pkgs; };
                 users.darwin = import ./nixos/common/linux/home.nix {
                   inherit self inputs pkgs username wallpaperTheme stateVersion
                     system additionalFiles;
