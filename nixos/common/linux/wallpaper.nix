@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, pkgs, cfg, ... }:
+{ theme, pkgs, ... }:
 
 let
   source = {
@@ -24,37 +24,17 @@ let
     };
   };
 
-  # wallutils helper script to convert .heic format wallpapers
-  heic-install = stdenv.mkDerivation {
-    name = "heic-install";
-    src = ./heic-install;
-
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/heic-install
-      sed -i -e 's/\r$//' $out/bin/heic-install
-      chmod +x $out/bin/heic-install
-    '';
-  };
-
-  wallpaper = source.${cfg.theme};
-
-in stdenv.mkDerivation {
+  wallpaper = source.${theme};
+in pkgs.stdenv.mkDerivation {
   name = "timed-wallpaper";
-  src = fetchurl {
-    name = cfg.theme;
+  src = builtins.fetchurl {
+    name = theme;
     url = "https://cdn.dynamicwallpaper.club/wallpapers/${wallpaper.path}";
     sha256 = wallpaper.sha256;
   };
-  nativeBuildInputs = [ pkgs.wallutils pkgs.imagemagick heic-install ];
 
   phases = [ "installPhase" ];
   installPhase = ''
-    FILENAME=${cfg.theme}.heic
-    cp $src $FILENAME
-
-    # Try running with bash explicitly
-    bash ${heic-install}/bin/heic-install $FILENAME $out
+    cp $src $out
   '';
 }

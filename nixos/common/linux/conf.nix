@@ -20,7 +20,7 @@ let
   wallpaperTheme = "macMonterey";
 
 in {
-  imports = [ ../../modules/timed-wallpaper/module.nix ];
+  # imports = [ ../../modules/timed-wallpaper/module.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -209,10 +209,10 @@ in {
     flatpak.enable = true;
 
     # Timed wallpaper
-    timed-wallpaper = {
-      enable = true;
-      theme = wallpaperTheme;
-    };
+    # timed-wallpaper = {
+    #   enable = true;
+    #   theme = wallpaperTheme;
+    # };
   };
 
   users.defaultUserShell = pkgs.zsh;

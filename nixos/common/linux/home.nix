@@ -1,11 +1,20 @@
-{ pkgs, self, username, stateVersion, additionalFiles, ... }:
+{ pkgs, self, inputs, username, wallpaperTheme, stateVersion, additionalFiles
+, ... }:
 
 let
+  timed-wallpaper = import ./wallpaper.nix {
+    inherit pkgs;
+    theme = wallpaperTheme;
+  };
+
   chromeFlags = ''
     --enable-features=UseOzonePlatform
     --ozone-platform=wayland
   '';
+
 in {
+  imports = [ inputs.timewall.homeManagerModules.default ];
+
   nixpkgs = { config = { allowUnfree = true; }; };
 
   home = {
@@ -110,6 +119,17 @@ in {
         hg_branch.disabled = true;
         pijul_channel.disabled = true;
         docker_context.disabled = true;
+      };
+    };
+  };
+
+  services = {
+    timewall = {
+      enable = true;
+      wallpaperPath = "${timed-wallpaper}";
+      config = {
+        daemon = { update_interval_seconds = 600; };
+        setter = { command = [ "swaybg" "--mode" "fill" "--image" "%f" ]; };
       };
     };
   };

@@ -7,6 +7,8 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Timed wallpaper
+    timewall.url = "github:bcyran/timewall";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -19,10 +21,13 @@
         };
 
         inherit system;
+
+        overlays = [ inputs.timewall.overlays.default ];
       };
 
       stateVersion = "24.11";
       username = "darwin";
+      wallpaperTheme = "macMonterey";
     in {
       # Linux setup
       nixosConfigurations = {
@@ -34,6 +39,7 @@
           };
         in nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit pkgs; };
 
           modules = [
             ./nixos/desktop/sophie/configuration.nix
@@ -43,8 +49,8 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit self pkgs username stateVersion system
-                    additionalFiles;
+                  inherit self inputs pkgs username wallpaperTheme stateVersion
+                    system additionalFiles;
                 };
               };
             }
@@ -54,6 +60,8 @@
         framework = let additionalFiles = { };
         in nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit pkgs; };
+
           modules = [
             ./nixos/laptop/framework13/configuration.nix
             home-manager.nixosModules.home-manager
@@ -61,9 +69,10 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                extraSpecialArgs = { inherit pkgs; };
                 users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit self pkgs username stateVersion system
-                    additionalFiles;
+                  inherit self inputs pkgs username wallpaperTheme stateVersion
+                    system additionalFiles;
                 };
               };
             }

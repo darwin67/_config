@@ -72,6 +72,7 @@ let
 
   desktop = with pkgs; [
     sway
+    swaybg
     rtkit # for pipewire
     polkit # for 1password
     polkit_gnome
@@ -79,6 +80,9 @@ let
     brightnessctl
     bluez
     bluez-tools
+
+    # timed wallpaper
+    timewall
 
     fwupd # hardware
     tlp # battery management
