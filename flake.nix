@@ -63,12 +63,18 @@
           system = "x86_64-linux";
           modules = [ ./nixos/laptop/framework13/configuration.nix ];
         };
+
+        thinkpadz16 = mkLinuxSystem {
+          system = "x86_64-linux";
+          modules = [ ./nixos/laptop/framework13/configuration.nix ];
+        };
       };
     in {
       # Linux setup
       nixosConfigurations = {
         sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
         framework = nixpkgs.lib.nixosSystem (hosts.framework13);
+        ThinkpadZ16-NixOS = nixpkgs.lib.nixosSystem (hosts.thinkpadz16);
       };
 
       # TODO: macOS setup
