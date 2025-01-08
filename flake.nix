@@ -13,8 +13,8 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      stateVersion = "24.11";
       username = "darwin";
+      stateVersion = "24.11";
       wallpaperTheme = "macMonterey";
 
       # Function for helping configuration linux systems
@@ -49,7 +49,7 @@
 
       ## list of hosts
       hosts = {
-        nixos-sophie = mkLinuxSystem {
+        sophie = mkLinuxSystem {
           system = "x86_64-linux";
           modules = [ ./nixos/desktop/sophie/configuration.nix ];
           additionalFiles = {
@@ -67,7 +67,7 @@
     in {
       # Linux setup
       nixosConfigurations = {
-        nixos-sophie = nixpkgs.lib.nixosSystem (hosts.nixos-sophie);
+        sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
         framework = nixpkgs.lib.nixosSystem (hosts.framework13);
       };
 

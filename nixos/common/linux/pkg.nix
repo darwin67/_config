@@ -142,38 +142,4 @@ in {
   # $ nix search wget
   environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps
     ++ utils;
-
-  programs = {
-    zsh.enable = true;
-
-    _1password.enable = true;
-    _1password-gui = {
-      enable = true;
-      # Certain features, including CLI integration and system authentication support,
-      # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-      polkitPolicyOwners = [ "darwin" ];
-    };
-  };
-
-  virtualisation = {
-    # podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    #   defaultNetwork.settings.dns_enabled = true;
-
-    #   dockerSocket.enable = true;
-    #   autoPrune.enable = true;
-    # };
-
-    docker = {
-      enable = true;
-
-      # NOTE: doesn't work with host.docker.internal
-      # rootless = {
-      #   enable = true;
-      #   setSocketVariable = true;
-      # };
-      # autoPrune.enable = true;
-    };
-  };
 }

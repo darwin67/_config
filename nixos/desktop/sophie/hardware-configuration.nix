@@ -7,64 +7,47 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # Bootloader.
-  boot.loader = {
-    grub = {
-      enable = true;
-      device = "/dev/nvme0n1";
-      useOSProber = true;
-      enableCryptodisk = true;
-    };
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-8f715e48-de6c-4957-9b57-f2bb95c3fa25".device =
-    "/dev/disk/by-uuid/8f715e48-de6c-4957-9b57-f2bb95c3fa25";
-  # Setup keyfile
-  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
+  boot.initrd.luks.devices."luks-f9a7e3fb-c7e9-45d0-bc5e-b2258aefc5de".device = "/dev/disk/by-uuid/f9a7e3fb-c7e9-45d0-bc5e-b2258aefc5de";
+  networking.hostId = "4e98920d";
+  networking.hostName = "sophie"; # Define your hostname.
 
-  boot.initrd.luks.devices."luks-5ce5a879-78f8-4928-b976-7ad09f3f6144".keyFile =
-    "/crypto_keyfile.bin";
-  boot.initrd.luks.devices."luks-8f715e48-de6c-4957-9b57-f2bb95c3fa25".keyFile =
-    "/crypto_keyfile.bin";
-
-  boot.initrd.luks.devices."luks-5ce5a879-78f8-4928-b976-7ad09f3f6144".device =
-    "/dev/disk/by-uuid/5ce5a879-78f8-4928-b976-7ad09f3f6144";
-
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/25e16122-7d05-4197-b098-928f586884a7"; }];
-
-  boot.initrd.availableKernelModules =
-    [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  boot.supportedFilesystems = [ "zfs" ];
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/14b951b4-bd5c-454d-b6fb-162741eb91ef";
+      fsType = "ext4";
+    };
 
+  boot.initrd.luks.devices."luks-dcc35be9-edc4-4589-8dae-84d62df0012a".device = "/dev/disk/by-uuid/dcc35be9-edc4-4589-8dae-84d62df0012a";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/0A56-F377";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/d91b2aff-8443-434e-b013-f7ed75ef9785"; }
+    ];
+
+  boot.supportedFilesystems = ["zfs"];
   boot.zfs = {
     forceImportRoot = false;
     extraPools = [ "storage" ];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/c9248ae4-2104-4ade-adcc-15c3bedf5162";
-      fsType = "ext4";
-    };
-
-    "/home/darwin/storage" = {
+  fileSystems."/home/darwin/storage" = {
       device = "/mnt/storage";
       fsType = "none";
       options = [ "bind" ];
-    };
   };
 
-  networking.hostId = "f5269c92";
-  networking.hostName = "nixos-sophie"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -77,5 +60,4 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
-
 }

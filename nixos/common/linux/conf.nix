@@ -17,11 +17,7 @@ let
     '';
   };
 
-  wallpaperTheme = "macMonterey";
-
 in {
-  # imports = [ ../../modules/timed-wallpaper/module.nix ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment = {
@@ -210,12 +206,6 @@ in {
     tailscale = { enable = true; };
 
     flatpak.enable = true;
-
-    # Timed wallpaper
-    # timed-wallpaper = {
-    #   enable = true;
-    #   theme = wallpaperTheme;
-    # };
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -270,16 +260,9 @@ in {
     };
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   programs = {
     ssh.startAgent = true;
+    zsh.enable = true;
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
@@ -316,6 +299,14 @@ in {
     };
     waybar = { enable = false; };
     nix-ld.enable = true;
+
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      # Certain features, including CLI integration and system authentication support,
+      # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+      polkitPolicyOwners = [ "darwin" ];
+    };
   };
 
   # This value determines the NixOS release from which the default
@@ -325,6 +316,28 @@ in {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11";
+
+  virtualisation = {
+    # podman = {
+    #   enable = true;
+    #   dockerCompat = true;
+    #   defaultNetwork.settings.dns_enabled = true;
+
+    #   dockerSocket.enable = true;
+    #   autoPrune.enable = true;
+    # };
+
+    docker = {
+      enable = true;
+
+      # NOTE: doesn't work with host.docker.internal
+      # rootless = {
+      #   enable = true;
+      #   setSocketVariable = true;
+      # };
+      # autoPrune.enable = true;
+    };
+  };
 
   # link /bin/sh to /bin/bash because it doesn't exist and it's a fucking pain
   system.activationScripts.binbash = {
@@ -339,4 +352,5 @@ in {
     rtkit.enable = true;
     pam.services.sddm.enableGnomeKeyring = true;
   };
+
 }
