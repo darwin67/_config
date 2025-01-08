@@ -26,6 +26,11 @@
   boot.initrd.luks.devices."luks-5c89a18f-a0ca-4a68-b12f-e041ed326534".device =
     "/dev/disk/by-uuid/5c89a18f-a0ca-4a68-b12f-e041ed326534";
 
+  # LUKS
+  boot.initrd.luks.devices."luks-d1dd6487-3980-41ef-a748-17a0d1ba6294".device =
+    "/dev/disk/by-uuid/d1dd6487-3980-41ef-a748-17a0d1ba6294";
+  networking.hostName = "ThinkpadZ16-NixOS";
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/62A4-73BE";
     fsType = "vfat";

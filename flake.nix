@@ -66,7 +66,12 @@
 
         thinkpadz16 = mkLinuxSystem {
           system = "x86_64-linux";
-          modules = [ ./nixos/laptop/framework13/configuration.nix ];
+          modules = [ ./nixos/laptop/thinkpadz16/configuration.nix ];
+          additionalFiles = {
+            ".config/sway/config.d/screen.conf" = {
+              source = "${self}/nixos/laptop/thinkpadz16/sway/screen.conf";
+            };
+          };
         };
       };
     in {
