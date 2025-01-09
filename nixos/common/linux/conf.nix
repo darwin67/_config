@@ -250,14 +250,15 @@ in {
         xwayland
         waybar
         sway-contrib.grimshot
-        # mako
-        swaynotificationcenter
+        mako # notification
+        # swaynotificationcenter
         kanshi
         grim
         slurp
         wl-clipboard
         wf-recorder
         (python311.withPackages (ps: with ps; [ i3pystatus keyring ]))
+        satty
 
         # wallpaper
         wallutils

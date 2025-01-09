@@ -69,10 +69,13 @@ in {
         source = "${self}/sway/config.d/zoom.conf";
       };
 
-      ".config/waybar/config" = { source = "${self}/waybar/config.json"; };
-      ".config/waybar/style.css" = { source = "${self}/waybar/style.css"; };
-      ".config/wofi" = { source = "${self}/wofi"; };
-      ".config/wob" = { source = "${self}/wob"; };
+      ".config/waybar/config" = { source = "${self}/sway/waybar/config.json"; };
+      ".config/waybar/style.css" = {
+        source = "${self}/sway/waybar/style.css";
+      };
+      ".config/wofi" = { source = "${self}/sway/wofi"; };
+      ".config/wob" = { source = "${self}/sway/wob"; };
+      ".config/mako" = { source = "${self}/sway/mako"; };
 
       # Terminal
       ".alacritty.toml" = { source = "${self}/dots/.alacritty.toml"; };
