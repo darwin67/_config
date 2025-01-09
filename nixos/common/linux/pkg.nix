@@ -39,11 +39,6 @@ let
     spotify
     insync
     obsidian
-
-    # Work
-    slack
-    zoom-us
-    insomnia
   ];
 
   sysutils = with pkgs; [
@@ -130,7 +125,6 @@ let
     pet
     bottom
     dig
-    tailscale
     sops
 
     # scanner
