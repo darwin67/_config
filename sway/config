@@ -44,7 +44,8 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
 # Notification Daemon
-exec swaync
+# exec swaync
+exec mako
 
 # Attach sway-session on load
 exec_always "systemctl --user import-environment; systemctl --user start sway-session.target"
@@ -149,7 +150,10 @@ input "type:keyboard" {
     bindsym $mod+Shift+p exec grimshot save area ~/Pictures/Screenshots/screenshot-area.png
 
     # Toggle notification center
-    bindsym $mod+Shift+n exec swaync-client -t -sw
+    # bindsym $mod+Shift+n exec swaync-client -t -sw
+
+    # Toggle do not disturb
+    binsym $mod+Shift-n exec makoctl mode -t do-not-disturb
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
