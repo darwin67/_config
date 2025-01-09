@@ -165,7 +165,7 @@ in {
 
     emacs = {
       enable = true;
-      package = pkgs.emacs29;
+      package = pkgs.emacs;
     };
 
     # printing

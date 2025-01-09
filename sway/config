@@ -153,7 +153,7 @@ input "type:keyboard" {
     # bindsym $mod+Shift+n exec swaync-client -t -sw
 
     # Toggle do not disturb
-    binsym $mod+Shift-n exec makoctl mode -t do-not-disturb
+    bindsym $mod+Shift+n exec makoctl mode -t do-not-disturb
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'

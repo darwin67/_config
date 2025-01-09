@@ -4,7 +4,7 @@ let
   editor = with pkgs; [
     vim
     neovim
-    emacs29
+    emacs # 29
     vscode
 
     # editor utilities
@@ -23,6 +23,7 @@ let
     # LSPs
     vimPlugins.vim-lsp
     nixd
+    nodePackages.vscode-json-languageserver
   ];
 
   apps = with pkgs; [

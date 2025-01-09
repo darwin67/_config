@@ -280,6 +280,9 @@
 
 (add-hook 'markdown-mode-hook 'enable-jsx-in-markdown)
 
+;; JSONC mode
+(add-to-list 'auto-mode-alist '("\\.jsonc'" . jsonc-mode))
+
 ;; Terraform
 (setq
  lsp-disabled-clients '(tfls)
