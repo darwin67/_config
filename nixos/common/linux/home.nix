@@ -51,7 +51,6 @@ in {
       ".gitignore_global" = { source = "${self}/dots/.gitignore_global"; };
       ".pryrc" = { source = "${self}/dots/.pryrc"; };
       ".npmrc" = { source = "${self}/dots/.npmrc"; };
-      ".tmux.conf" = { source = "${self}/dots/.tmux.conf"; };
 
       # zsh
       ".zlogin" = { source = "${self}/zsh/.zlogin"; };
@@ -60,8 +59,8 @@ in {
       ".config/zsh/functions" = { source = "${self}/zsh/zfunc"; };
 
       # editor
-      ".doom.d" = { source = "${self}/.doom.d"; };
-      ".config/nvim" = { source = "${self}/nvim"; };
+      ".doom.d" = { source = "${self}/editor/doom"; };
+      ".config/nvim" = { source = "${self}/editor/nvim"; };
 
       # Sway
       ".config/sway/config" = { source = "${self}/sway/config"; };
@@ -75,8 +74,9 @@ in {
       ".config/mako" = { source = "${self}/sway/mako"; };
 
       # Terminal
-      ".alacritty.toml" = { source = "${self}/dots/.alacritty.toml"; };
-      ".config/kitty" = { source = "${self}/kitty"; };
+      ".tmux.conf" = { source = "${self}/term/.tmux.conf"; };
+      ".alacritty.toml" = { source = "${self}/term/.alacritty.toml"; };
+      ".config/kitty" = { source = "${self}/term/kitty"; };
 
       # Flags
       ".config/brave-flags.conf" = { text = chromeFlags; };
