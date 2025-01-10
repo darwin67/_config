@@ -41,7 +41,7 @@ outer-margin=2
 margin=2
 
 # Set padding on each side to the size specified by directional( value in px )
-padding=5
+padding=10,20
 
 #Set popup border size to px pixels.(value in px )
 border-size=2
@@ -77,7 +77,7 @@ actions=1
 history=1
 
 # Set notification format string to format.( value: see format in man 5 mako)
-format= %a\n\n<b>%s</b>\n%b
+format= <i>%a</i>\n\n<b>%s</b>\n%b
 
 #  Set notification text alignment.( value: left|right|center )
 text-alignment=left
