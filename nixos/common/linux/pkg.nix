@@ -93,6 +93,7 @@ let
     firefox-devedition-bin
     google-chrome
     brave
+    zen-browser
   ];
 
   utils = with pkgs; [

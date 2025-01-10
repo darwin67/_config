@@ -53,11 +53,28 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1736344531,
+        "narHash": "sha256-8YVQ9ZbSfuUk2bUf2KRj60NRraLPKPS0Q4QFTbc+c2c=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "timewall": "timewall"
+        "timewall": "timewall",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -97,6 +114,24 @@
       "original": {
         "owner": "bcyran",
         "repo": "timewall",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1736481947,
+        "narHash": "sha256-+UVOSR6I+hJuPyDKgmgVddCLu/MjNxlE4is7eZeLzS0=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "283ae25af7e9f0ca47f35a3d21cf1727bb1d8e35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

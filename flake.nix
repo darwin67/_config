@@ -9,6 +9,7 @@
     };
     # Timed wallpaper
     timewall.url = "github:bcyran/timewall";
+    zen-browser.url = "github:youwen5/zen-browser-flake";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -27,7 +28,13 @@
               allowBroken = false;
             };
 
-            overlays = [ inputs.timewall.overlays.default ];
+            overlays = [
+              inputs.timewall.overlays.default
+
+              (final: prev: {
+                inherit (inputs.zen-browser.packages."${system}") zen-browser;
+              })
+            ];
           };
         in {
           specialArgs = { inherit system pkgs; };

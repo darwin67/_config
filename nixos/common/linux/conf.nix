@@ -194,10 +194,10 @@ in {
   };
 
   # Allow unfree packages
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowBroken = false;
-  };
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   allowBroken = false;
+  # };
 
   systemd = {
     # configuring sway itself
