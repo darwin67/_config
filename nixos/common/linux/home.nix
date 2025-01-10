@@ -72,6 +72,7 @@ in {
       ".config/wofi" = { source = "${self}/sway/wofi"; };
       ".config/wob" = { source = "${self}/sway/wob"; };
       ".config/mako" = { source = "${self}/sway/mako"; };
+      ".config/satty" = { source = "${self}/sway/satty"; };
 
       # Terminal
       ".tmux.conf" = { source = "${self}/term/.tmux.conf"; };

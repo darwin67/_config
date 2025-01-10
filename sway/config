@@ -43,6 +43,9 @@ set $menu wofi --show=drun --sort-order=alphabetical --matching=contains --lines
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
+# Screenshot directory
+set $screenshot_dir ~/Pictures/Screenshots
+
 # Notification Daemon
 # exec swaync
 exec mako
@@ -146,8 +149,8 @@ input "type:keyboard" {
     bindsym $mod+q exec $screenlock
 
     # Screenshots
-    bindsym $mod+p exec grimshot save area ~/Pictures/Screenshots/screenshot-area.png
-    bindsym $mod+Shift+p exec grimshot save area ~/Pictures/Screenshots/screenshot-area.png
+    bindsym $mod+p exec grimshot save active - | satty --filename - --output-filename $screenshot_dir/screenshot-$(date '+%Y%m%d-%H:%M:%S').png
+    bindsym $mod+Shift+p exec grimshot save area - | satty --filename - --output-filename $screenshot_dir/screenshot-area-$(date '+%Y%m%d-%H:%M:%S').png
 
     # Toggle notification center
     # bindsym $mod+Shift+n exec swaync-client -t -sw
