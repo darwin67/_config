@@ -66,6 +66,11 @@
           };
         };
 
+        xp15-7590 = mkLinuxSystem {
+          system = "x86_64-linux";
+          modules = [ ./nixos/laptop/xps15-7590/configuration.nix ];
+        };
+
         framework13 = mkLinuxSystem {
           system = "x86_64-linux";
           modules = [ ./nixos/laptop/framework13/configuration.nix ];
@@ -86,6 +91,7 @@
       nixosConfigurations = {
         sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
         framework = nixpkgs.lib.nixosSystem (hosts.framework13);
+        xps15-7590 = nixpkgs.lib.nixosSystem (hosts.xps15-7590);
         ThinkpadZ16-NixOS = nixpkgs.lib.nixosSystem (hosts.thinkpadz16);
       };
 
