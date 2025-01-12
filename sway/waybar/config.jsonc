@@ -6,8 +6,8 @@
     "margin-left": 5,
     "spacing": 4,
     "modules-left": [
-        "custom/media",
-        "tray"
+        "tray",
+        "mpris"
     ],
     "modules-center": [
         "sway/workspaces"
@@ -15,6 +15,9 @@
     "modules-right": [
         "pulseaudio",
         "network",
+        "cpu",
+        "memory",
+        "temperature",
         "battery",
         "clock"
     ],
@@ -44,31 +47,19 @@
             "unlocked": ""
         }
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
+    "mpris": {
+        "format": "{player_icon} <b>{artist}</b> {status_icon} <i>{title}</i>",
+        "player-icons": {
+            "default": "",
+            "mpv": "",
+            "spotify": "",
         },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
+        "status-icons": {
+            "playing": "",
+            "paused": "⏸",
+            "stopped": "",
         },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+        // "ignored-players": ["firefox"]
     },
     "idle_inhibitor": {
         "format": "{icon}",
