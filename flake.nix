@@ -66,9 +66,14 @@
           };
         };
 
-        xp15-7590 = mkLinuxSystem {
+        xps15-7590 = mkLinuxSystem {
           system = "x86_64-linux";
           modules = [ ./nixos/laptop/xps15-7590/configuration.nix ];
+          additionalFiles = {
+            ".config/sway/config.d/screen.conf" = {
+              source = "${self}/nixos/laptop/xps15-7590/sway/screen.conf";
+            };
+          };
         };
 
         framework13 = mkLinuxSystem {

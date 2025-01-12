@@ -182,6 +182,8 @@ in {
     udev = { packages = with pkgs; [ sane-airscan utsushi ]; };
 
     flatpak.enable = true;
+    dbus.enable = true;
+    colord.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;

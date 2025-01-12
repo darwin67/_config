@@ -7,45 +7,43 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams =
+    [ "acpi_osi=Linux" "acpi_backlight=vendor" "quiet" "udev.log_priority=3" ];
+
+  systemd.extraConfig = ''
+    LogLevel=debug
+  '';
+
+  networking.hostName = "xps15-7590"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   boot.initrd.availableKernelModules =
-    [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+    [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/9e949055-35ec-4432-aac6-e3b0ff1cb4bb";
+    device = "/dev/disk/by-uuid/785a56a7-a94b-4d76-9bf6-9791528326f6";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-f0049e75-ee2f-4149-876a-a17fd49c0b7e".device =
-    "/dev/disk/by-uuid/f0049e75-ee2f-4149-876a-a17fd49c0b7e";
-
-  # LUKs
-  boot.initrd.luks.devices."luks-fc048c3d-dff4-41f4-938f-ef1f24dec5fc".device =
-    "/dev/disk/by-uuid/fc048c3d-dff4-41f4-938f-ef1f24dec5fc";
-  networking.hostName = "framework";
-
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/17E5-B867";
+    device = "/dev/disk/by-uuid/7A44-419E";
     fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
+    options = [ "fmask=0077" "dmask=0077" ];
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/f9a44502-3e85-4744-8597-c9e84df90a0b"; }];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp170s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp59s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode =
