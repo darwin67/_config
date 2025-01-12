@@ -16,7 +16,7 @@ output-filename = "/tmp/screenshot-%Y%m%d%H%M%S.png"
 # Action to perform when the Enter key is pressed [possible values: save-to-clipboard, save-to-file]
 # action-on-enter = "save-to-file"
 # After copying the screenshot, save it to a file as well
-save-after-copy = true
+save-after-copy = false
 # Hide toolbars by default
 default-hide-toolbars = false
 # The primary highlighter to use, the other is accessible by holding CTRL at the start of a highlight [possible values: block, freehand]
