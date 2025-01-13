@@ -6,20 +6,17 @@
     "margin-left": 5,
     "spacing": 4,
     "modules-left": [
-        "tray"
+        "tray",
+        "mpris"
     ],
     "modules-center": [
         "sway/workspaces"
     ],
     "modules-right": [
-        "mpris",
+        "custom/notification",
         "pulseaudio",
         "network",
-        "cpu",
-        "memory",
-        "temperature",
         "battery",
-        "custom/notification",
         "clock"
     ],
     "sway/workspaces": {

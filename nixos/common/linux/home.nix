@@ -78,6 +78,7 @@ in {
       ".tmux.conf" = { source = "${self}/term/.tmux.conf"; };
       ".alacritty.toml" = { source = "${self}/term/.alacritty.toml"; };
       ".config/kitty" = { source = "${self}/term/kitty"; };
+      ".config/ghostty" = { source = "${self}/term/ghostty"; };
 
       # Flags
       ".config/brave-flags.conf" = { text = chromeFlags; };

@@ -64,6 +64,7 @@ let
     flatpak
     zip
     unzip
+    ghostty
   ];
 
   desktop = with pkgs; [

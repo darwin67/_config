@@ -10,6 +10,7 @@
     # Timed wallpaper
     timewall.url = "github:bcyran/timewall";
     zen-browser.url = "github:youwen5/zen-browser-flake";
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -30,6 +31,7 @@
 
             overlays = [
               inputs.timewall.overlays.default
+              inputs.ghostty.overlays.default
 
               (final: prev: {
                 inherit (inputs.zen-browser.packages."${system}") zen-browser;
