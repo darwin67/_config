@@ -12,7 +12,7 @@ let
     --ozone-platform=wayland
   '';
 
-in {
+in { config, ... }: {
   imports = [ inputs.timewall.homeManagerModules.default ];
 
   nixpkgs = { config = { allowUnfree = true; }; };
@@ -33,6 +33,14 @@ in {
 
     packages = with pkgs; [ starship ];
 
+    sessionPath = [
+      "${config.home.homeDirectory}/bin"
+      "${config.home.homeDirectory}/.config/emacs/bin"
+      "${config.home.homeDirectory}/.local/bin"
+      "${config.home.homeDirectory}/.cargo/bin"
+      "${config.home.homeDirectory}/.node/npm-pkgs/bin"
+    ];
+
     sessionVariables = {
       EDITOR = "vim";
       SSH_KEY_PATH = "~/.ssh";
@@ -42,10 +50,20 @@ in {
 
       # Wayland
       MOZ_ENABLE_WAYLAND = 1;
+
+      CHROME_EXECUTABLE = "${pkgs.google-chrome}";
+      LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     };
 
     ## Files
     file = {
+      # local bins
+      "bin/.keep".text = "";
+
+      # npm global install
+      ".node/npm-pkgs/lib/.keep".text = "";
+      ".node/npm-pkgs/bin/.keep".text = "";
+
       # dot files
       ".gitconfig" = { source = "${self}/dots/.gitconfig"; };
       ".gitignore_global" = { source = "${self}/dots/.gitignore_global"; };
@@ -53,9 +71,6 @@ in {
       ".npmrc" = { source = "${self}/dots/.npmrc"; };
 
       # zsh
-      ".zlogin" = { source = "${self}/zsh/.zlogin"; };
-      ".zsh_plugins.txt" = { source = "${self}/zsh/.zsh_plugins.txt"; };
-      ".zshrc" = { source = "${self}/zsh/.zshrc"; };
       ".config/zsh/functions" = { source = "${self}/zsh/zfunc"; };
 
       # editor
@@ -95,8 +110,75 @@ in {
     zsh = {
       enable = true;
       enableCompletion = true;
+      enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
+      # autosuggestions.enable = true;
       history.size = 10000;
+
+      shellAliases = {
+        ll = "ls -lah";
+        pbcopy = "wl-copy";
+        pbpaste = "wl-paste";
+        emacs = "emacs -nw";
+
+        # Ruby
+        be = "bundle exec";
+
+        # Git
+        gst = "git status";
+        gco = "git checkout";
+        gca = "git commit -v -a";
+        "gca!" = "git commit -v -a --amend";
+        gp = "git push";
+        gr = "git remote";
+        gb = "git branch";
+        glog =
+          "git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
+        gsta = "git stash push";
+        gstp = "git stash pop";
+
+        vim = "nvim";
+        grep = "rg";
+      };
+
+      # zsh plugin management
+      antidote = {
+        enable = true;
+        useFriendlyNames = true;
+        plugins = [
+          "zsh-users/zsh-history-substring-search"
+          "zsh-users/zsh-syntax-highlighting"
+          # "zsh-users/zsh-completions"
+          # "zsh-users/zsh-autosuggestions"
+          # mafredri/zsh-async
+          "supercrabtree/k"
+          "mattmc3/zfunctions"
+          # zdharma-continuum/fast-syntax-highlighting kind:defer
+
+          # NOTE: just need the repo. the rest is done when the shell inits in .zshrc
+          "tmux-plugins/tpm kind:path"
+
+          # Utilities
+          # belak/zsh-utils path:editor
+          # belak/zsh-utils path:history
+          "belak/zsh-utils path:prompt"
+          "belak/zsh-utils path:utility"
+          # belak/zsh-utils path:completion
+
+          # Convenient stuff from oh-my-zsh
+          "ohmyzsh/ohmyzsh path:plugins/tmux"
+          "ohmyzsh/ohmyzsh path:plugins/colored-man-pages"
+
+          # Convenient stuff from prezto
+          "sorin-ionescu/prezto path:modules/editor"
+          "sorin-ionescu/prezto path:modules/completion"
+          "sorin-ionescu/prezto path:modules/history"
+
+          # Theme
+          # sindresorhus/pure kind:fpath
+          "chisui/zsh-nix-shell"
+        ];
+      };
     };
 
     direnv = {
