@@ -130,6 +130,7 @@ let
     bottom
     dig
     sops
+    age
 
     # scanner
     simple-scan
