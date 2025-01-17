@@ -40,6 +40,7 @@ let
     spotify
     insync
     obsidian
+    libreoffice-still
   ];
 
   sysutils = with pkgs; [
