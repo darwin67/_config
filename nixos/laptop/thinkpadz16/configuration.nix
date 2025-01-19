@@ -10,6 +10,27 @@
     ../../modules/vanta/module.nix
   ];
 
+  sops = {
+    defaultSopsFile = ./secrets.enc.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/darwin/.config/sops/age/keys.txt";
+
+    secrets.vanta-key = { };
+    secrets.vanta-email = { };
+
+    templates = {
+      "vanta.conf" = {
+        content = ''
+          {
+            "AGENT_KEY": "${config.sops.placeholder.vanta-key}",
+            "OWNER_EMAIL": "${config.sops.placeholder.vanta-email}",
+            "NEEDS_OWNER": true
+          }
+        '';
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     slack
     zoom-us
@@ -21,12 +42,10 @@
   services = {
     tailscale = { enable = true; };
 
-    # TODO encrypt these credentials
-    # vanta = {
-    #   enable = true;
-    #   agentKey = "";
-    #   email = "";
-    # };
+    vanta = {
+      enable = true;
+      configFile = config.sops.templates."vanta.conf".path;
+    };
   };
 
   # Docker related tweaks

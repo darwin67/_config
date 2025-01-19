@@ -64,6 +64,8 @@ in { config, ... }: {
       ".node/npm-pkgs/lib/.keep".text = "";
       ".node/npm-pkgs/bin/.keep".text = "";
 
+      ".config/sops/age/.keep".text = "";
+
       # dot files
       ".gitconfig" = { source = "${self}/dots/.gitconfig"; };
       ".gitignore_global" = { source = "${self}/dots/.gitignore_global"; };

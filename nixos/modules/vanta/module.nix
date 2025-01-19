@@ -11,26 +11,25 @@ in {
       description = "Vanta agent service";
     };
 
-    agentKey = mkOption { type = types.str; };
-    email = mkOption { type = types.str; };
+    configFile = mkOption { type = types.str; };
   };
 
   config = mkIf cfg.enable (let vanta = pkgs.callPackage ./default.nix { };
 
   in {
-    environment.systemPackages = [ vanta ];
+    environment = {
+      systemPackages = [ vanta ];
+
+      etc."vanta.conf" = {
+        source = cfg.configFile;
+        mode = "0600";
+      };
+    };
 
     systemd.services.vanta = {
       after = [ "network.service" "syslog.service" ];
       description = "Vanta agent";
       wantedBy = [ "multi-user.target" ];
-      preStart = ''
-        cp -a ${vanta}/var/vanta /var
-        sed \
-          -e 's/\("AGENT_KEY": "\)"/\1${cfg.agentKey}"/1' \
-          -e 's/\("OWNER_EMAIL": "\)"/\1${cfg.email}"/' \
-          ${vanta}/etc/vanta.conf > /etc/vanta.conf
-      '';
       script = ''
         /var/vanta/metalauncher
       '';

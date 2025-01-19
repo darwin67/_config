@@ -12,9 +12,10 @@
     timewall.url = "github:bcyran/timewall";
     zen-browser.url = "github:youwen5/zen-browser-flake";
     ghostty.url = "github:ghostty-org/ghostty";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-utils, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, flake-utils, sops-nix, ... }:
     flake-utils.lib.eachDefaultSystemPassThrough (system:
       let
         username = "darwin";
@@ -43,6 +44,7 @@
           specialArgs = { inherit system pkgs; };
 
           modules = modules ++ [
+            sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -101,7 +103,13 @@
 
         # TODO: macOS setup
 
-        devShells."${system}".default =
-          pkgs.mkShell { buildInputs = with pkgs; [ sops age ]; };
+        devShells."${system}".default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            sops
+            age
+            yamllint
+            nodePackages.yaml-language-server
+          ];
+        };
       });
 }

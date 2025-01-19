@@ -1,0 +1,13 @@
+keys:
+  - &age1 age1wxyl868plvs6r6xglwrwr6kxqexzydxxmcd4kl9pr8vd5wetuq4sn6d5kw
+
+creation_rules:
+  # - path_regex:
+  #   key_groups:
+  #     - age:
+  #         - *age1
+
+  # Default
+  - key_groups:
+      - age:
+          - *age1
