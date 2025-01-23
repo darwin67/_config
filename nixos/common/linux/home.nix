@@ -102,6 +102,10 @@ in { config, ... }: {
       ".config/chrome-flags.conf" = { text = chromeFlags; };
       ".config/discord-flags.conf" = { text = chromeFlags; };
       ".config/zoom-flags.conf" = { text = chromeFlags; };
+
+      # Misc
+      "Notes/.keep".text = "";
+      "Pictures/Screenshots/.keep".text = "";
     } // additionalFiles;
   };
 
