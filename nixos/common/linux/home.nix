@@ -67,41 +67,40 @@ in { config, ... }: {
       ".config/sops/age/.keep".text = "";
 
       # dot files
-      ".gitconfig" = { source = "${self}/dots/.gitconfig"; };
-      ".gitignore_global" = { source = "${self}/dots/.gitignore_global"; };
-      ".pryrc" = { source = "${self}/dots/.pryrc"; };
-      ".npmrc" = { source = "${self}/dots/.npmrc"; };
+      ".gitconfig".source = "${self}/dots/.gitconfig";
+      ".gitignore_global".source = "${self}/dots/.gitignore_global";
+      ".pryrc".source = "${self}/dots/.pryrc";
+      ".npmrc".source = "${self}/dots/.npmrc";
 
       # zsh
-      ".config/zsh/functions" = { source = "${self}/zsh/zfunc"; };
+      ".config/zsh/functions".source = "${self}/zsh/zfunc";
 
       # editor
-      ".doom.d" = { source = "${self}/editor/doom"; };
-      ".config/nvim" = { source = "${self}/editor/nvim"; };
+      ".doom.d".source = "${self}/editor/doom";
+      ".config/nvim".source = "${self}/editor/nvim";
 
       # Sway
-      ".config/sway/config" = { source = "${self}/sway/config"; };
-      ".config/sway/config.d/zoom.conf" = {
-        source = "${self}/sway/config.d/zoom.conf";
-      };
+      ".config/sway/config".source = "${self}/sway/config";
+      ".config/sway/config.d/zoom.conf".source =
+        "${self}/sway/config.d/zoom.conf";
 
-      ".config/waybar" = { source = "${self}/sway/waybar"; };
-      ".config/wofi" = { source = "${self}/sway/wofi"; };
-      ".config/wob" = { source = "${self}/sway/wob"; };
-      ".config/mako" = { source = "${self}/sway/mako"; };
-      ".config/satty" = { source = "${self}/sway/satty"; };
+      ".config/waybar".source = "${self}/sway/waybar";
+      ".config/wofi".source = "${self}/sway/wofi";
+      ".config/wob".source = "${self}/sway/wob";
+      ".config/mako".source = "${self}/sway/mako";
+      ".config/satty".source = "${self}/sway/satty";
 
       # Terminal
-      ".tmux.conf" = { source = "${self}/term/.tmux.conf"; };
-      ".alacritty.toml" = { source = "${self}/term/.alacritty.toml"; };
-      ".config/kitty" = { source = "${self}/term/kitty"; };
-      ".config/ghostty" = { source = "${self}/term/ghostty"; };
+      ".tmux.conf".source = "${self}/term/.tmux.conf";
+      ".alacritty.toml".source = "${self}/term/.alacritty.toml";
+      ".config/kitty".source = "${self}/term/kitty";
+      ".config/ghostty".source = "${self}/term/ghostty";
 
       # Flags
-      ".config/brave-flags.conf" = { text = chromeFlags; };
-      ".config/chrome-flags.conf" = { text = chromeFlags; };
-      ".config/discord-flags.conf" = { text = chromeFlags; };
-      ".config/zoom-flags.conf" = { text = chromeFlags; };
+      ".config/brave-flags.conf".text = chromeFlags;
+      ".config/chrome-flags.conf".text = chromeFlags;
+      ".config/discord-flags.conf".text = chromeFlags;
+      ".config/zoom-flags.conf".text = chromeFlags;
 
       # Misc
       "Notes/.keep".text = "";
