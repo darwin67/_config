@@ -26,6 +26,16 @@ in {
       ARTWORK_PATH = "${artwork}";
       # GLFW_IM_MODULE = "ibus";
     };
+
+    etc = {
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          .zen-wrapped
+          zen
+        '';
+        mode = "0644";
+      };
+    };
   };
 
   # NOTE:
