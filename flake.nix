@@ -88,7 +88,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/apple/home.nix {
-                  inherit self inputs username stateVersion;
+                  inherit self pkgs inputs username stateVersion;
                   # inherit (nixpkgs) lib;
                 };
               };

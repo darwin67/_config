@@ -29,7 +29,7 @@ let
 
     discord
     # nordic
-    _1password-gui
+    # _1password-gui
     _1password-cli # cli tool
 
     yt-dlp
@@ -89,7 +89,7 @@ let
     yazi
     zip
     unzip
-    ghostty
+    # ghostty
   ];
 
-in { environment.systemPackages = editor; }
+in { environment.systemPackages = editor ++ utils ++ sysutils ++ apps; }
