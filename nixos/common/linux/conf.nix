@@ -100,7 +100,8 @@ in {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    nerdfonts
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
     font-awesome
   ];
 
@@ -204,12 +205,6 @@ in {
     extraGroups = [ "networkmanager" "wheel" "docker" "scanner" "lp" ];
     useDefaultShell = true;
   };
-
-  # Allow unfree packages
-  # nixpkgs.config = {
-  #   allowUnfree = true;
-  #   allowBroken = false;
-  # };
 
   systemd = {
     # configuring sway itself

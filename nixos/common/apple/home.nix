@@ -1,33 +1,10 @@
-{ pkgs, self, inputs, username, wallpaperTheme, stateVersion, additionalFiles
-, ... }:
+{ pkgs, self, config, lib, username, stateVersion, ... }:
 
-let
-  timed-wallpaper = import ./wallpaper.nix {
-    inherit pkgs;
-    theme = wallpaperTheme;
-  };
-
-  chromeFlags = ''
-    --enable-features=UseOzonePlatform
-    --ozone-platform=wayland
-  '';
-
-in { config, ... }: {
-  imports = [ inputs.timewall.homeManagerModules.default ];
-
+{
   home = {
     username = username;
-    homeDirectory = "/home/${username}";
+    homeDirectory = "/Users/${username}";
     stateVersion = stateVersion;
-    pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
-      x11 = {
-        enable = true;
-        defaultCursor = "Adwaita";
-      };
-    };
 
     packages = with pkgs; [ starship ];
 
@@ -45,12 +22,6 @@ in { config, ... }: {
 
       # Python
       PY_COLORS = "1";
-
-      # Wayland
-      MOZ_ENABLE_WAYLAND = 1;
-
-      CHROME_EXECUTABLE = "${pkgs.google-chrome}";
-      LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     };
 
     ## Files
@@ -77,33 +48,16 @@ in { config, ... }: {
       ".doom.d".source = "${self}/editor/doom";
       ".config/nvim".source = "${self}/editor/nvim";
 
-      # Sway
-      ".config/sway/config".source = "${self}/sway/config";
-      ".config/sway/config.d/zoom.conf".source =
-        "${self}/sway/config.d/zoom.conf";
-
-      ".config/waybar".source = "${self}/sway/waybar";
-      ".config/wofi".source = "${self}/sway/wofi";
-      ".config/wob".source = "${self}/sway/wob";
-      ".config/mako".source = "${self}/sway/mako";
-      ".config/satty".source = "${self}/sway/satty";
-
       # Terminal
       ".tmux.conf".source = "${self}/term/.tmux.conf";
       ".alacritty.toml".source = "${self}/term/.alacritty.toml";
       ".config/kitty".source = "${self}/term/kitty";
       ".config/ghostty".source = "${self}/term/ghostty";
 
-      # Flags
-      ".config/brave-flags.conf".text = chromeFlags;
-      ".config/chrome-flags.conf".text = chromeFlags;
-      ".config/discord-flags.conf".text = chromeFlags;
-      ".config/zoom-flags.conf".text = chromeFlags;
-
       # Misc
       "Notes/.keep".text = "";
       "Pictures/Screenshots/.keep".text = "";
-    } // additionalFiles;
+    };
   };
 
   programs = {
@@ -206,21 +160,6 @@ in { config, ... }: {
         hg_branch.disabled = true;
         pijul_channel.disabled = true;
         docker_context.disabled = true;
-      };
-    };
-  };
-
-  services = {
-    timewall = {
-      enable = true;
-      wallpaperPath = "${timed-wallpaper}";
-      config = {
-        daemon = { update_interval_seconds = 600; };
-        setter = {
-          # NOTE: based on
-          # https://docs.rs/wallpape-rs/latest/wallpape_rs/
-          command = [ "swaybg" "--mode" "fill" "--image" "%f" ];
-        };
       };
     };
   };
