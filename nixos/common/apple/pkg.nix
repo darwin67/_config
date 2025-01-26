@@ -92,4 +92,4 @@ let
     ghostty
   ];
 
-in { environment.systemPackages = sysutils ++ editor ++ utils + apps; }
+in { environment.systemPackages = editor; }

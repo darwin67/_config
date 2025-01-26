@@ -13,7 +13,6 @@
     # Timed wallpaper
     timewall.url = "github:bcyran/timewall";
     zen-browser.url = "github:youwen5/zen-browser-flake";
-    # ghostty.url = "github:ghostty-org/ghostty";
     sops-nix.url = "github:Mic92/sops-nix";
 
     # MacOS
@@ -41,7 +40,6 @@
 
           overlays = [
             inputs.timewall.overlays.default
-            # inputs.ghostty.overlays.default
 
             (final: prev: {
               inherit (inputs.zen-browser.packages."${system}") zen-browser;
@@ -71,7 +69,7 @@
           };
 
         mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ], ... }: {
-          specialArgs = { inherit self system inputs; };
+          specialArgs = { inherit self system inputs username pkgs; };
 
           modules = modules ++ [
             home-manager.darwinModules.home-manager
@@ -79,8 +77,9 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.darwin = import ./nixos/common/apple/home.nix {
-                  inherit self inputs pkgs username stateVersion;
+                users.darwin = {config, ...}: import ./nixos/common/apple/home.nix {
+                  inherit self inputs pkgs username stateVersion config;
+inherit (nixpkgs) lib;
                 };
               };
             }
@@ -134,14 +133,13 @@
         } else
           { };
 
-        # macOS setup
-        darwinConfigurations = if pkgs.stdenv.isDarwin then {
-          "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
-        } else
-          { };
-
       in {
-        inherit nixosConfigurations darwinConfigurations;
+        inherit nixosConfigurations;
+
+        # macOS setup
+        darwinConfigurations = {
+          "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
+        };
 
         devShells."${system}".default = pkgs.mkShell {
           buildInputs = with pkgs; [

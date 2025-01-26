@@ -1,19 +1,22 @@
 { pkgs, self, config, lib, username, stateVersion, ... }:
 
-{
+let
+	homeDir = "/Users/${username}";
+
+in {
   home = {
     username = username;
-    homeDirectory = "/Users/${username}";
+    homeDirectory = homeDir;
     stateVersion = stateVersion;
 
     packages = with pkgs; [ starship ];
 
     sessionPath = [
-      "${config.home.homeDirectory}/bin"
-      "${config.home.homeDirectory}/.config/emacs/bin"
-      "${config.home.homeDirectory}/.local/bin"
-      "${config.home.homeDirectory}/.cargo/bin"
-      "${config.home.homeDirectory}/.node/npm-pkgs/bin"
+      "${homeDir}/bin"
+      "${homeDir}/.config/emacs/bin"
+      "${homeDir}/.local/bin"
+      "${homeDir}/.cargo/bin"
+      "${homeDir}/.node/npm-pkgs/bin"
     ];
 
     sessionVariables = {
