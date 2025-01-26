@@ -24,51 +24,61 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-utils, sops-nix
     , nix-darwin, ... }:
-    flake-utils.lib.eachDefaultSystemPassThrough (system:
-      let
-        username = "darwin";
-        stateVersion = "24.11";
-        wallpaperTheme = "macMonterey";
+    let
+      username = "darwin";
+      stateVersion = "24.11";
+      wallpaperTheme = "macMonterey";
 
-        pkgs = import nixpkgs {
-          inherit system;
+      # Function for helping configuration linux systems
+      mkLinuxSystem =
+        { system ? "x86_64-linux", modules ? [ ], additionalFiles ? { }, ... }:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
 
-          config = {
-            allowUnfree = true;
-            allowBroken = false;
+            config = {
+              allowUnfree = true;
+              allowBroken = false;
+            };
+
+            overlays = [
+              inputs.timewall.overlays.default
+
+              (final: prev: {
+                inherit (inputs.zen-browser.packages."${system}") zen-browser;
+              })
+            ];
           };
+        in {
+          specialArgs = { inherit system pkgs; };
 
-          overlays = [
-            inputs.timewall.overlays.default
-
-            (final: prev: {
-              inherit (inputs.zen-browser.packages."${system}") zen-browser;
-            })
+          modules = modules ++ [
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.darwin = import ./nixos/common/linux/home.nix {
+                  inherit self inputs pkgs username wallpaperTheme stateVersion
+                    additionalFiles;
+                };
+              };
+            }
           ];
         };
 
-        # Function for helping configuration linux systems
-        mkLinuxSystem = { system ? "x86_64-linux", modules ? [ ]
-          , additionalFiles ? { }, ... }: {
-            specialArgs = { inherit system pkgs; };
+      mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ], ... }:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
 
-            modules = modules ++ [
-              sops-nix.nixosModules.sops
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.darwin = import ./nixos/common/linux/home.nix {
-                    inherit self inputs pkgs username wallpaperTheme
-                      stateVersion additionalFiles;
-                  };
-                };
-              }
-            ];
+            config = {
+              allowUnfree = true;
+              allowBroken = false;
+            };
           };
-
-        mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ], ... }: {
+        in {
           specialArgs = { inherit self system inputs username pkgs; };
 
           modules = modules ++ [
@@ -77,71 +87,70 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.darwin = {config, ...}: import ./nixos/common/apple/home.nix {
-                  inherit self inputs pkgs username stateVersion config;
-inherit (nixpkgs) lib;
+                users.darwin = import ./nixos/common/apple/home.nix {
+                  inherit self inputs username stateVersion;
+                  # inherit (nixpkgs) lib;
                 };
               };
             }
           ];
         };
 
-        ## list of hosts
-        hosts = {
-          sophie = mkLinuxSystem {
-            modules = [ ./nixos/desktop/sophie/configuration.nix ];
-            additionalFiles = {
-              ".config/sway/config.d/screen.conf" = {
-                source = "${self}/nixos/desktop/sophie/sway/screen.conf";
-              };
+      ## list of hosts
+      hosts = {
+        sophie = mkLinuxSystem {
+          modules = [ ./nixos/desktop/sophie/configuration.nix ];
+          additionalFiles = {
+            ".config/sway/config.d/screen.conf" = {
+              source = "${self}/nixos/desktop/sophie/sway/screen.conf";
             };
-          };
-
-          xps15-7590 = mkLinuxSystem {
-            modules = [ ./nixos/laptop/xps15-7590/configuration.nix ];
-            additionalFiles = {
-              ".config/sway/config.d/screen.conf" = {
-                source = "${self}/nixos/laptop/xps15-7590/sway/screen.conf";
-              };
-            };
-          };
-
-          framework13 = mkLinuxSystem {
-            modules = [ ./nixos/laptop/framework13/configuration.nix ];
-          };
-
-          thinkpadz16 = mkLinuxSystem {
-            modules = [ ./nixos/laptop/thinkpadz16/configuration.nix ];
-            additionalFiles = {
-              ".config/sway/config.d/screen.conf" = {
-                source = "${self}/nixos/laptop/thinkpadz16/sway/screen.conf";
-              };
-            };
-          };
-
-          m4mini = mkMacOSSystem {
-            modules = [ ./nixos/desktop/m4mini/configuration.nix ];
           };
         };
 
-        # Linux setup
-        nixosConfigurations = if pkgs.stdenv.isLinux then {
-          sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
-          framework = nixpkgs.lib.nixosSystem (hosts.framework13);
-          xps15-7590 = nixpkgs.lib.nixosSystem (hosts.xps15-7590);
-          ThinkpadZ16-NixOS = nixpkgs.lib.nixosSystem (hosts.thinkpadz16);
-        } else
-          { };
+        xps15-7590 = mkLinuxSystem {
+          modules = [ ./nixos/laptop/xps15-7590/configuration.nix ];
+          additionalFiles = {
+            ".config/sway/config.d/screen.conf" = {
+              source = "${self}/nixos/laptop/xps15-7590/sway/screen.conf";
+            };
+          };
+        };
+
+        framework13 = mkLinuxSystem {
+          modules = [ ./nixos/laptop/framework13/configuration.nix ];
+        };
+
+        thinkpadz16 = mkLinuxSystem {
+          modules = [ ./nixos/laptop/thinkpadz16/configuration.nix ];
+          additionalFiles = {
+            ".config/sway/config.d/screen.conf" = {
+              source = "${self}/nixos/laptop/thinkpadz16/sway/screen.conf";
+            };
+          };
+        };
+
+        m4mini = mkMacOSSystem {
+          modules = [ ./nixos/desktop/m4mini/configuration.nix ];
+        };
+      };
+    in {
+      # Linux setup
+      nixosConfigurations = {
+        sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
+        framework = nixpkgs.lib.nixosSystem (hosts.framework13);
+        xps15-7590 = nixpkgs.lib.nixosSystem (hosts.xps15-7590);
+        ThinkpadZ16-NixOS = nixpkgs.lib.nixosSystem (hosts.thinkpadz16);
+      };
+
+      # macOS setup
+      darwinConfigurations = {
+        "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
+      };
+    } // flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = import nixpkgs { inherit system; };
 
       in {
-        inherit nixosConfigurations;
-
-        # macOS setup
-        darwinConfigurations = {
-          "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
-        };
-
-        devShells."${system}".default = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             sops
             age

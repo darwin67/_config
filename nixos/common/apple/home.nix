@@ -1,7 +1,6 @@
-{ pkgs, self, config, lib, username, stateVersion, ... }:
+{ pkgs, self, username, stateVersion, ... }:
 
-let
-	homeDir = "/Users/${username}";
+let homeDir = "/Users/${username}";
 
 in {
   home = {
