@@ -27,5 +27,55 @@
     font-awesome
   ];
 
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+    };
+
+    taps = [];
+    brews = [
+      "docker"
+      "emacs"
+    ];
+    casks = [
+      # Terminal
+      "ghostty"
+      "kitty"
+      "alacritty"
+
+      # Browwer
+      "google-chrome"
+      "firefox@developer-edition"
+      "zen-browser"
+
+      # Chat
+      "whatsapp"
+      "signal"
+      "discord"
+
+      # Tool
+      "1password"
+      "1password-cli"
+      "obsidian"
+      "google-drive"
+      "copyq"
+
+      # Entertainment
+      "spotify"
+
+      # Development
+      "zed"
+      "visual-studio-code"
+      "android-studio"
+    ];
+
+    masApps = {};
+  };
+
   programs.zsh.enable = true;
+
+  services = {
+    nix-daemon.enable = true;
+  };
 }

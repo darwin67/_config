@@ -1,13 +1,14 @@
 { config, lib, pkgs, ... }:
 
+# These are generally terminal related packages.
+# GUI apps are installed via homebrew in conf.nix
+#
 # List packages installed in system profile. To search by name, run:
 # $ nix-env -qaP | grep wget
 let
   editor = with pkgs; [
     vim
     neovim
-    emacs # 29
-    vscode
 
     nixfmt
     editorconfig-core-c
@@ -20,21 +21,6 @@ let
     vimPlugins.vim-lsp
     nixd
     nodePackages.vscode-json-languageserver
-  ];
-
-  apps = with pkgs; [
-    google-chrome
-    signal-desktop
-    whatsapp-for-mac
-
-    discord
-    # nordic
-    # _1password-gui
-    _1password-cli # cli tool
-
-    yt-dlp
-    spotify
-    # obsidian
   ];
 
   utils = with pkgs; [
@@ -53,7 +39,6 @@ let
         black
       ]))
 
-    docker
     ctop
     ripgrep
     jq
@@ -69,6 +54,10 @@ let
     dig
     sops
     age
+    yt-dlp
+
+    # darwin.xcode
+    xcode-install
   ];
 
   sysutils = with pkgs; [
@@ -82,14 +71,15 @@ let
     hub
     fzf
     openssl
-    alacritty
 
     # file
-    kitty
     yazi
     zip
     unzip
-    # ghostty
   ];
 
-in { environment.systemPackages = editor ++ utils ++ sysutils ++ apps; }
+  dev = with pkgs; [
+    flutter
+  ];
+
+in { environment.systemPackages = editor ++ utils ++ sysutils ++ dev; }
