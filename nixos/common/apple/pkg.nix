@@ -9,6 +9,7 @@ let
   editor = with pkgs; [
     vim
     neovim
+    emacs
 
     nixfmt
     editorconfig-core-c
@@ -80,6 +81,7 @@ let
 
   dev = with pkgs; [
     flutter
+    cocoapods
   ];
 
 in { environment.systemPackages = editor ++ utils ++ sysutils ++ dev; }

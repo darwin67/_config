@@ -31,12 +31,11 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
+      cleanup = "uninstall";
     };
 
     taps = [];
     brews = [
-      "docker"
-      "emacs"
     ];
     casks = [
       # Terminal
@@ -60,11 +59,13 @@
       "obsidian"
       "google-drive"
       "copyq"
+      "docker"
 
       # Entertainment
       "spotify"
 
       # Development
+      "emacs"
       "zed"
       "visual-studio-code"
       "android-studio"

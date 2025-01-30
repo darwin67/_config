@@ -34,6 +34,8 @@
   environment.systemPackages = with pkgs; [
     slack
     zoom-us
+    xdg-desktop-portal
+    xdg-desktop-portal-kde
     insomnia
 
     tailscale
