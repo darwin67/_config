@@ -100,8 +100,9 @@ in {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    nerd-fonts._0xproto
-    nerd-fonts.droid-sans-mono
+    nerdfonts
+    # nerd-fonts._0xproto
+    # nerd-fonts.droid-sans-mono
     font-awesome
   ];
 

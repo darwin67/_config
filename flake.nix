@@ -2,11 +2,11 @@
   description = "Darwin's workstation setup";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -16,14 +16,15 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     # MacOS
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-utils, sops-nix
-    , nix-darwin, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-darwin, home-manager, flake-utils
+    , sops-nix, nix-darwin, ... }:
     let
       username = "darwin";
       stateVersion = "24.11";
@@ -70,7 +71,7 @@
 
       mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ], ... }:
         let
-          pkgs = import nixpkgs {
+          pkgs = import nixpkgs-darwin {
             inherit system;
 
             config = {
