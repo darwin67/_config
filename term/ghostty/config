@@ -1,3 +1,4 @@
 font-size = 9
 gtk-single-instance = true
 gtk-titlebar = false
+cursor-style = "block"
