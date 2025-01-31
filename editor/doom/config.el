@@ -168,11 +168,16 @@
 
 ;; Elixir
 
+(setq
+ lsp-elixir-server-command '("lexical"))
+
 ;; Create a buffer-local hook to run elixir-format on save
 (add-hook 'elixir-mode-hook
           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
 (add-hook 'elixir-ts-mode-hook
           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
+
+(add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
 
 ;; ===================================================================
 ;; Others
@@ -205,10 +210,6 @@
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; Elixir
-(setq
- lsp-elixir-server-command '("lexical"))
 
 ;; Rust
 (setq
