@@ -78,7 +78,7 @@
        (lsp +peek)
        (magit +forge)      ; a git porcelain for Emacs
        (terraform +lsp)
-       tree-sitter
+       ;; tree-sitter
        direnv
 
        :lang

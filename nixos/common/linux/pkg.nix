@@ -14,6 +14,7 @@ let
     shellcheck
     glslang
     markdownlint-cli
+    tree-sitter
 
     # org mode
     maim

@@ -1,0 +1,7 @@
+Elixir mode modified to use =elixir-ts-mode= instead
+
+Run the following to install grammar.
+
+#+BEGIN_SRC
+M-x elixir-ts-install-grammar
+#+END_SRC

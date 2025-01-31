@@ -72,3 +72,6 @@
 (package! org-rainbow-tags)
 
 (package! dotenv-mode)
+
+(package! elixir-ts-mode)
+(package! heex-ts-mode)
