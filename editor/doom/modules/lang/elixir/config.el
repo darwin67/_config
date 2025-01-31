@@ -13,6 +13,19 @@
   ;; a subset of them (defined below).
   (provide 'smartparens-elixir)
   :config
+  (set-ligatures! 'elixir-ts-mode
+                  ;; Functional
+                  :def "def"
+                  :lambda "fn"
+                  ;; :src_block "do"
+                  ;; :src_block_end "end"
+                  ;; Flow
+                  :not "!"
+                  :in "in" :not-in "not in"
+                  :and "and" :or "or"
+                  :for "for"
+                  :return "return" :yield "use")
+
   ;; ...and only complete the basics
   (sp-with-modes 'elixir-ts-mode
     (sp-local-pair "do" "end"
@@ -22,18 +35,10 @@
     (sp-local-pair "do " " end" :unless '(sp-in-comment-p sp-in-string-p))
     (sp-local-pair "fn " " end" :unless '(sp-in-comment-p sp-in-string-p)))
 
-  (set-ligatures! 'elixir-ts-mode
-    ;; Functional
-    :def "def"
-    :lambda "fn"
-    ;; :src_block "do"
-    ;; :src_block_end "end"
-    ;; Flow
-    :not "!"
-    :in "in" :not-in "not in"
-    :and "and" :or "or"
-    :for "for"
-    :return "return" :yield "use")
+  (when (modulep! +lsp)
+    (add-hook 'elixir-ts-mode-local-vars-hook #'lsp! 'append)
+    (after! lsp-mode
+      (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_build\\'")))
 
   (after! highlight-numbers
     (puthash 'elixir-ts-mode
@@ -41,12 +46,18 @@
              highlight-numbers-modelist)))
 
 
+(use-package! flycheck-credo
+  :when (modulep! :checkers syntax -flymake)
+  :after elixir-ts-mode
+  :config (flycheck-credo-setup))
+
 (use-package! elixir-format
   :config
   (map! :after elixir-ts-mode
         :localleader
         :map elixir-ts-mode-map
         "f" #'elixir-format)
+
   (map! :after heex-ts-mode
         :localleader
         :map heex-ts-mode-map

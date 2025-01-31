@@ -171,6 +171,8 @@
 ;; Create a buffer-local hook to run elixir-format on save
 (add-hook 'elixir-mode-hook
           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
+(add-hook 'elixir-ts-mode-hook
+          (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;; ===================================================================
 ;; Others
