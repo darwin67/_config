@@ -49,6 +49,7 @@ let
     pulseaudio
     gnumake
     gnutar
+    gcc
     tmux
     wget
     curlie
