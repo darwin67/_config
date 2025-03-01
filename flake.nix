@@ -18,7 +18,7 @@
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/master";
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -134,8 +134,8 @@
           modules = [ ./nixos/desktop/m4mini/configuration.nix ];
         };
 
-        mpb-inngest = mkMacOSSystem {
-          modules = [ ./nixos/desktop/mbp-inngest/configuration.nix ];
+        mbp-inngest = mkMacOSSystem {
+          modules = [ ./nixos/laptop/mbp-inngest/configuration.nix ];
         };
       };
     in {

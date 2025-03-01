@@ -22,8 +22,9 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    nerd-fonts._0xproto
-    nerd-fonts.droid-sans-mono
+    nerdfonts
+    # nerd-fonts._0xproto
+    # nerd-fonts.droid-sans-mono
     font-awesome
   ];
 
@@ -34,9 +35,8 @@
       cleanup = "uninstall";
     };
 
-    taps = [];
-    brews = [
-    ];
+    taps = [ ];
+    brews = [ ];
     casks = [
       # Terminal
       "ghostty"
@@ -71,12 +71,10 @@
       "android-studio"
     ];
 
-    masApps = {};
+    masApps = { };
   };
 
   programs.zsh.enable = true;
 
-  services = {
-    nix-daemon.enable = true;
-  };
+  services = { nix-daemon.enable = true; };
 }
