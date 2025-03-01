@@ -133,6 +133,10 @@
         m4mini = mkMacOSSystem {
           modules = [ ./nixos/desktop/m4mini/configuration.nix ];
         };
+
+        mpb-inngest = mkMacOSSystem {
+          modules = [ ./nixos/desktop/mbp-inngest/configuration.nix ];
+        };
       };
     in {
       # Linux setup
@@ -146,6 +150,7 @@
       # macOS setup
       darwinConfigurations = {
         "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
+        "Darwin-MBP-Inngest" = nix-darwin.lib.darwinSystem (hosts.mbp-inngest);
       };
     } // flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; };
