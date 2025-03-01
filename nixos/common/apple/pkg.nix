@@ -9,7 +9,7 @@ let
   editor = with pkgs; [
     vim
     neovim
-    emacs
+    emacs30
 
     nixfmt
     editorconfig-core-c
@@ -44,8 +44,6 @@ let
     ripgrep
     jq
     yq
-    direnv
-    nix-direnv
     fd
     bat
     sqlite
@@ -79,9 +77,6 @@ let
     unzip
   ];
 
-  dev = with pkgs; [
-    flutter
-    cocoapods
-  ];
+  dev = with pkgs; [ flutter cocoapods ];
 
 in { environment.systemPackages = editor ++ utils ++ sysutils ++ dev; }

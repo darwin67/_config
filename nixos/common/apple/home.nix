@@ -42,6 +42,7 @@ in {
       ".gitignore_global".source = "${self}/dots/.gitignore_global";
       ".pryrc".source = "${self}/dots/.pryrc";
       ".npmrc".source = "${self}/dots/.npmrc";
+      ".aerospace.toml".source = "${self}/dots/.aerospace.toml";
 
       # zsh
       ".config/zsh/functions".source = "${self}/zsh/zfunc";
@@ -78,7 +79,7 @@ in {
         ll = "ls -lah";
         pbcopy = "wl-copy";
         pbpaste = "wl-paste";
-        emacs = "emacs -nw";
+        # emacs = "emacs -nw";
 
         # Ruby
         be = "bundle exec";

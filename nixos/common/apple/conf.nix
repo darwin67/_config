@@ -11,7 +11,30 @@
 
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
-    stateVersion = 6;
+    stateVersion = 5;
+
+    defaults = {
+      dock = {
+        autohide = true;
+        magnification = true;
+      };
+
+      NSGlobalDomain = {
+        # Shortest value based on
+        # defaults read NSGlobalDomain InitialKeyRepeat
+        InitialKeyRepeat = 15;
+        KeyRepeat = 2;
+
+        "com.apple.mouse.tapBehavior" = 1; # Enable tap to click
+        "com.apple.trackpad.scaling" = 2.0;
+      };
+
+      controlcenter = { BatteryShowPercentage = true; };
+
+      loginwindow = { GuestEnabled = false; };
+
+      trackpad.Clicking = true;
+    };
 
     # Remaps
     keyboard = {
@@ -19,7 +42,6 @@
       remapCapsLockToControl = true;
     };
   };
-
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -70,6 +92,7 @@
       "google-drive"
       "copyq"
       "docker"
+      "nikitabobko/tap/aerospace" # tiling window manager
 
       # Entertainment
       "spotify"
@@ -84,6 +107,10 @@
     masApps = { };
   };
 
-  programs.zsh.enable = true;
+  programs = { zsh.enable = true; };
 
+  security.pam.enableSudoTouchIdAuth = true;
+
+  services = { emacs.enable = true; };
+  # services.nix-daemon.enable = true;
 }
