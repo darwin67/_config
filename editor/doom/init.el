@@ -19,9 +19,9 @@
        ;;japanese
 
        :completion
-       (company +childframe)             ; the ultimate code completion backend
        ;; (ivy +fuzzy +prescient +icons) ; a search engine for love and life
        (vertico +icons)
+       (corfu +icons)
 
        :ui
        deft
@@ -39,7 +39,7 @@
        (vc-gutter +pretty)           ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
        (window-select +numbers)       ; visually switch windows
-       ;; workspaces          ; tab emulation, persistence & separate workspaces
+       workspaces          ; tab emulation, persistence & separate workspaces
        zen
 
        :os
