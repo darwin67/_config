@@ -16,6 +16,7 @@ in {
       "${homeDir}/.local/bin"
       "${homeDir}/.cargo/bin"
       "${homeDir}/.node/npm-pkgs/bin"
+      "/opt/homebrew/bin"
     ];
 
     sessionVariables = {
