@@ -12,6 +12,8 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+accordion-padding = 10
+
 [gaps]
     inner.horizontal = 5
     inner.vertical =   5
@@ -94,3 +96,28 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     l = 'resize width +50'
     enter = 'mode main'
     esc = 'mode main'
+
+# Apps that can be floating
+[[on-window-detected]]
+    if.app-id = 'com.1password.1password'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.MobileSMS'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
+
+# [[on-window-detected]]
+#     if.app-id = ''
+#     run = 'layout floating'
+
+# [[on-window-detected]]
+#     if.app-id = ''
+#     run = 'layout floating'
+
+# [[on-window-detected]]
+#     if.app-id = ''
+#     run = 'layout floating'
