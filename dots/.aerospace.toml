@@ -110,14 +110,14 @@ accordion-padding = 10
     if.app-id = 'com.apple.finder'
     run = 'layout floating'
 
-# [[on-window-detected]]
-#     if.app-id = ''
-#     run = 'layout floating'
+[[on-window-detected]]
+    if.app-id = 'com.apple.reminders'
+    run = 'layout floating'
 
-# [[on-window-detected]]
-#     if.app-id = ''
-#     run = 'layout floating'
+[[on-window-detected]]
+    if.app-id = 'org.whispersystems.signal-desktop'
+    run = 'layout floating'
 
-# [[on-window-detected]]
-#     if.app-id = ''
-#     run = 'layout floating'
+[[on-window-detected]]
+    if.app-id = 'net.whatsapp.WhatsApp'
+    run = 'layout floating'
