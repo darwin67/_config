@@ -147,8 +147,9 @@
 
 ;; Elixir
 
-(setq
- lsp-elixir-server-command '("lexical"))
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("lexical"))))
 
 ;; Create a buffer-local hook to run elixir-format on save
 (add-hook 'elixir-mode-hook

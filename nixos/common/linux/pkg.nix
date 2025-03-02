@@ -4,7 +4,7 @@ let
   editor = with pkgs; [
     vim
     neovim
-    emacs # 29
+    emacs30 # 29
     vscode
 
     # editor utilities
