@@ -79,6 +79,7 @@
       "google-chrome"
       "firefox@developer-edition"
       "zen-browser"
+      "brave-browser"
 
       # Chat
       "whatsapp"
