@@ -1,4 +1,7 @@
-font-size = 9
+font-size = 10
 gtk-single-instance = true
 gtk-titlebar = false
-cursor-style = "block"
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = no-cursor
+mouse-hide-while-typing = true
