@@ -68,7 +68,7 @@
     };
 
     taps = [ ];
-    brews = [ ];
+    brews = [ "watch" ];
     casks = [
       # Terminal
       "ghostty"
