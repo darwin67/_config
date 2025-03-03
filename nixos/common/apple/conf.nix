@@ -19,6 +19,8 @@
         magnification = true;
       };
 
+      spaces.spans-displays = true;
+
       NSGlobalDomain = {
         # Shortest value based on
         # defaults read NSGlobalDomain InitialKeyRepeat

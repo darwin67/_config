@@ -97,6 +97,13 @@ accordion-padding = 10
     enter = 'mode main'
     esc = 'mode main'
 
+[workspace-to-monitor-force-assignment]
+    1 = 'U2720QM.+2' # Terminal
+    2 = 'U2720QM.+1' # Editor
+    3 = 'dell s2421' # 24 inch monitor
+    9 = 'built-in'
+    10 = 'built-in'
+
 # Apps that can be floating
 [[on-window-detected]]
     if.app-id = 'com.1password.1password'
