@@ -81,15 +81,11 @@
  scroll-margin 7
  ;; Auto rebalance windows after window actions like horiozntal or vertical splits
  window-combination-resize t
- ;; aligns annotation to the right hand side
- company-tooltip-align-annotations t
 
- ;; LSP mode
- gc-cons-threshold #x8000000
- read-process-output-max (* 10000 1024) ;; 10mb
+ ;; corfu - code completion
+ corfu-preview-current t
  )
 
-(global-company-mode)
 (global-git-commit-mode t)
 (editorconfig-mode t)
 (drag-stuff-global-mode t)
