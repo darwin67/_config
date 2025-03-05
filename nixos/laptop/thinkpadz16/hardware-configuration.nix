@@ -7,38 +7,33 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.availableKernelModules =
-    [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.luks.devices."luks-0d320156-81ff-4f98-95cc-e2740a446440".device = "/dev/disk/by-uuid/0d320156-81ff-4f98-95cc-e2740a446440";
+  networking.hostName = "thinkpad-z16"; # Define your hostname.
+
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/091bed5b-f875-4c08-8aeb-e31e3092dd48";
-    fsType = "ext4";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/14b5664e-bbde-48da-9a90-39dc85bea5e6";
+      fsType = "ext4";
+    };
 
-  boot.initrd.luks.devices."luks-5c89a18f-a0ca-4a68-b12f-e041ed326534".device =
-    "/dev/disk/by-uuid/5c89a18f-a0ca-4a68-b12f-e041ed326534";
+  boot.initrd.luks.devices."luks-eaabf85e-e5de-463c-bb73-37e1396281ed".device = "/dev/disk/by-uuid/eaabf85e-e5de-463c-bb73-37e1396281ed";
 
-  # LUKS
-  boot.initrd.luks.devices."luks-d1dd6487-3980-41ef-a748-17a0d1ba6294".device =
-    "/dev/disk/by-uuid/d1dd6487-3980-41ef-a748-17a0d1ba6294";
-  networking.hostName = "ThinkpadZ16-NixOS";
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/62A4-73BE";
-    fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/6E2E-E990";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/45a0d1b9-e83a-4cf3-9f0a-dfccf5a81d3d"; }];
+    [ { device = "/dev/disk/by-uuid/fe30a222-82e3-4f06-bdcb-9286ab2f546f"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -49,6 +44,6 @@
   # networking.interfaces.wwan0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
 }
