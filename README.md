@@ -8,6 +8,13 @@ Settings that are shared across computers.
 # back it up
 sudo mv /etc/nixos /etc/nixos.old
 
-sudo ln -s ~/_config/nix /etc/nixos
+sudo ln -s ~/_config /etc/nixos
 ```
 
+## macOS setup
+
+```sh
+sudo ln -s ~/_config /etc/nix-darwin
+
+darwin-rebuild switch
+```
