@@ -78,8 +78,6 @@ in {
 
       shellAliases = {
         ll = "ls -lah";
-        pbcopy = "wl-copy";
-        pbpaste = "wl-paste";
         emacs = "emacs -nw";
         emacsclient = "emacsclient -nw";
 
