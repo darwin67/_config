@@ -11,15 +11,24 @@
     };
 
     # Timed wallpaper
-    timewall.url = "github:bcyran/timewall";
-    zen-browser.url = "github:youwen5/zen-browser-flake";
-    sops-nix.url = "github:Mic92/sops-nix";
+    timewall = {
+      url = "github:bcyran/timewall";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
   };
 
