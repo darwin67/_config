@@ -158,6 +158,12 @@
 ;; ===================================================================
 ;; Others
 
+;; Set this so that it loads dir-locals.el without prompt
+(setq safe-local-variable-directories
+      '("~/workspace/inngest"
+        "~/workspace/monorepo"
+        "~/workspace/inngestgo"))
+
 ;; Projects
 (with-eval-after-load 'projectile
   (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
