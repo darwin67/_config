@@ -61,17 +61,17 @@
 ;; (package! beancount
 ;;   :recipe (:host github :repo "beancount/beancount-mode"))
 
-;; protobuf
+;; additional modes
 (package! protobuf-mode)
-
 (package! systemd)
 (package! nginx-mode)
-
 (package! dockerfile-mode)
-
-(package! org-rainbow-tags)
-
 (package! dotenv-mode)
-
 (package! elixir-ts-mode)
 (package! heex-ts-mode)
+
+;; Provide go playground within emacs
+(package! go-playground)
+
+;; Misc
+(package! org-rainbow-tags)
