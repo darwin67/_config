@@ -169,6 +169,28 @@
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Debugger
+(with-eval-after-load 'dape
+  ;; Add Golang test configuration
+  ;; ref:
+  ;; - https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+  ;; - https://github.com/go-delve/delve/blob/master/Documentation/cli/getting_started.md
+  ;; - https://github.com/microsoft/vscode-go/blob/master/docs/Debugging-Go-code-using-VS-Code.md
+  ;; - https://blog.dornea.nu/2024/11/28/mastering-golang-debugging-in-emacs/
+  (add-to-list 'dape-configs
+               '(go-test
+                 modes (go-mode go-ts-mode)
+                 command "dlv"
+                 command-args ("dap" "--listen" "127.0.0.1::autoport" "--log")
+                 command-cwd default-directory
+                 port :autoport
+                 :type "go"
+                 :mode "test"
+                 :request "launch"
+                 :program "."
+                 :showLog "true"
+                 :args [])))
+
 ;; Rust
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
