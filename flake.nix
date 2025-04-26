@@ -12,7 +12,8 @@
 
     # Timed wallpaper
     timewall = {
-      url = "github:bcyran/timewall";
+      # NOTE: can release this tag once libheif >= 1.9.7 can be installed
+      url = "github:bcyran/timewall?ref=1.5.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {

@@ -168,15 +168,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1744298714,
-        "narHash": "sha256-KUPy/mv6cV0BmvBcom+cCXk0s4Erz0hf5dg1i5QB0OE=",
+        "lastModified": 1739813798,
+        "narHash": "sha256-ohJDaN29FG/WqkcvpbukWS37RiX2pXdkKMzNh+3NqAU=",
         "owner": "bcyran",
         "repo": "timewall",
-        "rev": "b5836e159142715087e2e487eed20dd38f1aa339",
+        "rev": "7f5b3260c2bcd929c3a9dee4988089773ebfc54c",
         "type": "github"
       },
       "original": {
         "owner": "bcyran",
+        "ref": "1.5.0",
         "repo": "timewall",
         "type": "github"
       }
