@@ -96,6 +96,7 @@
       "copyq"
       "docker"
       "nikitabobko/tap/aerospace" # tiling window manager
+      "wireshark"
 
       # Entertainment
       "spotify"
