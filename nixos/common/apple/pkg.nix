@@ -9,7 +9,9 @@ let
   editor = with pkgs; [
     vim
     neovim
-    emacs30
+    # REF: https://github.com/NixOS/nixpkgs/issues/395169
+    # probably can be disabled when fixed
+    (emacs30.override { withNativeCompilation = false; })
 
     nixfmt
     editorconfig-core-c

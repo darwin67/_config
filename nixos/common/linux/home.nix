@@ -113,9 +113,9 @@ in { config, ... }: {
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      # enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
-      # autosuggestions.enable = true;
+      autosuggestion.enable = true;
       history.size = 10000;
 
       shellAliases = {
