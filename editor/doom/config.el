@@ -162,7 +162,8 @@
 (setq safe-local-variable-directories
       '("~/workspace/inngest"
         "~/workspace/monorepo"
-        "~/workspace/inngestgo"))
+        "~/workspace/inngestgo"
+        "~/workspace/infractl"))
 
 ;; Projects
 (with-eval-after-load 'projectile
