@@ -80,7 +80,7 @@
       # Browwer
       "google-chrome"
       "firefox@developer-edition"
-      "zen-browser"
+      "zen"
       "brave-browser"
 
       # Chat
