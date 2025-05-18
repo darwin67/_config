@@ -185,18 +185,29 @@
   ;; - https://github.com/microsoft/vscode-go/blob/master/docs/Debugging-Go-code-using-VS-Code.md
   ;; - https://blog.dornea.nu/2024/11/28/mastering-golang-debugging-in-emacs/
   (add-to-list 'dape-configs
-               '(go-test
+               `(delve
                  modes (go-mode go-ts-mode)
+                 ensure dape-ensure-command
+                 fn (dape-config-autoport dape-config-tramp)
                  command "dlv"
-                 command-args ("dap" "--listen" "127.0.0.1::autoport" "--log")
-                 command-cwd default-directory
+                 command-insert-stderr t
+                 command-args ("dap" "--listen" "127.0.0.1::autoport")
+                 command-cwd (lambda()(if (string-suffix-p "_test.go" (buffer-name))
+                                          default-directory (dape-cwd)))
                  port :autoport
-                 :type "go"
-                 :mode "test"
+                 :type "debug"
                  :request "launch"
+                 :mode (lambda() (if (string-suffix-p "_test.go" (buffer-name)) "test" "debug"))
                  :program "."
-                 :showLog "true"
-                 :args [])))
+                 :cwd "."
+                 :args (lambda()
+                         (require 'which-func)
+                         (if (string-suffix-p "_test.go" (buffer-name))
+                             (when-let* ((test-name (which-function))
+                                         (test-regexp (concat "^" test-name "$")))
+                               (if test-name `["-test.run" ,test-regexp]
+                                 (error "No test selected")))
+                           [])))))
 
 ;; Rust
 (with-eval-after-load 'eglot
