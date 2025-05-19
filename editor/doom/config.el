@@ -185,6 +185,7 @@
   ;; - https://github.com/microsoft/vscode-go/blob/master/docs/Debugging-Go-code-using-VS-Code.md
   ;; - https://blog.dornea.nu/2024/11/28/mastering-golang-debugging-in-emacs/
   (add-to-list 'dape-configs
+               ;; run test with delve at point
                `(delve
                  modes (go-mode go-ts-mode)
                  ensure dape-ensure-command
@@ -192,20 +193,21 @@
                  command "dlv"
                  command-insert-stderr t
                  command-args ("dap" "--listen" "127.0.0.1::autoport")
-                 command-cwd (lambda()(if (string-suffix-p "_test.go" (buffer-name))
-                                          default-directory (dape-cwd)))
+                 command-cwd (lambda() (if (string-suffix-p "_test.go" (buffer-name))
+                                           default-directory (dape-cwd)))
                  port :autoport
-                 :type "debug"
+                 :type "go"
                  :request "launch"
                  :mode (lambda() (if (string-suffix-p "_test.go" (buffer-name)) "test" "debug"))
                  :program "."
+                 :showLog "true"
                  :cwd "."
                  :args (lambda()
                          (require 'which-func)
                          (if (string-suffix-p "_test.go" (buffer-name))
                              (when-let* ((test-name (which-function))
                                          (test-regexp (concat "^" test-name "$")))
-                               (if test-name `["-test.run" ,test-regexp]
+                               (if test-name `["-test.run", test-regexp]
                                  (error "No test selected")))
                            [])))))
 
