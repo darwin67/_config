@@ -97,6 +97,7 @@
       "docker"
       "nikitabobko/tap/aerospace" # tiling window manager
       "wireshark"
+      "alfred"
 
       # Entertainment
       "spotify"
