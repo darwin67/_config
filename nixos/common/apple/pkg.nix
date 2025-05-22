@@ -79,6 +79,12 @@ let
     unzip
   ];
 
-  dev = with pkgs; [ flutter cocoapods ];
+  dev = with pkgs; [
+    flutter
+    cocoapods
+
+    # go pprof visulization dep
+    graphviz
+  ];
 
 in { environment.systemPackages = editor ++ utils ++ sysutils ++ dev; }
