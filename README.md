@@ -18,3 +18,7 @@ sudo ln -s ~/_config /etc/nix-darwin
 
 darwin-rebuild switch
 ```
+
+## LLM setup
+
+https://github.com/karthink/gptel

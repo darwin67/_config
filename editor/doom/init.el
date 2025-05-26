@@ -80,6 +80,7 @@
        (terraform +lsp)
        tree-sitter
        direnv
+       llm                 ; large language models
 
        :lang
        (cc +lsp +tree-sitter)           ; C/C++/Obj-C madness

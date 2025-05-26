@@ -277,3 +277,9 @@
 
 ;; JSONC mode
 (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode))
+
+;; LLM
+;; register Anthropic
+(setq
+ gptel-backend (gptel-make-anthropic "Claude"
+                                     :stream t :key gptel-api-key))
