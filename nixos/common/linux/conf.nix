@@ -100,9 +100,9 @@ in {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    nerdfonts
-    # nerd-fonts._0xproto
-    # nerd-fonts.droid-sans-mono
+    # nerdfonts
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
     font-awesome
   ];
 
@@ -300,7 +300,7 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   virtualisation = {
     # podman = {
