@@ -148,10 +148,10 @@
                '((elixir-mode elixir-ts-mode heex-ts-mode) . ("lexical"))))
 
 ;; Create a buffer-local hook to run elixir-format on save
-(add-hook 'elixir-mode-hook
-          (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
-(add-hook 'elixir-ts-mode-hook
-          (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
+;;
+;; NOTE: embedded into elixir-ts-mode
+;; (add-hook 'elixir-mode-hook
+;;           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
 
 (add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
 
@@ -282,4 +282,4 @@
 ;; register Anthropic
 (setq
  gptel-backend (gptel-make-anthropic "Claude"
-                                     :stream t :key gptel-api-key))
+                 :stream t :key gptel-api-key))

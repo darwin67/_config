@@ -4,10 +4,10 @@
 ;; +elixir.el
 
 ;; https://github.com/wkirschbaum/elixir-ts-mode
-(package! elixir-ts-mode :pin "b08d399e29714fe3d968db925aec0e1dfac54d89")
+(package! elixir-ts-mode :pin "e518e9a086d3d3c427411fbe3aa22f34c2e85614")
 
 ;; https://github.com/ananthakumaran/exunit.el
-(package! exunit :pin "ee06b14b61beaf59d847802b83b027ac991f3496")
+(package! exunit :pin "8de56e3fd50832e5f0435bba8eb13c7292cb1ee1")
 
 ;; https://github.com/elixir-editors/emacs-elixir
 (package! elixir-format

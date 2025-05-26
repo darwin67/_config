@@ -63,7 +63,6 @@
         :map heex-ts-mode-map
         "f" #'elixir-format))
 
-
 (use-package! exunit
   :hook (elixir-ts-mode . exunit-mode)
   :init
