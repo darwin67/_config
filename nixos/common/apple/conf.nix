@@ -6,6 +6,8 @@
   nix.enable = false;
 
   system = {
+    primaryUser = username;
+
     # Set Git commit hash for darwin-version.
     configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -56,9 +58,8 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    nerdfonts
-    # nerd-fonts._0xproto
-    # nerd-fonts.droid-sans-mono
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
     font-awesome
   ];
 
@@ -113,8 +114,6 @@
   };
 
   programs = { zsh.enable = true; };
-
-  security.pam.enableSudoTouchIdAuth = true;
 
   services = { emacs.enable = true; };
   # services.nix-daemon.enable = true;
