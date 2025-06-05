@@ -82,6 +82,7 @@ let
   dev = with pkgs; [
     flutter
     cocoapods
+    claude-code
 
     # go pprof visulization dep
     graphviz
