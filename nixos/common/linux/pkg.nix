@@ -25,6 +25,9 @@ let
     vimPlugins.vim-lsp
     nixd
     nodePackages.vscode-json-languageserver
+
+    # Other
+    claude-code
   ];
 
   apps = with pkgs; [
