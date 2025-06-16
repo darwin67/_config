@@ -99,6 +99,7 @@
       "nikitabobko/tap/aerospace" # tiling window manager
       "wireshark"
       "alfred"
+      "yubico-yubikey-manager"
 
       # Entertainment
       "spotify"
