@@ -95,6 +95,7 @@
       "obsidian"
       "google-drive"
       "copyq"
+      "docker"
       "docker-desktop"
       "nikitabobko/tap/aerospace" # tiling window manager
       "wireshark-app"
