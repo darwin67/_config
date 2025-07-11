@@ -83,6 +83,7 @@ let
     flutter
     cocoapods
     claude-code
+    gemini-cli
 
     # go pprof visulization dep
     graphviz

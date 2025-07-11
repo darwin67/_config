@@ -137,6 +137,9 @@ let
     sops
     age
 
+    claude-code
+    gemini-cli
+
     # scanner
     simple-scan
   ];
