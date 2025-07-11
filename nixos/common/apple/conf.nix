@@ -95,9 +95,9 @@
       "obsidian"
       "google-drive"
       "copyq"
-      "docker"
+      "docker-desktop"
       "nikitabobko/tap/aerospace" # tiling window manager
-      "wireshark"
+      "wireshark-app"
       "alfred"
       "yubico-yubikey-manager"
 
@@ -105,7 +105,7 @@
       "spotify"
 
       # Development
-      "emacs"
+      "emacs-app"
       "zed"
       "visual-studio-code"
       "android-studio"
