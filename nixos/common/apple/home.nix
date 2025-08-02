@@ -1,4 +1,4 @@
-{ pkgs, self, username, stateVersion, ... }:
+{ pkgs, self, username, stateVersion, home-manager, ... }:
 
 let homeDir = "/Users/${username}";
 
@@ -59,8 +59,19 @@ in {
       ".config/ghostty".source = "${self}/term/ghostty";
 
       # Misc
-      "Notes/.keep".text = "";
       "Pictures/Screenshots/.keep".text = "";
+    };
+
+    activation = {
+      cloneNotesRepo = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        if [ ! -d "$HOME/notes" ]; then
+          # Prepend openssh to the PATH and use `|| true` to prevent the ssh command's exit code
+          # from halting the script, allowing grep to check the output.
+          if (PATH=${pkgs.openssh}/bin:$PATH ssh -T git@github.com -o ConnectTimeout=5 -o StrictHostKeyChecking=no -o BatchMode=yes 2>&1 || true) | grep -q "successfully authenticated"; then
+            PATH=${pkgs.openssh}/bin:$PATH ${pkgs.git}/bin/git clone git@github.com:darwin67/notes.git "$HOME/notes"
+          fi
+        fi
+      '';
     };
   };
 
