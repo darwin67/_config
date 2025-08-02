@@ -163,7 +163,12 @@
         "Darwin-MBP-Inngest" = nix-darwin.lib.darwinSystem (hosts.mbp-inngest);
       };
     } // flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; };
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+
+          config = { allowUnfree = true; };
+        };
 
       in {
         devShells.default = pkgs.mkShell {
@@ -172,6 +177,9 @@
             age
             yamllint
             nodePackages.yaml-language-server
+
+            claude-code
+            gemini-cli
           ];
         };
       });
