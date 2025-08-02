@@ -72,7 +72,7 @@
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/linux/home.nix {
                   inherit self inputs pkgs username wallpaperTheme stateVersion
-                    additionalFiles;
+                    additionalFiles home-manager;
                 };
               };
             }

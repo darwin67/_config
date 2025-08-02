@@ -8,7 +8,7 @@ let
     vscode
 
     # editor utilities
-    nixfmt
+    nixfmt-classic
     editorconfig-core-c
     shfmt
     shellcheck

@@ -1,5 +1,5 @@
 { pkgs, self, inputs, username, wallpaperTheme, stateVersion, additionalFiles
-, ... }:
+, home-manager, ... }:
 
 let
   timed-wallpaper = import ./wallpaper.nix {
@@ -105,7 +105,7 @@ in { config, ... }: {
     } // additionalFiles;
 
     activation = {
-      cloneNotesRepo = pkgs.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      cloneNotesRepo = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         if [ ! -d "$HOME/notes" ]; then
           # Prepend openssh to the PATH and use `|| true` to prevent the ssh command's exit code
           # from halting the script, allowing grep to check the output.
