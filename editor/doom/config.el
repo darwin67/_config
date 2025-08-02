@@ -29,10 +29,10 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq
- deft-directory "~/Notes"
- org-directory "~/Notes"
- org-agenda-files (directory-files-recursively "~/Notes/" "\\.org$")
- org-archive-location "~/Notes/archive/%s_archive::"
+ deft-directory "~/notes/scratch"
+ org-directory "~/notes/scratch"
+ org-agenda-files (directory-files-recursively "~/notes/scratch" "\\.org$")
+ org-archive-location "~/notes/scratch/archives/%s_archive::"
  org-startup-folded "showeverything"
  org-tag-alist '(("@code" . ?c))
  org-hide-leading-stars t
