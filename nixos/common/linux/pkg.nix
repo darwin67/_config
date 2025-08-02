@@ -97,7 +97,7 @@ let
 
   browser = with pkgs; [
     # firefox-bin
-    firefox-devedition-bin
+    firefox-devedition
     google-chrome
     brave
     zen-browser
