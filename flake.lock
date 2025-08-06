@@ -92,6 +92,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev": {
+      "locked": {
+        "lastModified": 1754461346,
+        "narHash": "sha256-D8h+MboWrTYERQ33OgpqN8VgDi9J2yfSRFBfLPRMxes=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "cddd03218932bddf7f84aa47471879070e95b8d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -99,6 +115,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin",
+        "nixpkgs-dev": "nixpkgs-dev",
         "sops-nix": "sops-nix",
         "timewall": "timewall",
         "zen-browser": "zen-browser"

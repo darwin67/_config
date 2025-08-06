@@ -31,10 +31,16 @@
       url = "github:LnL7/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+
+    # dev
+    # use the latest available to get packages
+    # NOTE: this might not be needed later, more so that claude is locked to an
+    # old version and cannot be started
+    nixpkgs-dev.url = "github:nixos/nixpkgs?ref=master";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-darwin, home-manager, flake-utils
-    , sops-nix, nix-darwin, ... }:
+    , sops-nix, nix-darwin, nixpkgs-dev, ... }:
     let
       username = "darwin";
       stateVersion = "25.05";
@@ -164,7 +170,7 @@
       };
     } // flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
+        pkgs = import nixpkgs-dev {
           inherit system;
 
           config = { allowUnfree = true; };

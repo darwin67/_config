@@ -123,7 +123,7 @@ in {
     fwupd.enable = true;
     # enable the gnome-keyring secrets vault.
     # will be exposed through DBus to programs willing to store secrets
-    gnome = { gnome-keyring.enable = true; }; # keyring
+    # gnome = { gnome-keyring.enable = true; }; # keyring
 
     tlp = {
       enable = true;
