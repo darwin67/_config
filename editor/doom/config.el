@@ -48,8 +48,9 @@
    ("/" italic)
    ("_" underline)
    ("=" (:background "maroon" :foreground "white"))
-   ("~" (:background "deep sky blue" :foreground "white"))
-   ("+" (:strike-through t))))
+   ("+" (:background "deep sky blue" :foreground "white"))
+   ("~" (:strike-through t)))
+ )
 
 (add-hook 'org-mode-hook 'org-hide-block-all)
 (add-hook 'org-mode-hook 'org-rainbow-tags-mode)

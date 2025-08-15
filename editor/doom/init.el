@@ -20,8 +20,8 @@
 
        :completion
        ;; (ivy +fuzzy +prescient +icons) ; a search engine for love and life
-       (vertico +icons)
-       (corfu +icons)
+       vertico
+       corfu
 
        :ui
        deft
@@ -29,9 +29,11 @@
        doom-dashboard      ; a nifty splash screen for Emacs
        doom-quit           ; DOOM quit-message prompts when you quit Emacs
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW/BUG/XXX
-       ;; (emoji +ascii +github +unicode)
-       neotree
+       ;; indent-guides
+       ;; neotree
+       nav-flash
        (modeline +light)            ; snazzy, Atom-inspired modeline, plus API
+       minimap
        nav-flash           ; blink the current line after jumping
        ophints             ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
@@ -39,7 +41,7 @@
        (vc-gutter +pretty)           ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
        (window-select +numbers)       ; visually switch windows
-       workspaces          ; tab emulation, persistence & separate workspaces
+       ;; workspaces          ; tab emulation, persistence & separate workspaces
        zen
 
        :os
@@ -67,42 +69,42 @@
        ;;vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       syntax              ; tasing you for every semicolon you forget
+       syntax
        ;; (spell +enchant)
 
        :tools
        debugger
-       editorconfig        ; let someone else argue about tabs vs spaces
-       (eval +overlay)     ; run code, run (also, repls)
-       lookup              ; navigate your code and its documentation
+       editorconfig
+       (eval +overlay)
+       lookup
        (lsp +eglot)
-       (magit +forge)      ; a git porcelain for Emacs
+       (magit +forge)
        (terraform +lsp)
        tree-sitter
        direnv
-       llm                 ; large language models
+       llm
 
        :lang
        (cc +lsp +tree-sitter)           ; C/C++/Obj-C madness
-       data                ; config/data formats
-       (dart +lsp +flutter)     ; paint ui and not much else
-       (elixir +lsp +tree-sitter)  ; erlang done right
-       emacs-lisp          ; drown in parentheses
-       (erlang +lsp +tree-sitter)  ; an elegant language for a more civilized age
-       (go +lsp +tree-sitter)      ; the hipster dialect
+       data
+       (dart +lsp +flutter)
+       (elixir +lsp +tree-sitter)
+       emacs-lisp
+       (erlang +lsp +tree-sitter)
+       (go +lsp +tree-sitter)
        (graphql +lsp)
-       (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp +tree-sitter)
        (json +lsp +tree-sitter)
-       (markdown +grip)            ; writing docs for people to ignore
+       (markdown +grip)
        (nix +lsp +tree-sitter)
-       (org +dragndrop +gnuplot +journal +pandoc +pretty +roam2)                 ; organize your plain life in plain text
-       (python +cpython +lsp +pyright +tree-sitter) ; beautiful is better than ugly
-       (ruby +chruby +rails +lsp +tree-sitter)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       (rust +lsp +tree-sitter)    ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (org +brain +dragndrop +gnuplot +hugo +journal +pandoc +roam2)
+       (python +cpython +lsp +pyright +tree-sitter)
+       (ruby +chruby +rails +lsp +tree-sitter)
+       (rust +lsp +tree-sitter)
        (java +lsp +tree-sitter)
        (kotlin +lsp +tree-sitter)
-       (sh +tree-sitter)           ; she sells {ba,z,fi}sh shells on the C xor
-       (web +tree-sitter)          ; the tubes
+       (sh +tree-sitter)
+       (web +tree-sitter)
        (yaml +lsp +tree-sitter)
        (lua +lsp +tree-sitter)
        ;; (zig +lsp +tree-sitter)
