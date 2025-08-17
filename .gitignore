@@ -14,3 +14,4 @@ result
 /.direnv/
 /nix/nixos.d/luks.nix
 /nix/hardware-configuration.nix
+/.claude/

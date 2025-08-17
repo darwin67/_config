@@ -146,7 +146,11 @@
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("lexical"))))
+               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("lexical")))
+
+  ;; Set eglot code action indicator
+  (setq eglot-code-action-indicator
+        (propertize ">>" 'face '(:background "red" :foreground "white"))))
 
 ;; Create a buffer-local hook to run elixir-format on save
 ;;
