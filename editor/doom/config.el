@@ -161,6 +161,20 @@
 (add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
 
 ;; ===================================================================
+;; hl-todo configuration - use background colors instead of text colors
+(after! hl-todo
+  ;; Configure TODO keywords to use background highlighting instead of foreground colors
+  (setq hl-todo-keyword-faces
+        '(("TODO"   . (:background "orange" :foreground "white" :weight bold :slant italic))
+          ("FIXME"  . (:background "red" :foreground "white" :weight bold :slant italic))
+          ("NOTE"   . (:background "cyan" :foreground "white" :weight bold :slant italic))
+          ("HACK"   . (:background "purple" :foreground "white" :weight bold :slant italic))
+          ("REVIEW" . (:background "yellow" :foreground "black" :weight bold :slant italic))
+          ("BUG"    . (:background "red" :foreground "white" :weight bold :slant italic))
+          ("XXX"    . (:background "green" :foreground "black" :weight bold :slant italic))
+          ("DEPRECATED" . (:background "dim gray" :foreground "white" :weight bold :slant italic)))))
+
+;; ===================================================================
 ;; Others
 
 ;; Set this so that it loads dir-locals.el without prompt
