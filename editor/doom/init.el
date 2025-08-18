@@ -21,7 +21,7 @@
        :completion
        ;; (ivy +fuzzy +prescient +icons) ; a search engine for love and life
        vertico
-       corfu
+       (corfu +dabbrev)
 
        :ui
        deft

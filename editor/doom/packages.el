@@ -75,3 +75,7 @@
 
 ;; Misc
 (package! org-rainbow-tags)
+
+;; compilation - perf improvements
+;; https://github.com/jamescherti/compile-angel.el
+(package! compile-angel)

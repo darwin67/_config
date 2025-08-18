@@ -1,5 +1,22 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; these should be at the beginning
+(setq
+ load-prefer-newer t
+ native-comp-jit-compilation t
+ compile-angel-verbose t
+
+ ;; Ensure that quitting only occurs once Emacs finishes native compiling,
+ ;; preventing incomplete or leftover compilation files in `/tmp`.
+ native-comp-async-query-on-exit t
+ confirm-kill-processes t
+ ;; Non-nil means to native compile packages as part of their installation.
+ package-native-compile t)
+
+;; A global mode that compiles .el files before they are loaded
+;; using `load' or `require'.
+(compile-angel-on-load-mode)
+
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -81,16 +98,30 @@
  ;; set cursor margin to 7 lines
  scroll-margin 7
  ;; Auto rebalance windows after window actions like horiozntal or vertical splits
- window-combination-resize t
-
- ;; corfu - code completion
- corfu-preview-current t
- )
+ window-combination-resize t)
 
 (global-git-commit-mode t)
 (editorconfig-mode t)
 (drag-stuff-global-mode t)
 (+global-word-wrap-mode t)
+
+;; Corfu settings
+(after! corfu
+  (setq
+   ;; corfu - code completion
+   corfu-preview-current t
+   corfu-auto t
+   corfu-auto-delay 0.2
+   corfu-auto-prefix 2
+   corfu-cycle t
+   corfu-preview-current 'insert
+   corfu-on-exact-match nil
+   corfu-scroll-margin 5
+   +corfu-want-ret-to-confirm t
+   ;; +corfu-want-tab-prefer-expand-snippets t
+   +corfu-want-tab-prefer-navigating-snippets t
+   +corfu-want-tab-prefer-navigating-org-tables t
+   +corfu-want-minibuffer-completion t))
 
 ;; ===================================================================
 ;; Key Bindings
