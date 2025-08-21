@@ -52,7 +52,7 @@
 
 ;; Install buffer-move
 (package! buffer-move
-  :recipe (:host github :repo "darwin67/buffer-move" :branch "emacs-28"))
+  :recipe (:host github :repo "lukhas/buffer-move"))
 
 (package! openline
   :recipe (:host github :repo "darwin67/openline"))
@@ -79,3 +79,6 @@
 ;; compilation - perf improvements
 ;; https://github.com/jamescherti/compile-angel.el
 (package! compile-angel)
+
+(package! eglot-booster
+  :recipe (:host github :repo "jdtsmith/eglot-booster"))

@@ -183,6 +183,11 @@
   (setq eglot-code-action-indicator
         (propertize ">>" 'face '(:background "red" :foreground "white"))))
 
+;; eglot-booster - improve eglot performance
+(with-eval-after-load 'eglot
+  (require 'eglot-booster)
+  (eglot-booster-mode))
+
 ;; Create a buffer-local hook to run elixir-format on save
 ;;
 ;; NOTE: embedded into elixir-ts-mode
