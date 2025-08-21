@@ -82,3 +82,18 @@
 
 (package! eglot-booster
   :recipe (:host github :repo "jdtsmith/eglot-booster"))
+
+;; flycheck-inline extensions
+;; (package! quick-peek)
+;; (package! flycheck-inline)
+;; (package! flycheck-color-mode-line)
+;; (package! flycheck-golangci-lint)
+;; (package! flycheck-rust)
+;; (package! flycheck-buf-lint)
+;; (package! flycheck-credo)
+;; (package! flycheck-elixir)
+;; (package! flycheck-eglot)
+;; (package! flycheck-kotlin)
+
+;; (package! flycheck-hl-todo)
+;; (package! flycheck-yamllint)

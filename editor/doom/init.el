@@ -43,6 +43,7 @@
        (window-select +numbers)       ; visually switch windows
        ;; workspaces          ; tab emulation, persistence & separate workspaces
        zen
+       vi-tilde-fringe  ; Displays a tilde(~) in the left fringe to indicate an empty line, similar to Vi.
 
        :os
        tty

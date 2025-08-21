@@ -173,6 +173,15 @@
 ;; ===================================================================
 ;; Language settings
 
+;; (setq flycheck-inline-display-function
+;;       (lambda (msg pos err)
+;;         (let* ((ov (quick-peek-overlay-ensure-at pos))
+;;                (contents (quick-peek-overlay-contents ov)))
+;;           (setf (quick-peek-overlay-contents ov)
+;;                 (concat contents (when contents "\n") msg))
+;;           (quick-peek-update ov)))
+;;       flycheck-inline-clear-function #'quick-peek-hide)
+
 ;; Elixir
 
 (with-eval-after-load 'eglot
@@ -187,6 +196,25 @@
 (with-eval-after-load 'eglot
   (require 'eglot-booster)
   (eglot-booster-mode))
+
+;; flycheck extensions
+(with-eval-after-load 'flycheck
+  ;; Enable fringe indicators in terminal by using margins
+  (unless (display-graphic-p)
+    ;; Use margin indicators for terminal mode
+    (setq flycheck-indication-mode 'left-margin)
+    (setq-default left-fringe-width 8 right-fringe-width 8
+                  left-margin-width 1 right-margin-width 0))
+
+  ;; For GUI mode, use standard fringe indicators
+  (when (display-graphic-p)
+    (setq flycheck-indication-mode 'left-fringe))
+
+  ;; flycheck-inline - display errors inline using overlays
+  ;; (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
+  ;; flycheck-color-mode-line - color mode line based on flycheck state
+  ;; (add-hook 'flycheck-mode-hook #'flycheck-color-mode-line-mode)
+  )
 
 ;; Create a buffer-local hook to run elixir-format on save
 ;;
