@@ -193,9 +193,9 @@
         (propertize ">>" 'face '(:background "red" :foreground "white"))))
 
 ;; eglot-booster - improve eglot performance
-(with-eval-after-load 'eglot
-  (require 'eglot-booster)
-  (eglot-booster-mode))
+;; (with-eval-after-load 'eglot
+;;   (require 'eglot-booster)
+;;   (eglot-booster-mode))
 
 ;; flycheck extensions
 (with-eval-after-load 'flycheck
