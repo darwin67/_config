@@ -25,6 +25,9 @@ in {
 
       # Python
       PY_COLORS = "1";
+
+      # k9s configuration
+      K9S_CONFIG_DIR = "~/.config/k9s";
     };
 
     ## Files
@@ -57,6 +60,11 @@ in {
       ".alacritty.toml".source = "${self}/term/.alacritty.toml";
       ".config/kitty".source = "${self}/term/kitty";
       ".config/ghostty".source = "${self}/term/ghostty";
+      ".config/k9s/config.yaml".source = "${self}/term/k9s/config.yaml";
+      ".config/k9s/skins/nord.yaml".source = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/nord.yaml";
+        sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
+      };
 
       # Misc
       "Pictures/Screenshots/.keep".text = "";
