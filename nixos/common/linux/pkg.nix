@@ -72,6 +72,7 @@ let
     zip
     unzip
     ghostty
+    gcr_4
   ];
 
   desktop = with pkgs; [

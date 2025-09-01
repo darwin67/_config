@@ -67,12 +67,13 @@
             ];
           };
         in {
-          specialArgs = { inherit system pkgs; };
+          specialArgs = { inherit system; };
 
           modules = modules ++ [
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
+              nixpkgs.pkgs = pkgs;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -96,11 +97,12 @@
             };
           };
         in {
-          specialArgs = { inherit self system inputs username pkgs; };
+          specialArgs = { inherit self system inputs username; };
 
           modules = modules ++ [
             home-manager.darwinModules.home-manager
             {
+              nixpkgs.pkgs = pkgs;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;

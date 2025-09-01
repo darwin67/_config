@@ -85,7 +85,8 @@ in {
     };
 
     inputMethod = {
-      enabled = "fcitx5";
+      type = "fcitx5";
+      enable = true;
       fcitx5 = {
         addons = [
           pkgs.fcitx5-mozc
@@ -123,7 +124,7 @@ in {
     fwupd.enable = true;
     # enable the gnome-keyring secrets vault.
     # will be exposed through DBus to programs willing to store secrets
-    # gnome = { gnome-keyring.enable = true; }; # keyring
+    gnome = { gnome-keyring.enable = true; }; # keyring
 
     tlp = {
       enable = true;
