@@ -82,7 +82,7 @@
 ;; flycheck-inline extensions
 ;; (package! quick-peek)
 ;; (package! flycheck-inline)
-;; (package! flycheck-color-mode-line)
+(package! flycheck-color-mode-line)
 ;; (package! flycheck-golangci-lint)
 ;; (package! flycheck-rust)
 ;; (package! flycheck-buf-lint)

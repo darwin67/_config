@@ -193,9 +193,9 @@
         (propertize ">>" 'face '(:background "red" :foreground "white"))))
 
 ;; eglot-booster - improve eglot performance
-;; (with-eval-after-load 'eglot
-;;   (require 'eglot-booster)
-;;   (eglot-booster-mode))
+(with-eval-after-load 'eglot
+  (require 'eglot-booster)
+  (eglot-booster-mode))
 
 ;; flycheck extensions
 (with-eval-after-load 'flycheck
@@ -213,7 +213,7 @@
   ;; flycheck-inline - display errors inline using overlays
   ;; (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
   ;; flycheck-color-mode-line - color mode line based on flycheck state
-  ;; (add-hook 'flycheck-mode-hook #'flycheck-color-mode-line-mode)
+  (add-hook 'flycheck-mode-hook #'flycheck-color-mode-line-mode)
   )
 
 ;; Create a buffer-local hook to run elixir-format on save
