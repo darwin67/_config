@@ -361,6 +361,9 @@
 ;; JSONC mode
 (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode))
 
+;; SVG
+(add-to-list 'auto-mode-alist '("\\.svg\\'" . xml-mode))
+
 ;; LLM
 ;; register Anthropic
 (setq
