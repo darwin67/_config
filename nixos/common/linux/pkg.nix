@@ -97,13 +97,7 @@ let
     libayatana-appindicator
   ];
 
-  browser = with pkgs; [
-    # firefox-bin
-    firefox-devedition
-    google-chrome
-    brave
-    zen-browser
-  ];
+  browser = with pkgs; [ firefox-devedition google-chrome brave zen-browser ];
 
   utils = with pkgs; [
     neofetch
