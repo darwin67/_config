@@ -98,9 +98,9 @@ accordion-padding = 10
     esc = 'mode main'
 
 [workspace-to-monitor-force-assignment]
-    1 = 'U2720QM.+2' # Terminal
-    2 = 'U2720QM.+1' # Editor
-    3 = 'dell s2421' # 24 inch monitor
+    1 = 'DELL U3223QE' # Terminal
+    2 = 'DELL U2720QM' # Editor
+    3 = 'DELL S2421' # 24 inch monitor
     9 = 'built-in'
     10 = 'built-in'
 
