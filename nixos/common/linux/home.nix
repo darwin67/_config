@@ -153,8 +153,6 @@ in { config, ... }: {
 
         vim = "nvim";
         grep = "rg";
-
-        curl = "xh";
       };
 
       # zsh plugin management
