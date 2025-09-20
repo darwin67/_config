@@ -56,7 +56,7 @@ let
     gcc
     tmux
     wget
-    curlie
+    xh
     git
     hub
     fzf
