@@ -68,7 +68,7 @@ let
     gnutar
     tmux
     wget
-    curlie
+    xh
     git
     hub
     fzf
