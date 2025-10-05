@@ -65,6 +65,7 @@
    ("/" italic)
    ("_" underline)
    ("=" (:background "maroon" :foreground "white"))
+   ("`" (:background "maroon" :foreground "white"))
    ("+" (:background "deep sky blue" :foreground "white"))
    ("~" (:strike-through t)))
  )
@@ -131,6 +132,9 @@
  ;; Vim like 'o' and 'O' behaviours
  "C-o" 'open-next-line
  "M-o" 'open-previous-line
+
+ ;; Comment toggle with Opt+;
+ "M-;" 'comment-dwim
 
  ;; Set bindings for window splits that are more intuitive
  (:prefix "C-x"
