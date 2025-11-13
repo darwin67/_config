@@ -132,9 +132,12 @@ let
     dig
     sops
     age
+    duckdb
 
+    # Terminal AI tools
     claude-code
     gemini-cli
+    codex
 
     # scanner
     simple-scan

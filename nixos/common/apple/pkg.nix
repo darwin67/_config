@@ -83,8 +83,12 @@ let
   dev = with pkgs; [
     flutter
     cocoapods
+    duckdb
+
+    # Terminal AI tools
     claude-code
     gemini-cli
+    codex
 
     # go pprof visulization dep
     graphviz
