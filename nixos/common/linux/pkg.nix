@@ -22,7 +22,6 @@ let
     gnuplot
 
     # LSPs
-    emacs-lsp-booster
     vimPlugins.vim-lsp
     nixd
     nodePackages.vscode-json-languageserver
