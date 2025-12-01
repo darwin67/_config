@@ -196,11 +196,6 @@
   (setq eglot-code-action-indicator
         (propertize ">>" 'face '(:background "red" :foreground "white"))))
 
-;; eglot-booster - improve eglot performance
-(with-eval-after-load 'eglot
-  (require 'eglot-booster)
-  (eglot-booster-mode))
-
 ;; flycheck extensions
 (with-eval-after-load 'flycheck
   ;; Enable fringe indicators in terminal by using margins

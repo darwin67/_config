@@ -76,9 +76,6 @@
 ;; https://github.com/jamescherti/compile-angel.el
 (package! compile-angel)
 
-(package! eglot-booster
-  :recipe (:host github :repo "jdtsmith/eglot-booster"))
-
 ;; flycheck-inline extensions
 ;; (package! quick-peek)
 ;; (package! flycheck-inline)
