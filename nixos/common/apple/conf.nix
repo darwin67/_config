@@ -70,7 +70,7 @@
       cleanup = "uninstall";
     };
 
-    taps = [ ];
+    taps = [ "nikitabobko/tap" ];
     brews = [ "watch" ];
     casks = [
       # Terminal
@@ -97,7 +97,7 @@
       "copyq"
       # "docker"
       "docker-desktop"
-      "nikitabobko/tap/aerospace" # tiling window manager
+      "aerospace" # tiling window manager
       "wireshark-app"
       "alfred"
       "yubico-yubikey-manager"
@@ -107,7 +107,6 @@
       "spotify"
 
       # Development
-      "emacs-app"
       "zed"
       "visual-studio-code"
       "android-studio"
