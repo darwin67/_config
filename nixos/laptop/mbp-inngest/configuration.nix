@@ -19,4 +19,6 @@
     kubecolor
     krew
   ];
+
+  environment.shellAliases = { kubectl = "kubecolor"; };
 }
