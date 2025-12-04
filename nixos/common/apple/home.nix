@@ -11,12 +11,11 @@ in {
     packages = with pkgs; [ starship ];
 
     sessionPath = [
-      "${homeDir}/bin"
-      "${homeDir}/.config/emacs/bin"
-      "${homeDir}/.local/bin"
-      "${homeDir}/.cargo/bin"
-      "${homeDir}/.node/npm-pkgs/bin"
-      "${homeDir}/.krew/bin"
+      "$HOME/bin"
+      "$HOME/.config/emacs/bin"
+      "$HOME/.local/bin"
+      "$HOME/.cargo/bin"
+      "$HOME/.node/npm-pkgs/bin"
       "/opt/homebrew/bin"
     ];
 
@@ -63,7 +62,8 @@ in {
       ".config/ghostty".source = "${self}/term/ghostty";
       ".config/k9s/config.yaml".source = "${self}/term/k9s/config.yaml";
       ".config/k9s/skins/nord.yaml".source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/nord.yaml";
+        url =
+          "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/nord.yaml";
         sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
       };
 
@@ -95,6 +95,10 @@ in {
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       history.size = 10000;
+
+      initExtra = ''
+        export PATH="$HOME/.krew/bin:$PATH"
+      '';
 
       shellAliases = {
         ll = "ls -lah";

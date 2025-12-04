@@ -18,6 +18,8 @@
     kubectl-node-shell
     kubecolor
     krew
+
+    awscli2
   ];
 
   environment.shellAliases = { kubectl = "kubecolor"; };
