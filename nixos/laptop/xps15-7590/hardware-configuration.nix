@@ -12,9 +12,9 @@
   boot.kernelParams =
     [ "acpi_osi=Linux" "acpi_backlight=vendor" "quiet" "udev.log_priority=3" ];
 
-  systemd.extraConfig = ''
-    LogLevel=debug
-  '';
+  systemd.settings.Manager = {
+    LogLevel = "debug";
+  };
 
   networking.hostName = "xps15-7590"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

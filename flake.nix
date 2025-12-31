@@ -2,11 +2,11 @@
   description = "Darwin's workstation setup";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -26,9 +26,9 @@
     };
 
     # MacOS
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
@@ -43,7 +43,7 @@
     , sops-nix, nix-darwin, nixpkgs-dev, ... }:
     let
       username = "darwin";
-      stateVersion = "25.05";
+      stateVersion = "25.11";
       wallpaperTheme = "macMonterey";
 
       # Function for helping configuration linux systems

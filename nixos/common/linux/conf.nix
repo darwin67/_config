@@ -62,7 +62,6 @@ in {
       extraBackends = with pkgs; [
         sane-airscan
         hplipWithPlugin
-        epkowa
         utsushi
       ];
       disabledDefaultBackends = [ "escl" ];
@@ -88,11 +87,12 @@ in {
       type = "fcitx5";
       enable = true;
       fcitx5 = {
+        waylandFrontend = true;
         addons = [
           pkgs.fcitx5-mozc
           pkgs.fcitx5-rime
           pkgs.fcitx5-gtk
-          pkgs.fcitx5-configtool
+          # pkgs.fcitx5-configtool
         ];
       };
     };
@@ -124,7 +124,11 @@ in {
     fwupd.enable = true;
     # enable the gnome-keyring secrets vault.
     # will be exposed through DBus to programs willing to store secrets
-    gnome = { gnome-keyring.enable = true; }; # keyring
+    gnome = {
+      gnome-keyring.enable = true;
+      # Disable gcr-ssh-agent to avoid conflict with programs.ssh.startAgent
+      gcr-ssh-agent.enable = false;
+    };
 
     tlp = {
       enable = true;
@@ -301,7 +305,7 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   virtualisation = {
     # podman = {

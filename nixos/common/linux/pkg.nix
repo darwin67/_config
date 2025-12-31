@@ -32,7 +32,7 @@ let
 
   apps = with pkgs; [
     signal-desktop
-    whatsapp-for-linux
+    wasistlos
     # wechat-uos
     discord
     nordic
