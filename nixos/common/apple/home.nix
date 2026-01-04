@@ -96,7 +96,7 @@ in {
       autosuggestion.enable = true;
       history.size = 10000;
 
-      initExtra = ''
+      initContent = ''
         export PATH="$HOME/.krew/bin:$PATH"
       '';
 
