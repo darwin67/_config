@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # These are generally terminal related packages.
 # GUI apps are installed via homebrew in conf.nix
@@ -28,8 +33,8 @@ let
 
   utils = with pkgs; [
     neofetch
-    (python311.withPackages (ps:
-      with ps; [
+    (python313.withPackages (
+      ps: with ps; [
         i3pystatus
         keyring
         pip
@@ -40,7 +45,8 @@ let
         cffi
         ipython
         black
-      ]))
+      ]
+    ))
 
     ctop
     ripgrep
@@ -51,7 +57,6 @@ let
     sqlite
     tree
     pet
-    bottom
     dig
     sops
     age
@@ -86,11 +91,13 @@ let
 
     # Terminal AI tools
     claude-code
-    gemini-cli
-    codex
+    opencode
 
     # go pprof visulization dep
     graphviz
   ];
 
-in { environment.systemPackages = editor ++ utils ++ sysutils ++ dev; }
+in
+{
+  environment.systemPackages = editor ++ utils ++ sysutils ++ dev;
+}

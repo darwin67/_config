@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   editor = with pkgs; [
@@ -96,13 +101,18 @@ let
     libayatana-appindicator
   ];
 
-  browser = with pkgs; [ firefox-devedition google-chrome brave zen-browser ];
+  browser = with pkgs; [
+    firefox-devedition
+    google-chrome
+    brave
+    zen-browser
+  ];
 
   utils = with pkgs; [
     neofetch
     i3pystatus
-    (python311.withPackages (ps:
-      with ps; [
+    (python313.withPackages (
+      ps: with ps; [
         i3pystatus
         keyring
         pip
@@ -113,7 +123,8 @@ let
         cffi
         ipython
         black
-      ]))
+      ]
+    ))
 
     docker
     ctop
@@ -135,16 +146,15 @@ let
 
     # Terminal AI tools
     claude-code
-    gemini-cli
-    codex
+    opencode
 
     # scanner
     simple-scan
   ];
 
-in {
+in
+{
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps
-    ++ utils;
+  environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps ++ utils;
 }
