@@ -88,6 +88,7 @@ let
     flutter
     cocoapods
     duckdb
+    youplot
 
     # Terminal AI tools
     claude-code
