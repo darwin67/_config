@@ -1,4 +1,4 @@
-{ pkgs, self, ... }:
+{ pkgs, self, lib, ... }:
 
 {
   imports = [
@@ -19,4 +19,8 @@
     fsType = "none";
     options = [ "bind" ];
   };
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  users.users.darwin.extraGroups = lib.mkAfter [ "kvm" "libvirtd" ];
 }
