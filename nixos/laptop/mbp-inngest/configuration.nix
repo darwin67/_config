@@ -1,10 +1,24 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ ../../common/apple/conf.nix ../../common/apple/pkg.nix ];
+  imports = [
+    ../../common/apple/conf.nix
+    ../../common/apple/pkg.nix
+  ];
 
   homebrew = {
-    casks = [ "slack" "zoom" "notion" "linear-linear" "tailscale-app" ];
+    casks = [
+      "slack"
+      "zoom"
+      "notion"
+      "linear-linear"
+      "tailscale-app"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -18,9 +32,12 @@
     kubectl-node-shell
     kubecolor
     krew
+    cilium-cli
 
     awscli2
   ];
 
-  environment.shellAliases = { kubectl = "kubecolor"; };
+  environment.shellAliases = {
+    kubectl = "kubecolor";
+  };
 }
