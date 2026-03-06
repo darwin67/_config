@@ -1,4 +1,11 @@
-{ config, lib, pkgs, self, username, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  username,
+  ...
+}:
 
 {
   # Necessary for using flakes on this system.
@@ -33,9 +40,13 @@
         "com.apple.trackpad.scaling" = 2.0;
       };
 
-      controlcenter = { BatteryShowPercentage = true; };
+      controlcenter = {
+        BatteryShowPercentage = true;
+      };
 
-      loginwindow = { GuestEnabled = false; };
+      loginwindow = {
+        GuestEnabled = false;
+      };
 
       trackpad.Clicking = true;
     };
@@ -102,6 +113,7 @@
       "alfred"
       "yubico-yubikey-manager"
       "claude" # desktop app
+      "google-drive"
 
       # Entertainment
       "spotify"
@@ -115,8 +127,12 @@
     masApps = { };
   };
 
-  programs = { zsh.enable = true; };
+  programs = {
+    zsh.enable = true;
+  };
 
-  services = { emacs.enable = true; };
+  services = {
+    emacs.enable = true;
+  };
   # services.nix-daemon.enable = true;
 }
