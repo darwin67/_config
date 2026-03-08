@@ -39,18 +39,8 @@
     nixpkgs-dev.url = "github:nixos/nixpkgs?ref=master";
   };
 
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-darwin,
-      home-manager,
-      flake-utils,
-      sops-nix,
-      nix-darwin,
-      nixpkgs-dev,
-      ...
-    }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-darwin, home-manager, flake-utils
+    , sops-nix, nix-darwin, nixpkgs-dev, ... }:
     let
       username = "darwin";
       stateVersion = "25.11";
@@ -58,12 +48,7 @@
 
       # Function for helping configuration linux systems
       mkLinuxSystem =
-        {
-          system ? "x86_64-linux",
-          modules ? [ ],
-          additionalFiles ? { },
-          ...
-        }:
+        { system ? "x86_64-linux", modules ? [ ], additionalFiles ? { }, ... }:
         let
           pkgs = import nixpkgs {
             inherit system;
@@ -81,8 +66,7 @@
               })
             ];
           };
-        in
-        {
+        in {
           specialArgs = { inherit system; };
 
           modules = modules ++ [
@@ -94,28 +78,15 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit
-                    self
-                    inputs
-                    pkgs
-                    username
-                    wallpaperTheme
-                    stateVersion
-                    additionalFiles
-                    home-manager
-                    ;
+                  inherit self inputs pkgs username wallpaperTheme stateVersion
+                    additionalFiles home-manager;
                 };
               };
             }
           ];
         };
 
-      mkMacOSSystem =
-        {
-          system ? "aarch64-darwin",
-          modules ? [ ],
-          ...
-        }:
+      mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ], ... }:
         let
           pkgs = import nixpkgs-darwin {
             inherit system;
@@ -125,16 +96,8 @@
               allowBroken = false;
             };
           };
-        in
-        {
-          specialArgs = {
-            inherit
-              self
-              system
-              inputs
-              username
-              ;
-          };
+        in {
+          specialArgs = { inherit self system inputs username; };
 
           modules = modules ++ [
             home-manager.darwinModules.home-manager
@@ -144,14 +107,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/apple/home.nix {
-                  inherit
-                    self
-                    pkgs
-                    inputs
-                    username
-                    stateVersion
-                    home-manager
-                    ;
+                  inherit self pkgs inputs username stateVersion home-manager;
                   # inherit (nixpkgs) lib;
                 };
               };
@@ -183,6 +139,10 @@
           modules = [ ./nixos/laptop/framework13/configuration.nix ];
         };
 
+        framework16 = mkLinuxSystem {
+          modules = [ ./nixos/laptop/framework16/configuration.nix ];
+        };
+
         thinkpadz16 = mkLinuxSystem {
           modules = [ ./nixos/laptop/thinkpadz16/configuration.nix ];
           additionalFiles = {
@@ -200,12 +160,12 @@
           modules = [ ./nixos/laptop/mbp-inngest/configuration.nix ];
         };
       };
-    in
-    {
+    in {
       # Linux setup
       nixosConfigurations = {
         sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
         framework = nixpkgs.lib.nixosSystem (hosts.framework13);
+        framework16 = nixpkgs.lib.nixosSystem (hosts.framework16);
         xps15-7590 = nixpkgs.lib.nixosSystem (hosts.xps15-7590);
         thinkpad-z16 = nixpkgs.lib.nixosSystem (hosts.thinkpadz16);
       };
@@ -215,20 +175,15 @@
         "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
         "Darwin-MBP-Inngest" = nix-darwin.lib.darwinSystem (hosts.mbp-inngest);
       };
-    }
-    // flake-utils.lib.eachDefaultSystem (
-      system:
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs-dev {
           inherit system;
 
-          config = {
-            allowUnfree = true;
-          };
+          config = { allowUnfree = true; };
         };
 
-      in
-      {
+      in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             sops
@@ -240,6 +195,5 @@
             opencode
           ];
         };
-      }
-    );
+      });
 }

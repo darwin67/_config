@@ -59,11 +59,7 @@ in {
     # Scanner
     sane = {
       enable = true;
-      extraBackends = with pkgs; [
-        sane-airscan
-        hplipWithPlugin
-        utsushi
-      ];
+      extraBackends = with pkgs; [ sane-airscan hplipWithPlugin utsushi ];
       disabledDefaultBackends = [ "escl" ];
     };
   };
