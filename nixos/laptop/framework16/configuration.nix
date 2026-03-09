@@ -1,11 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
     ../../common/linux/conf.nix
     ../../common/linux/pkg.nix
+    inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series-nvidia
     ./hardware-configuration.nix
   ];
+
+  hardware.nvidia.prime = {
+    amdgpuBusId = "PCI:194:0:0";
+    nvidiaBusId = "PCI:193:0:0";
+  };
 
   services.pipewire.wireplumber = {
     enable = true;
@@ -18,4 +24,9 @@
       }];
     };
   };
+
+  boot.kernelParams = [ "amdgpu.abmlevel=0" ];
+  services.tlp.enable = lib.mkForce false;
+
+  # BIOS: enable "Linux Audio Compatibility" for better speaker output.
 }

@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -40,7 +41,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-darwin, home-manager, flake-utils
-    , sops-nix, nix-darwin, nixpkgs-dev, ... }:
+    , sops-nix, nix-darwin, nixpkgs-dev, nixos-hardware, ... }:
     let
       username = "darwin";
       stateVersion = "25.11";
@@ -72,7 +73,7 @@
             };
           };
         in {
-          specialArgs = { inherit system; };
+          specialArgs = { inherit system inputs; };
 
           modules = modules ++ [
             sops-nix.nixosModules.sops
