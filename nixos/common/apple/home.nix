@@ -1,4 +1,4 @@
-{ pkgs, self, username, stateVersion, home-manager, ... }:
+{ pkgs, self, username, stateVersion, home-manager, additionalFiles, ... }:
 
 let homeDir = "/Users/${username}";
 
@@ -69,7 +69,7 @@ in {
 
       # Misc
       "Pictures/Screenshots/.keep".text = "";
-    };
+    } // additionalFiles;
 
     activation = {
       cloneNotesRepo = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''

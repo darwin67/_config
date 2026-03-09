@@ -47,8 +47,8 @@
       wallpaperTheme = "macMonterey";
 
       # Function for helping configuration linux systems
-      mkLinuxSystem =
-        { system ? "x86_64-linux", modules ? [ ], additionalFiles ? { }, ... }:
+      mkLinuxSystem = { system ? "x86_64-linux", modules ? [ ]
+        , additionalFiles ? { }, includeKinesis ? true, ... }:
         let
           pkgs = import nixpkgs {
             inherit system;
@@ -66,6 +66,11 @@
               })
             ];
           };
+          baseAdditionalFiles = nixpkgs.lib.optionalAttrs includeKinesis {
+            ".config/sway/config.d/kinesis-freestyle-keyboard.conf" = {
+              source = "${self}/sway/config.d/kinesis-freestyle-keyboard.conf";
+            };
+          };
         in {
           specialArgs = { inherit system; };
 
@@ -79,14 +84,16 @@
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/linux/home.nix {
                   inherit self inputs pkgs username wallpaperTheme stateVersion
-                    additionalFiles home-manager;
+                    home-manager;
+                  additionalFiles = baseAdditionalFiles // additionalFiles;
                 };
               };
             }
           ];
         };
 
-      mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ], ... }:
+      mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ]
+        , additionalFiles ? { }, includeKinesis ? true, ... }:
         let
           pkgs = import nixpkgs-darwin {
             inherit system;
@@ -94,6 +101,11 @@
             config = {
               allowUnfree = true;
               allowBroken = false;
+            };
+          };
+          baseAdditionalFiles = nixpkgs.lib.optionalAttrs includeKinesis {
+            ".config/sway/config.d/kinesis-freestyle-keyboard.conf" = {
+              source = "${self}/sway/config.d/kinesis-freestyle-keyboard.conf";
             };
           };
         in {
@@ -108,6 +120,7 @@
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/apple/home.nix {
                   inherit self pkgs inputs username stateVersion home-manager;
+                  additionalFiles = baseAdditionalFiles // additionalFiles;
                   # inherit (nixpkgs) lib;
                 };
               };
@@ -141,6 +154,12 @@
 
         framework16 = mkLinuxSystem {
           modules = [ ./nixos/laptop/framework16/configuration.nix ];
+          includeKinesis = false;
+          additionalFiles = {
+            ".config/sway/config.d/framework16-keyboard.conf" = {
+              source = "${self}/sway/config.d/framework16-keyboard.conf";
+            };
+          };
         };
 
         thinkpadz16 = mkLinuxSystem {
