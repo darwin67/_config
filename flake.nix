@@ -6,6 +6,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +46,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-darwin, home-manager, flake-utils
-    , sops-nix, nix-darwin, nixpkgs-dev, nixos-hardware, ... }:
+    , sops-nix, nix-darwin, nixpkgs-dev, nixos-hardware, lanzaboote, ... }:
     let
       username = "darwin";
       stateVersion = "25.11";

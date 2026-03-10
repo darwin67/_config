@@ -4,40 +4,41 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-637ad990-8f3d-4854-9e24-1ac18ace2723".device = "/dev/disk/by-uuid/637ad990-8f3d-4854-9e24-1ac18ace2723";
+  boot.initrd.luks.devices."luks-637ad990-8f3d-4854-9e24-1ac18ace2723".device =
+    "/dev/disk/by-uuid/637ad990-8f3d-4854-9e24-1ac18ace2723";
   networking.hostName = "framework16";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/mapper/luks-fcac13a9-02b7-44b7-8c0a-d0a032fda69e";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/mapper/luks-fcac13a9-02b7-44b7-8c0a-d0a032fda69e";
+    fsType = "ext4";
+  };
 
-  boot.initrd.luks.devices."luks-fcac13a9-02b7-44b7-8c0a-d0a032fda69e".device = "/dev/disk/by-uuid/fcac13a9-02b7-44b7-8c0a-d0a032fda69e";
+  boot.initrd.luks.devices."luks-fcac13a9-02b7-44b7-8c0a-d0a032fda69e".device =
+    "/dev/disk/by-uuid/fcac13a9-02b7-44b7-8c0a-d0a032fda69e";
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3CD9-50C7";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/3CD9-50C7";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
   swapDevices =
-    [ { device = "/dev/mapper/luks-637ad990-8f3d-4854-9e24-1ac18ace2723"; }
-    ];
+    [{ device = "/dev/mapper/luks-637ad990-8f3d-4854-9e24-1ac18ace2723"; }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

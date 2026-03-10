@@ -5,8 +5,18 @@
     ../../common/linux/conf.nix
     ../../common/linux/pkg.nix
     inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series
+    inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
   ];
+
+  environment.systemPackages = [ pkgs.sbctl ];
+
+  # secure boot - commented out from hardware-configuration.nix
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   hardware.nvidia.prime = {
     amdgpuBusId = "PCI:194:0:0";
