@@ -4,7 +4,7 @@
   imports = [
     ../../common/linux/conf.nix
     ../../common/linux/pkg.nix
-    inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series
+    # inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series-nvidia
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
   ];
@@ -17,10 +17,12 @@
     enable = true;
     pkiBundle = "/var/lib/sbctl";
   };
+  # ref: https://github.com/NixOS/nixpkgs/issues/489947#issuecomment-3897262330
+  # boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   hardware.nvidia.prime = {
-    amdgpuBusId = "PCI:194:0:0";
-    nvidiaBusId = "PCI:193:0:0";
+    nvidiaBusId = "PCI:193:0:0"; # c1
+    amdgpuBusId = "PCI:194:0:0"; # c2
   };
 
   services.pipewire.wireplumber = {
