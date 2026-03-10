@@ -4,7 +4,7 @@
   imports = [
     ../../common/linux/conf.nix
     ../../common/linux/pkg.nix
-    inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series-nvidia
+    inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series
     ./hardware-configuration.nix
   ];
 
