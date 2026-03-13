@@ -162,8 +162,8 @@
           modules = [ ./nixos/laptop/framework16/configuration.nix ];
           includeKinesis = false;
           additionalFiles = {
-            ".config/sway/config.d/framework16-keyboard.conf" = {
-              source = "${self}/sway/config.d/framework16-keyboard.conf";
+            ".config/sway/config.d/override.conf" = {
+              source = "${self}/nixos/laptop/framework16/sway/override.conf";
             };
           };
         };
