@@ -12,6 +12,12 @@
   ];
 
   homebrew = {
+    taps = [ "depot/tap" ];
+
+    brews = [
+      "depot/tap/depot"
+    ];
+
     casks = [
       "slack"
       "zoom"
