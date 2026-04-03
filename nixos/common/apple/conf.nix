@@ -122,6 +122,7 @@
       "zed"
       "visual-studio-code"
       "android-studio"
+      "codex"
     ];
 
     masApps = { };
