@@ -23,7 +23,7 @@ let
     # LSPs
     vimPlugins.vim-lsp
     nixd
-    nodePackages.vscode-json-languageserver
+    vscode-json-languageserver
   ];
 
   utils = with pkgs; [

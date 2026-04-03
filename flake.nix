@@ -214,7 +214,7 @@
             sops
             age
             yamllint
-            nodePackages.yaml-language-server
+            yaml-language-server
 
             claude-code
             opencode

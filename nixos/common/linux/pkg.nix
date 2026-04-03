@@ -24,7 +24,7 @@ let
     # LSPs
     vimPlugins.vim-lsp
     nixd
-    nodePackages.vscode-json-languageserver
+    vscode-json-languageserver
 
     # Other
     claude-code
@@ -137,6 +137,7 @@ let
 
     # Terminal AI tools
     claude-code
+    codex
     opencode
 
     # scanner
