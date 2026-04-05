@@ -82,7 +82,10 @@
     };
 
     taps = [ "nikitabobko/tap" ];
-    brews = [ "watch" ];
+    brews = [
+      "watch"
+      "opencode"
+    ];
     casks = [
       # Terminal
       "ghostty"
@@ -123,6 +126,7 @@
       "visual-studio-code"
       "android-studio"
       "codex"
+      "claude-code"
     ];
 
     masApps = { };
