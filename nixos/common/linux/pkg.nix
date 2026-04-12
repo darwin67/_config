@@ -1,6 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
+  latestPkgs = import inputs.nixpkgs-dev {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = {
+      allowUnfree = true;
+      allowBroken = false;
+    };
+  };
+
   editor = with pkgs; [
     vim
     neovim
@@ -27,7 +35,7 @@ let
     vscode-json-languageserver
 
     # Other
-    claude-code
+    latestPkgs.claude-code
   ];
 
   apps = with pkgs; [
@@ -136,8 +144,8 @@ let
     gh
 
     # Terminal AI tools
-    claude-code
-    codex
+    latestPkgs.claude-code
+    latestPkgs.codex
     opencode
 
     # scanner
