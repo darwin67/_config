@@ -146,7 +146,7 @@ let
     # Terminal AI tools
     latestPkgs.claude-code
     latestPkgs.codex
-    opencode
+    latestPkgs.opencode
 
     # scanner
     simple-scan
