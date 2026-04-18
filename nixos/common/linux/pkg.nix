@@ -145,7 +145,7 @@ let
 
     # Terminal AI tools
     latestPkgs.claude-code
-    latestPkgs.codex
+    inputs.codex-cli-nix.packages.${pkgs.system}.default
     latestPkgs.opencode
 
     # scanner
