@@ -13,3 +13,4 @@ result
 /.direnv/
 /nix/hardware-configuration.nix
 .claude/
+.codex

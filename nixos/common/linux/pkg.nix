@@ -145,8 +145,10 @@ let
 
     # Terminal AI tools
     latestPkgs.claude-code
-    latestPkgs.codex
     latestPkgs.opencode
+
+    inputs.codex-cli-nix.packages.${pkgs.system}.default
+    bubblewrap # dep for codex
 
     # scanner
     simple-scan
