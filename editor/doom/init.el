@@ -72,7 +72,6 @@
        (terraform +lsp)
        tree-sitter
        direnv
-       llm
 
        :lang
        (cc +lsp +tree-sitter)

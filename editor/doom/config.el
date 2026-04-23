@@ -362,9 +362,3 @@
 
 ;; SVG
 (add-to-list 'auto-mode-alist '("\\.svg\\'" . xml-mode))
-
-;; LLM
-;; register Anthropic
-(setq
- gptel-backend (gptel-make-anthropic "Claude"
-                 :stream t :key gptel-api-key))
