@@ -22,7 +22,7 @@
       "slack"
       "zoom"
       "notion"
-      "linear-linear"
+      "linear"
       "tailscale-app"
     ];
   };
