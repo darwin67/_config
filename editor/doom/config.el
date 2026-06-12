@@ -4,7 +4,6 @@
 (setq
  load-prefer-newer t
  native-comp-jit-compilation t
- compile-angel-verbose t
 
  ;; Ensure that quitting only occurs once Emacs finishes native compiling,
  ;; preventing incomplete or leftover compilation files in `/tmp`.
@@ -12,10 +11,6 @@
  confirm-kill-processes t
  ;; Non-nil means to native compile packages as part of their installation.
  package-native-compile t)
-
-;; A global mode that compiles .el files before they are loaded
-;; using `load' or `require'.
-(compile-angel-on-load-mode)
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
