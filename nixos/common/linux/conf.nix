@@ -315,6 +315,7 @@ in {
 
     docker = {
       enable = true;
+      package = pkgs.docker_29;
 
       # NOTE: doesn't work with host.docker.internal
       # rootless = {

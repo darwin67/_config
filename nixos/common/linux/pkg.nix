@@ -123,7 +123,7 @@ let
         black
       ]))
 
-    docker
+    docker_29
     ctop
     ripgrep
     jq
