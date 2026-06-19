@@ -63,8 +63,6 @@
 (package! nginx-mode)
 (package! dockerfile-mode)
 (package! dotenv-mode)
-(package! elixir-ts-mode)
-(package! heex-ts-mode)
 (package! jinja2-mode)
 
 ;; Provide go playground within emacs

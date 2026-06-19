@@ -184,8 +184,10 @@
 ;; Elixir
 
 (with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("lexical")))
+  (setf (alist-get '(elixir-mode elixir-ts-mode heex-ts-mode)
+                   eglot-server-programs
+                   nil nil #'equal)
+        (eglot-alternatives '(("expert" "--stdio"))))
 
   ;; Set eglot code action indicator
   (setq eglot-code-action-indicator
@@ -209,14 +211,6 @@
   ;; flycheck-color-mode-line - color mode line based on flycheck state
   (add-hook 'flycheck-mode-hook #'flycheck-color-mode-line-mode)
   )
-
-;; Create a buffer-local hook to run elixir-format on save
-;;
-;; NOTE: embedded into elixir-ts-mode
-;; (add-hook 'elixir-mode-hook
-;;           (lambda() (add-hook 'before-save-hook 'elixir-format nil t)))
-
-(add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
 
 ;; ===================================================================
 ;; hl-todo configuration - use background colors instead of text colors
