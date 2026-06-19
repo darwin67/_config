@@ -4,6 +4,7 @@
 (setq
  load-prefer-newer t
  native-comp-jit-compilation t
+ native-comp-async-report-warnings-errors nil
 
  ;; Ensure that quitting only occurs once Emacs finishes native compiling,
  ;; preventing incomplete or leftover compilation files in `/tmp`.
