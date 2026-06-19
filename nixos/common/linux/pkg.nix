@@ -80,6 +80,7 @@ let
     unzip
     ghostty
     gcr_4
+    fontconfig
   ];
 
   desktop = with pkgs; [

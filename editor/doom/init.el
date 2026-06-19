@@ -15,7 +15,7 @@
        :ui
        deft
        doom
-       doom-dashboard
+       dashboard
        doom-quit
        hl-todo
        ;; indent-guides

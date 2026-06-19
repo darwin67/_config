@@ -16,11 +16,15 @@ in {
       "$HOME/.local/bin"
       "$HOME/.cargo/bin"
       "$HOME/.node/npm-pkgs/bin"
+      # Prefer the nix-darwin Emacs over Homebrew so Doom uses native-comp.
+      "/run/current-system/sw/bin"
       "/opt/homebrew/bin"
     ];
 
     sessionVariables = {
       EDITOR = "vim";
+      EMACS = "/run/current-system/sw/bin/emacs";
+      FONTCONFIG_FILE = "${homeDir}/.config/fontconfig/fonts.conf";
       SSH_KEY_PATH = "~/.ssh";
 
       # Python
@@ -34,6 +38,7 @@ in {
     file = {
       # local bins
       "bin/.keep".text = "";
+      ".cache/fontconfig/.keep".text = "";
 
       # npm global install
       ".node/npm-pkgs/lib/.keep".text = "";
@@ -50,6 +55,8 @@ in {
 
       # zsh
       ".config/zsh/functions".source = "${self}/zsh/zfunc";
+      ".config/fontconfig/fonts.conf".source =
+        "${self}/fontconfig/fonts.conf";
 
       # editor
       ".doom.d".source = "${self}/editor/doom";
@@ -97,13 +104,17 @@ in {
       history.size = 10000;
 
       initContent = ''
-        export PATH="$HOME/.krew/bin:$PATH"
+        # Some macOS terminals do not import Home Manager session variables.
+        # Keep Doom on nix-darwin Emacs and give fontconfig a Darwin font map.
+        export PATH="$HOME/.krew/bin:/run/current-system/sw/bin:$PATH"
+        export EMACS="/run/current-system/sw/bin/emacs"
+        export FONTCONFIG_FILE="$HOME/.config/fontconfig/fonts.conf"
       '';
 
       shellAliases = {
         ll = "ls -lah";
-        emacs = "emacs -nw";
-        emacsclient = "emacsclient -nw";
+        emacs = "/run/current-system/sw/bin/emacs -nw";
+        emacsclient = "/run/current-system/sw/bin/emacsclient -nw";
 
         # Ruby
         be = "bundle exec";

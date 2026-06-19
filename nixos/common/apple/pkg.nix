@@ -14,9 +14,7 @@ let
   editor = with pkgs; [
     vim
     neovim
-    # REF: https://github.com/NixOS/nixpkgs/issues/395169
-    # probably can be disabled when fixed
-    (emacs30.override { withNativeCompilation = false; })
+    emacs30
 
     nixfmt
     editorconfig-core-c
@@ -79,6 +77,7 @@ let
     openssl
     uv
     gh
+    fontconfig
 
     # file
     yazi

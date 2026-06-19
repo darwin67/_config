@@ -97,9 +97,11 @@ in {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
+    symbola
     # nerdfonts
     nerd-fonts._0xproto
     nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
     font-awesome
   ];
 
