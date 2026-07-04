@@ -17,6 +17,7 @@
     enable = true;
     pkiBundle = "/var/lib/sbctl";
   };
+  boot.resumeDevice = "/dev/mapper/luks-637ad990-8f3d-4854-9e24-1ac18ace2723";
   # ref: https://github.com/NixOS/nixpkgs/issues/489947#issuecomment-3897262330
   # boot.kernelPackages = pkgs.linuxPackages_6_18;
 
