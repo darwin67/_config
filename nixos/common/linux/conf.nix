@@ -1,4 +1,11 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  system,
+  ...
+}:
 
 let
   artwork = pkgs.stdenv.mkDerivation {
@@ -17,11 +24,95 @@ let
     '';
   };
 
-in {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Sway requires this flag when NVIDIA's proprietary/open driver is present;
+  # it is harmless on hosts without NVIDIA.
+  swayCommand = "${lib.getExe config.programs.sway.package} --unsupported-gpu";
+  tuigreetPackage = inputs.tuigreet.packages.${system}.tuigreet;
+  tuigreetConfig = (pkgs.formats.toml { }).generate "tuigreet-config.toml" {
+    session.command = swayCommand;
+
+    display = {
+      show_time = true;
+      time_format = "%a %b %d  %H:%M";
+      greeting = "NixOS";
+      show_title = true;
+      custom_title = "NixOS";
+      align_greeting = "center";
+    };
+
+    remember = {
+      username = true;
+      session = true;
+    };
+
+    user_menu = {
+      enabled = true;
+      min_uid = 1000;
+      max_uid = 30000;
+    };
+
+    secret = {
+      mode = "characters";
+      characters = "*";
+    };
+
+    layout = {
+      width = 72;
+      container_padding = 2;
+      prompt_padding = 1;
+    };
+
+    power = {
+      shutdown = "${pkgs.systemd}/bin/systemctl poweroff";
+      reboot = "${pkgs.systemd}/bin/systemctl reboot";
+      suspend = "${pkgs.systemd}/bin/systemctl suspend";
+    };
+
+    keybindings = {
+      power = 12;
+      background = 4;
+    };
+
+    theme = {
+      border = "blue";
+      text = "white";
+      prompt = "cyan";
+      time = "green";
+      action = "cyan";
+      button = "blue";
+      container = "black";
+      input = "white";
+      greet = "cyan";
+      title = "blue";
+    };
+
+    background = {
+      kind = "matrix";
+      fps = 24;
+      matrix = {
+        head_color = "#d7fff1";
+        bright_color = "#38bdf8";
+        dim_color = "#0f766e";
+        min_length = 6;
+        max_length = 18;
+        min_speed = 0.30;
+        max_speed = 1.10;
+        mutate_chance = 0.02;
+      };
+    };
+  };
+  tuigreetCommand = "${tuigreetPackage}/bin/tuigreet --config /etc/tuigreet/config.toml";
+
+in
+{
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment = {
     systemPackages = [ artwork ];
+    etc."tuigreet/config.toml".source = tuigreetConfig;
     variables = {
       ARTWORK_PATH = "${artwork}";
       # GLFW_IM_MODULE = "ibus";
@@ -49,7 +140,11 @@ in {
     # Scanner
     sane = {
       enable = true;
-      extraBackends = with pkgs; [ sane-airscan hplipWithPlugin utsushi ];
+      extraBackends = with pkgs; [
+        sane-airscan
+        hplipWithPlugin
+        utsushi
+      ];
       disabledDefaultBackends = [ "escl" ];
     };
   };
@@ -96,7 +191,11 @@ in {
   ];
 
   # Configure keymap in X11
-  xdg = { portal = { enable = true; }; };
+  xdg = {
+    portal = {
+      enable = true;
+    };
+  };
   services = {
     timesyncd.enable = true;
 
@@ -153,16 +252,15 @@ in {
         terminal.vt = 1;
         default_session = {
           user = "greeter";
-          # Sway requires this flag when NVIDIA's proprietary/open driver is
-          # present; it is harmless on hosts without NVIDIA.
-          command =
-            "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${lib.escapeShellArg "${lib.getExe config.programs.sway.package} --unsupported-gpu"}";
+          command = tuigreetCommand;
         };
       };
     };
     xserver = {
       enable = true;
-      desktopManager = { runXdgAutostartIfNone = true; };
+      desktopManager = {
+        runXdgAutostartIfNone = true;
+      };
       xkb = {
         layout = "us";
         variant = "";
@@ -195,7 +293,12 @@ in {
       openFirewall = true;
     };
     # scanner
-    udev = { packages = with pkgs; [ sane-airscan utsushi ]; };
+    udev = {
+      packages = with pkgs; [
+        sane-airscan
+        utsushi
+      ];
+    };
 
     flatpak.enable = true;
     dbus.enable = true;
@@ -207,11 +310,21 @@ in {
   users.users.darwin = {
     isNormalUser = true;
     description = "Darwin Wu";
-    extraGroups = [ "networkmanager" "wheel" "docker" "scanner" "lp" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "scanner"
+      "lp"
+    ];
     useDefaultShell = true;
   };
 
   systemd = {
+    tmpfiles.rules = [
+      "d /var/cache/tuigreet 0755 greeter greeter -"
+    ];
+
     # configuring sway itself
     user = {
       targets.sway-session = {
@@ -227,7 +340,9 @@ in {
           description = "Kanshi output autoconfig";
           wantedBy = [ "graphical-session.target" ];
           partOf = [ "graphical-session.target" ];
-          environment = { XDG_CONFIG_HOME = "/home/darwin/.config"; };
+          environment = {
+            XDG_CONFIG_HOME = "/home/darwin/.config";
+          };
           serviceConfig = {
             ExecStart = ''
               ${pkgs.kanshi}/bin/kanshi
@@ -240,7 +355,10 @@ in {
         # for controller via bluetooth devices
         mpris-proxy = {
           description = "Mpris proxy";
-          after = [ "network.target" "sound.target" ];
+          after = [
+            "network.target"
+            "sound.target"
+          ];
           wantedBy = [ "default.target" ];
           serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
         };
@@ -269,7 +387,12 @@ in {
         slurp
         wl-clipboard
         wf-recorder
-        (python313.withPackages (ps: with ps; [ i3pystatus keyring ]))
+        (python313.withPackages (
+          ps: with ps; [
+            i3pystatus
+            keyring
+          ]
+        ))
         satty
 
         # wallpaper
@@ -285,7 +408,9 @@ in {
         export MOZ_ENABLE_WAYLAND=1
       '';
     };
-    waybar = { enable = false; };
+    waybar = {
+      enable = false;
+    };
     nix-ld.enable = true;
 
     _1password.enable = true;
