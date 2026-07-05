@@ -12,11 +12,11 @@ let
   editor = with pkgs; [
     vim
     neovim
-    emacs30 # 29
+    emacs
     vscode
 
     # editor utilities
-    nixfmt-classic
+    nixfmt
     editorconfig-core-c
     shfmt
     shellcheck
@@ -33,24 +33,19 @@ let
     vimPlugins.vim-lsp
     nixd
     vscode-json-languageserver
-
-    # Other
-    latestPkgs.claude-code
   ];
 
   apps = with pkgs; [
     signal-desktop
-    wasistlos
+    karere
     # wechat-uos
     discord
     nordic
     _1password-gui
     _1password-cli # cli tool
-    insync
     mpv
     yt-dlp
     spotify
-    insync
     obsidian
     libreoffice-still
   ];
@@ -70,7 +65,7 @@ let
     openssl
     alacritty
     glibcLocales
-    xfce.thunar
+    thunar
     file
     seahorse
     kitty
@@ -108,7 +103,7 @@ let
   browser = with pkgs; [ firefox-devedition google-chrome brave ];
 
   utils = with pkgs; [
-    neofetch
+    fastfetch
     i3pystatus
     (python313.withPackages (ps:
       with ps; [
@@ -148,7 +143,7 @@ let
     latestPkgs.claude-code
     latestPkgs.opencode
 
-    inputs.codex-cli-nix.packages.${pkgs.system}.default
+    inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     bubblewrap # dep for codex
 
     # scanner

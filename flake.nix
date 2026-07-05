@@ -2,7 +2,7 @@
   description = "Darwin's workstation setup";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -12,14 +12,13 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Timed wallpaper
     timewall = {
-      # NOTE: can release this tag once libheif >= 1.9.7 can be installed
-      url = "github:bcyran/timewall?ref=1.5.0";
+      url = "github:bcyran/timewall";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -30,9 +29,9 @@
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
 
     # MacOS
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+      url = "github:LnL7/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
@@ -47,7 +46,7 @@
     , sops-nix, nix-darwin, nixpkgs-dev, nixos-hardware, lanzaboote, ... }:
     let
       username = "darwin";
-      stateVersion = "25.11";
+      stateVersion = "26.05";
       wallpaperTheme = "macMonterey";
 
       # Function for helping configuration linux systems
