@@ -144,9 +144,20 @@ in {
     displayManager = {
       enable = true;
       defaultSession = "sway";
-      sddm = {
-        enable = true;
-        wayland.enable = true;
+    };
+    # Use a console greeter for Linux hosts and start Sway after authentication.
+    # This avoids graphical greeter GPU selection issues on hybrid systems.
+    greetd = {
+      enable = true;
+      settings = {
+        terminal.vt = 1;
+        default_session = {
+          user = "greeter";
+          # Sway requires this flag when NVIDIA's proprietary/open driver is
+          # present; it is harmless on hosts without NVIDIA.
+          command =
+            "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${lib.escapeShellArg "${lib.getExe config.programs.sway.package} --unsupported-gpu"}";
+        };
       };
     };
     xserver = {
@@ -328,7 +339,7 @@ in {
   ## Security
   security = {
     rtkit.enable = true;
-    pam.services.sddm.enableGnomeKeyring = true;
+    pam.services.greetd.enableGnomeKeyring = true;
   };
 
 }
