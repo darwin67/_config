@@ -39,7 +39,6 @@
   };
 
   # boot.kernelParams = [ "amdgpu.abmlevel=0" ];
-  services.tlp.enable = lib.mkForce false;
 
   # BIOS: enable "Linux Audio Compatibility" for better speaker output.
 }

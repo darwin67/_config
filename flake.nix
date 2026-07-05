@@ -47,34 +47,16 @@
     nixpkgs-dev.url = "github:nixos/nixpkgs?ref=master";
   };
 
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-darwin,
-      home-manager,
-      flake-utils,
-      sops-nix,
-      nix-darwin,
-      nixpkgs-dev,
-      nixos-hardware,
-      lanzaboote,
-      ...
-    }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-darwin, home-manager, flake-utils
+    , sops-nix, nix-darwin, nixpkgs-dev, nixos-hardware, lanzaboote, ... }:
     let
       username = "darwin";
       stateVersion = "25.11";
       wallpaperTheme = "macMonterey";
 
       # Function for helping configuration linux systems
-      mkLinuxSystem =
-        {
-          system ? "x86_64-linux",
-          modules ? [ ],
-          additionalFiles ? { },
-          includeKinesis ? true,
-          ...
-        }:
+      mkLinuxSystem = { system ? "x86_64-linux", modules ? [ ]
+        , additionalFiles ? { }, includeKinesis ? true, ... }:
         let
           pkgs = import nixpkgs {
             inherit system;
@@ -97,8 +79,7 @@
               source = "${self}/sway/config.d/kinesis-freestyle-keyboard.conf";
             };
           };
-        in
-        {
+        in {
           specialArgs = { inherit system inputs; };
 
           modules = modules ++ [
@@ -110,15 +91,8 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/linux/home.nix {
-                  inherit
-                    self
-                    inputs
-                    pkgs
-                    username
-                    wallpaperTheme
-                    stateVersion
-                    home-manager
-                    ;
+                  inherit self inputs pkgs username wallpaperTheme stateVersion
+                    home-manager;
                   additionalFiles = baseAdditionalFiles // additionalFiles;
                 };
               };
@@ -126,14 +100,8 @@
           ];
         };
 
-      mkMacOSSystem =
-        {
-          system ? "aarch64-darwin",
-          modules ? [ ],
-          additionalFiles ? { },
-          includeKinesis ? true,
-          ...
-        }:
+      mkMacOSSystem = { system ? "aarch64-darwin", modules ? [ ]
+        , additionalFiles ? { }, includeKinesis ? true, ... }:
         let
           pkgs = import nixpkgs-darwin {
             inherit system;
@@ -148,16 +116,8 @@
               source = "${self}/sway/config.d/kinesis-freestyle-keyboard.conf";
             };
           };
-        in
-        {
-          specialArgs = {
-            inherit
-              self
-              system
-              inputs
-              username
-              ;
-          };
+        in {
+          specialArgs = { inherit self system inputs username; };
 
           modules = modules ++ [
             home-manager.darwinModules.home-manager
@@ -167,14 +127,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.darwin = import ./nixos/common/apple/home.nix {
-                  inherit
-                    self
-                    pkgs
-                    inputs
-                    username
-                    stateVersion
-                    home-manager
-                    ;
+                  inherit self pkgs inputs username stateVersion home-manager;
                   additionalFiles = baseAdditionalFiles // additionalFiles;
                   # inherit (nixpkgs) lib;
                 };
@@ -204,15 +157,6 @@
           };
         };
 
-        thinkpadz16 = mkLinuxSystem {
-          modules = [ ./nixos/laptop/thinkpadz16/configuration.nix ];
-          additionalFiles = {
-            ".config/sway/config.d/screen.conf" = {
-              source = "${self}/nixos/laptop/thinkpadz16/sway/screen.conf";
-            };
-          };
-        };
-
         m4mini = mkMacOSSystem {
           modules = [ ./nixos/desktop/m4mini/configuration.nix ];
         };
@@ -221,8 +165,7 @@
           modules = [ ./nixos/laptop/mbp-inngest/configuration.nix ];
         };
       };
-    in
-    {
+    in {
       # Linux setup
       nixosConfigurations = {
         sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
@@ -235,20 +178,15 @@
         "Darwins-Mac-mini" = nix-darwin.lib.darwinSystem (hosts.m4mini);
         "Darwin-MBP-Inngest" = nix-darwin.lib.darwinSystem (hosts.mbp-inngest);
       };
-    }
-    // flake-utils.lib.eachDefaultSystem (
-      system:
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs-dev {
           inherit system;
 
-          config = {
-            allowUnfree = true;
-          };
+          config = { allowUnfree = true; };
         };
 
-      in
-      {
+      in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             sops
@@ -260,6 +198,5 @@
             opencode
           ];
         };
-      }
-    );
+      });
 }
