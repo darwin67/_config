@@ -105,7 +105,7 @@ let
     libayatana-appindicator
   ];
 
-  browser = with pkgs; [ firefox-devedition google-chrome brave zen-browser ];
+  browser = with pkgs; [ firefox-devedition google-chrome brave ];
 
   utils = with pkgs; [
     neofetch

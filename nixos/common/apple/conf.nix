@@ -1,11 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  self,
-  username,
-  ...
-}:
+{ config, lib, pkgs, self, username, ... }:
 
 {
   # Necessary for using flakes on this system.
@@ -40,13 +33,9 @@
         "com.apple.trackpad.scaling" = 2.0;
       };
 
-      controlcenter = {
-        BatteryShowPercentage = true;
-      };
+      controlcenter = { BatteryShowPercentage = true; };
 
-      loginwindow = {
-        GuestEnabled = false;
-      };
+      loginwindow = { GuestEnabled = false; };
 
       trackpad.Clicking = true;
     };
@@ -84,10 +73,7 @@
     };
 
     taps = [ "nikitabobko/tap" ];
-    brews = [
-      "watch"
-      "opencode"
-    ];
+    brews = [ "watch" "opencode" ];
     casks = [
       # Terminal
       "ghostty"
@@ -97,7 +83,6 @@
       # Browwer
       "google-chrome"
       "firefox@developer-edition"
-      "zen"
       "brave-browser"
 
       # Chat
@@ -134,12 +119,8 @@
     masApps = { };
   };
 
-  programs = {
-    zsh.enable = true;
-  };
+  programs = { zsh.enable = true; };
 
-  services = {
-    emacs.enable = true;
-  };
+  services = { emacs.enable = true; };
   # services.nix-daemon.enable = true;
 }
