@@ -15,6 +15,8 @@
     ./hardware-configuration.nix
   ];
 
+  local.tuigreet.title = "NixOS - Framework16";
+
   environment.systemPackages = [ pkgs.sbctl ];
 
   # secure boot - commented out from hardware-configuration.nix
@@ -56,8 +58,8 @@
   # default; NixOS rejects configurations with both PPD and TLP enabled.
   services.tlp.enable = lib.mkForce false;
 
-  systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
-  systemd.user.services.dbus-broker.reloadIfChanged = lib.mkForce false;
+  # systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
+  # systemd.user.services.dbus-broker.reloadIfChanged = lib.mkForce false;
 
   # NOTE
   # BIOS: enable "Linux Audio Compatibility" for better speaker output.

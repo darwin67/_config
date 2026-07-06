@@ -27,8 +27,9 @@
     };
     tuigreet = {
       url = "github:NotAShelf/tuigreet";
-      inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
     };
+    crane.url = "github:ipetkov/crane";
 
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
 
