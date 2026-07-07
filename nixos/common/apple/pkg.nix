@@ -30,7 +30,7 @@ let
   ];
 
   utils = with pkgs; [
-    neofetch
+    fastfetch
     (python313.withPackages (
       ps: with ps; [
         i3pystatus
