@@ -19,6 +19,12 @@
 
   environment.systemPackages = [ pkgs.sbctl ];
 
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
   # secure boot - commented out from hardware-configuration.nix
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.lanzaboote = {
