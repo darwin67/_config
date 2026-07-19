@@ -44,6 +44,7 @@
       ".npmrc".source = "${self}/dots/.npmrc";
 
       ".config/zsh/functions".source = "${self}/zsh/zfunc";
+      ".doom.d".source = "${self}/editor/doom";
       ".config/nvim".source = "${self}/editor/nvim";
       ".tmux.conf".source = "${self}/term/.tmux.conf";
     }
