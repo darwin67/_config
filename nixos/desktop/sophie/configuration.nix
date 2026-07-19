@@ -41,8 +41,6 @@
 
   # tailscale
   services.tailscale = {
-    enable = true;
-    openFirewall = true;
     useRoutingFeatures = "server";
   };
   networking.firewall.trustedInterfaces = [ "tailscale0" ];

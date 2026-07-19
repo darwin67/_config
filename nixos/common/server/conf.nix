@@ -6,7 +6,10 @@
     "flakes"
   ];
 
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.trustedInterfaces = [ "tailscale0" ];
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -31,6 +34,11 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    tailscale = {
+      enable = true;
       openFirewall = true;
     };
 
