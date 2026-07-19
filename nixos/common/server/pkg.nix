@@ -18,6 +18,7 @@ let
   editors = with pkgs; [
     vim
     neovim
+    emacs
     nixfmt
     editorconfig-core-c
     shfmt
