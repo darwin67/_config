@@ -62,7 +62,6 @@ let
     sqlite
     tree
     pet
-    bottom
     dig
     sops
     age
