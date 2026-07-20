@@ -43,8 +43,23 @@
   systemd.network = {
     enable = true;
     wait-online.anyInterface = true;
-    networks."10-wired" = {
+
+    netdevs."20-br-virt0" = {
+      netdevConfig = {
+        Kind = "bridge";
+        Name = "br-virt0";
+        MACAddress = "b4:2e:99:ed:15:7b";
+      };
+    };
+
+    networks."10-eno1" = {
       matchConfig.Name = "eno1";
+      networkConfig.Bridge = "br-virt0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+
+    networks."20-br-virt0" = {
+      matchConfig.Name = "br-virt0";
       networkConfig = {
         DHCP = "yes";
         IPv6AcceptRA = true;
