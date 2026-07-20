@@ -57,6 +57,12 @@
     };
   };
 
+  sops.secrets.gpg-private-key = {
+    sopsFile = "./secrets.enc.yaml";
+    owner = "darwin";
+    mode = "0400";
+  };
+
   # boot.kernelParams = [ "amdgpu.abmlevel=0" ];
 
   # NOTE

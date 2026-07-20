@@ -10,6 +10,8 @@
 
 { config, ... }:
 {
+  imports = [ ../gpg.nix ];
+
   home = {
     username = username;
     homeDirectory = "/home/${username}";

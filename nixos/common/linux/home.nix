@@ -13,7 +13,10 @@ let
   '';
 
 in { config, ... }: {
-  imports = [ inputs.timewall.homeManagerModules.default ];
+  imports = [
+    ../gpg.nix
+    inputs.timewall.homeManagerModules.default
+  ];
 
   home = {
     username = username;
@@ -29,7 +32,10 @@ in { config, ... }: {
       };
     };
 
-    packages = with pkgs; [ starship ];
+    packages = with pkgs; [
+      gcr
+      starship
+    ];
 
     sessionPath = [
       "${config.home.homeDirectory}/bin"
@@ -222,6 +228,8 @@ in { config, ... }: {
   };
 
   services = {
+    gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
+
     timewall = {
       enable = true;
       wallpaperPath = "${timed-wallpaper}";
