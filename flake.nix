@@ -258,6 +258,8 @@
             claude-code
             opencode
           ];
+
+          SOPS_AGE_KEY_FILE = "age.key";
         };
       }
     );
