@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   nix.settings.experimental-features = [
@@ -63,10 +68,10 @@
     isNormalUser = true;
     description = "Darwin Wu";
     extraGroups = [
-      "networkmanager"
       "wheel"
       "docker"
-    ];
+    ]
+    ++ lib.optional config.networking.networkmanager.enable "networkmanager";
     useDefaultShell = true;
   };
 

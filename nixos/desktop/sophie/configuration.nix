@@ -33,6 +33,26 @@
 
   security.tpm2.enable = true;
 
+  networking = {
+    networkmanager.enable = lib.mkForce false;
+    useDHCP = lib.mkForce false;
+  };
+
+  services.resolved.enable = true;
+
+  systemd.network = {
+    enable = true;
+    wait-online.anyInterface = true;
+    networks."10-wired" = {
+      matchConfig.Name = "eno1";
+      networkConfig = {
+        DHCP = "yes";
+        IPv6AcceptRA = true;
+      };
+      linkConfig.RequiredForOnline = "routable";
+    };
+  };
+
   virtualisation.libvirtd.enable = true;
   users.users.darwin.extraGroups = lib.mkAfter [
     "kvm"
