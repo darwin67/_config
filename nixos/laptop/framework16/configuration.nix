@@ -57,8 +57,10 @@
     };
   };
 
+  sops.age.keyFile = "${config.users.users.darwin.home}/.config/sops/age/keys.txt";
+
   sops.secrets.gpg-private-key = {
-    sopsFile = "./secrets.enc.yaml";
+    sopsFile = ./secrets.enc.yaml;
     owner = "darwin";
     mode = "0400";
   };

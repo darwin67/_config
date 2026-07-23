@@ -148,6 +148,7 @@ let
     duckdb
     uv
     gh
+    kubectl
 
     # Terminal AI tools
     latestPkgs.claude-code
