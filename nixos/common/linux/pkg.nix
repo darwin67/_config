@@ -54,6 +54,7 @@ let
     spotify
     obsidian
     libreoffice-still
+    dropbox
   ];
 
   sysutils = with pkgs; [
