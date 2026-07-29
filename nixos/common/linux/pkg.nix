@@ -67,6 +67,7 @@ let
     wget
     xh
     git
+    jujutsu
     hub
     fzf
     openssl
