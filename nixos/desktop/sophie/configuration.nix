@@ -22,11 +22,20 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs = {
     forceImportRoot = false;
-    extraPools = [ "storage" ];
+    extraPools = [
+      "storage"
+      "fast-storage"
+    ];
   };
 
   fileSystems."/home/darwin/storage" = {
     device = "/mnt/storage";
+    fsType = "none";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/darwin/fast-storage" = {
+    device = "/mnt/fast-storage";
     fsType = "none";
     options = [ "bind" ];
   };
