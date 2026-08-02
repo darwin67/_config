@@ -72,6 +72,8 @@
   # default; NixOS rejects configurations with both PPD and TLP enabled.
   services.tlp.enable = lib.mkForce false;
 
+  services.davfs2.enable = true;
+
   # systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
   # systemd.user.services.dbus-broker.reloadIfChanged = lib.mkForce false;
 
