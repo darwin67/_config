@@ -218,6 +218,19 @@
 
         mbp-inngest = mkMacOSSystem {
           modules = [ ./nixos/laptop/mbp-inngest/configuration.nix ];
+          additionalFiles = {
+            ".config/amp/settings.json" = {
+              force = true;
+              text = builtins.toJSON {
+                "amp.git.commit.ampThread.enabled" = false;
+                "amp.git.commit.coauthor.enabled" = false;
+                "amp.mcpServers" = {
+                  linear.url = "https://mcp.linear.app/mcp";
+                  notion.url = "https://mcp.notion.com/mcp";
+                };
+              };
+            };
+          };
         };
       };
     in
