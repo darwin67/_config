@@ -155,6 +155,7 @@ let
     # Terminal AI tools
     latestPkgs.claude-code
     latestPkgs.opencode
+    latestPkgs.amp-cli
 
     inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     bubblewrap # dep for codex
