@@ -12,7 +12,12 @@
   ];
 
   homebrew = {
-    taps = [ "depot/tap" ];
+    taps = [
+      {
+        name = "depot/tap";
+        trusted = true;
+      }
+    ];
 
     brews = [
       "depot/tap/depot"

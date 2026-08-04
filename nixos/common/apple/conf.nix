@@ -84,8 +84,14 @@
     };
 
     taps = [
-      "nikitabobko/tap"
-      "ampcode/tap"
+      {
+        name = "nikitabobko/tap";
+        trusted = true;
+      }
+      {
+        name = "ampcode/tap";
+        trusted = true;
+      }
     ];
     brews = [
       "watch"
