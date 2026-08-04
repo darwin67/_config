@@ -70,6 +70,13 @@ in { config, ... }: {
 
       ".config/sops/age/.keep".text = "";
 
+      # Amp
+      ".config/amp/settings.json".text = builtins.toJSON {
+        "amp.git.commit.ampThread.enabled" = false;
+        "amp.git.commit.coauthor.enabled" = false;
+        "amp.updates.mode" = "disabled";
+      };
+
       # dot files
       ".gitconfig".source = "${self}/dots/.gitconfig";
       ".gitignore_global".source = "${self}/dots/.gitignore_global";
