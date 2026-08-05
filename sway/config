@@ -141,6 +141,9 @@ input "type:keyboard" {
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Open 1Password Quick Access
+    bindsym Ctrl+Shift+space exec 1password --quick-access
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
