@@ -35,6 +35,7 @@ in { config, ... }: {
     packages = with pkgs; [
       gcr
       starship
+      starship-jj
     ];
 
     sessionPath = [
@@ -221,7 +222,60 @@ in { config, ... }: {
       enable = true;
 
       settings = {
+        format = "$username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$fossil_branch$fossil_metrics\${custom.git_branch}\${custom.git_commit}\${custom.git_state}\${custom.git_metrics}\${custom.git_status}\${custom.jj}$all";
         add_newline = true;
+        custom.jj = {
+          command = "prompt";
+          format = "$output ";
+          ignore_timeout = true;
+          shell = [
+            "starship-jj"
+            "--ignore-working-copy"
+            "starship"
+          ];
+          use_stdin = false;
+          when = true;
+        };
+        git_branch.disabled = true;
+        custom.git_branch = {
+          command = "starship module git_branch";
+          description = "Only show git_branch outside jj repositories";
+          require_repo = true;
+          style = "";
+          when = "! jj --ignore-working-copy root";
+        };
+        git_commit.disabled = true;
+        custom.git_commit = {
+          command = "starship module git_commit";
+          description = "Only show git_commit outside jj repositories";
+          require_repo = true;
+          style = "";
+          when = "! jj --ignore-working-copy root";
+        };
+        git_state.disabled = true;
+        custom.git_state = {
+          command = "starship module git_state";
+          description = "Only show git_state outside jj repositories";
+          require_repo = true;
+          style = "";
+          when = "! jj --ignore-working-copy root";
+        };
+        git_metrics.disabled = true;
+        custom.git_metrics = {
+          command = "starship module git_metrics";
+          description = "Only show git_metrics outside jj repositories";
+          require_repo = true;
+          style = "";
+          when = "! jj --ignore-working-copy root";
+        };
+        git_status.disabled = true;
+        custom.git_status = {
+          command = "starship module git_status";
+          description = "Only show git_status outside jj repositories";
+          require_repo = true;
+          style = "";
+          when = "! jj --ignore-working-copy root";
+        };
         aws.disabled = true;
         gcloud.disabled = true;
         shlvl.disabled = true;
