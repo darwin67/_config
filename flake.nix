@@ -32,6 +32,7 @@
     crane.url = "github:ipetkov/crane";
 
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
+    ampcode.url = "github:darwin67/ampcode-nix";
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
