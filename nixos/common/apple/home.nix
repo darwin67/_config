@@ -55,6 +55,10 @@ in {
       # dot files
       ".gitconfig".source = "${self}/dots/.gitconfig";
       ".gitignore_global".source = "${self}/dots/.gitignore_global";
+      ".config/jj/config.toml" = {
+        force = true;
+        source = "${self}/dots/jj/config.toml";
+      };
       ".pryrc".source = "${self}/dots/.pryrc";
       ".npmrc".source = "${self}/dots/.npmrc";
       ".aerospace.toml".source = "${self}/dots/.aerospace.toml";
