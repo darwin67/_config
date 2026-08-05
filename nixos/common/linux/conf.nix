@@ -32,6 +32,12 @@ in
   ];
 
   environment = {
+    etc."1password/custom_allowed_browsers" = {
+      mode = "0755";
+      text = ''
+        firefox-devedition
+      '';
+    };
     systemPackages = [ artwork ];
     variables = {
       ARTWORK_PATH = "${artwork}";
