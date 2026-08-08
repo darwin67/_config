@@ -55,6 +55,7 @@ let
     obsidian
     libreoffice-still
     dropbox
+    zoom-us
   ];
 
   sysutils = with pkgs; [
