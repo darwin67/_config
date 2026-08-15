@@ -85,6 +85,7 @@ let
 
     latestPkgs.claude-code
     latestPkgs.opencode
+    inputs.ampcode.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     bubblewrap

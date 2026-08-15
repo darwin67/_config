@@ -43,6 +43,13 @@
       ".node/npm-pkgs/bin/.keep".text = "";
       ".config/sops/age/.keep".text = "";
 
+      # Amp
+      ".config/amp/settings.json".text = builtins.toJSON {
+        "amp.git.commit.ampThread.enabled" = false;
+        "amp.git.commit.coauthor.enabled" = false;
+        "amp.updates.mode" = "disabled";
+      };
+
       ".gitconfig".source = "${self}/dots/.gitconfig";
       ".gitignore_global".source = "${self}/dots/.gitignore_global";
       ".config/jj/config.toml" = {
