@@ -69,6 +69,7 @@ let
     uv
     gh
     tpm2-tools
+    jujutsu
 
     (python313.withPackages (
       ps: with ps; [
