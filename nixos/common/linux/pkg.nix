@@ -46,6 +46,7 @@ let
     karere
     # wechat-uos
     discord
+    zulip
     nordic
     _1password-gui
     _1password-cli # cli tool

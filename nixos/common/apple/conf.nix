@@ -113,6 +113,7 @@
       "whatsapp"
       "signal"
       "discord"
+      "zulip"
 
       # Tool
       "1password"
