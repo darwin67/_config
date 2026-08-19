@@ -43,6 +43,7 @@ let
 
   apps = with pkgs; [
     signal-desktop
+    slack
     karere
     # wechat-uos
     discord
@@ -111,7 +112,6 @@ let
   ];
 
   browser = with pkgs; [
-    firefox-devedition
     google-chrome
     brave
   ];

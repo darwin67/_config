@@ -279,6 +279,16 @@ in
   programs = {
     ssh.startAgent = true;
     zsh.enable = true;
+    firefox = {
+      enable = true;
+      package = pkgs.firefox-devedition;
+      preferencesStatus = "default";
+      preferences = {
+        "network.protocol-handler.expose.slack" = false;
+        "network.protocol-handler.external.slack" = true;
+        "network.protocol-handler.warn-external.slack" = false;
+      };
+    };
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
