@@ -41,6 +41,7 @@
   };
 
   security.tpm2.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
   networking = {
     networkmanager.enable = lib.mkForce false;
