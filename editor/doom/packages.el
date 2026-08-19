@@ -53,6 +53,10 @@
 (package! openline
   :recipe (:host github :repo "darwin67/openline"))
 
+;; Magit-style interface for Jujutsu
+(package! majutsu
+  :recipe (:host github :repo "0WD0/majutsu"))
+
 ;; beancount support for plain text accounting
 ;; (package! beancount
 ;;   :recipe (:host github :repo "beancount/beancount-mode"))

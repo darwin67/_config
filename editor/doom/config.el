@@ -137,6 +137,7 @@
           "-" 'split-window-below
           "|" 'split-window-right
           "g" 'magit-status
+          "j" 'majutsu
 
           ;; Move windows with arrows
           "<up>" 'windmove-up
@@ -160,6 +161,13 @@
        :desc "Move buffer down" "j" 'buf-move-down
        :desc "Move buffer left" "h" 'buf-move-left
        :desc "Move buffer right" "l" 'buf-move-right))
+
+;; Jujutsu
+(use-package! majutsu
+  :commands (majutsu majutsu-log)
+  :config
+  (require 'majutsu-forge)
+  (majutsu-forge-mode 1))
 
 ;; Disable formatting on these modes
 (setq +format-on-save-enabled-modes
