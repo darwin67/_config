@@ -62,6 +62,9 @@
 ;;   :recipe (:host github :repo "beancount/beancount-mode"))
 
 ;; additional modes
+(package! asciidoc-mode
+  :recipe (:host github :repo "bbatsov/asciidoc-mode")
+  :pin "aa836bb0aa25427914ef3a938ed218aedd9123d9")
 (package! protobuf-mode)
 (package! systemd)
 (package! nginx-mode)

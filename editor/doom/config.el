@@ -340,6 +340,20 @@
 ;; Nginx
 (add-to-list 'auto-mode-alist '("\\.nginx\\'" . nginx-mode))
 
+;; AsciiDoc
+(add-to-list 'treesit-extra-load-path
+             (expand-file-name "tree-sitter" doom-emacs-dir))
+
+(after! asciidoc-mode
+  ;; Keep the grammars on the last revision compatible with asciidoc-mode 0.4.0.
+  (setq asciidoc-grammar-recipes
+        '((asciidoc
+           "https://github.com/cathaysia/tree-sitter-asciidoc"
+           "v0.9.0" "tree-sitter-asciidoc/src")
+          (asciidoc-inline
+           "https://github.com/cathaysia/tree-sitter-asciidoc"
+           "v0.9.0" "tree-sitter-asciidoc_inline/src"))))
+
 ;; MDX (Markdown with JSX)
 (add-to-list 'auto-mode-alist '("\\.mdx\\'" . gfm-mode))
 
