@@ -14,6 +14,7 @@ let
       allowBroken = false;
     };
   };
+  fastmail-cli = pkgs.callPackage ../../pkgs/fastmail-cli.nix { };
 
   editor = with pkgs; [
     vim
@@ -153,6 +154,7 @@ let
     uv
     gh
     kubectl
+    fastmail-cli
 
     # Terminal AI tools
     latestPkgs.claude-code

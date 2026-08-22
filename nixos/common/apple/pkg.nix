@@ -11,6 +11,8 @@
 # List packages installed in system profile. To search by name, run:
 # $ nix-env -qaP | grep wget
 let
+  fastmail-cli = pkgs.callPackage ../../pkgs/fastmail-cli.nix { };
+
   editor = with pkgs; [
     vim
     neovim
@@ -59,6 +61,7 @@ let
     sops
     age
     yt-dlp
+    fastmail-cli
 
     # darwin.xcode
     xcode-install
