@@ -46,6 +46,7 @@ let
     yazi
     zip
     unzip
+    kubectl
   ];
 
   devutils = with pkgs; [
