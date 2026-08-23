@@ -15,7 +15,8 @@
     ./hardware-configuration.nix
   ];
 
-  local.tuigreet.title = "NixOS - Framework16";
+  local.tuigreet.enable = false;
+  services.displayManager.cosmic-greeter.enable = true;
 
   environment.systemPackages = [ pkgs.sbctl ];
 

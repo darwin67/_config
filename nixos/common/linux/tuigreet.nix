@@ -92,13 +92,21 @@ let
   };
 in
 {
-  options.local.tuigreet.title = lib.mkOption {
-    type = lib.types.str;
-    default = "NixOS";
-    description = "Title shown by tuigreet.";
+  options.local.tuigreet = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to enable tuigreet as the greetd frontend.";
+    };
+
+    title = lib.mkOption {
+      type = lib.types.str;
+      default = "NixOS";
+      description = "Title shown by tuigreet.";
+    };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     environment.etc."tuigreet/config.toml".source = tuigreetConfig;
 
     # Use a console greeter for Linux hosts and start Sway after authentication.
