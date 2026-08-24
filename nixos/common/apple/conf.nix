@@ -126,7 +126,6 @@
       "aerospace" # tiling window manager
       "wireshark-app"
       "alfred"
-      "yubico-yubikey-manager"
       "claude" # desktop app
 
       # Entertainment
