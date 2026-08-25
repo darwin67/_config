@@ -240,7 +240,6 @@
       nixosConfigurations = {
         sophie = nixpkgs.lib.nixosSystem (hosts.sophie);
         framework16 = nixpkgs.lib.nixosSystem (hosts.framework16);
-        thinkpad-z16 = nixpkgs.lib.nixosSystem (hosts.thinkpadz16);
       };
 
       # macOS setup
