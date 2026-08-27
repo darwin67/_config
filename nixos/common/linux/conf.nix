@@ -24,8 +24,6 @@ let
 
 in
 {
-  imports = [ ./tuigreet.nix ];
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -169,6 +167,10 @@ in
     displayManager = {
       enable = true;
       defaultSession = "sway";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
     };
     xserver = {
       enable = true;
@@ -384,7 +386,7 @@ in
   ## Security
   security = {
     rtkit.enable = true;
-    pam.services.greetd.enableGnomeKeyring = true;
+    pam.services.sddm.enableGnomeKeyring = true;
   };
 
 }

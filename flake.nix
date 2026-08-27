@@ -25,11 +25,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tuigreet = {
-      url = "github:NotAShelf/tuigreet";
-      flake = false;
-    };
-    crane.url = "github:ipetkov/crane";
 
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
     ampcode.url = "github:darwin67/ampcode-nix";
