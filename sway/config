@@ -121,6 +121,7 @@ input "type:touchpad" {
   natural_scroll enabled
   middle_emulation enabled
   tap_button_map lrm
+  pointer_accel 0.2
   scroll_factor 0.9
 }
 
