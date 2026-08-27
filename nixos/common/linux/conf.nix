@@ -167,9 +167,15 @@ in
     displayManager = {
       enable = true;
       defaultSession = "sway";
-      sddm = {
-        enable = true;
-        wayland.enable = true;
+    };
+    greetd = {
+      enable = true;
+      settings = {
+        terminal.vt = 1;
+        default_session = {
+          user = "greeter";
+          command = "${pkgs.greetd}/bin/agreety --cmd ${lib.escapeShellArg "${lib.getExe config.programs.sway.package} --unsupported-gpu"}";
+        };
       };
     };
     xserver = {
@@ -386,7 +392,7 @@ in
   ## Security
   security = {
     rtkit.enable = true;
-    pam.services.sddm.enableGnomeKeyring = true;
+    pam.services.greetd.enableGnomeKeyring = true;
   };
 
 }
