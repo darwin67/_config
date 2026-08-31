@@ -28,6 +28,10 @@
 
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
     ampcode.url = "github:darwin67/ampcode-nix";
+    genkan = {
+      url = "github:darwin67/genkan";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";

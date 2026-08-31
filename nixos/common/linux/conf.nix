@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -50,6 +51,8 @@ in
   networking.networkmanager.enable = true;
 
   hardware = {
+    graphics.enable = true;
+
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -164,6 +167,7 @@ in
       };
     };
     libinput.enable = true;
+    accounts-daemon.enable = true;
     displayManager = {
       enable = true;
       defaultSession = "sway";
@@ -174,7 +178,9 @@ in
         terminal.vt = 1;
         default_session = {
           user = "greeter";
-          command = "${pkgs.greetd}/bin/agreety --cmd ${lib.escapeShellArg "${lib.getExe config.programs.sway.package} --unsupported-gpu"}";
+          command = "${lib.getExe pkgs.cage} -- ${
+            lib.getExe' inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default "genkan"
+          }";
         };
       };
     };
@@ -243,6 +249,11 @@ in
   };
 
   systemd = {
+    services.greetd = {
+      environment.XDG_DATA_DIRS = "${config.services.displayManager.sessionData.desktops}/share";
+      restartIfChanged = false;
+    };
+
     # configuring sway itself
     user = {
       targets.sway-session = {
