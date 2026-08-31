@@ -39,6 +39,8 @@
   };
   hardware.nvidia.primeBatterySaverSpecialisation = true;
 
+  programs.sway.extraOptions = [ "--unsupported-gpu" ];
+
   services.pipewire.wireplumber = {
     enable = true;
     extraConfig."51-force-speaker-profile" = {
