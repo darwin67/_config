@@ -91,7 +91,6 @@ let
   ];
 
   desktop = with pkgs; [
-    sway
     swaybg
     rtkit # for pipewire
     polkit # for 1password
