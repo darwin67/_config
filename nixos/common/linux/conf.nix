@@ -180,7 +180,7 @@ in
           user = "greeter";
           command = "${lib.getExe pkgs.cage} -- ${
             lib.getExe' inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default "genkan"
-          }";
+          } --wallpaper tahoe-beach";
         };
       };
     };
