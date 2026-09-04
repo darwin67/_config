@@ -1,8 +1,21 @@
-{ pkgs, self, username, stateVersion, home-manager, additionalFiles, ... }:
+{
+  pkgs,
+  self,
+  inputs,
+  username,
+  stateVersion,
+  home-manager,
+  additionalFiles,
+  ...
+}:
 
-let homeDir = "/Users/${username}";
+let
+  homeDir = "/Users/${username}";
 
-in {
+in
+{
+  imports = [ (import ../flox-home.nix { inherit inputs pkgs; }) ];
+
   home = {
     username = username;
     homeDirectory = homeDir;
@@ -68,8 +81,7 @@ in {
 
       # zsh
       ".config/zsh/functions".source = "${self}/zsh/zfunc";
-      ".config/fontconfig/fonts.conf".source =
-        "${self}/fontconfig/fonts.conf";
+      ".config/fontconfig/fonts.conf".source = "${self}/fontconfig/fonts.conf";
 
       # editor
       ".doom.d".source = "${self}/editor/doom";
@@ -82,14 +94,14 @@ in {
       ".config/ghostty".source = "${self}/term/ghostty";
       ".config/k9s/config.yaml".source = "${self}/term/k9s/config.yaml";
       ".config/k9s/skins/nord.yaml".source = pkgs.fetchurl {
-        url =
-          "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/nord.yaml";
+        url = "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/nord.yaml";
         sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
       };
 
       # Misc
       "Pictures/Screenshots/.keep".text = "";
-    } // additionalFiles;
+    }
+    // additionalFiles;
 
     activation = {
       cloneNotesRepo = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -140,8 +152,7 @@ in {
         gp = "git push";
         gr = "git remote";
         gb = "git branch";
-        glog =
-          "git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
+        glog = "git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
         gsta = "git stash push";
         gstp = "git stash pop";
 
@@ -191,7 +202,9 @@ in {
 
     direnv = {
       enable = true;
-      nix-direnv = { enable = true; };
+      nix-direnv = {
+        enable = true;
+      };
     };
 
     starship = {

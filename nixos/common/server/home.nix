@@ -1,6 +1,7 @@
 {
   pkgs,
   self,
+  inputs,
   username,
   stateVersion,
   home-manager,
@@ -10,7 +11,10 @@
 
 { config, ... }:
 {
-  imports = [ ../gpg.nix ];
+  imports = [
+    ../gpg.nix
+    (import ../flox-home.nix { inherit inputs pkgs; })
+  ];
 
   home = {
     username = username;

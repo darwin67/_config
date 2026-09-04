@@ -1,5 +1,14 @@
-{ pkgs, self, inputs, username, wallpaperTheme, stateVersion, additionalFiles
-, home-manager, ... }:
+{
+  pkgs,
+  self,
+  inputs,
+  username,
+  wallpaperTheme,
+  stateVersion,
+  additionalFiles,
+  home-manager,
+  ...
+}:
 
 let
   timed-wallpaper = import ./wallpaper.nix {
@@ -12,9 +21,11 @@ let
     --ozone-platform=wayland
   '';
 
-in { config, ... }: {
+in
+{ config, ... }: {
   imports = [
     ../gpg.nix
+    (import ../flox-home.nix { inherit inputs pkgs; })
     inputs.timewall.homeManagerModules.default
   ];
 
@@ -97,8 +108,7 @@ in { config, ... }: {
 
       # Sway
       ".config/sway/config".source = "${self}/sway/config";
-      ".config/sway/config.d/zoom.conf".source =
-        "${self}/sway/config.d/zoom.conf";
+      ".config/sway/config.d/zoom.conf".source = "${self}/sway/config.d/zoom.conf";
 
       ".config/waybar".source = "${self}/sway/waybar";
       ".config/wofi".source = "${self}/sway/wofi";
@@ -120,7 +130,8 @@ in { config, ... }: {
 
       # Misc
       "Pictures/Screenshots/.keep".text = "";
-    } // additionalFiles;
+    }
+    // additionalFiles;
 
     activation = {
       cloneNotesRepo = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -164,8 +175,7 @@ in { config, ... }: {
         gp = "git push";
         gr = "git remote";
         gb = "git branch";
-        glog =
-          "git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
+        glog = "git log --oneline --graph --all --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
         gsta = "git stash push";
         gstp = "git stash pop";
 
@@ -215,7 +225,9 @@ in { config, ... }: {
 
     direnv = {
       enable = true;
-      nix-direnv = { enable = true; };
+      nix-direnv = {
+        enable = true;
+      };
     };
 
     starship = {
@@ -299,11 +311,19 @@ in { config, ... }: {
       enable = true;
       wallpaperPath = "${timed-wallpaper}";
       config = {
-        daemon = { update_interval_seconds = 600; };
+        daemon = {
+          update_interval_seconds = 600;
+        };
         setter = {
           # NOTE: based on
           # https://docs.rs/wallpape-rs/latest/wallpape_rs/
-          command = [ "swaybg" "--mode" "fill" "--image" "%f" ];
+          command = [
+            "swaybg"
+            "--mode"
+            "fill"
+            "--image"
+            "%f"
+          ];
         };
       };
     };

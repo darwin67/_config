@@ -1,10 +1,20 @@
 {
   description = "Darwin's workstation setup";
 
+  nixConfig = {
+    extra-substituters = [ "https://cache.flox.dev" ];
+    extra-trusted-substituters = [ "https://cache.flox.dev" ];
+    extra-trusted-public-keys = [
+      "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    flox.url = "github:flox/flox/latest";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
@@ -99,6 +109,7 @@
           modules = modules ++ [
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
+            ./nixos/common/flox.nix
             {
               nixpkgs.pkgs = pkgs;
               home-manager = {
