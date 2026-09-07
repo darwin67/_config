@@ -19,17 +19,7 @@ set $right l
 set $term ghostty
 
 # Set lock
-set $screenlock swaylock \
-    --indicator \
-    --indicator-x-position $(shuf -i 100-1400 -n 1) \
-    --indicator-y-position $(shuf -i 100-900 -n 1) \
-    --scaling fill \
-    --image $(find $ARTWORK_PATH -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1) \
-    --ring-color 7393B3 \
-    --daemonize \
-    --show-failed-attempts \
-    --fade-in 1 \
-    --clock
+set $screenlock genkan lock --daemonize
 
 # Cursor theme
 # seat seat0 xcursor_theme Adwaita 18
@@ -90,9 +80,10 @@ focus_on_window_activation focus
 
 ### Idle configuration
 exec swayidle -w \
+         lock '$screenlock' \
          timeout 300 '$screenlock' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 7393B3'
+         before-sleep '$screenlock'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when

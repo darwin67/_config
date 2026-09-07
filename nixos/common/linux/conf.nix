@@ -6,25 +6,9 @@
   ...
 }:
 
-let
-  artwork = pkgs.stdenv.mkDerivation {
-    name = "artwork";
-    src = pkgs.fetchFromGitHub {
-      owner = "NixOS";
-      repo = "nixos-artwork";
-      rev = "63f68a917f4e8586c5d35e050cdaf1309832272d";
-      sha256 = "sha256-XquSEijNYtGDkW35bibT2ki18qicENCsIcDzDxrgQkM=";
-    };
-    phases = [ "installPhase" ];
-
-    installPhase = ''
-      mkdir -p $out
-      cp $src/wallpapers/*.{png,svg} $out
-    '';
-  };
-
-in
 {
+  imports = [ inputs.genkan.nixosModules.default ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -36,11 +20,6 @@ in
       text = ''
         firefox-devedition
       '';
-    };
-    systemPackages = [ artwork ];
-    variables = {
-      ARTWORK_PATH = "${artwork}";
-      # GLFW_IM_MODULE = "ibus";
     };
   };
 
@@ -180,7 +159,7 @@ in
           user = "greeter";
           command = "${lib.getExe pkgs.cage} -- ${
             lib.getExe' inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default "genkan"
-          } --wallpaper tahoe-beach";
+          } login --wallpaper tahoe-beach";
         };
       };
     };
@@ -296,6 +275,7 @@ in
   };
 
   programs = {
+    genkan.enable = true;
     ssh.startAgent = true;
     zsh.enable = true;
     firefox = {
@@ -314,7 +294,6 @@ in
       extraPackages = with pkgs; [
         wofi
         wob
-        swaylock-effects
         swayidle
         xwayland
         waybar
