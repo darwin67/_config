@@ -39,6 +39,15 @@
   };
   hardware.nvidia.primeBatterySaverSpecialisation = true;
 
+  # Keep the greeter (cage/wlroots) on the iGPU only. With the dGPU active,
+  # wlroots renders on nvidia and PRIME-copies frames into the amdgpu, whose
+  # 512MB VRAM carveout is too small when the MST dock is connected at boot:
+  # amdgpu fails with "Failed to pin framebuffer with error -12" and greetd
+  # restart-loops the greeter. Pinning the greeter to the iGPU avoids the
+  # cross-GPU copies entirely.
+  systemd.services.greetd.environment.WLR_DRM_DEVICES =
+    "/dev/dri/by-path/pci-0000:c2:00.0-card";
+
   programs.sway.extraOptions = [ "--unsupported-gpu" ];
 
   services.pipewire.wireplumber = {

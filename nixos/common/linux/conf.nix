@@ -243,23 +243,6 @@
         after = [ "graphical-session-pre.target" ];
       };
       services = {
-        # configuring kanshi
-        kanshi = {
-          description = "Kanshi output autoconfig";
-          wantedBy = [ "graphical-session.target" ];
-          partOf = [ "graphical-session.target" ];
-          environment = {
-            XDG_CONFIG_HOME = "/home/darwin/.config";
-          };
-          serviceConfig = {
-            ExecStart = ''
-              ${pkgs.kanshi}/bin/kanshi
-            '';
-            RestartSec = 5;
-            Restart = "always";
-          };
-        };
-
         # for controller via bluetooth devices
         mpris-proxy = {
           description = "Mpris proxy";
@@ -300,7 +283,6 @@
         sway-contrib.grimshot
         mako # notification
         # swaynotificationcenter
-        kanshi
         grim
         slurp
         wl-clipboard
