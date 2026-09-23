@@ -26,11 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Timed wallpaper
-    timewall = {
-      url = "github:bcyran/timewall";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,10 +33,7 @@
 
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
     ampcode.url = "github:darwin67/ampcode-nix";
-    genkan = {
-      url = "github:darwin67/genkan";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    genkan.url = "github:darwin67/genkan";
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
@@ -74,7 +66,6 @@
     let
       username = "darwin";
       stateVersion = "26.05";
-      wallpaperTheme = "macMonterey";
 
       # Function for helping configuration linux systems
       mkLinuxSystem =
@@ -94,8 +85,6 @@
               allowUnfree = true;
               allowBroken = false;
             };
-
-            overlays = [ inputs.timewall.overlays.default ];
           };
           baseAdditionalFiles = nixpkgs.lib.optionalAttrs includeKinesis {
             ".config/sway/config.d/kinesis-freestyle-keyboard.conf" = {
@@ -121,7 +110,6 @@
                     inputs
                     pkgs
                     username
-                    wallpaperTheme
                     stateVersion
                     home-manager
                     ;

@@ -58,8 +58,7 @@ exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
-# Disable Sway's default swaybg process so it does not cover the wallpaper
-# managed by the timewall systemd service after a config reload.
+# Disable Sway's default swaybg process so it does not cover Genkan's wallpaper.
 swaybg_command -
 
 # Screen setup (default value, can be overwritten)

@@ -3,7 +3,6 @@
   self,
   inputs,
   username,
-  wallpaperTheme,
   stateVersion,
   additionalFiles,
   home-manager,
@@ -11,10 +10,7 @@
 }:
 
 let
-  timed-wallpaper = import ./wallpaper.nix {
-    inherit pkgs;
-    theme = wallpaperTheme;
-  };
+  genkan = inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   chromeFlags = ''
     --enable-features=UseOzonePlatform
@@ -26,7 +22,6 @@ in
   imports = [
     ../gpg.nix
     (import ../flox-home.nix { inherit inputs pkgs; })
-    inputs.timewall.homeManagerModules.default
   ];
 
   home = {
@@ -109,6 +104,9 @@ in
       # Sway
       ".config/sway/config".source = "${self}/sway/config";
       ".config/sway/config.d/zoom.conf".source = "${self}/sway/config.d/zoom.conf";
+      ".config/sway/config.d/wallpaper.conf".text = ''
+        exec ${genkan}/bin/genkan wallpaper --file ${genkan}/share/genkan/wallpapers/heic/tahoe-dynamic.heic
+      '';
 
       ".config/waybar".source = "${self}/sway/waybar";
       ".config/wofi".source = "${self}/sway/wofi";
@@ -306,26 +304,5 @@ in
 
   services = {
     gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
-
-    timewall = {
-      enable = true;
-      wallpaperPath = "${timed-wallpaper}";
-      config = {
-        daemon = {
-          update_interval_seconds = 600;
-        };
-        setter = {
-          # NOTE: based on
-          # https://docs.rs/wallpape-rs/latest/wallpape_rs/
-          command = [
-            "swaybg"
-            "--mode"
-            "fill"
-            "--image"
-            "%f"
-          ];
-        };
-      };
-    };
   };
 }

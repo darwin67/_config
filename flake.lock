@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1789662623,
-        "narHash": "sha256-wSf2V97dcKH60uH5Ha1RpZfsm8JYm+RcWLMLlKd+5H0=",
+        "lastModified": 1790137977,
+        "narHash": "sha256-GQRGbsWj/85rKFawmXQ+tC8IL//NwXFhhh8jD1wMV18=",
         "owner": "darwin67",
         "repo": "ampcode-nix",
-        "rev": "ea792acd2f2e535040a4f8b20c96c660752cf108",
+        "rev": "9c4d85cccf3ef01174550330ede05b60caf52f69",
         "type": "github"
       },
       "original": {
@@ -181,17 +181,15 @@
     },
     "genkan": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_4",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1788765114,
-        "narHash": "sha256-WIRh4CdAqZmnnew8W4g6p65jGvRoWHBGBdQRrhAImP0=",
+        "lastModified": 1790124340,
+        "narHash": "sha256-sC3hUCAMwk31yVzfVe1z0yEXN1h3/E/Sky4ZAjexWO0=",
         "owner": "darwin67",
         "repo": "genkan",
-        "rev": "d135ad2c51176e2929809674aa8b7f263516957c",
+        "rev": "3bcd90cfa94e49aaff1a27adee0c368f43fe9b27",
         "type": "github"
       },
       "original": {
@@ -312,7 +310,7 @@
     },
     "nixos-hardware": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1787144466,
@@ -410,6 +408,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1790046670,
+        "narHash": "sha256-MYiI+CzL0tuWgRPjGsKCDHqYs2T3OzMlMQWOYWG0qso=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1767892417,
         "narHash": "sha256-8bW3q88CEg2u4hSP66Vf4lpbLonHz7hqDNBMcCY7E9U=",
         "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
@@ -421,7 +435,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1787525875,
         "narHash": "sha256-sKbMlkDCBVmAjUVT94LwhVtET/YEMtZaFdn5UduWxz8=",
@@ -494,11 +508,10 @@
         "lanzaboote": "lanzaboote",
         "nix-darwin": "nix-darwin",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "nixpkgs-dev": "nixpkgs-dev",
-        "sops-nix": "sops-nix",
-        "timewall": "timewall"
+        "sops-nix": "sops-nix"
       }
     },
     "rust-analyzer-src": {
@@ -560,27 +573,6 @@
         "type": "github"
       }
     },
-    "rust-overlay_3": {
-      "inputs": {
-        "nixpkgs": [
-          "timewall",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770260791,
-        "narHash": "sha256-ADTBfENFjRVDQMcCycyX/pAy6NFI/Ct6Mrar3gsmXI0=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "42ec85352e419e601775c57256a52f6d48a39906",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
     "sops-nix": {
       "inputs": {
         "nixpkgs": [
@@ -628,27 +620,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "timewall": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay_3"
-      },
-      "locked": {
-        "lastModified": 1785602768,
-        "narHash": "sha256-sXgIbD6+JVB+5Dl8Dh1G5j0TOkpgit2KRrwyvHRwfos=",
-        "owner": "bcyran",
-        "repo": "timewall",
-        "rev": "6f072d0d9c6d6cbcc4debbffc2fae0e37325ecbb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bcyran",
-        "repo": "timewall",
         "type": "github"
       }
     }

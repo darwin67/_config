@@ -258,7 +258,13 @@
   };
 
   programs = {
-    genkan.enable = true;
+    genkan = {
+      enable = true;
+      wallpaper = {
+        enable = true;
+        solar.enable = true;
+      };
+    };
     ssh.startAgent = true;
     zsh.enable = true;
     firefox = {
@@ -294,10 +300,6 @@
           ]
         ))
         satty
-
-        # wallpaper
-        imagemagick
-        libheif
       ];
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway

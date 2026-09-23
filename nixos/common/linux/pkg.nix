@@ -100,9 +100,6 @@ let
     bluez
     bluez-tools
 
-    # timed wallpaper
-    timewall
-
     fwupd # hardware
     tlp # battery management
     inotify-tools
