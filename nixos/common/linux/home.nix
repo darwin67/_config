@@ -158,7 +158,8 @@ in
 
       shellAliases = {
         ll = "ls -lah";
-        pbcopy = "wl-copy";
+        pbcopy = "wl-copy --type text/plain";
+        pbcopy-sensitive = "wl-copy --type text/plain --sensitive";
         pbpaste = "wl-paste";
         emacs = "emacs -nw";
 
