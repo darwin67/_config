@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1790137977,
-        "narHash": "sha256-GQRGbsWj/85rKFawmXQ+tC8IL//NwXFhhh8jD1wMV18=",
+        "lastModified": 1790695885,
+        "narHash": "sha256-r/0u66fOO1chVpLPo+m73QD6e1kXKXrlyQtU0Yb1INc=",
         "owner": "darwin67",
         "repo": "ampcode-nix",
-        "rev": "9c4d85cccf3ef01174550330ede05b60caf52f69",
+        "rev": "8b28200098f162a6381d36ced402e4d20b9b1548",
         "type": "github"
       },
       "original": {
