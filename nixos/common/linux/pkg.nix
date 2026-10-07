@@ -7,13 +7,6 @@
 }:
 
 let
-  latestPkgs = import inputs.nixpkgs-dev {
-    system = pkgs.stdenv.hostPlatform.system;
-    config = {
-      allowUnfree = true;
-      allowBroken = false;
-    };
-  };
   fastmail-cli = pkgs.callPackage ../../pkgs/fastmail-cli.nix { };
 
   editor = with pkgs; [
@@ -152,12 +145,6 @@ let
     kubectl
     fastmail-cli
 
-    # Terminal AI tools
-    latestPkgs.claude-code
-    latestPkgs.opencode
-    inputs.ampcode.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     bubblewrap # dep for codex
 
     # scanner
@@ -166,6 +153,8 @@ let
 
 in
 {
+  imports = [ ../llm-agents.nix ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps ++ utils;

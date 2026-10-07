@@ -7,14 +7,6 @@
 }:
 
 let
-  latestPkgs = import inputs.nixpkgs-dev {
-    system = pkgs.stdenv.hostPlatform.system;
-    config = {
-      allowUnfree = true;
-      allowBroken = false;
-    };
-  };
-
   editors = with pkgs; [
     vim
     neovim
@@ -84,14 +76,11 @@ let
       ]
     ))
 
-    latestPkgs.claude-code
-    latestPkgs.opencode
-    inputs.ampcode.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     bubblewrap
   ];
 in
 {
+  imports = [ ../llm-agents.nix ];
+
   environment.systemPackages = sysutils ++ editors ++ devutils;
 }

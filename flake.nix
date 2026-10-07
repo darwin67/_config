@@ -31,8 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
-    ampcode.url = "github:darwin67/ampcode-nix";
+    llm-agents.url = "github:numtide/llm-agents.nix";
     genkan.url = "github:darwin67/genkan";
 
     # MacOS
@@ -41,12 +40,6 @@
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-
-    # dev
-    # use the latest available to get packages
-    # NOTE: this might not be needed later, more so that claude is locked to an
-    # old version and cannot be started
-    nixpkgs-dev.url = "github:nixos/nixpkgs?ref=master";
   };
 
   outputs =
@@ -58,7 +51,6 @@
       flake-utils,
       sops-nix,
       nix-darwin,
-      nixpkgs-dev,
       nixos-hardware,
       lanzaboote,
       ...
@@ -249,7 +241,7 @@
     // flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs-dev {
+        pkgs = import nixpkgs {
           inherit system;
 
           config = {
@@ -260,15 +252,17 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            sops
-            age
-            yamllint
-            yaml-language-server
-
-            claude-code
-            opencode
-          ];
+          buildInputs =
+            (with pkgs; [
+              sops
+              age
+              yamllint
+              yaml-language-server
+            ])
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+              inputs.llm-agents.packages.${system}.claude-code
+              inputs.llm-agents.packages.${system}.opencode
+            ];
         };
       }
     );
