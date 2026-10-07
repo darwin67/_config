@@ -11,7 +11,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     flox.url = "github:flox/flox/latest";
@@ -48,11 +47,8 @@
       nixpkgs,
       nixpkgs-darwin,
       home-manager,
-      flake-utils,
       sops-nix,
       nix-darwin,
-      nixos-hardware,
-      lanzaboote,
       ...
     }:
     let
@@ -238,32 +234,42 @@
         "Darwin-MBP-Inngest" = nix-darwin.lib.darwinSystem (hosts.mbp-inngest);
       };
     }
-    // flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
+    // {
+      devShells =
+        nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-linux"
+            "aarch64-darwin"
+            "x86_64-darwin"
+          ]
+          (
+            system:
+            let
+              pkgs = import nixpkgs {
+                inherit system;
 
-          config = {
-            allowUnfree = true;
-          };
-        };
+                config = {
+                  allowUnfree = true;
+                };
+              };
 
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          buildInputs =
-            (with pkgs; [
-              sops
-              age
-              yamllint
-              yaml-language-server
-            ])
-            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-              inputs.llm-agents.packages.${system}.claude-code
-              inputs.llm-agents.packages.${system}.opencode
-            ];
-        };
-      }
-    );
+            in
+            {
+              default = pkgs.mkShell {
+                buildInputs =
+                  (with pkgs; [
+                    sops
+                    age
+                    yamllint
+                    yaml-language-server
+                  ])
+                  ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+                    inputs.llm-agents.packages.${system}.claude-code
+                    inputs.llm-agents.packages.${system}.opencode
+                  ];
+              };
+            }
+          );
+    };
 }
