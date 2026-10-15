@@ -11,9 +11,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    flox.url = "github:flox/flox/latest";
+    flox = {
+      url = "github:flox/flox/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
@@ -31,7 +37,10 @@
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
-    genkan.url = "github:darwin67/genkan";
+    genkan = {
+      url = "github:darwin67/genkan";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
