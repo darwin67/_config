@@ -117,7 +117,16 @@ in
       ".tmux.conf".source = "${self}/term/.tmux.conf";
       ".alacritty.toml".source = "${self}/term/.alacritty.toml";
       ".config/kitty".source = "${self}/term/kitty";
-      ".config/ghostty".source = "${self}/term/ghostty";
+      # `linux-cgroup` is Linux-only, so it is appended here instead of in the
+      # shared term/ghostty/config (also used by macOS). By default every
+      # surface runs in a transient systemd scope marked
+      # ManagedOOMMemoryPressure=kill, which makes systemd-oomd kill the entire
+      # window -- and anything started from its shell, such as a tmux server --
+      # under memory pressure.
+      ".config/ghostty/config".text = ''
+        ${builtins.readFile "${self}/term/ghostty/config"}
+        linux-cgroup = never
+      '';
 
       # Flags
       ".config/brave-flags.conf".text = chromeFlags;

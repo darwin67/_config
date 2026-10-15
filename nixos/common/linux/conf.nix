@@ -228,6 +228,14 @@
   };
 
   systemd = {
+    # tmux keeps its control socket at /tmp/tmux-<uid>/default. The stock
+    # tmp.conf ships `q /tmp 1777 root root 10d` with no tmux exclusion, so a
+    # socket whose atime, mtime and ctime are all older than 10 days gets
+    # deleted by the nightly `systemd-tmpfiles --clean`. Attached clients keep
+    # working, which hides it until the server can no longer be reached from a
+    # new terminal.
+    tmpfiles.rules = [ "x /tmp/tmux-*" ];
+
     services.greetd = {
       environment.XDG_DATA_DIRS = "${config.services.displayManager.sessionData.desktops}/share";
       restartIfChanged = false;
@@ -252,6 +260,22 @@
           ];
           wantedBy = [ "default.target" ];
           serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+        };
+
+        # Own the tmux server at login so it runs in its own cgroup instead of a
+        # terminal window's. A server started from a window's shell is killed
+        # together with that window (e.g. by systemd-oomd) and takes every pane
+        # with it. Attach from any window with `tmux`; the server persists with
+        # no sessions open thanks to `set -s exit-empty off` in term/.tmux.conf.
+        # If it is ever killed manually, `systemctl --user restart tmux`.
+        tmux = {
+          description = "tmux server";
+          wantedBy = [ "default.target" ];
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            ExecStart = "${pkgs.tmux}/bin/tmux start-server";
+          };
         };
       };
     };
