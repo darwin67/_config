@@ -1,23 +1,10 @@
 {
   description = "Darwin's workstation setup";
 
-  nixConfig = {
-    extra-substituters = [ "https://cache.flox.dev" ];
-    extra-trusted-substituters = [ "https://cache.flox.dev" ];
-    extra-trusted-public-keys = [
-      "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
-    ];
-  };
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flox = {
-      url = "github:flox/flox/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -95,7 +82,6 @@
           modules = modules ++ [
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            ./nixos/common/flox.nix
             {
               nixpkgs.pkgs = pkgs;
               home-manager = {

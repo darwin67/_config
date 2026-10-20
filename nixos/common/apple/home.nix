@@ -1,7 +1,6 @@
 {
   pkgs,
   self,
-  inputs,
   username,
   stateVersion,
   home-manager,
@@ -14,8 +13,6 @@ let
 
 in
 {
-  imports = [ (import ../flox-home.nix { inherit inputs pkgs; }) ];
-
   home = {
     username = username;
     homeDirectory = homeDir;

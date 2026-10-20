@@ -21,7 +21,6 @@ in
 { config, ... }: {
   imports = [
     ../gpg.nix
-    (import ../flox-home.nix { inherit inputs pkgs; })
   ];
 
   home = {
