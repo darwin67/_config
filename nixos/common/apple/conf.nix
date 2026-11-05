@@ -132,6 +132,7 @@
       "spotify"
 
       # Development
+      "ampcode/tap/amp@beta"
       "zed"
       "visual-studio-code"
       "android-studio"
