@@ -114,12 +114,9 @@ in
       '';
       # Hosts override this with their outputs, workspaces, and binds.
       ".config/niri/host.kdl".text = "";
+      # Noctalia shell, shared by the Niri and Sway sessions.
       ".config/noctalia/config.toml".source = "${self}/niri/noctalia/config.toml";
 
-      ".config/waybar".source = "${self}/sway/waybar";
-      ".config/wofi".source = "${self}/sway/wofi";
-      ".config/wob".source = "${self}/sway/wob";
-      ".config/mako".source = "${self}/sway/mako";
       ".config/satty".source = "${self}/sway/satty";
 
       # Terminal

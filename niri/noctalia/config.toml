@@ -1,4 +1,4 @@
-# Noctalia desktop shell for the Niri session.
+# Noctalia desktop shell for the Niri and Sway sessions.
 # Changes made in Noctalia's settings window are saved to
 # ~/.local/state/noctalia/settings.toml and override this file.
 
@@ -12,7 +12,7 @@ polkit_agent = true
 [wallpaper]
 enabled = false
 
-# Genkan is the lock screen; swayidle in the Niri config locks before sleep.
+# Genkan is the lock screen; swayidle in each session locks before sleep.
 [lockscreen]
 enabled = false
 lock_before_suspend = false
