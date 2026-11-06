@@ -99,6 +99,11 @@ let
     graphviz
     libxml2
     libayatana-appindicator
+
+    # Amp runner's private Linux desktop; Waymote binaries are downloaded by Amp.
+    labwc
+    wlr-randr
+    ffmpeg
   ];
 
   browser = with pkgs; [
