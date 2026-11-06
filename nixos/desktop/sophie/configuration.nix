@@ -84,6 +84,12 @@
     "libvirtd"
   ];
 
+  # Android devices (adb/fastboot) so the adb server can access them as
+  # the normal user.
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0664", GROUP="users", TAG+="uaccess"
+  '';
+
   # tailscale
   services.tailscale = {
     useRoutingFeatures = "server";
