@@ -1,0 +1,43 @@
+# Noctalia desktop shell for the Niri session.
+# Changes made in Noctalia's settings window are saved to
+# ~/.local/state/noctalia/settings.toml and override this file.
+
+[shell]
+# Genkan settings below would be overwritten by the first-run wizard.
+setup_wizard_enabled = false
+# Graphical password prompts for apps that need elevated rights.
+polkit_agent = true
+
+# Genkan draws the wallpaper.
+[wallpaper]
+enabled = false
+
+# Genkan is the lock screen; swayidle in the Niri config locks before sleep.
+[lockscreen]
+enabled = false
+lock_before_suspend = false
+
+[shell.session]
+[[shell.session.actions]]
+action = "command"
+command = "genkan lock --daemonize"
+label = "Lock"
+glyph = "lock"
+shortcut = "1"
+
+[[shell.session.actions]]
+action = "logout"
+shortcut = "2"
+
+[[shell.session.actions]]
+action = "suspend"
+shortcut = "3"
+
+[[shell.session.actions]]
+action = "reboot"
+shortcut = "4"
+
+[[shell.session.actions]]
+action = "shutdown"
+shortcut = "5"
+variant = "destructive"

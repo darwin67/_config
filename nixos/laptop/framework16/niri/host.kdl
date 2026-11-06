@@ -1,0 +1,71 @@
+// Framework 16 with the dock: laptop panel plus three Dell monitors.
+// Positions match the Sway layout, left to right.
+output "eDP-1" {
+    scale 1.2
+    position x=0 y=0
+}
+
+output "Dell Inc. DELL U3223QE 5PRFH34" {
+    scale 1.0
+    position x=2133 y=0
+}
+
+// Vertical monitor: one full-width column, windows stacked top to bottom.
+output "Dell Inc. DELL U2720QM 604QZ83" {
+    transform "270"
+    scale 1.2
+    position x=5973 y=0
+    layout {
+        default-column-width { proportion 1.0; }
+    }
+}
+
+output "Dell Inc. DELL S2421HGF DWH4B73" {
+    scale 1.0
+    // The rotated U2720QM is 1800 logical px wide (5973 + 1800); overlapping
+    // it would make niri auto-place that monitor instead.
+    position x=7773 y=0
+}
+
+// A named workspace pinned to each external monitor, like Sway workspaces 1, 2, 3, and 8.
+// Other workspaces stay dynamic.
+workspace "main" {
+    open-on-output "Dell Inc. DELL U3223QE 5PRFH34"
+}
+
+workspace "vertical" {
+    open-on-output "Dell Inc. DELL U2720QM 604QZ83"
+}
+
+workspace "side" {
+    open-on-output "Dell Inc. DELL S2421HGF DWH4B73"
+}
+
+workspace "shosai" {
+    open-on-output "Dell Inc. DELL S2421HGF DWH4B73"
+}
+
+window-rule {
+    match app-id=r#"^dev\.shosai\.shosai_flutter$"#
+    open-on-workspace "shosai"
+}
+
+// Every display is wired to the AMD iGPU (c2); render there so frames are
+// not PRIME-copied from the NVIDIA dGPU (see the greetd note in configuration.nix).
+debug {
+    render-drm-device "/dev/dri/by-path/pci-0000:c2:00.0-render"
+}
+
+// The Framework 16 keyboard sends plain F-keys for its media row.
+binds {
+    F1 allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+    F2 allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+    F3 allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+    F4 allow-when-locked=true { spawn-sh "playerctl previous"; }
+    F5 allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    F6 allow-when-locked=true { spawn-sh "playerctl next"; }
+    F7 allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
+    F8 allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+    F9 allow-when-locked=true { spawn-sh "noctalia msg mic-volume-down"; }
+    F10 allow-when-locked=true { spawn-sh "noctalia msg mic-volume-up"; }
+}

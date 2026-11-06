@@ -337,6 +337,9 @@
     waybar = {
       enable = false;
     };
+    # Second session next to Sway. Genkan preselects sessions by name, so Niri
+    # comes first and Sway stays selectable as the fallback.
+    niri.enable = true;
     nix-ld = {
       enable = true;
       # Amp downloads Waymote binaries linked against these system libraries.

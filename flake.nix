@@ -191,6 +191,9 @@
             ".config/sway/config.d/override.conf" = {
               source = "${self}/nixos/laptop/framework16/sway/override.conf";
             };
+            ".config/niri/host.kdl" = {
+              source = "${self}/nixos/laptop/framework16/niri/host.kdl";
+            };
           };
         };
 
