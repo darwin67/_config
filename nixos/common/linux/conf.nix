@@ -337,7 +337,14 @@
     waybar = {
       enable = false;
     };
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      # Amp downloads Waymote binaries linked against these system libraries.
+      libraries = with pkgs; [
+        wayland
+        libxkbcommon
+      ];
+    };
 
     _1password.enable = true;
     _1password-gui = {
