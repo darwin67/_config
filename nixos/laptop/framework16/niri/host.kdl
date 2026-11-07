@@ -2,7 +2,7 @@
 // 24" S2421HGF on the left, 32" U3223QE in the middle, 27" U2720QM in
 // portrait on the right, and the laptop below the 24" next to the 32".
 // Sizes in logical px (niri rounds them): S2421HGF 1920x1080,
-// U3223QE 3012x1694, U2720QM 1440x2560, laptop 2133x1333.
+// U3223QE 3012x1694, U2720QM 1661x2953, laptop 2133x1333.
 output "Dell Inc. DELL S2421HGF DWH4B73" {
     scale 1.0
     position x=0 y=614
@@ -16,7 +16,7 @@ output "Dell Inc. DELL U3223QE 5PRFH34" {
 // Vertical monitor: one full-width column, windows stacked top to bottom.
 output "Dell Inc. DELL U2720QM 604QZ83" {
     transform "90"
-    scale 1.5
+    scale 1.3
     position x=4932 y=0
     layout {
         default-column-width { proportion 1.0; }
