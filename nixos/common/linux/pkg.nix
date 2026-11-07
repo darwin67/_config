@@ -57,6 +57,7 @@ let
   sysutils = with pkgs; [
     zsh
     pulseaudio
+    pavucontrol # per-device audio profiles, e.g. switching a headset to HFP
     gnumake
     gnutar
     gcc

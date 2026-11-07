@@ -285,7 +285,7 @@ spawn-at-startup "noctalia"
 // use Noctalia's caffeine toggle during long meetings.
 spawn-sh-at-startup "swayidle -w lock 'genkan lock --daemonize' timeout 300 'genkan lock --daemonize' timeout 600 'niri msg action power-off-monitors' before-sleep 'genkan lock --daemonize'"
 
-// fcitx5, gnome-keyring, and blueman start through XDG autostart in a Niri session.
+// fcitx5 and gnome-keyring start through XDG autostart in a Niri session.
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
