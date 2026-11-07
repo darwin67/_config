@@ -86,7 +86,10 @@ let
 
   desktop = with pkgs; [
     # Niri session
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+      # Hide nearby Bluetooth devices that broadcast no name (shown as bare addresses).
+      patches = (old.patches or [ ]) ++ [ ../../pkgs/noctalia-hide-nameless-bluetooth.patch ];
+    }))
     xwayland-satellite
     swayidle # idle lock and screen-off, started from the Niri config
     wl-clipboard
