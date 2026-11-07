@@ -272,6 +272,9 @@
         tmux = {
           description = "tmux server";
           wantedBy = [ "default.target" ];
+          # Inherit the user manager's full PATH instead of NixOS's minimal
+          # service PATH, so tpm (a bash script) and its plugins can run.
+          enableDefaultPath = false;
           serviceConfig = {
             Type = "oneshot";
             RemainAfterExit = true;
