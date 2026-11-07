@@ -147,8 +147,9 @@ input "type:keyboard" {
     bindsym $mod+q exec $screenlock
 
     # Screenshots
-    bindsym $mod+p exec grimshot save active - | satty --filename - --output-filename $screenshot_dir/screenshot-$(date '+%Y%m%d-%H:%M:%S').png
-    bindsym $mod+Shift+p exec grimshot save area - | satty --filename - --output-filename $screenshot_dir/screenshot-area-$(date '+%Y%m%d-%H:%M:%S').png
+    bindsym $mod+p exec grimshot --notify savecopy active $screenshot_dir/screenshot-$(date '+%Y%m%d-%H:%M:%S').png
+    # Freeze the screen, pick a region, and draw on it; copy or save.
+    bindsym $mod+Shift+p exec $ipc screenshot-annotate --directory "$HOME/Pictures/Screenshots"
 
     # Noctalia control center and settings
     bindsym $mod+Shift+s exec $ipc panel-toggle control-center

@@ -419,7 +419,7 @@ binds {
 
     // Carried over from Sway.
     Ctrl+Shift+Space hotkey-overlay-title="1Password Quick Access" { spawn "1password" "--quick-access"; }
-    Mod+P hotkey-overlay-title="Annotate a Region: satty" { spawn-sh "grim -g \"$(slurp)\" - | satty --filename - --output-filename ~/Pictures/Screenshots/screenshot-area-$(date '+%Y%m%d-%H:%M:%S').png"; }
+    Mod+P hotkey-overlay-title="Screenshot the Focused Window" { screenshot-window; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

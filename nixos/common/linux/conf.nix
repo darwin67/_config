@@ -322,7 +322,6 @@
             keyring
           ]
         ))
-        satty
       ];
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=sway

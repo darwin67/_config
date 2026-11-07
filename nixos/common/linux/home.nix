@@ -117,8 +117,6 @@ in
       # Noctalia shell, shared by the Niri and Sway sessions.
       ".config/noctalia/config.toml".source = "${self}/niri/noctalia/config.toml";
 
-      ".config/satty".source = "${self}/sway/satty";
-
       # Terminal
       ".tmux.conf".source = "${self}/term/.tmux.conf";
       ".alacritty.toml".source = "${self}/term/.alacritty.toml";
