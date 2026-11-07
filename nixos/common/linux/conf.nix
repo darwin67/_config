@@ -356,6 +356,8 @@
   security = {
     rtkit.enable = true;
     pam.services.greetd.enableGnomeKeyring = true;
+    # The Niri module adds this for swaylock; Genkan is the lock screen instead.
+    pam.services.swaylock.enable = false;
   };
 
 }
