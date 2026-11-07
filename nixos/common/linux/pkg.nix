@@ -85,6 +85,9 @@ let
 
   desktop = with pkgs; [
     swaybg
+    # Niri session
+    noctalia
+    xwayland-satellite
     rtkit # for pipewire
     polkit # for 1password
     polkit_gnome

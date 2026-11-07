@@ -107,10 +107,16 @@ in
         exec ${genkan}/bin/genkan wallpaper --file ${genkan}/share/genkan/wallpapers/heic/tahoe-dynamic.heic
       '';
 
-      ".config/waybar".source = "${self}/sway/waybar";
-      ".config/wofi".source = "${self}/sway/wofi";
-      ".config/wob".source = "${self}/sway/wob";
-      ".config/mako".source = "${self}/sway/mako";
+      # Niri
+      ".config/niri/config.kdl".source = "${self}/niri/config.kdl";
+      ".config/niri/genkan.kdl".text = ''
+        spawn-at-startup "${genkan}/bin/genkan" "wallpaper" "--file" "${genkan}/share/genkan/wallpapers/heic/tahoe-dynamic.heic"
+      '';
+      # Hosts override this with their outputs, workspaces, and binds.
+      ".config/niri/host.kdl".text = "";
+      # Noctalia shell, shared by the Niri and Sway sessions.
+      ".config/noctalia/config.toml".source = "${self}/niri/noctalia/config.toml";
+
       ".config/satty".source = "${self}/sway/satty";
 
       # Terminal

@@ -87,6 +87,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
+    inter # Noctalia bar font
     noto-fonts-cjk-sans
     symbola
     # nerdfonts
@@ -305,14 +306,9 @@
       enable = true;
       wrapperFeatures.gtk = true;
       extraPackages = with pkgs; [
-        wofi
-        wob
         swayidle
         xwayland
-        waybar
         sway-contrib.grimshot
-        mako # notification
-        # swaynotificationcenter
         grim
         slurp
         wl-clipboard
@@ -334,9 +330,9 @@
         export MOZ_ENABLE_WAYLAND=1
       '';
     };
-    waybar = {
-      enable = false;
-    };
+    # Second session next to Sway. Genkan preselects sessions by name, so Niri
+    # comes first and Sway stays selectable as the fallback.
+    niri.enable = true;
     nix-ld = {
       enable = true;
       # Amp downloads Waymote binaries linked against these system libraries.
