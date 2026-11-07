@@ -8,6 +8,9 @@
 
 let
   fastmail-cli = pkgs.callPackage ../../pkgs/fastmail-cli.nix { };
+  omarchy-pods-daemon = pkgs.callPackage ../../pkgs/omarchy-pods-daemon.nix {
+    src = inputs.omarchy-pods;
+  };
 
   editor = with pkgs; [
     vim
@@ -94,12 +97,15 @@ let
     swayidle # idle lock and screen-off, started from the Niri config
     wl-clipboard
     wf-recorder
+    slurp # region picker for Noctalia's Screen Recorder plugin
     rtkit # for pipewire
     polkit # for 1password
     polkit_gnome
     playerctl
     brightnessctl
     bluez
+    pbpctrl # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin
+    omarchy-pods-daemon # AirPods daemon + librepods-ctl for the Noctalia AirPods plugin
     bluez-tools
 
     fwupd # hardware
@@ -170,4 +176,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps ++ utils;
+
+  # The package ships the sandboxed AirPods daemon unit; start it with the session.
+  systemd.packages = [ omarchy-pods-daemon ];
+  systemd.user.services.librepods.wantedBy = [ "graphical-session.target" ];
 }

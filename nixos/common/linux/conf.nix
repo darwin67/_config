@@ -293,6 +293,9 @@
       };
     };
     niri.enable = true;
+    # For Noctalia's Screen Recorder plugin; the wrapper lets it capture
+    # a window or region, not just through the portal.
+    gpu-screen-recorder.enable = true;
     nix-ld = {
       enable = true;
       # Amp downloads Waymote binaries linked against these system libraries.

@@ -305,6 +305,54 @@
         "type": "github"
       }
     },
+    "noctalia-official-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793996893,
+        "narHash": "sha256-BM6/TC2jI1jf/NL5DGA3zrWrEaWFTwm7e3GHfT6NKLI=",
+        "owner": "noctalia-dev",
+        "repo": "official-plugins",
+        "rev": "68d491f4633ba61bc9ead01a3f0ecb499d4d9af4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "official-plugins",
+        "type": "github"
+      }
+    },
+    "noctalia-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794060186,
+        "narHash": "sha256-Dl/0c5oZ9rtR3XnPgj/yTH1BPD4TdI/jjZ7YwnjdWc4=",
+        "owner": "noctalia-dev",
+        "repo": "community-plugins",
+        "rev": "20986894d051af7bc0bdab85ff87442839440523",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "community-plugins",
+        "type": "github"
+      }
+    },
+    "omarchy-pods": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787716993,
+        "narHash": "sha256-CMPeGfsLQQSYL1zsBAXChUHkSVTAoSvRlmHhpQoaK0A=",
+        "owner": "thisisgm",
+        "repo": "omarchy-pods",
+        "rev": "fff7fec600a5b9a61cdb40e93eccbcceb4b8f824",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thisisgm",
+        "repo": "omarchy-pods",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -339,6 +387,9 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "noctalia": "noctalia",
+        "noctalia-official-plugins": "noctalia-official-plugins",
+        "noctalia-plugins": "noctalia-plugins",
+        "omarchy-pods": "omarchy-pods",
         "sops-nix": "sops-nix"
       }
     },
