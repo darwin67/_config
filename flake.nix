@@ -28,6 +28,12 @@
       url = "github:darwin67/genkan";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Desktop shell for Niri and Sway; tracks upstream main for features
+    # newer than nixpkgs' release.
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";

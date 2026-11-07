@@ -419,7 +419,7 @@ binds {
 
     // Carried over from Sway.
     Ctrl+Shift+Space hotkey-overlay-title="1Password Quick Access" { spawn "1password" "--quick-access"; }
-    Mod+P hotkey-overlay-title="Annotate a Region: satty" { spawn-sh "grim -g \"$(slurp)\" - | satty --filename - --output-filename ~/Pictures/Screenshots/screenshot-area-$(date '+%Y%m%d-%H:%M:%S').png"; }
+    Mod+P hotkey-overlay-title="Screenshot the Focused Window" { screenshot-window; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -682,7 +682,8 @@ binds {
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    // Freeze the screen, pick a region, draw on it, then copy or save, like
+    // the Sway area screenshot on this key. Replaces Niri's default
+    // power-off-monitors bind; swayidle still turns monitors off when idle.
+    Mod+Shift+P hotkey-overlay-title="Annotate a Screenshot: Noctalia" { spawn-sh "noctalia msg screenshot-annotate --directory \"$HOME/Pictures/Screenshots\""; }
 }

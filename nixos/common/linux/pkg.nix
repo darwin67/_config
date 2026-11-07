@@ -86,7 +86,7 @@ let
   desktop = with pkgs; [
     swaybg
     # Niri session
-    noctalia
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     xwayland-satellite
     rtkit # for pipewire
     polkit # for 1password
