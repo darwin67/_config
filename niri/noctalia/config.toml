@@ -1,4 +1,4 @@
-# Noctalia desktop shell for the Niri and Sway sessions.
+# Noctalia desktop shell for the Niri session.
 # Changes made in Noctalia's settings window are saved to
 # ~/.local/state/noctalia/settings.toml and override this file.
 
@@ -14,7 +14,7 @@ font_family = "Inter"
 [wallpaper]
 enabled = false
 
-# Genkan is the lock screen; swayidle in each session locks before sleep.
+# Genkan is the lock screen; swayidle in the Niri config locks before sleep.
 [lockscreen]
 enabled = false
 lock_before_suspend = false

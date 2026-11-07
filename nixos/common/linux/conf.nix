@@ -148,10 +148,7 @@
     };
     libinput.enable = true;
     accounts-daemon.enable = true;
-    displayManager = {
-      enable = true;
-      defaultSession = "sway";
-    };
+    displayManager.enable = true;
     greetd = {
       enable = true;
       settings = {
@@ -242,15 +239,7 @@
       restartIfChanged = false;
     };
 
-    # configuring sway itself
     user = {
-      targets.sway-session = {
-        description = "sway compositor session";
-        documentation = [ "man:systemd.special(7)" ];
-        bindsTo = [ "graphical-session.target" ];
-        wants = [ "graphical-session-pre.target" ];
-        after = [ "graphical-session-pre.target" ];
-      };
       services = {
         # for controller via bluetooth devices
         mpris-proxy = {
@@ -305,35 +294,6 @@
         "network.protocol-handler.warn-external.slack" = false;
       };
     };
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-      extraPackages = with pkgs; [
-        swayidle
-        xwayland
-        sway-contrib.grimshot
-        grim
-        slurp
-        wl-clipboard
-        wf-recorder
-        (python313.withPackages (
-          ps: with ps; [
-            i3pystatus
-            keyring
-          ]
-        ))
-      ];
-      extraSessionCommands = ''
-        export XDG_CURRENT_DESKTOP=sway
-        export SDL_VIDEODRIVER=wayland
-        export QT_QPA_PLATFORM=wayland
-        export XDG_SESSION_TYPE=wayland
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        export MOZ_ENABLE_WAYLAND=1
-      '';
-    };
-    # Second session next to Sway. Genkan preselects sessions by name, so Niri
-    # comes first and Sway stays selectable as the fallback.
     niri.enable = true;
     nix-ld = {
       enable = true;

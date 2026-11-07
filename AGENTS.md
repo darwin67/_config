@@ -12,8 +12,7 @@ modules, dotfiles, editors, shells, terminals, and desktop environments.
 - `nixos/`: Shared, platform-specific, and host-specific system modules.
 - `dots/`: General dotfiles.
 - `editor/`: Editor configuration.
-- `sway/`: Sway and Wayland configuration.
-- `niri/`: Niri compositor and Noctalia shell configuration (Noctalia is shared with Sway).
+- `niri/`: Niri compositor and Noctalia shell configuration.
 - `term/`: Terminal emulator configuration.
 - `zsh/`: Shell configuration and functions.
 

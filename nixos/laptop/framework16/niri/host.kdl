@@ -28,7 +28,7 @@ output "eDP-1" {
     position x=0 y=1694
 }
 
-// A named workspace pinned to each external monitor, like Sway workspaces 1, 2, 3, and 8.
+// A named workspace pinned to each external monitor.
 // Other workspaces stay dynamic.
 workspace "main" {
     open-on-output "Dell Inc. DELL U3223QE 5PRFH34"

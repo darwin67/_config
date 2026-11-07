@@ -45,10 +45,7 @@
   # amdgpu fails with "Failed to pin framebuffer with error -12" and greetd
   # restart-loops the greeter. Pinning the greeter to the iGPU avoids the
   # cross-GPU copies entirely.
-  systemd.services.greetd.environment.WLR_DRM_DEVICES =
-    "/dev/dri/by-path/pci-0000:c2:00.0-card";
-
-  programs.sway.extraOptions = [ "--unsupported-gpu" ];
+  systemd.services.greetd.environment.WLR_DRM_DEVICES = "/dev/dri/by-path/pci-0000:c2:00.0-card";
 
   services.pipewire.wireplumber = {
     enable = true;
