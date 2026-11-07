@@ -28,7 +28,7 @@
       url = "github:darwin67/genkan";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Desktop shell for Niri and Sway; tracks upstream main for features
+    # Desktop shell for Niri; tracks upstream main for features
     # newer than nixpkgs' release.
     noctalia = {
       url = "github:noctalia-dev/noctalia";
@@ -63,7 +63,6 @@
           system ? "x86_64-linux",
           modules ? [ ],
           additionalFiles ? { },
-          includeKinesis ? true,
           homeModule ? ./nixos/common/linux/home.nix,
           ...
         }:
@@ -74,11 +73,6 @@
             config = {
               allowUnfree = true;
               allowBroken = false;
-            };
-          };
-          baseAdditionalFiles = nixpkgs.lib.optionalAttrs includeKinesis {
-            ".config/sway/config.d/kinesis-freestyle-keyboard.conf" = {
-              source = "${self}/sway/config.d/kinesis-freestyle-keyboard.conf";
             };
           };
         in
@@ -102,7 +96,7 @@
                     stateVersion
                     home-manager
                     ;
-                  additionalFiles = baseAdditionalFiles // additionalFiles;
+                  inherit additionalFiles;
                 };
               };
             }
@@ -118,7 +112,6 @@
         }:
         mkLinuxSystem {
           inherit system additionalFiles;
-          includeKinesis = false;
           homeModule = ./nixos/common/server/home.nix;
           modules = [
             ./nixos/common/server/conf.nix
@@ -132,7 +125,6 @@
           system ? "aarch64-darwin",
           modules ? [ ],
           additionalFiles ? { },
-          includeKinesis ? true,
           ...
         }:
         let
@@ -142,11 +134,6 @@
             config = {
               allowUnfree = true;
               allowBroken = false;
-            };
-          };
-          baseAdditionalFiles = nixpkgs.lib.optionalAttrs includeKinesis {
-            ".config/sway/config.d/kinesis-freestyle-keyboard.conf" = {
-              source = "${self}/sway/config.d/kinesis-freestyle-keyboard.conf";
             };
           };
         in
@@ -176,7 +163,7 @@
                     stateVersion
                     home-manager
                     ;
-                  additionalFiles = baseAdditionalFiles // additionalFiles;
+                  inherit additionalFiles;
                   # inherit (nixpkgs) lib;
                 };
               };
@@ -192,11 +179,7 @@
 
         framework16 = mkLinuxSystem {
           modules = [ ./nixos/laptop/framework16/configuration.nix ];
-          includeKinesis = false;
           additionalFiles = {
-            ".config/sway/config.d/override.conf" = {
-              source = "${self}/nixos/laptop/framework16/sway/override.conf";
-            };
             ".config/niri/host.kdl" = {
               source = "${self}/nixos/laptop/framework16/niri/host.kdl";
             };

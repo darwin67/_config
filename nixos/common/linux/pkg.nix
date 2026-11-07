@@ -84,10 +84,12 @@ let
   ];
 
   desktop = with pkgs; [
-    swaybg
     # Niri session
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     xwayland-satellite
+    swayidle # idle lock and screen-off, started from the Niri config
+    wl-clipboard
+    wf-recorder
     rtkit # for pipewire
     polkit # for 1password
     polkit_gnome
@@ -116,10 +118,8 @@ let
 
   utils = with pkgs; [
     fastfetch
-    i3pystatus
     (python313.withPackages (
       ps: with ps; [
-        i3pystatus
         keyring
         pip
         grip

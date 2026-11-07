@@ -20,7 +20,7 @@ input {
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
 
-            // Same as Sway: Caps Lock acts as an extra Ctrl.
+            // Caps Lock acts as an extra Ctrl.
             options "caps:ctrl_modifier"
         }
 
@@ -417,7 +417,7 @@ binds {
     Mod+Shift+Comma hotkey-overlay-title="Noctalia Settings" { spawn-sh "noctalia msg settings-toggle"; }
     Mod+Shift+N hotkey-overlay-title="Toggle Do Not Disturb" { spawn-sh "noctalia msg notification-dnd-toggle"; }
 
-    // Carried over from Sway.
+    // Extra launchers.
     Ctrl+Shift+Space hotkey-overlay-title="1Password Quick Access" { spawn "1password" "--quick-access"; }
     Mod+P hotkey-overlay-title="Screenshot the Focused Window" { screenshot-window; }
 
@@ -682,8 +682,8 @@ binds {
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
-    // Freeze the screen, pick a region, draw on it, then copy or save, like
-    // the Sway area screenshot on this key. Replaces Niri's default
-    // power-off-monitors bind; swayidle still turns monitors off when idle.
+    // Freeze the screen, pick a region, draw on it, then copy or save.
+    // Replaces Niri's default power-off-monitors bind; swayidle still turns
+    // monitors off when idle.
     Mod+Shift+P hotkey-overlay-title="Annotate a Screenshot: Noctalia" { spawn-sh "noctalia msg screenshot-annotate --directory \"$HOME/Pictures/Screenshots\""; }
 }

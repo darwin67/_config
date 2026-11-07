@@ -100,13 +100,6 @@ in
       ".doom.d".source = "${self}/editor/doom";
       ".config/nvim".source = "${self}/editor/nvim";
 
-      # Sway
-      ".config/sway/config".source = "${self}/sway/config";
-      ".config/sway/config.d/zoom.conf".source = "${self}/sway/config.d/zoom.conf";
-      ".config/sway/config.d/wallpaper.conf".text = ''
-        exec ${genkan}/bin/genkan wallpaper --file ${genkan}/share/genkan/wallpapers/heic/tahoe-dynamic.heic
-      '';
-
       # Niri
       ".config/niri/config.kdl".source = "${self}/niri/config.kdl";
       ".config/niri/genkan.kdl".text = ''
@@ -114,7 +107,7 @@ in
       '';
       # Hosts override this with their outputs, workspaces, and binds.
       ".config/niri/host.kdl".text = "";
-      # Noctalia shell, shared by the Niri and Sway sessions.
+      # Noctalia desktop shell.
       ".config/noctalia/config.toml".source = "${self}/niri/noctalia/config.toml";
 
       # Terminal
