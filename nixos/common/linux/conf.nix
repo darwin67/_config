@@ -87,6 +87,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
+    inter # Noctalia bar font
     noto-fonts-cjk-sans
     symbola
     # nerdfonts

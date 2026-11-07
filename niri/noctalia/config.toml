@@ -7,6 +7,8 @@
 setup_wizard_enabled = false
 # Graphical password prompts for apps that need elevated rights.
 polkit_agent = true
+# Closest free match to macOS's SF Pro.
+font_family = "Inter"
 
 # Genkan draws the wallpaper.
 [wallpaper]
@@ -41,3 +43,50 @@ shortcut = "4"
 action = "shutdown"
 shortcut = "5"
 variant = "destructive"
+
+# macOS-style menu bar: full width, thin, square, translucent.
+[bar.default]
+thickness = 26
+margin_ends = 0
+radius = 0
+radius_top_left = 0
+radius_top_right = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+concave_edge_corners = false
+shadow = false
+background_opacity = 0.55
+padding = 12
+widget_spacing = 14
+start = [ "nixos", "active_window" ]
+center = []
+end = [ "tray", "workspaces", "network", "battery", "spotlight", "control-center", "macclock" ]
+
+# Apple-menu equivalent with the NixOS logo: lock, log out, sleep, reboot, shut down.
+[widget.nixos]
+type = "session"
+custom_image = "/run/current-system/sw/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg"
+custom_image_colorize = false
+
+[widget.spotlight]
+type = "launcher"
+glyph = "search"
+
+[widget.active_window]
+display = "text_only"
+max_length = 400
+
+[widget.workspaces]
+style = "minimal"
+hide_when_empty = true
+focused_color = "on_surface"
+
+[widget.macclock]
+type = "clock"
+format = "{:%a %b %-d  %-I:%M %p}"
+
+[widget.control-center]
+glyph = "adjustments-horizontal"
+
+[widget.network]
+show_label = false
