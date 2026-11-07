@@ -155,7 +155,7 @@ layout {
     // behind windows. That is, they will show up through semitransparent windows.
     // This is because windows using client-side decorations can have an arbitrary shape.
     //
-    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // `prefer-no-csd` below is enabled for this, along with rounded corners for all windows.
     // Niri will draw focus ring and border *around* windows that agree to omit their
     // client-side decorations.
     //
@@ -281,7 +281,8 @@ layout {
 spawn-at-startup "noctalia"
 
 // Genkan owns the lock screen and the wallpaper (started from genkan.kdl);
-// Noctalia's are disabled.
+// Noctalia's are disabled. Zoom runs under Xwayland and cannot inhibit idle, so
+// use Noctalia's caffeine toggle during long meetings.
 spawn-sh-at-startup "swayidle -w lock 'genkan lock --daemonize' timeout 300 'genkan lock --daemonize' timeout 600 'niri msg action power-off-monitors' before-sleep 'genkan lock --daemonize'"
 
 // fcitx5, gnome-keyring, and blueman start through XDG autostart in a Niri session.
@@ -294,12 +295,12 @@ hotkey-overlay {
     // skip-at-startup
 }
 
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
+// Ask clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
@@ -353,19 +354,10 @@ window-rule {
     // block-out-from "screencast"
 }
 
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+// Rounded corners for all windows; the focus ring follows the same radius.
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
-}
-
-// Zoom's dialogs float; the meeting window tiles. Zoom runs under Xwayland and
-// cannot inhibit idle, so use Noctalia's caffeine toggle during long meetings.
-window-rule {
-    match app-id="^zoom$"
-    exclude app-id="^zoom$" title="^Zoom Meeting"
-    open-floating true
 }
 
 // Noctalia's settings window floats (recommended by Noctalia).
