@@ -2,22 +2,33 @@
 # Nix links this file read-only: add providers and accounts here, not with
 # `ai-usagebar account add`.
 
-# Claude plans. The default account is the ~/.claude login (personal).
+# Claude plans.
 [anthropic]
 enabled = true
+# Every login is named below, so hide the unnamed default.
+show_default_account = false
+
+[[anthropic.accounts]]
+label = "primary"
+credentials_path = "~/.claude/.credentials.json"
 
 # Sign in once with: CLAUDE_CONFIG_DIR=~/.claude-work claude, then /login
 [[anthropic.accounts]]
-label = "work"
+label = "backup"
 credentials_path = "~/.claude-work/.credentials.json"
 
-# Codex (ChatGPT) plans. The default account is the ~/.codex login (personal).
+# Codex (ChatGPT) plans.
 [openai]
 enabled = true
+show_default_account = false
+
+[[openai.accounts]]
+label = "primary"
+codex_auth_path = "~/.codex/auth.json"
 
 # Sign in once with: CODEX_HOME=~/.codex-work codex login
 [[openai.accounts]]
-label = "work"
+label = "backup"
 codex_auth_path = "~/.codex-work/auth.json"
 
 # On by default upstream; unused here.
