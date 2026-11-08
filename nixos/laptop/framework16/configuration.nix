@@ -8,8 +8,8 @@
 
 {
   imports = [
-    ../../common/linux/conf.nix
-    ../../common/linux/pkg.nix
+    ../../common/desktop/conf.nix
+    ../../common/desktop/pkg.nix
     inputs.nixos-hardware.nixosModules.framework-16-amd-ai-300-series-nvidia
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix

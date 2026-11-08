@@ -9,11 +9,6 @@
 {
   imports = [ inputs.genkan.nixosModules.default ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   environment = {
     etc."1password/custom_allowed_browsers" = {
       mode = "0755";
@@ -55,21 +50,7 @@
     };
   };
 
-  # Select internationalisation properties.
   i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "en_US.UTF-8";
-      LC_IDENTIFICATION = "en_US.UTF-8";
-      LC_MEASUREMENT = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
-      LC_NAME = "en_US.UTF-8";
-      LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF-8";
-      LC_TELEPHONE = "en_US.UTF-8";
-      LC_TIME = "en_US.UTF-8";
-    };
-
     inputMethod = {
       type = "fcitx5";
       enable = true;
@@ -104,8 +85,6 @@
     };
   };
   services = {
-    timesyncd.enable = true;
-
     # location service
     geoclue2 = {
       enable = true;
@@ -115,7 +94,6 @@
     # depends on location service
     automatic-timezoned.enable = true;
 
-    fwupd.enable = true;
     # enable the gnome-keyring secrets vault.
     # will be exposed through DBus to programs willing to store secrets
     gnome = {
@@ -198,11 +176,6 @@
       enable = true;
       drivers = with pkgs; [ hplip ];
     };
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
     # scanner
     udev = {
       packages = with pkgs; [
@@ -212,15 +185,10 @@
     };
 
     flatpak.enable = true;
-    dbus.enable = true;
     colord.enable = true;
   };
 
-  users.defaultUserShell = pkgs.zsh;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.darwin = {
-    isNormalUser = true;
-    description = "Darwin Wu";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -228,7 +196,6 @@
       "scanner"
       "lp"
     ];
-    useDefaultShell = true;
   };
 
   systemd = {
@@ -280,8 +247,6 @@
         solar.enable = true;
       };
     };
-    ssh.startAgent = true;
-    zsh.enable = true;
     firefox = {
       enable = true;
       package = pkgs.firefox-devedition;
@@ -297,7 +262,6 @@
     # a window or region, not just through the portal.
     gpu-screen-recorder.enable = true;
     nix-ld = {
-      enable = true;
       # Amp downloads Waymote binaries linked against these system libraries.
       libraries = with pkgs; [
         wayland
@@ -314,44 +278,14 @@
     };
   };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "26.05";
-
-  virtualisation = {
-    # podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    #   defaultNetwork.settings.dns_enabled = true;
-
-    #   dockerSocket.enable = true;
-    #   autoPrune.enable = true;
-    # };
-
-    docker = {
-      enable = true;
-      package = pkgs.docker_29;
-
-      # NOTE: doesn't work with host.docker.internal
-      # rootless = {
-      #   enable = true;
-      #   setSocketVariable = true;
-      # };
-      # autoPrune.enable = true;
-    };
-  };
-
-  # link /bin/sh to /bin/bash because it doesn't exist and it's a fucking pain
-  system.activationScripts.binbash = {
-    deps = [ "binsh" ];
-    text = ''
-      ln -sf /bin/sh /bin/bash
-    '';
-  };
+  # Docker (pkgs.docker_29) is enabled for all Linux hosts in
+  # ../base/conf.nix.
+  # NOTE: doesn't work with host.docker.internal
+  # rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
+  # autoPrune.enable = true;
 
   ## Security
   security = {

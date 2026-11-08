@@ -13,19 +13,10 @@ let
   };
 
   editor = with pkgs; [
-    vim
-    neovim
-    emacs
     vscode
 
     # editor utilities
-    nixfmt
-    editorconfig-core-c
-    shfmt
-    shellcheck
     glslang
-    markdownlint-cli
-    tree-sitter
 
     # org mode
     maim
@@ -34,8 +25,6 @@ let
 
     # LSPs
     vimPlugins.vim-lsp
-    nixd
-    vscode-json-languageserver
   ];
 
   apps = with pkgs; [
@@ -58,30 +47,13 @@ let
   ];
 
   sysutils = with pkgs; [
-    zsh
     pulseaudio
     pavucontrol # per-device audio profiles, e.g. switching a headset to HFP
-    gnumake
-    gnutar
-    gcc
-    tmux
-    wget
-    xh
-    git
-    jujutsu
-    hub
-    fzf
-    openssl
     alacritty
-    glibcLocales
     thunar
-    file
     seahorse
     kitty
-    yazi
     flatpak
-    zip
-    unzip
     ghostty
     gcr_4
     fontconfig
@@ -127,43 +99,7 @@ let
   ];
 
   utils = with pkgs; [
-    fastfetch
-    (python313.withPackages (
-      ps: with ps; [
-        keyring
-        pip
-        grip
-        pytest
-        pyflakes
-        isort
-        cffi
-        ipython
-        black
-      ]
-    ))
-
-    docker_29
-    ctop
-    ripgrep
-    jq
-    yq
-    direnv
-    nix-direnv
-    fd
-    bat
-    sqlite
-    tree
-    pet
-    dig
-    sops
-    age
-    duckdb
-    uv
-    gh
-    kubectl
     fastmail-cli
-
-    bubblewrap # dep for codex
 
     # scanner
     simple-scan
@@ -171,10 +107,6 @@ let
 
 in
 {
-  imports = [ ../llm-agents.nix ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps ++ utils;
 
   # The package ships the sandboxed AirPods daemon unit; start it with the session.
