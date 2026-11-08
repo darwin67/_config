@@ -39,13 +39,51 @@
   };
   hardware.nvidia.primeBatterySaverSpecialisation = true;
 
-  # Keep the greeter (cage/wlroots) on the iGPU only. With the dGPU active,
-  # wlroots renders on nvidia and PRIME-copies frames into the amdgpu, whose
-  # 512MB VRAM carveout is too small when the MST dock is connected at boot:
-  # amdgpu fails with "Failed to pin framebuffer with error -12" and greetd
-  # restart-loops the greeter. Pinning the greeter to the iGPU avoids the
-  # cross-GPU copies entirely.
-  systemd.services.greetd.environment.WLR_DRM_DEVICES = "/dev/dri/by-path/pci-0000:c2:00.0-card";
+  # The niri greeter uses the same monitor arrangement as the desktop
+  # (niri/host.kdl), with the login window on the 32" in the middle.
+  #
+  # Every display is wired to the AMD iGPU (c2), so the greeter renders there.
+  # Rendering on the NVIDIA dGPU would PRIME-copy each frame into the amdgpu,
+  # whose 512MB VRAM carveout was too small with the MST dock connected at
+  # boot: "Failed to pin framebuffer with error -12" and a greetd restart loop.
+  # niri ignores wlroots' WLR_DRM_DEVICES; renderDevice is its equivalent.
+  programs.genkan.greeter = {
+    authenticationOutput = "Dell Inc. DELL U3223QE 5PRFH34";
+    niri = {
+      renderDevice = "/dev/dri/by-path/pci-0000:c2:00.0-render";
+      outputs = {
+        "Dell Inc. DELL S2421HGF DWH4B73" = {
+          scale = 1.0;
+          position = {
+            x = 0;
+            y = 614;
+          };
+        };
+        "Dell Inc. DELL U3223QE 5PRFH34" = {
+          scale = 1.275;
+          position = {
+            x = 1920;
+            y = 0;
+          };
+        };
+        "Dell Inc. DELL U2720QM 604QZ83" = {
+          transform = "90";
+          scale = 1.3;
+          position = {
+            x = 4932;
+            y = 0;
+          };
+        };
+        "eDP-1" = {
+          scale = 1.2;
+          position = {
+            x = 0;
+            y = 1694;
+          };
+        };
+      };
+    };
+  };
 
   services.pipewire.wireplumber = {
     enable = true;
