@@ -179,8 +179,14 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      # Keep Bluetooth headsets in high-quality A2DP when an app opens a mic;
+      # calls use the default (non-headset) microphone instead of HFP.
+      wireplumber.extraConfig."51-bluetooth-no-autoswitch" = {
+        "wireplumber.settings" = {
+          "bluetooth.autoswitch-to-headset-profile" = false;
+        };
+      };
     };
-    blueman.enable = true;
 
     emacs = {
       enable = true;
@@ -241,16 +247,8 @@
 
     user = {
       services = {
-        # for controller via bluetooth devices
-        mpris-proxy = {
-          description = "Mpris proxy";
-          after = [
-            "network.target"
-            "sound.target"
-          ];
-          wantedBy = [ "default.target" ];
-          serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-        };
+        # Headset media buttons; BlueZ ships the unit, NixOS only needs to start it.
+        mpris-proxy.wantedBy = [ "default.target" ];
 
         # Own the tmux server at login so it runs in its own cgroup instead of a
         # terminal window's. A server started from a window's shell is killed
@@ -295,6 +293,9 @@
       };
     };
     niri.enable = true;
+    # For Noctalia's Screen Recorder plugin; the wrapper lets it capture
+    # a window or region, not just through the portal.
+    gpu-screen-recorder.enable = true;
     nix-ld = {
       enable = true;
       # Amp downloads Waymote binaries linked against these system libraries.

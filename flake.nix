@@ -34,6 +34,20 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Noctalia plugins, pinned here instead of auto-updated by the shell.
+    noctalia-official-plugins = {
+      url = "github:noctalia-dev/official-plugins";
+      flake = false;
+    };
+    noctalia-plugins = {
+      url = "github:noctalia-dev/community-plugins";
+      flake = false;
+    };
+    # AirPods daemon (librepods fork) for the AirPods Noctalia plugin.
+    omarchy-pods = {
+      url = "github:thisisgm/omarchy-pods";
+      flake = false;
+    };
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";

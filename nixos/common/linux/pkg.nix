@@ -8,6 +8,9 @@
 
 let
   fastmail-cli = pkgs.callPackage ../../pkgs/fastmail-cli.nix { };
+  omarchy-pods-daemon = pkgs.callPackage ../../pkgs/omarchy-pods-daemon.nix {
+    src = inputs.omarchy-pods;
+  };
 
   editor = with pkgs; [
     vim
@@ -57,6 +60,7 @@ let
   sysutils = with pkgs; [
     zsh
     pulseaudio
+    pavucontrol # per-device audio profiles, e.g. switching a headset to HFP
     gnumake
     gnutar
     gcc
@@ -85,17 +89,23 @@ let
 
   desktop = with pkgs; [
     # Niri session
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+      # Hide nearby Bluetooth devices that broadcast no name (shown as bare addresses).
+      patches = (old.patches or [ ]) ++ [ ../../pkgs/noctalia-hide-nameless-bluetooth.patch ];
+    }))
     xwayland-satellite
     swayidle # idle lock and screen-off, started from the Niri config
     wl-clipboard
     wf-recorder
+    slurp # region picker for Noctalia's Screen Recorder plugin
     rtkit # for pipewire
     polkit # for 1password
     polkit_gnome
     playerctl
     brightnessctl
     bluez
+    pbpctrl # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin
+    omarchy-pods-daemon # AirPods daemon + librepods-ctl for the Noctalia AirPods plugin
     bluez-tools
 
     fwupd # hardware
@@ -166,4 +176,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = sysutils ++ desktop ++ editor ++ browser ++ apps ++ utils;
+
+  # The package ships the sandboxed AirPods daemon unit; start it with the session.
+  systemd.packages = [ omarchy-pods-daemon ];
+  systemd.user.services.librepods.wantedBy = [ "graphical-session.target" ];
 }

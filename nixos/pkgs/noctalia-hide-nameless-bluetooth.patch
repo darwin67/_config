@@ -1,0 +1,22 @@
+--- a/src/shell/control_center/tabs/bluetooth_tab.cpp
++++ b/src/shell/control_center/tabs/bluetooth_tab.cpp
+@@ -91,9 +91,19 @@
+ 
+   std::string percentText(int percent) { return std::to_string(percent) + "%"; }
+ 
++  // BlueZ aliases a device that broadcasts no name to its address.
++  bool isNameless(const BluetoothDeviceInfo& d) {
++    std::string dashed = d.address;
++    std::ranges::replace(dashed, ':', '-');
++    return d.alias == d.address || d.alias == dashed;
++  }
++
+   // Bucket first, then strongest band, then a stable alias/path tiebreak so equally
+   // named devices keep their order across rebuilds.
+   std::vector<BluetoothDeviceInfo> sortedDevices(std::vector<BluetoothDeviceInfo> devices) {
++    std::erase_if(devices, [](const BluetoothDeviceInfo& d) {
++      return bucketFor(d) == DeviceBucket::Available && isNameless(d);
++    });
+     std::ranges::sort(devices, [](const BluetoothDeviceInfo& a, const BluetoothDeviceInfo& b) {
+       const auto ba = bucketFor(a);
+       const auto bb = bucketFor(b);

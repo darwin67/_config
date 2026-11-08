@@ -109,6 +109,16 @@ in
       ".config/niri/host.kdl".text = "";
       # Noctalia desktop shell.
       ".config/noctalia/config.toml".source = "${self}/niri/noctalia/config.toml";
+      # Noctalia's local plugin source; enabled in config.toml.
+      ".local/share/noctalia/plugins/pixel-buds".source = "${inputs.noctalia-plugins}/pixel-buds";
+      ".local/share/noctalia/plugins/airpods".source = "${inputs.noctalia-plugins}/airpods";
+      ".local/share/noctalia/plugins/screen_recorder".source =
+        "${inputs.noctalia-official-plugins}/screen_recorder";
+      ".local/share/noctalia/plugins/timer".source = "${inputs.noctalia-official-plugins}/timer";
+      ".local/share/noctalia/plugins/translator".source =
+        "${inputs.noctalia-official-plugins}/translator";
+      ".local/share/noctalia/plugins/world_clock".source =
+        "${inputs.noctalia-official-plugins}/world_clock";
 
       # Terminal
       ".tmux.conf".source = "${self}/term/.tmux.conf";

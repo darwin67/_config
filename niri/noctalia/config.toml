@@ -60,7 +60,7 @@ padding = 12
 widget_spacing = 14
 start = [ "nixos", "active_window" ]
 center = []
-end = [ "tray", "workspaces", "network", "battery", "spotlight", "control-center", "macclock" ]
+end = [ "tray", "recorder", "workspaces", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timer", "world-clock", "macclock" ]
 
 # Apple-menu equivalent with the NixOS logo: lock, log out, sleep, reboot, shut down.
 [widget.nixos]
@@ -90,3 +90,32 @@ glyph = "adjustments-horizontal"
 
 [widget.network]
 show_label = false
+
+# Earbud widgets from the community plugins Nix links into
+# ~/.local/share/noctalia/plugins; both hide while their buds are disconnected.
+[widget.pixel-buds]
+type = "finoo125/pixel-buds:pixel-buds"
+
+[widget.airpods]
+type = "harveywuk/airpods:airpods"
+
+# Official plugins: Screen Recorder, Timer, World Clock, and Translator
+# (launcher only: type "/tr" in the launcher).
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
+
+[widget.timer]
+type = "noctalia/timer:bar"
+
+[widget.world-clock]
+type = "noctalia/world_clock:bar"
+
+[plugins]
+enabled = [
+    "finoo125/pixel-buds",
+    "harveywuk/airpods",
+    "noctalia/screen_recorder",
+    "noctalia/timer",
+    "noctalia/translator",
+    "noctalia/world_clock",
+]
