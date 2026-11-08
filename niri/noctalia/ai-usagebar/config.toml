@@ -1,0 +1,28 @@
+# ai-usagebar, the CLI behind Noctalia's AI Usage widget.
+# Nix links this file read-only: add providers and accounts here, not with
+# `ai-usagebar account add`.
+
+# Claude plans. The default account is the ~/.claude login (personal).
+[anthropic]
+enabled = true
+
+# Sign in once with: CLAUDE_CONFIG_DIR=~/.claude-work claude, then /login
+[[anthropic.accounts]]
+label = "work"
+credentials_path = "~/.claude-work/.credentials.json"
+
+# Codex (ChatGPT) plans. The default account is the ~/.codex login (personal).
+[openai]
+enabled = true
+
+# Sign in once with: CODEX_HOME=~/.codex-work codex login
+[[openai.accounts]]
+label = "work"
+codex_auth_path = "~/.codex-work/auth.json"
+
+# On by default upstream; unused here.
+[zai]
+enabled = false
+
+[openrouter]
+enabled = false

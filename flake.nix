@@ -48,6 +48,11 @@
       url = "github:thisisgm/omarchy-pods";
       flake = false;
     };
+    # CLI behind the AI Usage Noctalia plugin; not in nixpkgs.
+    ai-usagebar = {
+      url = "github:akitaonrails/ai-usagebar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # MacOS
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
