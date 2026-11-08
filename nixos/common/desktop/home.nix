@@ -114,12 +114,16 @@ in
       ".local/share/noctalia/plugins/airpods".source = "${inputs.noctalia-plugins}/airpods";
       ".local/share/noctalia/plugins/screen_recorder".source =
         "${inputs.noctalia-official-plugins}/screen_recorder";
-      ".local/share/noctalia/plugins/timer".source = "${inputs.noctalia-official-plugins}/timer";
       ".local/share/noctalia/plugins/translator".source =
         "${inputs.noctalia-official-plugins}/translator";
-      ".local/share/noctalia/plugins/world_clock".source =
-        "${inputs.noctalia-official-plugins}/world_clock";
       ".local/share/noctalia/plugins/ai-usagebar".source = "${inputs.noctalia-plugins}/ai-usagebar";
+      # Icon only in the bar; the times show on hover.
+      ".local/share/noctalia/plugins/timezone-hub".source = pkgs.applyPatches {
+        name = "timezone-hub";
+        src = "${inputs.noctalia-plugins}/timezone-hub";
+        patches = [ ../../pkgs/noctalia-timezone-hub-icon-only.patch ];
+        patchFlags = [ "-p2" ];
+      };
       ".config/ai-usagebar/config.toml".source = "${self}/niri/noctalia/ai-usagebar/config.toml";
 
       # Terminal

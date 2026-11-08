@@ -1,0 +1,23 @@
+--- a/timezone-hub/bar.luau
++++ b/timezone-hub/bar.luau
+@@ -28,7 +28,8 @@
+   end
+   if #selectedRows == 0 then
+     barWidget.setGlyph("world")
+-    barWidget.setText("--:--")
++    barWidget.setText("")
++    barWidget.setTooltip("--:--")
+     return
+   end
+ 
+@@ -46,7 +47,9 @@
+     segment = segment .. " " .. (row.timeText or "--:--")
+     table.insert(segments, segment)
+   end
+-  barWidget.setText(table.concat(segments, " · "))
++  -- Icon only: the times move to the tooltip.
++  barWidget.setText("")
++  barWidget.setTooltip(table.concat(segments, " · "))
+ end
+ 
+ function update()

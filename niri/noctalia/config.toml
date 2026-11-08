@@ -60,7 +60,7 @@ padding = 12
 widget_spacing = 14
 start = [ "nixos", "active_window" ]
 center = []
-end = [ "tray", "recorder", "workspaces", "ai-usage", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timer", "world-clock", "macclock" ]
+end = [ "tray", "recorder", "workspaces", "ai-usage", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timezone-hub", "macclock" ]
 
 # Apple-menu equivalent with the NixOS logo: lock, log out, sleep, reboot, shut down.
 [widget.nixos]
@@ -99,16 +99,19 @@ type = "finoo125/pixel-buds:pixel-buds"
 [widget.airpods]
 type = "harveywuk/airpods:airpods"
 
-# Official plugins: Screen Recorder, Timer, World Clock, and Translator
+# Official plugins: Screen Recorder and Translator
 # (launcher only: type "/tr" in the launcher).
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
 
-[widget.timer]
-type = "noctalia/timer:bar"
+# Compare cities and change the device timezone. Cities are added in its panel;
+# its eye buttons pick which cities the icon's tooltip shows.
+[widget.timezone-hub]
+type = "ahmedhossamdev/timezone-hub:bar"
 
-[widget.world-clock]
-type = "noctalia/world_clock:bar"
+# Keeps the tooltip to city and time.
+[plugin_settings."ahmedhossamdev/timezone-hub"]
+show_date_in_bar = false
 
 # Claude and Codex plan usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
 # The capsule shows the two busiest accounts; click it for every account.
@@ -119,11 +122,10 @@ provider_limit = 2
 
 [plugins]
 enabled = [
+    "ahmedhossamdev/timezone-hub",
     "felipeartur/ai-usagebar",
     "finoo125/pixel-buds",
     "harveywuk/airpods",
     "noctalia/screen_recorder",
-    "noctalia/timer",
     "noctalia/translator",
-    "noctalia/world_clock",
 ]
