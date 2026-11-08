@@ -164,6 +164,16 @@
           "bluetooth.autoswitch-to-headset-profile" = false;
         };
       };
+      # Make a newly connected Bluetooth headset the default output. Every ALSA
+      # device (USB, HDMI, built-in) is blocklisted so only Bluetooth switches.
+      extraConfig.pipewire-pulse."91-switch-on-connect" = {
+        "pulse.cmd" = [
+          {
+            cmd = "load-module";
+            args = "module-switch-on-connect blocklist=^alsa_";
+          }
+        ];
+      };
     };
 
     emacs = {
