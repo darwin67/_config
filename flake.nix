@@ -77,7 +77,7 @@
           system ? "x86_64-linux",
           modules ? [ ],
           additionalFiles ? { },
-          homeModule ? ./nixos/common/linux/home.nix,
+          homeModule ? ./nixos/common/desktop/home.nix,
           ...
         }:
         let
@@ -96,6 +96,9 @@
           modules = modules ++ [
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
+            # Base settings shared by all Linux hosts (desktop and server).
+            ./nixos/common/base/conf.nix
+            ./nixos/common/base/pkg.nix
             {
               nixpkgs.pkgs = pkgs;
               home-manager = {
