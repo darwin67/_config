@@ -52,7 +52,8 @@ window-rule {
 }
 
 // Every display is wired to the AMD iGPU (c2); render there so frames are
-// not PRIME-copied from the NVIDIA dGPU (see the greetd note in configuration.nix).
+// not PRIME-copied from the NVIDIA dGPU (the greeter uses the same device;
+// see programs.genkan.greeter in configuration.nix).
 debug {
     render-drm-device "/dev/dri/by-path/pci-0000:c2:00.0-render"
 }

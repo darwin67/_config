@@ -131,12 +131,8 @@
       enable = true;
       settings = {
         terminal.vt = 1;
-        default_session = {
-          user = "greeter";
-          command = "${lib.getExe pkgs.cage} -- ${
-            lib.getExe' inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default "genkan"
-          } login --wallpaper tahoe-beach";
-        };
+        # programs.genkan.greeter supplies default_session.command.
+        default_session.user = "greeter";
       };
     };
     xserver = {
@@ -217,11 +213,6 @@
     # new terminal.
     tmpfiles.rules = [ "x /tmp/tmux-*" ];
 
-    services.greetd = {
-      environment.XDG_DATA_DIRS = "${config.services.displayManager.sessionData.desktops}/share";
-      restartIfChanged = false;
-    };
-
     user = {
       services = {
         # Headset media buttons; BlueZ ships the unit, NixOS only needs to start it.
@@ -252,6 +243,12 @@
   programs = {
     genkan = {
       enable = true;
+      # Hosts add their niri outputs, login monitor and render device.
+      greeter = {
+        enable = true;
+        compositor = "niri";
+        wallpaper = "tahoe-beach";
+      };
       wallpaper = {
         enable = true;
         solar.enable = true;
