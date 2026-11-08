@@ -30,7 +30,7 @@ let
   apps = with pkgs; [
     signal-desktop
     slack
-    karere
+    zapzap
     # wechat-uos
     discord
     zulip
