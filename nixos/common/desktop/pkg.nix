@@ -78,6 +78,8 @@ let
     bluez
     pbpctrl # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin
     omarchy-pods-daemon # AirPods daemon + librepods-ctl for the Noctalia AirPods plugin
+    # Claude and Codex plan usage for the Noctalia AI Usage plugin
+    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
     bluez-tools
 
     fwupd # hardware

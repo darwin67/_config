@@ -60,7 +60,7 @@ padding = 12
 widget_spacing = 14
 start = [ "nixos", "active_window" ]
 center = []
-end = [ "tray", "recorder", "workspaces", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timer", "world-clock", "macclock" ]
+end = [ "tray", "recorder", "workspaces", "ai-usage", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timer", "world-clock", "macclock" ]
 
 # Apple-menu equivalent with the NixOS logo: lock, log out, sleep, reboot, shut down.
 [widget.nixos]
@@ -110,8 +110,16 @@ type = "noctalia/timer:bar"
 [widget.world-clock]
 type = "noctalia/world_clock:bar"
 
+# Claude and Codex plan usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
+# The capsule shows the two busiest accounts; click it for every account.
+# Middle click edits the capsule's settings.
+[widget.ai-usage]
+type = "felipeartur/ai-usagebar:bar"
+provider_limit = 2
+
 [plugins]
 enabled = [
+    "felipeartur/ai-usagebar",
     "finoo125/pixel-buds",
     "harveywuk/airpods",
     "noctalia/screen_recorder",

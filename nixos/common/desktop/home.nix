@@ -119,6 +119,8 @@ in
         "${inputs.noctalia-official-plugins}/translator";
       ".local/share/noctalia/plugins/world_clock".source =
         "${inputs.noctalia-official-plugins}/world_clock";
+      ".local/share/noctalia/plugins/ai-usagebar".source = "${inputs.noctalia-plugins}/ai-usagebar";
+      ".config/ai-usagebar/config.toml".source = "${self}/niri/noctalia/ai-usagebar/config.toml";
 
       # Terminal
       ".tmux.conf".source = "${self}/term/.tmux.conf";
