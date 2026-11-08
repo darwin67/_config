@@ -94,11 +94,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1794116573,
-        "narHash": "sha256-jDlutTDsEvR8WwTOhvOJYNcZCmxkMCLfYtVfl/zcRZI=",
+        "lastModified": 1794120153,
+        "narHash": "sha256-mgKVPXH/nRJ5eDCR766X8V1APWg38IwFVV5ij/fphmg=",
         "owner": "darwin67",
         "repo": "genkan",
-        "rev": "289caf43dd37fcc591862fccf14716657b15757e",
+        "rev": "17d7ab442abf3d0176a84ebc5b8bed95b9d232dd",
         "type": "github"
       },
       "original": {
