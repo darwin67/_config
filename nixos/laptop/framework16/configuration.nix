@@ -103,11 +103,23 @@
 
   sops.age.keyFile = "${config.users.users.darwin.home}/.config/sops/age/keys.txt";
 
-  sops.secrets.gpg-private-key = {
-    sopsFile = ./secrets.enc.yaml;
-    owner = "darwin";
-    mode = "0400";
-  };
+  sops.secrets =
+    lib.genAttrs
+      [
+        "gpg-private-key"
+        # API keys read by the ai-usagebar wrapper in nixos/common/desktop/pkg.nix.
+        "anthropic-admin-key" # Claude Console organization Admin keys
+        "anthropic-admin-key-summit"
+        "ollama-api-key"
+        "deepseek-api-key"
+        "opencode-go-api-key" # OpenCode service account key with Usage: Read only
+        "openai-admin-key" # Read only OpenAI Platform Admin key, read by openai-usage instead
+      ]
+      (_: {
+        sopsFile = ./secrets.enc.yaml;
+        owner = "darwin";
+        mode = "0400";
+      });
 
   # boot.kernelParams = [ "amdgpu.abmlevel=0" ];
 

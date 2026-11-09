@@ -1,0 +1,12 @@
+id = "darwin67/openai-usage"
+name = "OpenAI API"
+version = "1.0.0"
+plugin_api = 43
+author = "darwin67"
+icon = "brand-openai"
+description = "Month-to-date spend for the OpenAI Platform organization, read with the openai-usage script."
+dependencies = ["openai-usage"]
+
+[[widget]]
+id = "bar"
+entry = "bar.luau"

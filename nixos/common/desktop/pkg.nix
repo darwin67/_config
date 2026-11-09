@@ -11,6 +11,57 @@ let
   omarchy-pods-daemon = pkgs.callPackage ../../pkgs/omarchy-pods-daemon.nix {
     src = inputs.omarchy-pods;
   };
+  # Exports API keys decrypted by sops-nix (see the host's secrets.enc.yaml) so
+  # they stay out of git, the Nix store and ~/.config/ai-usagebar.
+  ai-usagebar =
+    let
+      keys = {
+        anthropic-admin-key = "ANTHROPIC_ADMIN_KEY";
+        anthropic-admin-key-summit = "ANTHROPIC_ADMIN_KEY_SUMMIT";
+        ollama-api-key = "OLLAMA_API_KEY";
+        deepseek-api-key = "DEEPSEEK_API_KEY";
+        opencode-go-api-key = "OPENCODE_GO_API_KEY";
+      };
+      exports = lib.concatStringsSep " " (
+        lib.mapAttrsToList (
+          secret: var: "--run 'k=/run/secrets/${secret}; [ -r \"$k\" ] && export ${var}=\"$(<\"$k\")\"'"
+        ) keys
+      );
+    in
+    pkgs.symlinkJoin {
+      name = "ai-usagebar";
+      paths = [ inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        for bin in $out/bin/*; do
+          wrapProgram "$bin" ${exports}
+        done
+      '';
+    };
+  # Month-to-date OpenAI Platform spend for the local openai-usage Noctalia
+  # plugin; ai-usagebar reads OpenAI usage only from Codex logins.
+  openai-usage = pkgs.writeShellApplication {
+    name = "openai-usage";
+    runtimeInputs = with pkgs; [
+      coreutils
+      curl
+      jq
+    ];
+    text = ''
+      # Costs come in daily UTC buckets, so the month starts at UTC midnight.
+      start=$(date -u -d "$(date -u +%Y-%m-01)" +%s)
+      # The key goes through stdin so it never appears in a process's arguments.
+      total=$(
+        printf 'Authorization: Bearer %s\n' "$(< /run/secrets/openai-admin-key)" |
+          curl --silent --show-error --fail --max-time 20 --header @- \
+            "https://api.openai.com/v1/organization/costs?start_time=$start&bucket_width=1d&limit=31" |
+          jq '[.data[].results[].amount.value // 0] | add // 0'
+      )
+      text=$(printf "\$%.2f" "$total")
+      jq -nc --arg text "$text" --arg since "$(date -u +'%b 1')" \
+        '{text: $text, tooltip: "OpenAI API: \($text) this month, since \($since) UTC"}'
+    '';
+  };
 
   editor = with pkgs; [
     vscode
@@ -78,8 +129,8 @@ let
     bluez
     pbpctrl # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin
     omarchy-pods-daemon # AirPods daemon + librepods-ctl for the Noctalia AirPods plugin
-    # Claude and Codex plan usage for the Noctalia AI Usage plugin
-    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ai-usagebar # AI plan and API usage for the Noctalia AI Usage plugin
+    openai-usage
     bluez-tools
 
     fwupd # hardware

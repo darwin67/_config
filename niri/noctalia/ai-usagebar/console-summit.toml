@@ -1,0 +1,6 @@
+# Claude Console spend for the Summit organization, shown by the local
+# console-usage Noctalia plugin. ai-usagebar reads one Console admin key per
+# config file (https://github.com/akitaonrails/ai-usagebar/issues/599).
+[anthropic_api]
+enabled = true
+api_key_env = "ANTHROPIC_ADMIN_KEY_SUMMIT"

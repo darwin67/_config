@@ -64,7 +64,7 @@ padding = 12
 widget_spacing = 14
 start = [ "nixos", "active_window" ]
 center = []
-end = [ "tray", "recorder", "workspaces", "ai-usage", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timezone-hub", "macclock" ]
+end = [ "tray", "recorder", "workspaces", "ai-usage", "console-summit", "openai-api", "pixel-buds", "airpods", "network", "battery", "spotlight", "control-center", "timezone-hub", "macclock" ]
 
 # Apple-menu equivalent with the NixOS logo: lock, log out, sleep, reboot, shut down.
 [widget.nixos]
@@ -117,16 +117,27 @@ type = "ahmedhossamdev/timezone-hub:bar"
 [plugin_settings."ahmedhossamdev/timezone-hub"]
 show_date_in_bar = false
 
-# Claude and Codex plan usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
+# AI plan and API usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
 # The capsule shows the two busiest accounts; click it for every account.
 # Middle click edits the capsule's settings.
 [widget.ai-usage]
 type = "felipeartur/ai-usagebar:bar"
 provider_limit = 2
 
+# Spend for the Summit Claude Console organization, which the AI Usage plugin
+# cannot read alongside the first one.
+[widget.console-summit]
+type = "darwin67/console-usage:bar"
+
+# OpenAI Platform spend, which the AI Usage plugin cannot read.
+[widget.openai-api]
+type = "darwin67/openai-usage:bar"
+
 [plugins]
 enabled = [
     "ahmedhossamdev/timezone-hub",
+    "darwin67/console-usage",
+    "darwin67/openai-usage",
     "felipeartur/ai-usagebar",
     "finoo125/pixel-buds",
     "harveywuk/airpods",
