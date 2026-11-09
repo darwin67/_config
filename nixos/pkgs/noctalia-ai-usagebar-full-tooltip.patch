@@ -1,0 +1,159 @@
+--- a/ai-usagebar/bar.luau
++++ b/ai-usagebar/bar.luau
+@@ -133,6 +133,21 @@
+         return tostring(a.id) < tostring(b.id)
+     end)
+ 
++    -- Local patch: the tooltip lists every account in its sorted order, then
++    -- the ones filtered out (rejected logins, errors, providers that are
++    -- down) from the raw report, so they show as unavailable.
++    local listed, seen = {}, {}
++    for _, entry in ipairs(ready) do
++        listed[#listed + 1] = entry
++        seen[entry] = true
++    end
++    local raw = type(report) == "table" and type(report.entries) == "table" and report.entries or {}
++    for _, entry in ipairs(raw) do
++        if type(entry) == "table" and not seen[entry] then
++            listed[#listed + 1] = entry
++        end
++    end
++
+     if scrollTargetId ~= nil then
+         local found = false
+         for index, entry in ipairs(ready) do
+@@ -157,9 +172,9 @@
+ 
+     local picked = {}
+     for i = 1, math.min(limit, #ready) do picked[i] = ready[i] end
+-    if #picked == 0 then return {}, 0 end
+-    if limit == 1 then return picked, 0 end
+-    return picked, #ready - #picked
++    if #picked == 0 then return {}, 0, listed end
++    if limit == 1 then return picked, 0, listed end
++    return picked, #ready - #picked, listed
+ end
+ 
+ -- The pinned entry when the report carries it and its source is down. `shown()`
+@@ -429,7 +444,7 @@
+     return ui.row({ gap = 4, align = "center" }, nodes)
+ end
+ 
+-local MAX_TOOLTIP_ROWS = 10
++local MAX_TOOLTIP_ROWS = 40
+ local WINDOW_TAG = { session = "5h", weekly = "7d", monthly = "30d" }
+ 
+ local function windowTitle(title, metric, fallback)
+@@ -471,52 +486,44 @@
+         return { { key = noctalia.tr("ui.title"), value = waiting } }
+     end
+ 
++    -- Local patch: one header row per account, then one indented row per
++    -- limit under the provider's own label, with a blank row between accounts.
+     local readings = {}
+     local hasQuota, needsPanel = false, false
+-    local function finishReading(rowKey, value, entry)
++    local function child(label, value)
++        readings[#readings + 1] = { key = label, value = value, indent = true }
++    end
++    for index, entry in ipairs(picked) do
++        if index > 1 then readings[#readings + 1] = { blank = true } end
++        readings[#readings + 1] = { key = tostring(entry.display_name or entry.id), value = "" }
++        local stale = ""
+         if entry.stale == true then
+-            value = value .. " · " .. noctalia.tr("ui.stale")
++            stale = " · " .. noctalia.tr("ui.stale")
+             needsPanel = true
+         end
+-        readings[#readings + 1] = { key = rowKey, value = value }
+-    end
+-    local function addReading(title, metrics, selected, entry)
+-        local first, second = gaugeMetrics(metrics, selected)
+-        if #metrics > 0 then hasQuota = true end
+-        if first ~= nil and second ~= nil then
+-            finishReading(windowTitle(title, first, "5h"), formatMetric(first), entry)
+-            finishReading(windowTitle(title, second, "7d"), formatMetric(second), entry)
+-            return
+-        end
+-        local value = formatMetric(first or second)
+-        if #metrics > 0 and value == "" and quotaWindow ~= "auto" then
+-            value = noctalia.tr("ui.window_unavailable")
+-        end
+-        if value == "" then value = shared.balanceText(entry) or noctalia.tr("ui.no_usage") end
+-        finishReading(title, value, entry)
+-    end
+-    for _, entry in ipairs(picked) do
+-        local title = tostring(entry.display_name or entry.id)
+-        if entry.status == "error" or shared.readFailure(entry) then
+-            readings[#readings + 1] = { key = title, value = noctalia.tr("ui.unavailable") }
++        if entry.status == "error" or shared.readFailure(entry) or unavailable(entry)
++            or shared.terminalAuth(entry) then
++            child("Status", noctalia.tr("ui.unavailable"))
+             needsPanel = true
+         else
+-            local models = modelHeadlines(entry)
+-            if #models > 0 then
+-                for _, item in ipairs(models) do
+-                    local metrics = item.metrics
+-                    local modelTitle = item.displayName or item.model
+-                    if tostring(entry.id):find("@", 1, true) then modelTitle = title .. " · " .. modelTitle end
+-                    addReading(modelTitle, metrics, shared.capsuleMetric({ metrics = metrics }, quotaWindow), entry)
++            local count = 0
++            for _, metric in ipairs(type(entry.metrics) == "table" and entry.metrics or {}) do
++                local value = type(metric) == "table" and formatMetric(metric) or ""
++                if value ~= "" then
++                    hasQuota = true
++                    count = count + 1
++                    child(tostring(metric.label or ""), value .. stale)
+                 end
+-            else
+-                local metrics = type(entry.metrics) == "table" and entry.metrics or {}
+-                addReading(title, metrics, capsuleMetric(entry), entry)
++            end
++            if count == 0 then
++                local balance = shared.balanceText(entry)
++                child(balance and "Balance" or "Usage", (balance or noctalia.tr("ui.no_usage")) .. stale)
+             end
+         end
+     end
+     local footer = {}
+     if hasQuota then
++        footer[#footer + 1] = { blank = true }
+         footer[#footer + 1] = { key = noctalia.tr("ui." .. usageDisplay), value = noctalia.tr("settings.quota_window.option." .. quotaWindow) }
+     end
+     if hidden > 0 then
+@@ -534,15 +541,20 @@
+ local function tooltip(picked, hidden)
+     local rows = tooltipSummary(picked, hidden)
+     for _, row in ipairs(rows) do
+-        row.key = noctalia.string.trim(tostring(row.key):gsub("%s+", " "))
+-        row.value = noctalia.string.trim(tostring(row.value):gsub("%s+", " "))
++        row.key = noctalia.string.trim(tostring(row.key or ""):gsub("%s+", " "))
++        row.value = noctalia.string.trim(tostring(row.value or ""):gsub("%s+", " "))
++        -- Local patch: no-break spaces survive the trim, so they indent limit
++        -- rows and give blank rows a height.
++        if row.indent then row.key = "\u{A0}\u{A0}\u{A0}\u{A0}" .. row.key end
++        if row.blank then row.key = "\u{A0}" end
++        row.indent, row.blank = nil, nil
+     end
+     return rows
+ end
+ 
+ local function render()
+     local isVert = type(barWidget.isVertical) == "function" and barWidget.isVertical() or false
+-    local picked, hidden = shown()
++    local picked, hidden, ready = shown()
+     -- A failed read does not erase the last one: the numbers stay, flagged,
+     -- until a good report replaces them. Erasing them blanked the capsule over a
+     -- transient spawn failure.
+@@ -576,7 +588,9 @@
+     else
+         barWidget.render(ui.row({ gap = 8, align = "center" }, children))
+     end
+-    barWidget.setTooltip(tooltip(picked, hidden))
++    -- Local patch: the tooltip lists every account, not just the one
++    -- in the capsule.
++    barWidget.setTooltip(tooltip(ready or picked, ready and 0 or hidden))
+ end
+ 
+ -- ── Wiring ────────────────────────────────────────────────────────────────────

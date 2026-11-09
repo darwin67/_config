@@ -118,11 +118,14 @@ type = "ahmedhossamdev/timezone-hub:bar"
 show_date_in_bar = false
 
 # AI plan and API usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
-# The capsule shows the two busiest accounts; click it for every account.
-# Middle click edits the capsule's settings.
+# The capsule is just the busiest provider's icon; hover lists every account
+# and limit, click opens the full panel. Middle click edits these settings.
 [widget.ai-usage]
 type = "felipeartur/ai-usagebar:bar"
-provider_limit = 2
+provider_limit = 1
+show_value = false
+visualization = "none"
+extras = "none"
 
 [plugins]
 enabled = [

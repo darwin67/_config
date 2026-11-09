@@ -116,7 +116,13 @@ in
         "${inputs.noctalia-official-plugins}/screen_recorder";
       ".local/share/noctalia/plugins/translator".source =
         "${inputs.noctalia-official-plugins}/translator";
-      ".local/share/noctalia/plugins/ai-usagebar".source = "${inputs.noctalia-plugins}/ai-usagebar";
+      # The hover tooltip lists every account and limit, grouped by account.
+      ".local/share/noctalia/plugins/ai-usagebar".source = pkgs.applyPatches {
+        name = "ai-usagebar";
+        src = "${inputs.noctalia-plugins}/ai-usagebar";
+        patches = [ ../../pkgs/noctalia-ai-usagebar-full-tooltip.patch ];
+        patchFlags = [ "-p2" ];
+      };
       # Icon only in the bar; the times show on hover.
       ".local/share/noctalia/plugins/timezone-hub".source = pkgs.applyPatches {
         name = "timezone-hub";
