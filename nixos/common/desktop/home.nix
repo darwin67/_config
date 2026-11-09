@@ -124,14 +124,7 @@ in
         patches = [ ../../pkgs/noctalia-timezone-hub-icon-only.patch ];
         patchFlags = [ "-p2" ];
       };
-      # Local plugin for the second (Summit) Claude Console organization.
-      ".local/share/noctalia/plugins/console-usage".source =
-        "${self}/niri/noctalia/plugins/console-usage";
-      # Local plugin for OpenAI Platform spend, which ai-usagebar cannot read.
-      ".local/share/noctalia/plugins/openai-usage".source = "${self}/niri/noctalia/plugins/openai-usage";
       ".config/ai-usagebar/config.toml".source = "${self}/niri/noctalia/ai-usagebar/config.toml";
-      ".config/ai-usagebar/console-summit.toml".source =
-        "${self}/niri/noctalia/ai-usagebar/console-summit.toml";
 
       # Terminal
       ".tmux.conf".source = "${self}/term/.tmux.conf";

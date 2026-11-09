@@ -31,14 +31,6 @@ codex_auth_path = "~/.codex/auth.json"
 label = "backup"
 codex_auth_path = "~/.codex-work/auth.json"
 
-# Claude Console (API) spend for the "Claude API" organization. Needs an
-# organization Admin key. The Summit organization is in console-summit.toml,
-# because ai-usagebar reads one Console key per config file
-# (https://github.com/akitaonrails/ai-usagebar/issues/599).
-[anthropic_api]
-enabled = true
-api_key_env = "ANTHROPIC_ADMIN_KEY"
-
 # An OpenCode service account key limited to Usage: Read. It takes precedence
 # over the OpenCode CLI login in ~/.local/share/opencode/auth.json.
 [opencode-go]
@@ -53,7 +45,7 @@ api_key_env = "OLLAMA_API_KEY"
 enabled = true
 api_key_env = "DEEPSEEK_API_KEY"
 
-# Admin and API keys above come from sops-nix through the ai-usagebar wrapper
+# API keys above come from sops-nix through the ai-usagebar wrapper
 # in nixos/common/desktop/pkg.nix; this file only names the variables.
 
 # On by default upstream; unused here.
