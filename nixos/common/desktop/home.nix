@@ -126,6 +126,23 @@ in
       };
       ".config/ai-usagebar/config.toml".source = "${self}/niri/noctalia/ai-usagebar/config.toml";
 
+      # fcitx5 hotkeys and input methods (keyboard-us, Mozc). fcitx5 replaces
+      # these links with plain files when it saves; `force` restores the repo
+      # version on the next switch. It rewrites `profile` from memory on every
+      # exit and autosave, so a repo change to `profile` sticks only if fcitx5
+      # is killed before the switch and started after it:
+      #   systemctl --user kill -s KILL 'app-org.fcitx.Fcitx5@autostart.service'
+      #   systemctl --user start 'app-org.fcitx.Fcitx5@autostart.service'
+      # `config` changes apply with `fcitx5-remote -r`.
+      ".config/fcitx5/config" = {
+        source = "${self}/dots/fcitx5/config";
+        force = true;
+      };
+      ".config/fcitx5/profile" = {
+        source = "${self}/dots/fcitx5/profile";
+        force = true;
+      };
+
       # Terminal
       ".tmux.conf".source = "${self}/term/.tmux.conf";
       ".alacritty.toml".source = "${self}/term/.alacritty.toml";
