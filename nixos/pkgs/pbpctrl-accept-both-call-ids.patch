@@ -1,0 +1,33 @@
+--- a/libmaestro/src/protocol/utils.rs
++++ b/libmaestro/src/protocol/utils.rs
+@@ -53,7 +53,20 @@
+     Ok(channel)
+ }
+ 
+-async fn try_open_channel(mut handle: ClientHandle, channel_id: u32) -> Result<u32, Error> {
++// The buds announce GetSoftwareInfo with call_id 0xffffffff on firmware 5.9
++// but with call_id 0 on Pixel Buds Pro firmware 4.467. Listen for both call
++// IDs and take whichever message arrives.
++async fn try_open_channel(handle: ClientHandle, channel_id: u32) -> Result<u32, Error> {
++    let attempts = [
++        Box::pin(try_open_channel_with(handle.clone(), channel_id, 0xffffffff)),
++        Box::pin(try_open_channel_with(handle, channel_id, 0)),
++    ];
++
++    let (channel, _rest) = futures::future::select_ok(attempts).await?;
++    Ok(channel)
++}
++
++async fn try_open_channel_with(mut handle: ClientHandle, channel_id: u32, call_id: u32) -> Result<u32, Error> {
+     let path = PathRef::new("maestro_pw.Maestro/GetSoftwareInfo");
+     let service_id = path.service().hash();
+     let method_id = path.method().hash();
+@@ -62,7 +75,7 @@
+         channel_id,
+         service_id,
+         method_id,
+-        call_id: 0xffffffff,
++        call_id,
+         message: (),
+     };
+ 

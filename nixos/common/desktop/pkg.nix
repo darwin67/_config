@@ -101,7 +101,12 @@ let
     playerctl
     brightnessctl
     bluez
-    pbpctrl # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin
+    # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin. pbpctrl 0.1.8
+    # waits forever on firmware 4.467, which answers channel detection with a
+    # different call ID than firmware 5.9; the patch accepts both.
+    (pbpctrl.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [ ../../pkgs/pbpctrl-accept-both-call-ids.patch ];
+    }))
     omarchy-pods-daemon # AirPods daemon + librepods-ctl for the Noctalia AirPods plugin
     ai-usagebar # AI plan and API usage for the Noctalia AI Usage plugin
     bluez-tools
