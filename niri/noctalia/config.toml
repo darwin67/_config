@@ -117,7 +117,7 @@ type = "ahmedhossamdev/timezone-hub:bar"
 [plugin_settings."ahmedhossamdev/timezone-hub"]
 show_date_in_bar = false
 
-# Claude and Codex plan usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
+# AI plan and API usage from ai-usagebar (~/.config/ai-usagebar/config.toml).
 # The capsule shows the two busiest accounts; click it for every account.
 # Middle click edits the capsule's settings.
 [widget.ai-usage]

@@ -11,6 +11,31 @@ let
   omarchy-pods-daemon = pkgs.callPackage ../../pkgs/omarchy-pods-daemon.nix {
     src = inputs.omarchy-pods;
   };
+  # Exports API keys decrypted by sops-nix (see the host's secrets.enc.yaml) so
+  # they stay out of git, the Nix store and ~/.config/ai-usagebar.
+  ai-usagebar =
+    let
+      keys = {
+        ollama-api-key = "OLLAMA_API_KEY";
+        deepseek-api-key = "DEEPSEEK_API_KEY";
+        opencode-go-api-key = "OPENCODE_GO_API_KEY";
+      };
+      exports = lib.concatStringsSep " " (
+        lib.mapAttrsToList (
+          secret: var: "--run 'k=/run/secrets/${secret}; [ -r \"$k\" ] && export ${var}=\"$(<\"$k\")\"'"
+        ) keys
+      );
+    in
+    pkgs.symlinkJoin {
+      name = "ai-usagebar";
+      paths = [ inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        for bin in $out/bin/*; do
+          wrapProgram "$bin" ${exports}
+        done
+      '';
+    };
 
   editor = with pkgs; [
     vscode
@@ -78,8 +103,7 @@ let
     bluez
     pbpctrl # Pixel Buds Pro controls for the Noctalia Pixel Buds plugin
     omarchy-pods-daemon # AirPods daemon + librepods-ctl for the Noctalia AirPods plugin
-    # Claude and Codex plan usage for the Noctalia AI Usage plugin
-    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ai-usagebar # AI plan and API usage for the Noctalia AI Usage plugin
     bluez-tools
 
     fwupd # hardware
