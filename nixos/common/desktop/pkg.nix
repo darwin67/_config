@@ -76,6 +76,7 @@ let
     pavucontrol # per-device audio profiles, e.g. switching a headset to HFP
     alacritty
     thunar
+    inputs.strata.packages.${pkgs.stdenv.hostPlatform.system}.default
     seahorse
     kitty
     flatpak

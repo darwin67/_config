@@ -11,6 +11,7 @@
 
 let
   genkan = inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  strata = inputs.strata.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   chromeFlags = ''
     --enable-features=UseOzonePlatform
@@ -22,6 +23,13 @@ in
   imports = [
     ../gpg.nix
   ];
+
+  xdg.dataFile = {
+    "applications/io.github.lgse.Strata.desktop".source =
+      "${strata}/share/applications/io.github.lgse.Strata.desktop";
+    "dbus-1/services/io.github.lgse.Strata.FileManager1.service".source =
+      "${strata.fileManagerService}/share/dbus-1/services/io.github.lgse.Strata.FileManager1.service";
+  };
 
   home = {
     username = username;
@@ -176,6 +184,22 @@ in
     // additionalFiles;
 
     activation = {
+      # Seed Nord once; keep settings writable for changes made in Strata.
+      strataSettings = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        if [ ! -e "$HOME/.config/strata/settings.toml" ]; then
+          run mkdir -p "$HOME/.config/strata"
+          run install -m 600 ${pkgs.writeText "strata-settings.toml" ''
+            mode = "theme"
+            theme = "nord"
+          ''} "$HOME/.config/strata/settings.toml"
+        fi
+      '';
+
+      # Merge folder defaults without replacing saved browser/URL associations.
+      strataDefault = home-manager.lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+        run ${pkgs.xdg-utils}/bin/xdg-mime default io.github.lgse.Strata.desktop inode/directory x-scheme-handler/trash
+      '';
+
       cloneNotesRepo = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         if [ ! -d "$HOME/notes" ]; then
           # Prepend openssh to the PATH and use `|| true` to prevent the ssh command's exit code
