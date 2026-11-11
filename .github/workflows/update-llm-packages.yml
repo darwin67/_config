@@ -1,0 +1,87 @@
+name: Update LLM packages
+
+on:
+  schedule:
+    - cron: "23 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-llm-packages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: cachix/install-nix-action@3dc140bfc76c49fbd4dd958429132e3746bcb086 # v31
+        with:
+          extra_nix_config: |
+            extra-substituters = https://cache.numtide.com
+            extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+      - name: Test the desktop updater
+        run: python3 -B -m unittest discover -s .github/scripts -p 'test_*.py'
+      - name: Update agent and desktop pins
+        run: |
+          nix flake update llm-agents
+          python3 .github/scripts/update-amp-desktop.py
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet -- flake.lock nixos/pkgs/amp-desktop.nix; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Validate updated packages
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          nix flake check --print-build-logs
+          nix build --impure --no-link --print-build-logs --expr '
+            let
+              flake = builtins.getFlake (toString ./.);
+              pkgs = import flake.inputs.nixpkgs {
+                system = "x86_64-linux";
+                config.allowUnfree = true;
+              };
+              agents = flake.inputs.llm-agents.packages.x86_64-linux;
+            in [
+              agents.claude-code agents.opencode agents.amp agents.codex
+              (pkgs.callPackage ./nixos/pkgs/amp-desktop.nix { })
+            ]'
+      - name: Create or update the update PR
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          base: ${{ github.event.repository.default_branch }}
+          branch: automation/update-llm-packages
+          delete-branch: true
+          add-paths: |
+            flake.lock
+            nixos/pkgs/amp-desktop.nix
+          commit-message: Update LLM agents and Amp Desktop
+          title: Update LLM agents and Amp Desktop
+          body: |
+            ## Intent
+            Keep the installed LLM agents and Amp Desktop current without
+            committing updates directly to the default branch.
+
+            ## Effect
+            Update the llm-agents flake input (Claude Code, OpenCode, Amp CLI,
+            and Codex, including the input's own dependencies) and the Linux
+            Amp Desktop version/checksum from Amp's official Debian repository.
+            Other root flake inputs are not intentionally updated.
+
+            ## Validation and risk
+            The update job passed the desktop updater tests, `nix flake check`,
+            and builds of all four CLI agents and Amp Desktop on x86_64 Linux.
+            See the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            for logs. Full system builds, macOS, and interactive runtime behavior
+            are not tested. Review and merge manually; this job never merges PRs
+            or applies the workstation configuration.
