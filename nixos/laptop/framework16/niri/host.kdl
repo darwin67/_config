@@ -46,6 +46,13 @@ workspace "shosai" {
     open-on-output "Dell Inc. DELL S2421HGF DWH4B73"
 }
 
+// Prefer the 24" monitor for new Strata windows; stay tiled.
+// When undocked, Niri falls back to the focused output.
+window-rule {
+    match app-id=r#"^io\.github\.lgse\.Strata$"#
+    open-on-output "Dell Inc. DELL S2421HGF DWH4B73"
+}
+
 window-rule {
     match app-id=r#"^dev\.shosai\.shosai_flutter$"#
     open-on-workspace "shosai"
