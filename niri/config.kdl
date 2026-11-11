@@ -344,6 +344,15 @@ window-rule {
     open-floating true
 }
 
+// Float Zoom's toolbars and dialogs without changing its main or meeting windows.
+window-rule {
+    match app-id=r#"^(zoom|us\.zoom\.Zoom)$"#
+    exclude title="^Zoom Workplace( - .*)?$"
+    exclude title="^(Zoom )?(Meeting|Webinar)$"
+    exclude title="^Zoom - (Free|Licensed) Account$"
+    open-floating true
+}
+
 // Block out password managers from screen capture.
 window-rule {
     match app-id=r#"^1Password$"#
