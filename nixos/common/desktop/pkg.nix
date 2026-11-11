@@ -53,6 +53,7 @@ let
   ];
 
   apps = with pkgs; [
+    (callPackage ../../pkgs/amp-desktop.nix { })
     signal-desktop
     slack
     zapzap

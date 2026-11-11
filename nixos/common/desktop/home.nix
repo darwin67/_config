@@ -25,6 +25,9 @@ in
   ];
 
   xdg.dataFile = {
+    "applications/amp-desktop.desktop".source = "${
+      pkgs.callPackage ../../pkgs/amp-desktop.nix { }
+    }/share/applications/amp-desktop.desktop";
     "applications/io.github.lgse.Strata.desktop".source =
       "${strata}/share/applications/io.github.lgse.Strata.desktop";
     "dbus-1/services/io.github.lgse.Strata.FileManager1.service".source =
@@ -193,6 +196,12 @@ in
             theme = "nord"
           ''} "$HOME/.config/strata/settings.toml"
         fi
+      '';
+
+      # Register Amp's browser sign-in callback and thread links.
+      ampDesktopDefault = home-manager.lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+        run ${pkgs.desktop-file-utils}/bin/update-desktop-database ${config.xdg.dataHome}/applications
+        run ${pkgs.xdg-utils}/bin/xdg-mime default amp-desktop.desktop x-scheme-handler/amp x-scheme-handler/com.ampcode.amp.linux.auth
       '';
 
       # Merge folder defaults without replacing saved browser/URL associations.
