@@ -28,6 +28,10 @@
       url = "github:darwin67/genkan";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Strata needs a newer Rust than our release nixpkgs provides.
+    strata = {
+      url = "github:lgse/strata/v1.2.1";
+    };
     # Desktop shell for Niri; tracks upstream main for features
     # newer than nixpkgs' release.
     noctalia = {
