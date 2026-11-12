@@ -10,7 +10,6 @@
 }:
 
 let
-  genkan = inputs.genkan.packages.${pkgs.stdenv.hostPlatform.system}.default;
   strata = inputs.strata.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   chromeFlags = ''
@@ -19,7 +18,7 @@ let
   '';
 
 in
-{ config, ... }: {
+{ config, osConfig, ... }: {
   imports = [
     ../gpg.nix
   ];
@@ -114,7 +113,7 @@ in
       # Niri
       ".config/niri/config.kdl".source = "${self}/niri/config.kdl";
       ".config/niri/genkan.kdl".text = ''
-        spawn-at-startup "${genkan}/bin/genkan" "wallpaper" "--file" "${genkan}/share/genkan/wallpapers/heic/tahoe-dynamic.heic"
+        spawn-at-startup "${osConfig.programs.genkan.wallpaper.package}/bin/genkan" "wallpaper"
       '';
       # Hosts override this with their outputs, workspaces, and binds.
       ".config/niri/host.kdl".text = "";

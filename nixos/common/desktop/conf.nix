@@ -247,11 +247,10 @@
       greeter = {
         enable = true;
         compositor = "niri";
-        wallpaper = "tahoe-beach";
       };
       wallpaper = {
         enable = true;
-        solar.enable = true;
+        source.catalog = "iceland";
       };
     };
     firefox = {
