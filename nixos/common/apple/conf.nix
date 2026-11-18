@@ -28,7 +28,8 @@
         magnification = true;
       };
 
-      spaces.spans-displays = true;
+      # Rift requires “Displays have separate Spaces”; takes effect after login.
+      spaces.spans-displays = false;
 
       NSGlobalDomain = {
         # Shortest value based on
@@ -85,10 +86,6 @@
 
     taps = [
       {
-        name = "nikitabobko/tap";
-        trusted = true;
-      }
-      {
         name = "ampcode/tap";
         trusted = true;
       }
@@ -123,7 +120,6 @@
       "copyq"
       # "docker"
       "docker-desktop"
-      "aerospace" # tiling window manager
       "wireshark-app"
       "alfred"
       "claude" # desktop app
