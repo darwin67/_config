@@ -10,6 +10,7 @@
 
 let
   homeDir = "/Users/${username}";
+  rift = pkgs.callPackage ../../pkgs/rift.nix { };
 
 in
 {
@@ -21,6 +22,7 @@ in
     packages = with pkgs; [
       starship
       starship-jj
+      rift
     ];
 
     sessionPath = [
@@ -74,7 +76,7 @@ in
       };
       ".pryrc".source = "${self}/dots/.pryrc";
       ".npmrc".source = "${self}/dots/.npmrc";
-      ".aerospace.toml".source = "${self}/dots/.aerospace.toml";
+      ".config/rift/config.toml".source = "${self}/dots/rift/config.toml";
 
       # zsh
       ".config/zsh/functions".source = "${self}/zsh/zfunc";
@@ -110,6 +112,24 @@ in
           fi
         fi
       '';
+    };
+  };
+
+  # Home Manager owns the service; do not also run `rift service install`.
+  launchd.agents.rift = {
+    enable = true;
+    config = {
+      Label = "git.acsandmann.rift";
+      ProgramArguments = [ "${rift}/Applications/Rift.app/Contents/MacOS/rift" ];
+      EnvironmentVariables = {
+        PATH = "/run/current-system/sw/bin:/etc/profiles/per-user/${username}/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+      };
+      RunAtLoad = true;
+      KeepAlive.SuccessfulExit = false;
+      ProcessType = "Interactive";
+      LimitLoadToSessionType = "Aqua";
+      StandardOutPath = "${homeDir}/Library/Logs/rift.out.log";
+      StandardErrorPath = "${homeDir}/Library/Logs/rift.err.log";
     };
   };
 

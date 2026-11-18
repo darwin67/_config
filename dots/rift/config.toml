@@ -1,0 +1,176 @@
+# Niri's Mod maps to Option (Alt), leaving Command shortcuts to macOS apps.
+# Reference: niri/config.kdl and nixos/laptop/framework16/niri/host.kdl.
+[settings]
+animate = true
+animation_duration = 0.25
+default_disable = false
+hot_reload = true
+focus_follows_mouse = false
+mouse_follows_focus = false
+mouse_hides_on_focus = false
+# macOS logical order, top to bottom: side → main → vertical.
+# The pointer still crosses left/right in the physical monitor order.
+horizontal_mouse_warp = "top-to-bottom"
+
+[settings.layout]
+mode = "scrolling"
+window_insertion_point = "next_to_selection"
+
+[settings.layout.scrolling]
+column_width_ratio = 0.5
+preset_column_widths = [0.33333, 0.5, 0.66667]
+preserve_window_sizes = false
+expand_single_column = false
+min_column_width_ratio = 0.1
+max_column_width_ratio = 1.0
+alignment = "left"
+focus_navigation_style = "niri"
+
+# DELL U2720QM: match Niri's full-width portrait columns.
+# UUID from CGDisplayCreateUUIDFromDisplayID on the docked Mac mini.
+[settings.layout.scrolling.per_display."27316A99-A00B-4ACB-A5CC-17E1961DD65E"]
+column_width_ratio = 1.0
+
+[settings.layout.scrolling.gestures]
+enabled = true
+fingers = 3
+propagate_to_workspace_swipe = false
+
+[settings.layout.gaps.outer]
+top = 16
+left = 16
+bottom = 16
+right = 16
+
+[settings.layout.gaps.inner]
+horizontal = 16
+vertical = 16
+
+[settings.ui.mission_control]
+enabled = true
+show_empty_workspaces = true
+
+[settings.ui.menu_bar]
+enabled = true
+show_empty = false
+display_style = "label"
+active_label = "name"
+
+# Rift uses a fixed global workspace pool, unlike Niri's dynamic workspaces.
+# Global mode lets the named, monitor-pinned workspaces share number shortcuts.
+[virtual_workspaces]
+enabled = true
+mode = "global"
+default_workspace_count = 9
+workspace_names = ["main", "vertical", "side", "shosai", "5", "6", "7", "8", "9"]
+auto_assign_windows = true
+preserve_focus_per_workspace = true
+workspace_auto_back_and_forth = false
+prevent_wrapping = true
+workspace_rules = [
+    { workspace = "main", display = "DELL U3223QE" },
+    { workspace = "vertical", display = "DELL U2720QM" },
+    { workspace = "side", display = "DELL S2421HGF" },
+    { workspace = "shosai", display = "DELL S2421HGF" },
+]
+app_rules = [
+    { app_id = "com.apple.finder", workspace = "side" },
+    { app_id = "com.1password.1password", floating = true },
+    { title_regex = "^Picture[- ]in[- ]Picture$", floating = true },
+    # Keep Zoom's main/meeting windows tiled; float its toolbars and dialogs.
+    { app_id = "us.zoom.xos", title_regex = "^(Zoom Workplace( - .*)?|(Zoom )?(Meeting|Webinar)|Zoom - (Free|Licensed) Account)$", floating = false },
+    { app_id = "us.zoom.xos", floating = true },
+]
+
+[keys]
+"Alt + T" = { exec = ["/usr/bin/open", "-na", "Ghostty"] }
+"Alt + Enter" = { exec = ["/usr/bin/open", "-na", "Ghostty"] }
+"Alt + E" = { exec = ["/usr/bin/open", "-a", "Finder"] }
+"Alt + D" = { exec = ["/usr/bin/open", "-a", "Alfred"] }
+"Alt + O" = "show_mission_control_all"
+"Alt + Q" = "close_window"
+
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+"Alt + Left" = { move_focus = "left" }
+"Alt + Down" = { move_focus = "down" }
+"Alt + Up" = { move_focus = "up" }
+"Alt + Right" = { move_focus = "right" }
+
+# Rift moves the selected window, not a whole multi-window Niri column.
+"Alt + Ctrl + H" = { move_node = "left" }
+"Alt + Ctrl + J" = { move_node = "down" }
+"Alt + Ctrl + K" = { move_node = "up" }
+"Alt + Ctrl + L" = { move_node = "right" }
+"Alt + Ctrl + Left" = { move_node = "left" }
+"Alt + Ctrl + Down" = { move_node = "down" }
+"Alt + Ctrl + Up" = { move_node = "up" }
+"Alt + Ctrl + Right" = { move_node = "right" }
+
+# In the vertical logical arrangement, physical left/right means up/down.
+"Alt + Shift + H" = { focus_display = "up" }
+"Alt + Shift + J" = { focus_display = "down" }
+"Alt + Shift + K" = { focus_display = "up" }
+"Alt + Shift + L" = { focus_display = "down" }
+"Alt + Shift + Left" = { focus_display = "up" }
+"Alt + Shift + Down" = { focus_display = "down" }
+"Alt + Shift + Up" = { focus_display = "up" }
+"Alt + Shift + Right" = { focus_display = "down" }
+
+"Alt + Ctrl + Shift + H" = { move_window_to_display = { selector = "up" } }
+"Alt + Ctrl + Shift + J" = { move_window_to_display = { selector = "down" } }
+"Alt + Ctrl + Shift + K" = { move_window_to_display = { selector = "up" } }
+"Alt + Ctrl + Shift + L" = { move_window_to_display = { selector = "down" } }
+"Alt + Ctrl + Shift + Left" = { move_window_to_display = { selector = "up" } }
+"Alt + Ctrl + Shift + Down" = { move_window_to_display = { selector = "down" } }
+"Alt + Ctrl + Shift + Up" = { move_window_to_display = { selector = "up" } }
+"Alt + Ctrl + Shift + Right" = { move_window_to_display = { selector = "down" } }
+
+"Alt + U" = "next_workspace"
+"Alt + I" = "prev_workspace"
+"Alt + PageDown" = "next_workspace"
+"Alt + PageUp" = "prev_workspace"
+"Alt + Ctrl + U" = { move_window_to_workspace = { workspace = "next", follow = true } }
+"Alt + Ctrl + I" = { move_window_to_workspace = { workspace = "prev", follow = true } }
+"Alt + Ctrl + PageDown" = { move_window_to_workspace = { workspace = "next", follow = true } }
+"Alt + Ctrl + PageUp" = { move_window_to_workspace = { workspace = "prev", follow = true } }
+
+# Rift's workspace indices are zero-based; keep the visible shortcuts 1–9.
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+"Alt + 5" = { switch_to_workspace = 4 }
+"Alt + 6" = { switch_to_workspace = 5 }
+"Alt + 7" = { switch_to_workspace = 6 }
+"Alt + 8" = { switch_to_workspace = 7 }
+"Alt + 9" = { switch_to_workspace = 8 }
+"Alt + Ctrl + 1" = { move_window_to_workspace = 0 }
+"Alt + Ctrl + 2" = { move_window_to_workspace = 1 }
+"Alt + Ctrl + 3" = { move_window_to_workspace = 2 }
+"Alt + Ctrl + 4" = { move_window_to_workspace = 3 }
+"Alt + Ctrl + 5" = { move_window_to_workspace = 4 }
+"Alt + Ctrl + 6" = { move_window_to_workspace = 5 }
+"Alt + Ctrl + 7" = { move_window_to_workspace = 6 }
+"Alt + Ctrl + 8" = { move_window_to_workspace = 7 }
+"Alt + Ctrl + 9" = { move_window_to_workspace = 8 }
+
+"Alt + BracketLeft" = { consume_or_expel_window = "left" }
+"Alt + BracketRight" = { consume_or_expel_window = "right" }
+"Alt + R" = "switch_preset_column_width"
+"Alt + Shift + R" = { switch_preset_column_width = { backwards = true } }
+"Alt + C" = "center_selection"
+"Alt + F" = "toggle_fullscreen_within_gaps"
+"Alt + Shift + F" = "toggle_fullscreen"
+"Alt + Minus" = { resize_window_by = { amount = -0.1 } }
+"Alt + Equal" = { resize_window_by = { amount = 0.1 } }
+"Alt + Shift + Minus" = { resize_window_shrink = "vertical" }
+"Alt + Shift + Equal" = { resize_window_grow = "vertical" }
+"Alt + V" = "toggle_window_floating"
+"Alt + Shift + V" = "toggle_focus_floating"
+
+# Recovery controls, intentionally separate from Niri's normal actions.
+"Alt + Z" = "toggle_space_activated"
+"Alt + Shift + C" = "reload_config"
