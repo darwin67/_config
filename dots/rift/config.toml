@@ -86,7 +86,7 @@ app_rules = [
 "Alt + T" = { exec = ["/usr/bin/open", "-na", "Ghostty"] }
 "Alt + Enter" = { exec = ["/usr/bin/open", "-na", "Ghostty"] }
 "Alt + E" = { exec = ["/usr/bin/open", "-a", "Finder"] }
-"Alt + D" = { exec = ["/usr/bin/open", "-a", "Alfred"] }
+"Alt + D" = { exec = ["/usr/bin/open", "-b", "com.runningwithcrayons.Alfred"] }
 "Alt + O" = "show_mission_control_all"
 "Alt + Q" = "close_window"
 
