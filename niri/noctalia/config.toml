@@ -18,6 +18,22 @@ builtin = "Nord"
 [location]
 auto_locate = true
 
+# Fastmail events are read-only here; create and edit them in Fastmail.
+[calendar]
+enabled = true
+refresh_minutes = 15
+
+[calendar.account.fastmail]
+type = "caldav"
+name = "Fastmail"
+provider = "custom"
+server_url = "https://caldav.fastmail.com/dav/calendars/user/hey@dwu.sh/"
+username = "hey@dwu.sh"
+calendars = [] # Sync all discovered calendars.
+# After applying, enter a Fastmail app password in Settings → Calendar → Accounts
+# → Fastmail → Edit → Save. GNOME Keyring keeps it out of Git and the Nix store.
+credential_source = "secret-service"
+
 # Genkan draws the wallpaper.
 [wallpaper]
 enabled = false
