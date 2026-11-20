@@ -22,12 +22,12 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "amp-desktop";
-  version = "0.1.29915281";
+  version = "0.1.29917801";
 
   # Official package from https://ampcode.com/docs/apps/linux.
   src = fetchurl {
     url = "https://static.ampcode.com/linux/${finalAttrs.version}/amp-desktop-${finalAttrs.version}-amd64.deb";
-    hash = "sha256-UwuArV/8P05kiwkE6UcmsTzHPA7hVfEVeOwEo0Sd8P0=";
+    hash = "sha256-NrAswZD/jPBMpiWAIiF11mTQ2biKihZ/X6qvyP28a/Q=";
   };
 
   nativeBuildInputs = [
