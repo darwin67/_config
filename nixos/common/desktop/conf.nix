@@ -250,7 +250,8 @@
       };
       wallpaper = {
         enable = true;
-        source.catalog = "iceland";
+        source.catalog = "macos-landscape-iceland-snow-caps";
+        source.sha256 = "4f27ff15e78a31f86367e27a5628a510cdd46a77699411b8c4ea737d2c130cb4";
       };
     };
     firefox = {

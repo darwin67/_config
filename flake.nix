@@ -25,7 +25,7 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
     genkan = {
-      url = "github:darwin67/genkan";
+      url = "github:darwin67/genkan/v0.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Strata needs a newer Rust than our release nixpkgs provides.
